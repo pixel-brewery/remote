@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "@nx/devkit": "24.0.5",
-        "@pixel-brewery/mosaik-themes": "0.1.205",
+        "@pixel-brewery/mosaik-themes": "0.1.213",
         "@pixel-brewery/remote-core": "workspace:*",
         "@pixel-brewery/remote-protocol": "workspace:*",
         "@pixel-brewery/remote-testing": "workspace:*",
