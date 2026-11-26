@@ -74,9 +74,9 @@ publication and consumer completion are not inferred from them.
 | Public API               | Strict TypeDoc generation and read-only verification passed for all 16 entry points. Interface members now require their own multiline documentation and separate access tags.                                                                                                                                                                 |
 | Published artifact shape | All nine real Yarn tarballs installed in an isolated consumer; 25 export specifiers, strict declaration checking without workspace aliases, nine safe runtime imports, licenses and inward dependencies passed.                                                                                                                                |
 | Native contracts         | Eleven canonical schemas, 39 accepted/rejected wire/content-policy vectors and 14 route-match vectors are generated from the shared owners and consumed by both native platforms.                                                                                                                                                              |
-| Android SDK              | Actual AAR compilation and seven JUnit tests passed: zero failures/errors/skips, including canonical vectors, private-peer checks, independent content-policy flags and the configured upload ceiling.                                                                                                                                         |
+| Android SDK              | Actual AAR compilation and seven JUnit tests passed under AGP9.5.3/KGP2.4.21/Gradle9.6.0/JDK21/API36/BuildTools36.0.0: zero failures/errors/skips, including canonical vectors, private-peer checks, independent content-policy flags and the configured upload ceiling.                                                                       |
 | iOS SDK                  | The actual `PixelBreweryRemote-Package` simulator scheme ran eleven XCTest cases: eleven passed, zero failed/skipped. This includes cookies, streamed upload/cancellation, canonical vectors, content policy and quota boundaries. Xcode emits local toolchain diagnostics; those are not reported as a warning-free compiler run.             |
-| Native fixtures          | Counter and Notes Android APKs and both iOS simulator application targets compiled during implementation. CI repeats their compilation at the exact committed head.                                                                                                                                                                            |
+| Native fixtures          | Counter and Notes Android APKs compiled with the same AGP9 toolchain; each archive's web assets and Capacitor configuration matched the Nx output byte-for-byte. Both iOS simulator application targets compiled during implementation. CI repeats compilation at the exact committed head.                                                    |
 | Browser fixtures         | Both products passed real Chromium pairing, reads/writes, original FormData upload, SSE, WebSocket, Range, restore and revocation journeys, with light/dark appearance, narrow layout and keyboard checks. The local run was explicitly labelled loopback.                                                                                     |
 | Electron                 | Source builds, strict declarations, lifecycle/admission tests and actual process startup passed. The local macOS happy path stopped at a genuine OS Keychain permission gate; no mock/plaintext backend or successful Mac credential journey is claimed. Linux CI provisions a real isolated libsecret service and must pass the full journey. |
 | Release tooling          | The manual-only publisher and retained packing path passed offline source/attempt/artifact/tag/byte-integrity/public-visibility rejection tests. No tag or registry upload is implied by these tests.                                                                                                                                          |
@@ -101,10 +101,38 @@ work. Never remove a platform gate or count a pending permission as success.
 
 Use the actual Nx targets `remote-capacitor:android-compile`,
 `remote-capacitor:ios-compile` and `remote-capacitor:ios-test`. Android uses JDK 21,
-Gradle 8.14.3 and the declared Android SDK/build tools. Set `GRADLE_BIN` only when
-an existing matching wrapper supplies Gradle. The iOS task selects an available
+AGP 9.5.3, Gradle 9.6.0, Android API 36 and SDK Build Tools 36.0.0. The Gradle and
+Build Tools requirements follow Google's [AGP 9.5 compatibility table](https://developer.android.com/build/releases/agp-9-5-0-release-notes#compatibility).
+Set `GRADLE_BIN` only when an existing matching wrapper supplies Gradle 9.6.0. The iOS task selects an available
 installed iPhone simulator without creating another one; an explicit
 `REMOTE_IOS_DESTINATION` can select an existing device.
+
+The library and Counter/Notes fixture use [built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin),
+with no separate `org.jetbrains.kotlin.android` application or opt-out flags. Both
+native Gradle entry points select KGP 2.4.21 through Google's documented
+[compiler classpath contract](https://developer.android.com/build/releases/agp-9-0-0-release-notes#upgrade-to-a-higher-kgp-version).
+The Java/Kotlin 21 targets, API 36 and Android 24 minimum remain unchanged.
+
+Capacitor 8.6.2 retains its own unchanged AGP 8.13.0 buildscript. Its inclusion in
+the AGP 9.5.3 SDK AAR/seven JVM tests and both Counter/Notes APK builds passed on
+2026-11-26. This is executed build evidence for the pinned combination, not a
+Capacitor-major migration. The [Capacitor 9 plugin guide](https://next.capacitorjs.com/docs/next/updating/plugins/9-0)
+explains built-in Kotlin and additional major-version changes; those changes are
+not silently applied to the pinned Capacitor 8 integration. Likewise,
+[JetBrains' fully tested matrix](https://kotlinlang.org/docs/gradle-configure-project.html)
+covers KGP 2.4.21 with Gradle through 9.7.0 but AGP only through 9.3.1; the actual
+targets provide this project's AGP 9.5.3 evidence rather than a broader vendor
+support guarantee. Repeat both native targets after toolchain changes. Preserve any failing output;
+do not introduce vendor patches, `android.builtInKotlin=false` or legacy-DSL opt-outs
+to turn an incompatible build into a pass.
+
+The fixture's existing Gradle Sync copies Nx-produced assets and configuration
+into the APK. Its generated-directory property maps the Sync TaskProvider's
+destination, and both variants register that output with
+`addGeneratedSourceDirectory`. A free-standing directory property can lose the
+producer dependency and create successfully compiled APKs without their web
+application. Archive checks must verify `assets/public/index.html`, the remaining
+Nx-produced assets and `assets/capacitor.config.json`, not only APK existence.
 
 `fixture-mobile:android-compile` builds both application flavors;
 `fixture-mobile:ios-compile` builds both product application targets. Browser and
