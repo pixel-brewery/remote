@@ -22,7 +22,7 @@ for (const kind of ['counter', 'notes'] as const) {
             kind,
             host: address,
             allowLoopbackForTests: loopback,
-            port: 0,
+            ...(loopback ? { port: 0 } : {}),
             storagePath: join(directory, kind + '.json'),
             assetsPath: resolve(root, 'dist'),
         });
