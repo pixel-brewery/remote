@@ -14,12 +14,12 @@
         "@pixel-brewery/remote-core": "workspace:*",
         "@pixel-brewery/remote-protocol": "workspace:*",
         "@pixel-brewery/remote-testing": "workspace:*",
+        "@typescript/native": "npm:typescript@7.0.2",
         "nx": "24.0.6",
         "typedoc": "0.28.20",
         "typedoc-plugin-markdown": "4.14.1",
         "typescript": "npm:@typescript/typescript6@6.0.2",
         "vite": "8.3.8",
-        "zod": "4.6.7",
-        "@typescript/native": "npm:typescript@7.0.2"
+        "zod": "4.6.7"
     }
 }
