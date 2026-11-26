@@ -95,6 +95,9 @@ describe('createRemoteApplicationHandler', () => {
                 authorization: 'Bearer ' + 'a'.repeat(43),
                 cookie: 'device=secret',
                 origin: value.origin,
+                'x-forwarded-for': '127.0.0.1',
+                forwarded: 'for=127.0.0.1',
+                'x-real-ip': '127.0.0.1',
                 'x-application': 'kept',
             },
         });
@@ -112,6 +115,9 @@ describe('createRemoteApplicationHandler', () => {
             expect(observed[view]).not.toHaveProperty('authorization');
             expect(observed[view]).not.toHaveProperty('cookie');
             expect(observed[view]).not.toHaveProperty('origin');
+            expect(observed[view]).not.toHaveProperty('x-forwarded-for');
+            expect(observed[view]).not.toHaveProperty('forwarded');
+            expect(observed[view]).not.toHaveProperty('x-real-ip');
         }
         expect(observed['headers']).toMatchObject({ 'x-application': 'kept' });
         expect(observed['distinct']).toMatchObject({ 'x-application': ['kept'] });
@@ -121,6 +127,8 @@ describe('createRemoteApplicationHandler', () => {
         expect(raw).not.toContain('cookie');
         expect(raw).not.toContain('origin');
         expect(raw).not.toContain('device=secret');
+        expect(raw).not.toContain('x-forwarded-for');
+        expect(raw).not.toContain('x-real-ip');
         expect(raw.length % 2).toBe(0);
         await vi.waitFor(() => expect(value.releases).toHaveBeenCalledTimes(1));
         expect(value.admit).toHaveBeenCalledTimes(1);

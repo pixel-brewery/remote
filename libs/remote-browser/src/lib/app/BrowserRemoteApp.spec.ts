@@ -114,6 +114,7 @@ function backend(fetch: ReturnType<typeof environment>['fetch'], authorized = tr
         capabilities: capabilities as unknown,
         pairingBodies: [] as unknown[],
         losePairingResponse: false,
+        pendingApproval: false,
     };
     fetch.mockImplementation(async (input, options) => {
         const path = new URL(String(input)).pathname;
@@ -123,6 +124,12 @@ function backend(fetch: ReturnType<typeof environment>['fetch'], authorized = tr
         if (path === '/__remote/v1/pairings') {
             state.pairingBodies.push(JSON.parse(String(options?.body)) as unknown);
             if (state.losePairingResponse) throw new Error('Lost response');
+            if (state.pendingApproval)
+                return json({
+                    status: 'pending',
+                    pairingId: 'pairing-1',
+                    expiresAt: new Date(Date.now() + 240_000).toISOString(),
+                });
             state.authorized = true;
             return json({ status: 'paired', session: descriptor });
         }
@@ -606,5 +613,70 @@ describe('BrowserRemoteApp', () => {
             expect([...fixture.listeners.values()].every((set) => set.size === 0)).toBe(true);
             expect(app.phase.kind).toBe('pairing-required');
         });
+    });
+    it('waits for host approval instead of asking for a new invitation, and pairs on the next preparation', async () => {
+        // Arrange
+        const fixture = environment(createRemotePairingUrl(invitation()));
+        const state = backend(fixture.fetch, false);
+        state.pendingApproval = true;
+        const app = create(fixture);
+        // Act
+        const waiting = await app.prepare();
+        state.pendingApproval = false;
+        const approved = await app.prepare();
+        // Assert
+        expect(waiting).toEqual({ kind: 'pending-approval' });
+        expect(approved).toEqual({ kind: 'ready' });
+        expect(state.pairingBodies).toHaveLength(2);
+        expect((state.pairingBodies[1] as { attemptId: string }).attemptId).toBe(
+            (state.pairingBodies[0] as { attemptId: string }).attemptId,
+        );
+    });
+
+    it('starts an ordinary deployment normally when its fragment only contains an unrelated pair parameter', async () => {
+        // Arrange
+        const fixture = environment('https://app.example/#tab=x&pair=y');
+        fixture.fetch.mockResolvedValue(new Response('<html></html>', { status: 200 }));
+        const app = create(fixture);
+        // Act
+        const phase = await app.prepare();
+        // Assert
+        expect(phase).toEqual({ kind: 'normal' });
+    });
+
+    it('replaces a running preparation when another invitation arrives in the same document', async () => {
+        // Arrange
+        const fixture = environment();
+        const state = backend(fixture.fetch, false);
+        let releaseHost: () => void = () => undefined;
+        const original = fixture.fetch.getMockImplementation();
+        let held = true;
+        fixture.fetch.mockImplementation(async (input, options) => {
+            if (held && new URL(String(input)).pathname === '/__remote/v1/host') {
+                held = false;
+                // Like a real fetch, an aborted signal rejects at once or as soon as it aborts.
+                if (!options?.signal?.aborted)
+                    await new Promise<void>((resolve) => {
+                        releaseHost = resolve;
+                        options?.signal?.addEventListener('abort', () => resolve(), { once: true });
+                    });
+                throw new Error('Aborted');
+            }
+            return original!(input, options);
+        });
+        const app = create(fixture);
+        app.attach();
+        const phases: string[] = [];
+        app.subscribe((phase) => phases.push(phase.kind));
+        const first = app.prepare();
+        // Act
+        fixture.location.hash = new URL(createRemotePairingUrl(invitation())).hash;
+        fixture.dispatch('hashchange');
+        releaseHost();
+        await first;
+        await vi.waitFor(() => expect(app.phase.kind).toBe('ready'));
+        // Assert
+        expect(state.pairingBodies).toHaveLength(1);
+        expect(phases).not.toContain('error');
     });
 });

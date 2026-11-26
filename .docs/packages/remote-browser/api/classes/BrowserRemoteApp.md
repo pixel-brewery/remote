@@ -377,7 +377,8 @@ The resulting phase; failures are published as actionable phases rather than rej
 #### Remarks
 
 Simultaneous calls share one preparation. Local origins and native clients outside their protected
-loopback view start normally without a probe. A deadline expiry publishes `error` with reason `connection`.
+loopback view start normally without a probe. For a remote start a deadline expiry publishes `error` with reason
+`connection`; an ordinary start whose probe does not answer in time starts normally.
 
 #### Throws
 

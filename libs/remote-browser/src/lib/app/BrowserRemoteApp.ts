@@ -61,6 +61,8 @@ export class BrowserRemoteApp<TMetadata> {
         | undefined;
     private _controller: AbortController | undefined;
     private _preparing: Promise<BrowserRemoteAppPhase> | undefined;
+    private _superseded: AbortController | undefined;
+    private _restartRequested = false;
     private _authorization: Promise<void> | undefined;
     private _lastHost: IRemoteHostIdentity | undefined;
     private _disposed = false;
@@ -166,7 +168,8 @@ export class BrowserRemoteApp<TMetadata> {
      * Classify this start and, for a remote start, verify host, session and application metadata.
      *
      * @remarks Simultaneous calls share one preparation. Local origins and native clients outside their protected
-     * loopback view start normally without a probe. A deadline expiry publishes `error` with reason `connection`.
+     * loopback view start normally without a probe. For a remote start a deadline expiry publishes `error` with reason
+     * `connection`; an ordinary start whose probe does not answer in time starts normally.
      * @returns The resulting phase; failures are published as actionable phases rather than rejections.
      * @throws Error after disposal.
      * @public
@@ -212,8 +215,8 @@ export class BrowserRemoteApp<TMetadata> {
         const environment = this._options.window;
         const hashchange = (): void => {
             // Opening another invitation in the same tab changes only the fragment, which loads nothing.
-            if (/(?:^#|&)pair=/u.test(environment.location.hash))
-                void this.prepare().catch(() => undefined);
+            if (hasInvitation(environment.location.hash))
+                void this.restart().catch(() => undefined);
         };
         const pagehide = (): void => {
             void this.dispose().catch(() => undefined);
@@ -266,7 +269,7 @@ export class BrowserRemoteApp<TMetadata> {
                 url.pathname === before.pathname &&
                 url.search === before.search
             )
-                await this.prepare();
+                await this.restart();
             return;
         }
         const view = await this.control().pair(bootstrap, deviceName.trim());
@@ -405,6 +408,25 @@ export class BrowserRemoteApp<TMetadata> {
         this._session = undefined;
         await session?.dispose();
     }
+    /**
+     * Replaces a running preparation with a new one that reads the current fragment.
+     *
+     * @returns The new preparation's phase.
+     * @throws Error after disposal.
+     * @private
+     */
+    private async restart(): Promise<BrowserRemoteAppPhase> {
+        const running = this._preparing;
+        if (running) {
+            // The running preparation may not have created its controller yet; it then aborts itself on start.
+            this._restartRequested = true;
+            this._superseded = this._controller;
+            this._controller?.abort();
+            await running.catch(() => undefined);
+            this._restartRequested = false;
+        }
+        return this.prepare();
+    }
     private async prepareOnce(): Promise<BrowserRemoteAppPhase> {
         // An ordinary start stays unpublished until it is classified, so it never shows the connection view first.
         this._ready = undefined;
@@ -415,6 +437,13 @@ export class BrowserRemoteApp<TMetadata> {
         this._session = undefined;
         const controller = new AbortController();
         this._controller = controller;
+        if (this._restartRequested) {
+            this._superseded = controller;
+            controller.abort();
+        }
+        // A preparation replaced by a newer invitation publishes nothing; its successor decides.
+        const settle = (phase: BrowserRemoteAppPhase): BrowserRemoteAppPhase =>
+            this._superseded === controller ? this._phase : this.publish(phase);
         const environment = this._options.window;
         let timedOut = false;
         const timer = environment.setTimeout(() => {
@@ -424,24 +453,25 @@ export class BrowserRemoteApp<TMetadata> {
         let stage: 'connection' | 'invitation' | 'capabilities' = 'connection';
         try {
             const location = environment.location;
-            if (this._localOrigins.has(location.origin)) return this.publish({ kind: 'normal' });
+            if (this._localOrigins.has(location.origin)) return settle({ kind: 'normal' });
             // A packaged client starts its own application; its connections live in the application settings.
             if (this.hasNativeControl && !this.isLoopbackView(location.origin))
-                return this.publish({ kind: 'normal' });
+                return settle({ kind: 'normal' });
             if (location.protocol !== 'http:' && location.protocol !== 'https:')
-                return this.publish({ kind: 'normal' });
+                return settle({ kind: 'normal' });
             const pairing = new BrowserPairingLocation(location, environment.history);
             stage = 'invitation';
-            const bootstrap = pairing.read();
+            // Only a complete invitation fragment is an invitation; an unrelated `pair=` parameter is not.
+            const bootstrap = hasInvitation(location.hash) ? pairing.read() : null;
             if (bootstrap && bootstrap.appId !== this._appId)
                 throw new Error('The invitation belongs to another application.');
             // Only an invitation or a native loopback view is a remote start that shows progress immediately.
             const remoteStart = bootstrap !== null || this.hasNativeControl;
-            if (remoteStart) this.publish({ kind: 'preparing' });
+            if (remoteStart) settle({ kind: 'preparing' });
             stage = 'connection';
             const host = await this.probe(location.origin, remoteStart, controller.signal);
-            if (!host) return this.publish({ kind: 'normal' });
-            this.publish({ kind: 'preparing' });
+            if (!host) return settle({ kind: 'normal' });
+            settle({ kind: 'preparing' });
             if (
                 host.identity.appId !== this._appId ||
                 (bootstrap && bootstrap.hostId !== host.identity.hostId)
@@ -489,9 +519,11 @@ export class BrowserRemoteApp<TMetadata> {
                 await session.pair(bootstrap, this.deviceName());
             if (controller.signal.aborted) throw new Error('The remote preparation ended.');
             if (session.state.kind !== 'ready') {
+                // The fragment and the public attempt stay, so preparing again resends the same attempt.
+                const pending = session.state.kind === 'pending-approval';
                 await session.dispose();
                 this._session = undefined;
-                return this.publish({ kind: 'pairing-required' });
+                return settle({ kind: pending ? 'pending-approval' : 'pairing-required' });
             }
             if (bootstrap) {
                 pairing.clear();
@@ -504,7 +536,7 @@ export class BrowserRemoteApp<TMetadata> {
             if (session.state.kind !== 'ready') {
                 await session.dispose();
                 this._session = undefined;
-                return this.publish({ kind: 'pairing-required' });
+                return settle({ kind: 'pairing-required' });
             }
             this._ready = Object.freeze({
                 identity: host.identity,
@@ -513,12 +545,12 @@ export class BrowserRemoteApp<TMetadata> {
                 session,
             });
             this._lastHost = host.identity;
-            return this.publish({ kind: 'ready' });
+            return settle({ kind: 'ready' });
         } catch {
             this._ready = undefined;
             await this._session?.dispose().catch(() => undefined);
             this._session = undefined;
-            return this.publish({ kind: 'error', reason: timedOut ? 'connection' : stage });
+            return settle({ kind: 'error', reason: timedOut ? 'connection' : stage });
         } finally {
             environment.clearTimeout(timer);
         }
@@ -685,4 +717,17 @@ export class BrowserRemoteApp<TMetadata> {
         }
     }
     // #endregion
+}
+
+/**
+ * Reports whether a fragment carries a complete canonical invitation.
+ *
+ * @param hash - Location fragment including its leading `#`.
+ * @returns True when the fragment names the invitation, application, host and expiry.
+ *
+ * @internal
+ */
+function hasInvitation(hash: string): boolean {
+    const parameters = new URLSearchParams(hash.startsWith('#') ? hash.slice(1) : hash);
+    return ['pair', 'app', 'host', 'expires'].every((key) => parameters.has(key));
 }

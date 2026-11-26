@@ -7,7 +7,7 @@
   "flags": {},
   "children": [
     {
-      "id": 331,
+      "id": 334,
       "name": "createRemoteApplicationHandler",
       "variant": "declaration",
       "kind": 64,
@@ -16,7 +16,7 @@
       },
       "signatures": [
         {
-          "id": 332,
+          "id": 335,
           "name": "createRemoteApplicationHandler",
           "variant": "signature",
           "kind": 4096,
@@ -68,6 +68,30 @@
                   },
                   {
                     "kind": "text",
+                    "text": " and the\nproxy headers "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`forwarded`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`x-forwarded-*`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " and "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`x-real-ip`"
+                  },
+                  {
+                    "kind": "text",
                     "text": " from both\nthe parsed and raw header views, so the application never mistakes a device\ncredential for its own authentication and never re-evaluates the already\nverified LAN origin. The original request and response streams are passed on\nunchanged otherwise. The admission is released exactly once, on response\nfinish, response close or context abort. A synchronous dispatch error, or a\nrejection of a returned promise, releases the admission and is rethrown to the\nhost, which then reports the failure. An already aborted context is refused\nwithout admission or dispatch."
                   }
                 ]
@@ -104,7 +128,7 @@
           },
           "parameters": [
             {
-              "id": 333,
+              "id": 336,
               "name": "dispatch",
               "variant": "param",
               "kind": 32768,
@@ -120,21 +144,21 @@
               "type": {
                 "type": "reflection",
                 "declaration": {
-                  "id": 334,
+                  "id": 337,
                   "name": "__type",
                   "variant": "declaration",
                   "kind": 65536,
                   "flags": {},
                   "signatures": [
                     {
-                      "id": 335,
+                      "id": 338,
                       "name": "__type",
                       "variant": "signature",
                       "kind": 4096,
                       "flags": {},
                       "parameters": [
                         {
-                          "id": 336,
+                          "id": 339,
                           "name": "request",
                           "variant": "param",
                           "kind": 32768,
@@ -152,7 +176,7 @@
                           }
                         },
                         {
-                          "id": 337,
+                          "id": 340,
                           "name": "response",
                           "variant": "param",
                           "kind": 32768,
@@ -201,7 +225,7 @@
               }
             },
             {
-              "id": 338,
+              "id": 341,
               "name": "admit",
               "variant": "param",
               "kind": 32768,
@@ -216,7 +240,7 @@
                     "kind": "inline-tag",
                     "tag": "@link",
                     "text": "RemoteRequestAdmissions.admit",
-                    "target": 319
+                    "target": 322
                   },
                   {
                     "kind": "text",
@@ -227,21 +251,21 @@
               "type": {
                 "type": "reflection",
                 "declaration": {
-                  "id": 339,
+                  "id": 342,
                   "name": "__type",
                   "variant": "declaration",
                   "kind": 65536,
                   "flags": {},
                   "signatures": [
                     {
-                      "id": 340,
+                      "id": 343,
                       "name": "__type",
                       "variant": "signature",
                       "kind": 4096,
                       "flags": {},
                       "parameters": [
                         {
-                          "id": 341,
+                          "id": 344,
                           "name": "request",
                           "variant": "param",
                           "kind": 32768,
@@ -259,7 +283,7 @@
                           }
                         },
                         {
-                          "id": 342,
+                          "id": 345,
                           "name": "context",
                           "variant": "param",
                           "kind": 32768,
@@ -279,14 +303,14 @@
                       "type": {
                         "type": "reflection",
                         "declaration": {
-                          "id": 343,
+                          "id": 346,
                           "name": "__type",
                           "variant": "declaration",
                           "kind": 65536,
                           "flags": {},
                           "signatures": [
                             {
-                              "id": 344,
+                              "id": 347,
                               "name": "__type",
                               "variant": "signature",
                               "kind": 4096,
@@ -308,7 +332,7 @@
           "type": {
             "type": "reflection",
             "declaration": {
-              "id": 345,
+              "id": 348,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
@@ -317,7 +341,7 @@
               },
               "signatures": [
                 {
-                  "id": 346,
+                  "id": 349,
                   "name": "__type",
                   "variant": "signature",
                   "kind": 4096,
@@ -354,7 +378,7 @@
                   },
                   "parameters": [
                     {
-                      "id": 347,
+                      "id": 350,
                       "name": "request",
                       "variant": "param",
                       "kind": 32768,
@@ -380,7 +404,7 @@
                       }
                     },
                     {
-                      "id": 348,
+                      "id": 351,
                       "name": "response",
                       "variant": "param",
                       "kind": 32768,
@@ -406,7 +430,7 @@
                       }
                     },
                     {
-                      "id": 349,
+                      "id": 352,
                       "name": "context",
                       "variant": "param",
                       "kind": 32768,
@@ -455,7 +479,7 @@
       ]
     },
     {
-      "id": 289,
+      "id": 292,
       "name": "handleRemoteHostControl",
       "variant": "declaration",
       "kind": 64,
@@ -464,7 +488,7 @@
       },
       "signatures": [
         {
-          "id": 290,
+          "id": 293,
           "name": "handleRemoteHostControl",
           "variant": "signature",
           "kind": 4096,
@@ -570,7 +594,7 @@
                     "kind": "inline-tag",
                     "tag": "@link",
                     "text": "parseRemoteHostControlCommand",
-                    "target": 295
+                    "target": 298
                   },
                   {
                     "kind": "text",
@@ -648,7 +672,7 @@
           },
           "parameters": [
             {
-              "id": 291,
+              "id": 294,
               "name": "request",
               "variant": "param",
               "kind": 32768,
@@ -674,7 +698,7 @@
               }
             },
             {
-              "id": 292,
+              "id": 295,
               "name": "response",
               "variant": "param",
               "kind": 32768,
@@ -700,7 +724,7 @@
               }
             },
             {
-              "id": 293,
+              "id": 296,
               "name": "control",
               "variant": "param",
               "kind": 32768,
@@ -718,7 +742,7 @@
                 "types": [
                   {
                     "type": "reference",
-                    "target": 233,
+                    "target": 236,
                     "name": "IRemoteHostControl",
                     "package": "@pixel-brewery/remote-node"
                   },
@@ -730,7 +754,7 @@
               }
             },
             {
-              "id": 294,
+              "id": 297,
               "name": "options",
               "variant": "param",
               "kind": 32768,
@@ -753,7 +777,7 @@
               },
               "type": {
                 "type": "reference",
-                "target": 299,
+                "target": 302,
                 "name": "IRemoteHostControlOptions",
                 "package": "@pixel-brewery/remote-node"
               },
@@ -1302,7 +1326,7 @@
               "type": "array",
               "elementType": {
                 "type": "reference",
-                "target": 368,
+                "target": 371,
                 "name": "IRemoteNodeTransport",
                 "package": "@pixel-brewery/remote-node"
               }
@@ -1742,7 +1766,7 @@
       ]
     },
     {
-      "id": 233,
+      "id": 236,
       "name": "IRemoteHostControl",
       "variant": "declaration",
       "kind": 256,
@@ -1770,7 +1794,7 @@
       },
       "children": [
         {
-          "id": 242,
+          "id": 245,
           "name": "createPairing",
           "variant": "declaration",
           "kind": 2048,
@@ -1779,7 +1803,7 @@
           },
           "signatures": [
             {
-              "id": 243,
+              "id": 246,
               "name": "createPairing",
               "variant": "signature",
               "kind": 4096,
@@ -1816,7 +1840,7 @@
               },
               "parameters": [
                 {
-                  "id": 244,
+                  "id": 247,
                   "name": "endpointId",
                   "variant": "param",
                   "kind": 32768,
@@ -1856,14 +1880,14 @@
                       {
                         "type": "reflection",
                         "declaration": {
-                          "id": 245,
+                          "id": 248,
                           "name": "__type",
                           "variant": "declaration",
                           "kind": 65536,
                           "flags": {},
                           "children": [
                             {
-                              "id": 246,
+                              "id": 249,
                               "name": "appId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1874,7 +1898,7 @@
                               }
                             },
                             {
-                              "id": 249,
+                              "id": 252,
                               "name": "challenge",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1885,7 +1909,7 @@
                               }
                             },
                             {
-                              "id": 250,
+                              "id": 253,
                               "name": "expiresAt",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1896,7 +1920,7 @@
                               }
                             },
                             {
-                              "id": 247,
+                              "id": 250,
                               "name": "hostId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1907,7 +1931,7 @@
                               }
                             },
                             {
-                              "id": 248,
+                              "id": 251,
                               "name": "origin",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1922,11 +1946,11 @@
                             {
                               "title": "Properties",
                               "children": [
-                                246,
                                 249,
+                                252,
+                                253,
                                 250,
-                                247,
-                                248
+                                251
                               ]
                             }
                           ]
@@ -1944,7 +1968,7 @@
           ]
         },
         {
-          "id": 238,
+          "id": 241,
           "name": "disable",
           "variant": "declaration",
           "kind": 2048,
@@ -1953,7 +1977,7 @@
           },
           "signatures": [
             {
-              "id": 239,
+              "id": 242,
               "name": "disable",
               "variant": "signature",
               "kind": 4096,
@@ -2008,7 +2032,7 @@
           ]
         },
         {
-          "id": 236,
+          "id": 239,
           "name": "enable",
           "variant": "declaration",
           "kind": 2048,
@@ -2017,7 +2041,7 @@
           },
           "signatures": [
             {
-              "id": 237,
+              "id": 240,
               "name": "enable",
               "variant": "signature",
               "kind": 4096,
@@ -2072,7 +2096,7 @@
           ]
         },
         {
-          "id": 240,
+          "id": 243,
           "name": "reconcile",
           "variant": "declaration",
           "kind": 2048,
@@ -2081,7 +2105,7 @@
           },
           "signatures": [
             {
-              "id": 241,
+              "id": 244,
               "name": "reconcile",
               "variant": "signature",
               "kind": 4096,
@@ -2136,7 +2160,7 @@
           ]
         },
         {
-          "id": 251,
+          "id": 254,
           "name": "revokeDevice",
           "variant": "declaration",
           "kind": 2048,
@@ -2145,7 +2169,7 @@
           },
           "signatures": [
             {
-              "id": 252,
+              "id": 255,
               "name": "revokeDevice",
               "variant": "signature",
               "kind": 4096,
@@ -2182,7 +2206,7 @@
               },
               "parameters": [
                 {
-                  "id": 253,
+                  "id": 256,
                   "name": "deviceId",
                   "variant": "param",
                   "kind": 32768,
@@ -2221,7 +2245,7 @@
           ]
         },
         {
-          "id": 234,
+          "id": 237,
           "name": "status",
           "variant": "declaration",
           "kind": 2048,
@@ -2230,7 +2254,7 @@
           },
           "signatures": [
             {
-              "id": 235,
+              "id": 238,
               "name": "status",
               "variant": "signature",
               "kind": 4096,
@@ -2279,25 +2303,25 @@
         {
           "title": "Methods",
           "children": [
-            242,
-            238,
-            236,
-            240,
-            251,
-            234
+            245,
+            241,
+            239,
+            243,
+            254,
+            237
           ]
         }
       ],
       "extendedBy": [
         {
           "type": "reference",
-          "target": 254,
+          "target": 257,
           "name": "IRemoteHostLifecycle"
         }
       ]
     },
     {
-      "id": 299,
+      "id": 302,
       "name": "IRemoteHostControlOptions",
       "variant": "declaration",
       "kind": 256,
@@ -2314,7 +2338,7 @@
       },
       "children": [
         {
-          "id": 301,
+          "id": 304,
           "name": "maxBodyBytes",
           "variant": "declaration",
           "kind": 1024,
@@ -2337,7 +2361,7 @@
           }
         },
         {
-          "id": 300,
+          "id": 303,
           "name": "prefix",
           "variant": "declaration",
           "kind": 1024,
@@ -2380,14 +2404,14 @@
         {
           "title": "Properties",
           "children": [
-            301,
-            300
+            304,
+            303
           ]
         }
       ]
     },
     {
-      "id": 254,
+      "id": 257,
       "name": "IRemoteHostLifecycle",
       "variant": "declaration",
       "kind": 256,
@@ -2423,7 +2447,7 @@
       },
       "children": [
         {
-          "id": 275,
+          "id": 278,
           "name": "createPairing",
           "variant": "declaration",
           "kind": 2048,
@@ -2433,7 +2457,7 @@
           },
           "signatures": [
             {
-              "id": 276,
+              "id": 279,
               "name": "createPairing",
               "variant": "signature",
               "kind": 4096,
@@ -2471,7 +2495,7 @@
               },
               "parameters": [
                 {
-                  "id": 277,
+                  "id": 280,
                   "name": "endpointId",
                   "variant": "param",
                   "kind": 32768,
@@ -2511,14 +2535,14 @@
                       {
                         "type": "reflection",
                         "declaration": {
-                          "id": 278,
+                          "id": 281,
                           "name": "__type",
                           "variant": "declaration",
                           "kind": 65536,
                           "flags": {},
                           "children": [
                             {
-                              "id": 279,
+                              "id": 282,
                               "name": "appId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2529,7 +2553,7 @@
                               }
                             },
                             {
-                              "id": 282,
+                              "id": 285,
                               "name": "challenge",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2540,7 +2564,7 @@
                               }
                             },
                             {
-                              "id": 283,
+                              "id": 286,
                               "name": "expiresAt",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2551,7 +2575,7 @@
                               }
                             },
                             {
-                              "id": 280,
+                              "id": 283,
                               "name": "hostId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2562,7 +2586,7 @@
                               }
                             },
                             {
-                              "id": 281,
+                              "id": 284,
                               "name": "origin",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2577,11 +2601,11 @@
                             {
                               "title": "Properties",
                               "children": [
-                                279,
                                 282,
+                                285,
+                                286,
                                 283,
-                                280,
-                                281
+                                284
                               ]
                             }
                           ]
@@ -2597,19 +2621,19 @@
               },
               "inheritedFrom": {
                 "type": "reference",
-                "target": 243,
+                "target": 246,
                 "name": "IRemoteHostControl.createPairing"
               }
             }
           ],
           "inheritedFrom": {
             "type": "reference",
-            "target": 242,
+            "target": 245,
             "name": "IRemoteHostControl.createPairing"
           }
         },
         {
-          "id": 271,
+          "id": 274,
           "name": "disable",
           "variant": "declaration",
           "kind": 2048,
@@ -2619,7 +2643,7 @@
           },
           "signatures": [
             {
-              "id": 272,
+              "id": 275,
               "name": "disable",
               "variant": "signature",
               "kind": 4096,
@@ -2673,19 +2697,19 @@
               },
               "inheritedFrom": {
                 "type": "reference",
-                "target": 239,
+                "target": 242,
                 "name": "IRemoteHostControl.disable"
               }
             }
           ],
           "inheritedFrom": {
             "type": "reference",
-            "target": 238,
+            "target": 241,
             "name": "IRemoteHostControl.disable"
           }
         },
         {
-          "id": 257,
+          "id": 260,
           "name": "dispose",
           "variant": "declaration",
           "kind": 2048,
@@ -2694,7 +2718,7 @@
           },
           "signatures": [
             {
-              "id": 258,
+              "id": 261,
               "name": "dispose",
               "variant": "signature",
               "kind": 4096,
@@ -2749,7 +2773,7 @@
           ]
         },
         {
-          "id": 269,
+          "id": 272,
           "name": "enable",
           "variant": "declaration",
           "kind": 2048,
@@ -2759,7 +2783,7 @@
           },
           "signatures": [
             {
-              "id": 270,
+              "id": 273,
               "name": "enable",
               "variant": "signature",
               "kind": 4096,
@@ -2813,19 +2837,19 @@
               },
               "inheritedFrom": {
                 "type": "reference",
-                "target": 237,
+                "target": 240,
                 "name": "IRemoteHostControl.enable"
               }
             }
           ],
           "inheritedFrom": {
             "type": "reference",
-            "target": 236,
+            "target": 239,
             "name": "IRemoteHostControl.enable"
           }
         },
         {
-          "id": 255,
+          "id": 258,
           "name": "initialize",
           "variant": "declaration",
           "kind": 2048,
@@ -2834,7 +2858,7 @@
           },
           "signatures": [
             {
-              "id": 256,
+              "id": 259,
               "name": "initialize",
               "variant": "signature",
               "kind": 4096,
@@ -2889,7 +2913,7 @@
           ]
         },
         {
-          "id": 273,
+          "id": 276,
           "name": "reconcile",
           "variant": "declaration",
           "kind": 2048,
@@ -2899,7 +2923,7 @@
           },
           "signatures": [
             {
-              "id": 274,
+              "id": 277,
               "name": "reconcile",
               "variant": "signature",
               "kind": 4096,
@@ -2953,19 +2977,19 @@
               },
               "inheritedFrom": {
                 "type": "reference",
-                "target": 241,
+                "target": 244,
                 "name": "IRemoteHostControl.reconcile"
               }
             }
           ],
           "inheritedFrom": {
             "type": "reference",
-            "target": 240,
+            "target": 243,
             "name": "IRemoteHostControl.reconcile"
           }
         },
         {
-          "id": 284,
+          "id": 287,
           "name": "revokeDevice",
           "variant": "declaration",
           "kind": 2048,
@@ -2975,7 +2999,7 @@
           },
           "signatures": [
             {
-              "id": 285,
+              "id": 288,
               "name": "revokeDevice",
               "variant": "signature",
               "kind": 4096,
@@ -3013,7 +3037,7 @@
               },
               "parameters": [
                 {
-                  "id": 286,
+                  "id": 289,
                   "name": "deviceId",
                   "variant": "param",
                   "kind": 32768,
@@ -3050,19 +3074,19 @@
               },
               "inheritedFrom": {
                 "type": "reference",
-                "target": 252,
+                "target": 255,
                 "name": "IRemoteHostControl.revokeDevice"
               }
             }
           ],
           "inheritedFrom": {
             "type": "reference",
-            "target": 251,
+            "target": 254,
             "name": "IRemoteHostControl.revokeDevice"
           }
         },
         {
-          "id": 267,
+          "id": 270,
           "name": "status",
           "variant": "declaration",
           "kind": 2048,
@@ -3072,7 +3096,7 @@
           },
           "signatures": [
             {
-              "id": 268,
+              "id": 271,
               "name": "status",
               "variant": "signature",
               "kind": 4096,
@@ -3116,19 +3140,19 @@
               },
               "inheritedFrom": {
                 "type": "reference",
-                "target": 235,
+                "target": 238,
                 "name": "IRemoteHostControl.status"
               }
             }
           ],
           "inheritedFrom": {
             "type": "reference",
-            "target": 234,
+            "target": 237,
             "name": "IRemoteHostControl.status"
           }
         },
         {
-          "id": 259,
+          "id": 262,
           "name": "subscribe",
           "variant": "declaration",
           "kind": 2048,
@@ -3137,7 +3161,7 @@
           },
           "signatures": [
             {
-              "id": 260,
+              "id": 263,
               "name": "subscribe",
               "variant": "signature",
               "kind": 4096,
@@ -3165,7 +3189,7 @@
               },
               "parameters": [
                 {
-                  "id": 261,
+                  "id": 264,
                   "name": "listener",
                   "variant": "param",
                   "kind": 32768,
@@ -3181,21 +3205,21 @@
                   "type": {
                     "type": "reflection",
                     "declaration": {
-                      "id": 262,
+                      "id": 265,
                       "name": "__type",
                       "variant": "declaration",
                       "kind": 65536,
                       "flags": {},
                       "signatures": [
                         {
-                          "id": 263,
+                          "id": 266,
                           "name": "__type",
                           "variant": "signature",
                           "kind": 4096,
                           "flags": {},
                           "parameters": [
                             {
-                              "id": 264,
+                              "id": 267,
                               "name": "event",
                               "variant": "param",
                               "kind": 32768,
@@ -3225,14 +3249,14 @@
               "type": {
                 "type": "reflection",
                 "declaration": {
-                  "id": 265,
+                  "id": 268,
                   "name": "__type",
                   "variant": "declaration",
                   "kind": 65536,
                   "flags": {},
                   "signatures": [
                     {
-                      "id": 266,
+                      "id": 269,
                       "name": "__type",
                       "variant": "signature",
                       "kind": 4096,
@@ -3253,22 +3277,22 @@
         {
           "title": "Methods",
           "children": [
-            275,
-            271,
-            257,
-            269,
-            255,
-            273,
-            284,
-            267,
-            259
+            278,
+            274,
+            260,
+            272,
+            258,
+            276,
+            287,
+            270,
+            262
           ]
         }
       ],
       "extendedTypes": [
         {
           "type": "reference",
-          "target": 233,
+          "target": 236,
           "name": "IRemoteHostControl",
           "package": "@pixel-brewery/remote-node"
         }
@@ -3287,7 +3311,7 @@
       ]
     },
     {
-      "id": 287,
+      "id": 290,
       "name": "IRemoteHostRuntimeOptions",
       "variant": "declaration",
       "kind": 256,
@@ -3304,7 +3328,7 @@
       },
       "children": [
         {
-          "id": 288,
+          "id": 291,
           "name": "maxPendingOperations",
           "variant": "declaration",
           "kind": 1024,
@@ -3339,7 +3363,7 @@
         {
           "title": "Properties",
           "children": [
-            288
+            291
           ]
         }
       ]
@@ -3505,7 +3529,7 @@
       ]
     },
     {
-      "id": 368,
+      "id": 371,
       "name": "IRemoteNodeTransport",
       "variant": "declaration",
       "kind": 256,
@@ -3522,7 +3546,7 @@
       },
       "children": [
         {
-          "id": 371,
+          "id": 374,
           "name": "create",
           "variant": "declaration",
           "kind": 2048,
@@ -3531,7 +3555,7 @@
           },
           "signatures": [
             {
-              "id": 372,
+              "id": 375,
               "name": "create",
               "variant": "signature",
               "kind": 4096,
@@ -3568,7 +3592,7 @@
               },
               "parameters": [
                 {
-                  "id": 373,
+                  "id": 376,
                   "name": "listener",
                   "variant": "param",
                   "kind": 32768,
@@ -3653,7 +3677,7 @@
           ]
         },
         {
-          "id": 369,
+          "id": 372,
           "name": "id",
           "variant": "declaration",
           "kind": 1024,
@@ -3675,7 +3699,7 @@
           }
         },
         {
-          "id": 370,
+          "id": 373,
           "name": "scheme",
           "variant": "declaration",
           "kind": 1024,
@@ -3710,32 +3734,32 @@
         {
           "title": "Properties",
           "children": [
-            369,
-            370
+            372,
+            373
           ]
         },
         {
           "title": "Methods",
           "children": [
-            371
+            374
           ]
         }
       ],
       "implementedBy": [
         {
           "type": "reference",
-          "target": 350,
+          "target": 353,
           "name": "NodeHttpLanTransport"
         },
         {
           "type": "reference",
-          "target": 358,
+          "target": 361,
           "name": "NodeHttpsLanTransport"
         }
       ]
     },
     {
-      "id": 386,
+      "id": 389,
       "name": "IRemoteTlsMaterial",
       "variant": "declaration",
       "kind": 256,
@@ -3752,7 +3776,7 @@
       },
       "children": [
         {
-          "id": 389,
+          "id": 392,
           "name": "ca",
           "variant": "declaration",
           "kind": 1024,
@@ -3842,7 +3866,7 @@
           }
         },
         {
-          "id": 388,
+          "id": 391,
           "name": "cert",
           "variant": "declaration",
           "kind": 1024,
@@ -3892,7 +3916,7 @@
           }
         },
         {
-          "id": 387,
+          "id": 390,
           "name": "key",
           "variant": "declaration",
           "kind": 1024,
@@ -3942,7 +3966,7 @@
           }
         },
         {
-          "id": 390,
+          "id": 393,
           "name": "passphrase",
           "variant": "declaration",
           "kind": 1024,
@@ -3969,16 +3993,16 @@
         {
           "title": "Properties",
           "children": [
-            389,
-            388,
-            387,
-            390
+            392,
+            391,
+            390,
+            393
           ]
         }
       ]
     },
     {
-      "id": 376,
+      "id": 379,
       "name": "IRemoteTlsProvider",
       "variant": "declaration",
       "kind": 256,
@@ -3995,7 +4019,7 @@
       },
       "children": [
         {
-          "id": 377,
+          "id": 380,
           "name": "getMaterial",
           "variant": "declaration",
           "kind": 2048,
@@ -4004,7 +4028,7 @@
           },
           "signatures": [
             {
-              "id": 378,
+              "id": 381,
               "name": "getMaterial",
               "variant": "signature",
               "kind": 4096,
@@ -4040,7 +4064,7 @@
                 "typeArguments": [
                   {
                     "type": "reference",
-                    "target": 386,
+                    "target": 389,
                     "name": "IRemoteTlsMaterial",
                     "package": "@pixel-brewery/remote-node"
                   }
@@ -4052,7 +4076,7 @@
           ]
         },
         {
-          "id": 379,
+          "id": 382,
           "name": "subscribe",
           "variant": "declaration",
           "kind": 2048,
@@ -4062,7 +4086,7 @@
           },
           "signatures": [
             {
-              "id": 380,
+              "id": 383,
               "name": "subscribe",
               "variant": "signature",
               "kind": 4096,
@@ -4090,7 +4114,7 @@
               },
               "parameters": [
                 {
-                  "id": 381,
+                  "id": 384,
                   "name": "listener",
                   "variant": "param",
                   "kind": 32768,
@@ -4106,14 +4130,14 @@
                   "type": {
                     "type": "reflection",
                     "declaration": {
-                      "id": 382,
+                      "id": 385,
                       "name": "__type",
                       "variant": "declaration",
                       "kind": 65536,
                       "flags": {},
                       "signatures": [
                         {
-                          "id": 383,
+                          "id": 386,
                           "name": "__type",
                           "variant": "signature",
                           "kind": 4096,
@@ -4131,14 +4155,14 @@
               "type": {
                 "type": "reflection",
                 "declaration": {
-                  "id": 384,
+                  "id": 387,
                   "name": "__type",
                   "variant": "declaration",
                   "kind": 65536,
                   "flags": {},
                   "signatures": [
                     {
-                      "id": 385,
+                      "id": 388,
                       "name": "__type",
                       "variant": "signature",
                       "kind": 4096,
@@ -4159,14 +4183,14 @@
         {
           "title": "Methods",
           "children": [
-            377,
-            379
+            380,
+            382
           ]
         }
       ]
     },
     {
-      "id": 350,
+      "id": 353,
       "name": "NodeHttpLanTransport",
       "variant": "declaration",
       "kind": 128,
@@ -4183,21 +4207,21 @@
       },
       "children": [
         {
-          "id": 351,
+          "id": 354,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
           "flags": {},
           "signatures": [
             {
-              "id": 352,
+              "id": 355,
               "name": "NodeHttpLanTransport",
               "variant": "signature",
               "kind": 16384,
               "flags": {},
               "type": {
                 "type": "reference",
-                "target": 350,
+                "target": 353,
                 "name": "NodeHttpLanTransport",
                 "package": "@pixel-brewery/remote-node"
               }
@@ -4205,7 +4229,7 @@
           ]
         },
         {
-          "id": 355,
+          "id": 358,
           "name": "create",
           "variant": "declaration",
           "kind": 2048,
@@ -4214,7 +4238,7 @@
           },
           "signatures": [
             {
-              "id": 356,
+              "id": 359,
               "name": "create",
               "variant": "signature",
               "kind": 4096,
@@ -4242,7 +4266,7 @@
               },
               "parameters": [
                 {
-                  "id": 357,
+                  "id": 360,
                   "name": "listener",
                   "variant": "param",
                   "kind": 32768,
@@ -4325,19 +4349,19 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 372,
+                "target": 375,
                 "name": "IRemoteNodeTransport.create"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 371,
+            "target": 374,
             "name": "IRemoteNodeTransport.create"
           }
         },
         {
-          "id": 353,
+          "id": 356,
           "name": "id",
           "variant": "declaration",
           "kind": 1024,
@@ -4360,12 +4384,12 @@
           "defaultValue": "'lan-http'",
           "implementationOf": {
             "type": "reference",
-            "target": 369,
+            "target": 372,
             "name": "IRemoteNodeTransport.id"
           }
         },
         {
-          "id": 354,
+          "id": 357,
           "name": "scheme",
           "variant": "declaration",
           "kind": 1024,
@@ -4388,7 +4412,7 @@
           "defaultValue": "...",
           "implementationOf": {
             "type": "reference",
-            "target": 370,
+            "target": 373,
             "name": "IRemoteNodeTransport.scheme"
           }
         }
@@ -4397,34 +4421,34 @@
         {
           "title": "Constructors",
           "children": [
-            351
+            354
           ]
         },
         {
           "title": "Properties",
           "children": [
-            353,
-            354
+            356,
+            357
           ]
         },
         {
           "title": "Methods",
           "children": [
-            355
+            358
           ]
         }
       ],
       "implementedTypes": [
         {
           "type": "reference",
-          "target": 368,
+          "target": 371,
           "name": "IRemoteNodeTransport",
           "package": "@pixel-brewery/remote-node"
         }
       ]
     },
     {
-      "id": 358,
+      "id": 361,
       "name": "NodeHttpsLanTransport",
       "variant": "declaration",
       "kind": 128,
@@ -4441,7 +4465,7 @@
       },
       "children": [
         {
-          "id": 359,
+          "id": 362,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
@@ -4450,7 +4474,7 @@
           },
           "signatures": [
             {
-              "id": 360,
+              "id": 363,
               "name": "NodeHttpsLanTransport",
               "variant": "signature",
               "kind": 16384,
@@ -4467,7 +4491,7 @@
               },
               "parameters": [
                 {
-                  "id": 361,
+                  "id": 364,
                   "name": "_provider",
                   "variant": "param",
                   "kind": 32768,
@@ -4482,7 +4506,7 @@
                   },
                   "type": {
                     "type": "reference",
-                    "target": 376,
+                    "target": 379,
                     "name": "IRemoteTlsProvider",
                     "package": "@pixel-brewery/remote-node"
                   }
@@ -4490,7 +4514,7 @@
               ],
               "type": {
                 "type": "reference",
-                "target": 358,
+                "target": 361,
                 "name": "NodeHttpsLanTransport",
                 "package": "@pixel-brewery/remote-node"
               }
@@ -4498,7 +4522,7 @@
           ]
         },
         {
-          "id": 365,
+          "id": 368,
           "name": "create",
           "variant": "declaration",
           "kind": 2048,
@@ -4507,7 +4531,7 @@
           },
           "signatures": [
             {
-              "id": 366,
+              "id": 369,
               "name": "create",
               "variant": "signature",
               "kind": 4096,
@@ -4535,7 +4559,7 @@
               },
               "parameters": [
                 {
-                  "id": 367,
+                  "id": 370,
                   "name": "listener",
                   "variant": "param",
                   "kind": 32768,
@@ -4618,19 +4642,19 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 372,
+                "target": 375,
                 "name": "IRemoteNodeTransport.create"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 371,
+            "target": 374,
             "name": "IRemoteNodeTransport.create"
           }
         },
         {
-          "id": 363,
+          "id": 366,
           "name": "id",
           "variant": "declaration",
           "kind": 1024,
@@ -4653,12 +4677,12 @@
           "defaultValue": "'lan-https'",
           "implementationOf": {
             "type": "reference",
-            "target": 369,
+            "target": 372,
             "name": "IRemoteNodeTransport.id"
           }
         },
         {
-          "id": 364,
+          "id": 367,
           "name": "scheme",
           "variant": "declaration",
           "kind": 1024,
@@ -4681,7 +4705,7 @@
           "defaultValue": "...",
           "implementationOf": {
             "type": "reference",
-            "target": 370,
+            "target": 373,
             "name": "IRemoteNodeTransport.scheme"
           }
         }
@@ -4690,27 +4714,27 @@
         {
           "title": "Constructors",
           "children": [
-            359
+            362
           ]
         },
         {
           "title": "Properties",
           "children": [
-            363,
-            364
+            366,
+            367
           ]
         },
         {
           "title": "Methods",
           "children": [
-            365
+            368
           ]
         }
       ],
       "implementedTypes": [
         {
           "type": "reference",
-          "target": 368,
+          "target": 371,
           "name": "IRemoteNodeTransport",
           "package": "@pixel-brewery/remote-node"
         }
@@ -4954,14 +4978,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 276,
+                "target": 279,
                 "name": "IRemoteHostLifecycle.createPairing"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 275,
+            "target": 278,
             "name": "IRemoteHostLifecycle.createPairing"
           }
         },
@@ -5066,14 +5090,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 272,
+                "target": 275,
                 "name": "IRemoteHostLifecycle.disable"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 271,
+            "target": 274,
             "name": "IRemoteHostLifecycle.disable"
           }
         },
@@ -5131,14 +5155,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 258,
+                "target": 261,
                 "name": "IRemoteHostLifecycle.dispose"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 257,
+            "target": 260,
             "name": "IRemoteHostLifecycle.dispose"
           }
         },
@@ -5196,14 +5220,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 270,
+                "target": 273,
                 "name": "IRemoteHostLifecycle.enable"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 269,
+            "target": 272,
             "name": "IRemoteHostLifecycle.enable"
           }
         },
@@ -5261,14 +5285,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 256,
+                "target": 259,
                 "name": "IRemoteHostLifecycle.initialize"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 255,
+            "target": 258,
             "name": "IRemoteHostLifecycle.initialize"
           }
         },
@@ -5326,14 +5350,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 274,
+                "target": 277,
                 "name": "IRemoteHostLifecycle.reconcile"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 273,
+            "target": 276,
             "name": "IRemoteHostLifecycle.reconcile"
           }
         },
@@ -5467,14 +5491,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 285,
+                "target": 288,
                 "name": "IRemoteHostLifecycle.revokeDevice"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 284,
+            "target": 287,
             "name": "IRemoteHostLifecycle.revokeDevice"
           }
         },
@@ -5522,14 +5546,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 268,
+                "target": 271,
                 "name": "IRemoteHostLifecycle.status"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 267,
+            "target": 270,
             "name": "IRemoteHostLifecycle.status"
           }
         },
@@ -5694,14 +5718,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 260,
+                "target": 263,
                 "name": "IRemoteHostLifecycle.subscribe"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 259,
+            "target": 262,
             "name": "IRemoteHostLifecycle.subscribe"
           }
         }
@@ -5738,14 +5762,14 @@
       "implementedTypes": [
         {
           "type": "reference",
-          "target": 254,
+          "target": 257,
           "name": "IRemoteHostLifecycle",
           "package": "@pixel-brewery/remote-node"
         }
       ]
     },
     {
-      "id": 295,
+      "id": 298,
       "name": "parseRemoteHostControlCommand",
       "variant": "declaration",
       "kind": 64,
@@ -5754,7 +5778,7 @@
       },
       "signatures": [
         {
-          "id": 296,
+          "id": 299,
           "name": "parseRemoteHostControlCommand",
           "variant": "signature",
           "kind": 4096,
@@ -5876,7 +5900,7 @@
           },
           "parameters": [
             {
-              "id": 297,
+              "id": 300,
               "name": "path",
               "variant": "param",
               "kind": 32768,
@@ -5903,7 +5927,7 @@
               }
             },
             {
-              "id": 298,
+              "id": 301,
               "name": "body",
               "variant": "param",
               "kind": 32768,
@@ -5924,7 +5948,7 @@
           ],
           "type": {
             "type": "reference",
-            "target": 302,
+            "target": 305,
             "name": "RemoteHostControlCommand",
             "package": "@pixel-brewery/remote-node"
           }
@@ -5932,7 +5956,7 @@
       ]
     },
     {
-      "id": 302,
+      "id": 305,
       "name": "RemoteHostControlCommand",
       "variant": "declaration",
       "kind": 2097152,
@@ -5964,14 +5988,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 303,
+              "id": 306,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 304,
+                  "id": 307,
                   "name": "kind",
                   "variant": "declaration",
                   "kind": 1024,
@@ -5996,7 +6020,7 @@
                 {
                   "title": "Properties",
                   "children": [
-                    304
+                    307
                   ]
                 }
               ]
@@ -6005,14 +6029,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 305,
+              "id": 308,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 306,
+                  "id": 309,
                   "name": "kind",
                   "variant": "declaration",
                   "kind": 1024,
@@ -6037,7 +6061,7 @@
                 {
                   "title": "Properties",
                   "children": [
-                    306
+                    309
                   ]
                 }
               ]
@@ -6046,14 +6070,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 307,
+              "id": 310,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 308,
+                  "id": 311,
                   "name": "kind",
                   "variant": "declaration",
                   "kind": 1024,
@@ -6078,7 +6102,7 @@
                 {
                   "title": "Properties",
                   "children": [
-                    308
+                    311
                   ]
                 }
               ]
@@ -6087,14 +6111,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 309,
+              "id": 312,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 311,
+                  "id": 314,
                   "name": "endpointId",
                   "variant": "declaration",
                   "kind": 1024,
@@ -6116,7 +6140,7 @@
                   }
                 },
                 {
-                  "id": 310,
+                  "id": 313,
                   "name": "kind",
                   "variant": "declaration",
                   "kind": 1024,
@@ -6141,8 +6165,8 @@
                 {
                   "title": "Properties",
                   "children": [
-                    311,
-                    310
+                    314,
+                    313
                   ]
                 }
               ]
@@ -6151,14 +6175,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 312,
+              "id": 315,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 314,
+                  "id": 317,
                   "name": "deviceId",
                   "variant": "declaration",
                   "kind": 1024,
@@ -6179,7 +6203,7 @@
                   }
                 },
                 {
-                  "id": 313,
+                  "id": 316,
                   "name": "kind",
                   "variant": "declaration",
                   "kind": 1024,
@@ -6204,8 +6228,8 @@
                 {
                   "title": "Properties",
                   "children": [
-                    314,
-                    313
+                    317,
+                    316
                   ]
                 }
               ]
@@ -6331,7 +6355,7 @@
                   },
                   "type": {
                     "type": "reference",
-                    "target": 254,
+                    "target": 257,
                     "name": "IRemoteHostLifecycle",
                     "package": "@pixel-brewery/remote-node"
                   }
@@ -6360,7 +6384,7 @@
                   },
                   "type": {
                     "type": "reference",
-                    "target": 287,
+                    "target": 290,
                     "name": "IRemoteHostRuntimeOptions",
                     "package": "@pixel-brewery/remote-node"
                   },
@@ -6574,14 +6598,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 276,
+                "target": 279,
                 "name": "IRemoteHostLifecycle.createPairing"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 275,
+            "target": 278,
             "name": "IRemoteHostLifecycle.createPairing"
           }
         },
@@ -6664,14 +6688,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 272,
+                "target": 275,
                 "name": "IRemoteHostLifecycle.disable"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 271,
+            "target": 274,
             "name": "IRemoteHostLifecycle.disable"
           }
         },
@@ -6755,14 +6779,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 258,
+                "target": 261,
                 "name": "IRemoteHostLifecycle.dispose"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 257,
+            "target": 260,
             "name": "IRemoteHostLifecycle.dispose"
           }
         },
@@ -6845,14 +6869,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 270,
+                "target": 273,
                 "name": "IRemoteHostLifecycle.enable"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 269,
+            "target": 272,
             "name": "IRemoteHostLifecycle.enable"
           }
         },
@@ -6929,14 +6953,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 256,
+                "target": 259,
                 "name": "IRemoteHostLifecycle.initialize"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 255,
+            "target": 258,
             "name": "IRemoteHostLifecycle.initialize"
           }
         },
@@ -7019,14 +7043,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 274,
+                "target": 277,
                 "name": "IRemoteHostLifecycle.reconcile"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 273,
+            "target": 276,
             "name": "IRemoteHostLifecycle.reconcile"
           }
         },
@@ -7130,14 +7154,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 285,
+                "target": 288,
                 "name": "IRemoteHostLifecycle.revokeDevice"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 284,
+            "target": 287,
             "name": "IRemoteHostLifecycle.revokeDevice"
           }
         },
@@ -7210,14 +7234,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 268,
+                "target": 271,
                 "name": "IRemoteHostLifecycle.status"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 267,
+            "target": 270,
             "name": "IRemoteHostLifecycle.status"
           }
         },
@@ -7367,14 +7391,14 @@
               },
               "implementationOf": {
                 "type": "reference",
-                "target": 260,
+                "target": 263,
                 "name": "IRemoteHostLifecycle.subscribe"
               }
             }
           ],
           "implementationOf": {
             "type": "reference",
-            "target": 259,
+            "target": 262,
             "name": "IRemoteHostLifecycle.subscribe"
           }
         }
@@ -7404,14 +7428,14 @@
       "implementedTypes": [
         {
           "type": "reference",
-          "target": 254,
+          "target": 257,
           "name": "IRemoteHostLifecycle",
           "package": "@pixel-brewery/remote-node"
         }
       ]
     },
     {
-      "id": 315,
+      "id": 318,
       "name": "RemoteRequestAdmissions",
       "variant": "declaration",
       "kind": 128,
@@ -7437,7 +7461,7 @@
                 "kind": "inline-tag",
                 "tag": "@link",
                 "text": "RemoteRequestAdmissions.admit",
-                "target": 319
+                "target": 322
               },
               {
                 "kind": "text",
@@ -7449,7 +7473,7 @@
       },
       "children": [
         {
-          "id": 319,
+          "id": 322,
           "name": "admit",
           "variant": "declaration",
           "kind": 2048,
@@ -7458,7 +7482,7 @@
           },
           "signatures": [
             {
-              "id": 320,
+              "id": 323,
               "name": "admit",
               "variant": "signature",
               "kind": 4096,
@@ -7486,7 +7510,7 @@
               },
               "parameters": [
                 {
-                  "id": 321,
+                  "id": 324,
                   "name": "request",
                   "variant": "param",
                   "kind": 32768,
@@ -7505,7 +7529,7 @@
                   }
                 },
                 {
-                  "id": 322,
+                  "id": 325,
                   "name": "context",
                   "variant": "param",
                   "kind": 32768,
@@ -7533,14 +7557,14 @@
               "type": {
                 "type": "reflection",
                 "declaration": {
-                  "id": 323,
+                  "id": 326,
                   "name": "__type",
                   "variant": "declaration",
                   "kind": 65536,
                   "flags": {},
                   "signatures": [
                     {
-                      "id": 324,
+                      "id": 327,
                       "name": "__type",
                       "variant": "signature",
                       "kind": 4096,
@@ -7557,21 +7581,21 @@
           ]
         },
         {
-          "id": 316,
+          "id": 319,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
           "flags": {},
           "signatures": [
             {
-              "id": 317,
+              "id": 320,
               "name": "RemoteRequestAdmissions",
               "variant": "signature",
               "kind": 16384,
               "flags": {},
               "type": {
                 "type": "reference",
-                "target": 315,
+                "target": 318,
                 "name": "RemoteRequestAdmissions",
                 "package": "@pixel-brewery/remote-node"
               }
@@ -7579,7 +7603,7 @@
           ]
         },
         {
-          "id": 328,
+          "id": 331,
           "name": "context",
           "variant": "declaration",
           "kind": 2048,
@@ -7588,7 +7612,7 @@
           },
           "signatures": [
             {
-              "id": 329,
+              "id": 332,
               "name": "context",
               "variant": "signature",
               "kind": 4096,
@@ -7616,7 +7640,7 @@
               },
               "parameters": [
                 {
-                  "id": 330,
+                  "id": 333,
                   "name": "request",
                   "variant": "param",
                   "kind": 32768,
@@ -7658,7 +7682,7 @@
           ]
         },
         {
-          "id": 325,
+          "id": 328,
           "name": "has",
           "variant": "declaration",
           "kind": 2048,
@@ -7667,7 +7691,7 @@
           },
           "signatures": [
             {
-              "id": 326,
+              "id": 329,
               "name": "has",
               "variant": "signature",
               "kind": 4096,
@@ -7695,7 +7719,7 @@
               },
               "parameters": [
                 {
-                  "id": 327,
+                  "id": 330,
                   "name": "request",
                   "variant": "param",
                   "kind": 32768,
@@ -7726,21 +7750,21 @@
         {
           "title": "Constructors",
           "children": [
-            316
+            319
           ]
         },
         {
           "title": "Methods",
           "children": [
-            319,
-            328,
-            325
+            322,
+            331,
+            328
           ]
         }
       ]
     },
     {
-      "id": 374,
+      "id": 377,
       "name": "selectPrivateHost",
       "variant": "declaration",
       "kind": 64,
@@ -7749,7 +7773,7 @@
       },
       "signatures": [
         {
-          "id": 375,
+          "id": 378,
           "name": "selectPrivateHost",
           "variant": "signature",
           "kind": 4096,
@@ -7796,11 +7820,11 @@
     {
       "title": "Classes",
       "children": [
-        350,
-        358,
+        353,
+        361,
         1,
         178,
-        315
+        318
       ]
     },
     {
@@ -7808,29 +7832,29 @@
       "children": [
         135,
         159,
-        233,
-        299,
-        254,
-        287,
+        236,
+        302,
+        257,
+        290,
         173,
-        368,
-        386,
-        376
+        371,
+        389,
+        379
       ]
     },
     {
       "title": "Type Aliases",
       "children": [
-        302
+        305
       ]
     },
     {
       "title": "Functions",
       "children": [
-        331,
-        289,
-        295,
-        374
+        334,
+        292,
+        298,
+        377
       ]
     }
   ],
@@ -8441,165 +8465,150 @@
       "packagePath": "src/host/RemoteHostRuntime.ts",
       "qualifiedName": "RemoteHostRuntime.dispose"
     },
-    "233": {
+    "236": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "IRemoteHostControl"
     },
-    "234": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.status"
-    },
-    "235": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.status"
-    },
-    "236": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.enable"
-    },
     "237": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.enable"
+      "qualifiedName": "IRemoteHostControl.status"
     },
     "238": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.disable"
+      "qualifiedName": "IRemoteHostControl.status"
     },
     "239": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.disable"
+      "qualifiedName": "IRemoteHostControl.enable"
     },
     "240": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.reconcile"
+      "qualifiedName": "IRemoteHostControl.enable"
     },
     "241": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.reconcile"
+      "qualifiedName": "IRemoteHostControl.disable"
     },
     "242": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.createPairing"
+      "qualifiedName": "IRemoteHostControl.disable"
     },
     "243": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.createPairing"
+      "qualifiedName": "IRemoteHostControl.reconcile"
     },
     "244": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "endpointId"
+      "qualifiedName": "IRemoteHostControl.reconcile"
     },
     "245": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
+      "qualifiedName": "IRemoteHostControl.createPairing"
+    },
+    "246": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
+      "qualifiedName": "IRemoteHostControl.createPairing"
+    },
+    "247": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
+      "qualifiedName": "endpointId"
+    },
+    "248": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "246": {
+    "249": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "appId"
     },
-    "247": {
+    "250": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "hostId"
     },
-    "248": {
+    "251": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "origin"
     },
-    "249": {
+    "252": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "challenge"
     },
-    "250": {
+    "253": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "expiresAt"
     },
-    "251": {
+    "254": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "IRemoteHostControl.revokeDevice"
     },
-    "252": {
+    "255": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "IRemoteHostControl.revokeDevice"
     },
-    "253": {
+    "256": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "deviceId"
     },
-    "254": {
+    "257": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
       "qualifiedName": "IRemoteHostLifecycle"
     },
-    "255": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "IRemoteHostLifecycle.initialize"
-    },
-    "256": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "IRemoteHostLifecycle.initialize"
-    },
-    "257": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "IRemoteHostLifecycle.dispose"
-    },
     "258": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "IRemoteHostLifecycle.dispose"
+      "qualifiedName": "IRemoteHostLifecycle.initialize"
     },
     "259": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "IRemoteHostLifecycle.subscribe"
+      "qualifiedName": "IRemoteHostLifecycle.initialize"
     },
     "260": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "IRemoteHostLifecycle.subscribe"
+      "qualifiedName": "IRemoteHostLifecycle.dispose"
     },
     "261": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "listener"
+      "qualifiedName": "IRemoteHostLifecycle.dispose"
     },
     "262": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "IRemoteHostLifecycle.subscribe"
     },
     "263": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "IRemoteHostLifecycle.subscribe"
     },
     "264": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
-      "qualifiedName": "event"
+      "qualifiedName": "listener"
     },
     "265": {
       "packageName": "@pixel-brewery/remote-node",
@@ -8613,228 +8622,228 @@
     },
     "267": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.status"
+      "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
+      "qualifiedName": "event"
     },
     "268": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.status"
+      "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
+      "qualifiedName": "__type"
     },
     "269": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.enable"
+      "packagePath": "src/host/interfaces/IRemoteHostLifecycle.ts",
+      "qualifiedName": "__type"
     },
     "270": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.enable"
+      "qualifiedName": "IRemoteHostControl.status"
     },
     "271": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.disable"
+      "qualifiedName": "IRemoteHostControl.status"
     },
     "272": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.disable"
+      "qualifiedName": "IRemoteHostControl.enable"
     },
     "273": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.reconcile"
+      "qualifiedName": "IRemoteHostControl.enable"
     },
     "274": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.reconcile"
+      "qualifiedName": "IRemoteHostControl.disable"
     },
     "275": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.createPairing"
+      "qualifiedName": "IRemoteHostControl.disable"
     },
     "276": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "IRemoteHostControl.createPairing"
+      "qualifiedName": "IRemoteHostControl.reconcile"
     },
     "277": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
-      "qualifiedName": "endpointId"
+      "qualifiedName": "IRemoteHostControl.reconcile"
     },
     "278": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
+      "qualifiedName": "IRemoteHostControl.createPairing"
+    },
+    "279": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
+      "qualifiedName": "IRemoteHostControl.createPairing"
+    },
+    "280": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
+      "qualifiedName": "endpointId"
+    },
+    "281": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "279": {
+    "282": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "appId"
     },
-    "280": {
+    "283": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "hostId"
     },
-    "281": {
+    "284": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "origin"
     },
-    "282": {
+    "285": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "challenge"
     },
-    "283": {
+    "286": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "expiresAt"
     },
-    "284": {
+    "287": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "IRemoteHostControl.revokeDevice"
     },
-    "285": {
+    "288": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "IRemoteHostControl.revokeDevice"
     },
-    "286": {
+    "289": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControl.ts",
       "qualifiedName": "deviceId"
     },
-    "287": {
+    "290": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostRuntimeOptions.ts",
       "qualifiedName": "IRemoteHostRuntimeOptions"
     },
-    "288": {
+    "291": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostRuntimeOptions.ts",
       "qualifiedName": "IRemoteHostRuntimeOptions.maxPendingOperations"
     },
-    "289": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/handleRemoteHostControl.ts",
-      "qualifiedName": "handleRemoteHostControl"
-    },
-    "290": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/handleRemoteHostControl.ts",
-      "qualifiedName": "handleRemoteHostControl"
-    },
-    "291": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/handleRemoteHostControl.ts",
-      "qualifiedName": "request"
-    },
     "292": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/handleRemoteHostControl.ts",
-      "qualifiedName": "response"
+      "qualifiedName": "handleRemoteHostControl"
     },
     "293": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/handleRemoteHostControl.ts",
-      "qualifiedName": "control"
+      "qualifiedName": "handleRemoteHostControl"
     },
     "294": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/handleRemoteHostControl.ts",
-      "qualifiedName": "options"
+      "qualifiedName": "request"
     },
     "295": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/parseRemoteHostControlCommand.ts",
-      "qualifiedName": "parseRemoteHostControlCommand"
+      "packagePath": "src/host/handleRemoteHostControl.ts",
+      "qualifiedName": "response"
     },
     "296": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/parseRemoteHostControlCommand.ts",
-      "qualifiedName": "parseRemoteHostControlCommand"
+      "packagePath": "src/host/handleRemoteHostControl.ts",
+      "qualifiedName": "control"
     },
     "297": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/parseRemoteHostControlCommand.ts",
-      "qualifiedName": "path"
+      "packagePath": "src/host/handleRemoteHostControl.ts",
+      "qualifiedName": "options"
     },
     "298": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/parseRemoteHostControlCommand.ts",
-      "qualifiedName": "body"
+      "qualifiedName": "parseRemoteHostControlCommand"
     },
     "299": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/parseRemoteHostControlCommand.ts",
+      "qualifiedName": "parseRemoteHostControlCommand"
+    },
+    "300": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/parseRemoteHostControlCommand.ts",
+      "qualifiedName": "path"
+    },
+    "301": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/parseRemoteHostControlCommand.ts",
+      "qualifiedName": "body"
+    },
+    "302": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControlOptions.ts",
       "qualifiedName": "IRemoteHostControlOptions"
     },
-    "300": {
+    "303": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControlOptions.ts",
       "qualifiedName": "IRemoteHostControlOptions.prefix"
     },
-    "301": {
+    "304": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteHostControlOptions.ts",
       "qualifiedName": "IRemoteHostControlOptions.maxBodyBytes"
     },
-    "302": {
+    "305": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
       "qualifiedName": "RemoteHostControlCommand"
     },
-    "303": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type"
-    },
-    "304": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type.kind"
-    },
-    "305": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type"
-    },
     "306": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type.kind"
+      "qualifiedName": "__type"
     },
     "307": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "__type.kind"
     },
     "308": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type.kind"
+      "qualifiedName": "__type"
     },
     "309": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "__type.kind"
     },
     "310": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type.kind"
+      "qualifiedName": "__type"
     },
     "311": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type.endpointId"
+      "qualifiedName": "__type.kind"
     },
     "312": {
       "packageName": "@pixel-brewery/remote-node",
@@ -8849,67 +8858,67 @@
     "314": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/models/RemoteHostControlCommand.ts",
-      "qualifiedName": "__type.deviceId"
+      "qualifiedName": "__type.endpointId"
     },
     "315": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/models/RemoteHostControlCommand.ts",
+      "qualifiedName": "__type"
+    },
+    "316": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/models/RemoteHostControlCommand.ts",
+      "qualifiedName": "__type.kind"
+    },
+    "317": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/models/RemoteHostControlCommand.ts",
+      "qualifiedName": "__type.deviceId"
+    },
+    "318": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
       "qualifiedName": "RemoteRequestAdmissions"
     },
-    "319": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "RemoteRequestAdmissions.admit"
-    },
-    "320": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "RemoteRequestAdmissions.admit"
-    },
-    "321": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "request"
-    },
     "322": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "context"
+      "qualifiedName": "RemoteRequestAdmissions.admit"
     },
     "323": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "RemoteRequestAdmissions.admit"
     },
     "324": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "request"
     },
     "325": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "RemoteRequestAdmissions.has"
+      "qualifiedName": "context"
     },
     "326": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "RemoteRequestAdmissions.has"
+      "qualifiedName": "__type"
     },
     "327": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "request"
+      "qualifiedName": "__type"
     },
     "328": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "RemoteRequestAdmissions.context"
+      "qualifiedName": "RemoteRequestAdmissions.has"
     },
     "329": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/RemoteRequestAdmissions.ts",
-      "qualifiedName": "RemoteRequestAdmissions.context"
+      "qualifiedName": "RemoteRequestAdmissions.has"
     },
     "330": {
       "packageName": "@pixel-brewery/remote-node",
@@ -8918,63 +8927,63 @@
     },
     "331": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "createRemoteApplicationHandler"
+      "packagePath": "src/host/RemoteRequestAdmissions.ts",
+      "qualifiedName": "RemoteRequestAdmissions.context"
     },
     "332": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "createRemoteApplicationHandler"
+      "packagePath": "src/host/RemoteRequestAdmissions.ts",
+      "qualifiedName": "RemoteRequestAdmissions.context"
     },
     "333": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "dispatch"
+      "packagePath": "src/host/RemoteRequestAdmissions.ts",
+      "qualifiedName": "request"
     },
     "334": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "createRemoteApplicationHandler"
     },
     "335": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "createRemoteApplicationHandler"
     },
     "336": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "request"
+      "qualifiedName": "dispatch"
     },
     "337": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "response"
+      "qualifiedName": "__type"
     },
     "338": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "admit"
+      "qualifiedName": "__type"
     },
     "339": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "request"
     },
     "340": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "response"
     },
     "341": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "request"
+      "qualifiedName": "admit"
     },
     "342": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "context"
+      "qualifiedName": "__type"
     },
     "343": {
       "packageName": "@pixel-brewery/remote-node",
@@ -8984,192 +8993,192 @@
     "344": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/createRemoteApplicationHandler.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "request"
     },
     "345": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
-      "qualifiedName": "IRemoteApplicationAdapter.handle"
+      "packagePath": "src/host/createRemoteApplicationHandler.ts",
+      "qualifiedName": "context"
     },
     "346": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
-      "qualifiedName": "IRemoteApplicationAdapter.handle"
+      "packagePath": "src/host/createRemoteApplicationHandler.ts",
+      "qualifiedName": "__type"
     },
     "347": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
-      "qualifiedName": "request"
+      "packagePath": "src/host/createRemoteApplicationHandler.ts",
+      "qualifiedName": "__type"
     },
     "348": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
-      "qualifiedName": "response"
+      "qualifiedName": "IRemoteApplicationAdapter.handle"
     },
     "349": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
-      "qualifiedName": "context"
+      "qualifiedName": "IRemoteApplicationAdapter.handle"
     },
     "350": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpLanTransport.ts",
-      "qualifiedName": "NodeHttpLanTransport"
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "request"
+    },
+    "351": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "response"
+    },
+    "352": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "context"
     },
     "353": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpLanTransport.ts",
-      "qualifiedName": "NodeHttpLanTransport.id"
-    },
-    "354": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpLanTransport.ts",
-      "qualifiedName": "NodeHttpLanTransport.scheme"
-    },
-    "355": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpLanTransport.ts",
-      "qualifiedName": "NodeHttpLanTransport.create"
+      "qualifiedName": "NodeHttpLanTransport"
     },
     "356": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpLanTransport.ts",
-      "qualifiedName": "NodeHttpLanTransport.create"
+      "qualifiedName": "NodeHttpLanTransport.id"
     },
     "357": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpLanTransport.ts",
-      "qualifiedName": "listener"
+      "qualifiedName": "NodeHttpLanTransport.scheme"
     },
     "358": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport"
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport.create"
     },
     "359": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport.__constructor"
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport.create"
     },
     "360": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport"
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "listener"
     },
     "361": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "_provider"
+      "qualifiedName": "NodeHttpsLanTransport"
+    },
+    "362": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.__constructor"
     },
     "363": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport.id"
+      "qualifiedName": "NodeHttpsLanTransport"
     },
     "364": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport.scheme"
-    },
-    "365": {
-      "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport.create"
+      "qualifiedName": "_provider"
     },
     "366": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "NodeHttpsLanTransport.create"
+      "qualifiedName": "NodeHttpsLanTransport.id"
     },
     "367": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/NodeHttpsLanTransport.ts",
-      "qualifiedName": "listener"
+      "qualifiedName": "NodeHttpsLanTransport.scheme"
     },
     "368": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
-      "qualifiedName": "IRemoteNodeTransport"
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.create"
     },
     "369": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
-      "qualifiedName": "IRemoteNodeTransport.id"
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.create"
     },
     "370": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
-      "qualifiedName": "IRemoteNodeTransport.scheme"
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "listener"
     },
     "371": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
-      "qualifiedName": "IRemoteNodeTransport.create"
+      "qualifiedName": "IRemoteNodeTransport"
     },
     "372": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
-      "qualifiedName": "IRemoteNodeTransport.create"
+      "qualifiedName": "IRemoteNodeTransport.id"
     },
     "373": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
-      "qualifiedName": "listener"
+      "qualifiedName": "IRemoteNodeTransport.scheme"
     },
     "374": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/selectPrivateHost.ts",
-      "qualifiedName": "selectPrivateHost"
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport.create"
     },
     "375": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/transport/selectPrivateHost.ts",
-      "qualifiedName": "selectPrivateHost"
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport.create"
     },
     "376": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "IRemoteTlsProvider"
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "listener"
     },
     "377": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "IRemoteTlsProvider.getMaterial"
+      "packagePath": "src/transport/selectPrivateHost.ts",
+      "qualifiedName": "selectPrivateHost"
     },
     "378": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "IRemoteTlsProvider.getMaterial"
+      "packagePath": "src/transport/selectPrivateHost.ts",
+      "qualifiedName": "selectPrivateHost"
     },
     "379": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "IRemoteTlsProvider.subscribe"
+      "qualifiedName": "IRemoteTlsProvider"
     },
     "380": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "IRemoteTlsProvider.subscribe"
+      "qualifiedName": "IRemoteTlsProvider.getMaterial"
     },
     "381": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "listener"
+      "qualifiedName": "IRemoteTlsProvider.getMaterial"
     },
     "382": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "IRemoteTlsProvider.subscribe"
     },
     "383": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "IRemoteTlsProvider.subscribe"
     },
     "384": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "listener"
     },
     "385": {
       "packageName": "@pixel-brewery/remote-node",
@@ -9178,25 +9187,40 @@
     },
     "386": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
-      "qualifiedName": "IRemoteTlsMaterial"
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
     },
     "387": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
-      "qualifiedName": "IRemoteTlsMaterial.key"
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
     },
     "388": {
       "packageName": "@pixel-brewery/remote-node",
-      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
-      "qualifiedName": "IRemoteTlsMaterial.cert"
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
     },
     "389": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
-      "qualifiedName": "IRemoteTlsMaterial.ca"
+      "qualifiedName": "IRemoteTlsMaterial"
     },
     "390": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.key"
+    },
+    "391": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.cert"
+    },
+    "392": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.ca"
+    },
+    "393": {
       "packageName": "@pixel-brewery/remote-node",
       "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
       "qualifiedName": "IRemoteTlsMaterial.passphrase"

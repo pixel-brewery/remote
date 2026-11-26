@@ -97,7 +97,13 @@ public class RemotePlugin : Plugin() {
     private fun refreshCapability() {
         val origin = RemoteNativeConfiguration.activeOrigin ?: return
         val capability = RemoteNativeConfiguration.activeCapability ?: return
-        _scope.launch { runCatching { RemoteLocalCookie.install(origin, capability) } }
+        _scope.launch {
+            runCatching {
+                RemoteLocalCookie.refresh(origin, capability) {
+                    RemoteNativeConfiguration.activeOrigin == origin && RemoteNativeConfiguration.activeCapability == capability
+                }
+            }
+        }
     }
     private fun owner(): IRemoteViewOwner = activity as? IRemoteViewOwner ?: error("The Activity must implement IRemoteViewOwner.")
     private fun trustedCurrentDocument(): Boolean = bridge.webView.url?.let { trustedOrigin(Uri.parse(it)) } == true

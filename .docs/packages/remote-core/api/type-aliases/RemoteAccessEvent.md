@@ -69,6 +69,9 @@ A new device grant was durably stored, either by QR possession or by host approv
 Every event follows its durable or lifecycle commit. Transports must terminate
 owned channels on `revoked` and `disabled`; `pairings-invalidated` ends every
 outstanding invitation. `paired` lets local administration react to a newly
-stored device grant, for example by closing a displayed invitation. No event
+stored device grant, for example by hiding a displayed invitation in its own
+view. Listeners run inside the grant operation: they must not call back into the
+access service (for example `invalidatePendingPairings()`), which would leave the
+device's retry of an unanswered completion without its credential. No event
 carries a credential, challenge or token digest. Observers that switch on the
 kind must tolerate kinds they do not handle.

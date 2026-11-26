@@ -811,6 +811,8 @@ export class NodeRemoteHost implements IRemoteHostLifecycle {
             network: 502,
             disposed: 503,
         };
+        // A refused oversized body is not drained: the connection closes after this answer.
+        if (error.code === 'resource-limit') response.setHeader('Connection', 'close');
         this.json(response, statuses[error.code] ?? 400, {
             error: { code: error.code, message: error.message },
         });

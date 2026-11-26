@@ -3059,7 +3059,15 @@
               },
               {
                 "kind": "text",
-                "text": " lets local administration react to a newly\nstored device grant, for example by closing a displayed invitation. No event\ncarries a credential, challenge or token digest. Observers that switch on the\nkind must tolerate kinds they do not handle."
+                "text": " lets local administration react to a newly\nstored device grant, for example by hiding a displayed invitation in its own\nview. Listeners run inside the grant operation: they must not call back into the\naccess service (for example "
+              },
+              {
+                "kind": "code",
+                "text": "`invalidatePendingPairings()`"
+              },
+              {
+                "kind": "text",
+                "text": "), which would leave the\ndevice's retry of an unanswered completion without its credential. No event\ncarries a credential, challenge or token digest. Observers that switch on the\nkind must tolerate kinds they do not handle."
               }
             ]
           }

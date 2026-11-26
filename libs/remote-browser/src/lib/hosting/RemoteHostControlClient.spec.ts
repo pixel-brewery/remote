@@ -146,7 +146,7 @@ describe('RemoteHostControlClient', () => {
         ]);
     });
 
-    it('creates a canonical pairing URL only for its advertised installation and a short expiry', async () => {
+    it('creates a canonical pairing URL only for its advertised installation and an accepted expiry', async () => {
         // Arrange
         const bootstrap = invitation();
         const fetch = vi
@@ -161,7 +161,7 @@ describe('RemoteHostControlClient', () => {
         const rejected = [
             invitation({ hostId: 'installation-2' }),
             invitation({ origin: 'http://192.168.10.30:4321' }),
-            invitation({ expiresAt: new Date(Date.now() + 600_000).toISOString() }),
+            invitation({ expiresAt: new Date(Date.now() + 901_000).toISOString() }),
             invitation({ expiresAt: new Date(Date.now() - 1_000).toISOString() }),
         ].map((candidate) => {
             try {

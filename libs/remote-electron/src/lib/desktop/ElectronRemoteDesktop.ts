@@ -4,6 +4,7 @@ import {
     safeStorage,
     utilityProcess,
     type BrowserWindow,
+    type Session,
     type IpcMainInvokeEvent,
     type UtilityProcess,
 } from 'electron';
@@ -69,6 +70,7 @@ export class ElectronRemoteDesktop {
     private _activeOrigin: string | undefined;
     private _activeConnectionId: string | undefined;
     private _activeCookieName: string | undefined;
+    private _session: Session | undefined;
     private _activationGeneration = 0;
     private _selectionGeneration: number | undefined;
     private _activatingConnectionId: string | undefined;
@@ -123,16 +125,16 @@ export class ElectronRemoteDesktop {
                     remoteSavedConnectionSchema.parse(profile),
                 );
             },
-            pair: async (bootstrap, deviceName) => {
-                this.releaseActiveView();
-                return activation(
-                    await this.invoke({ kind: 'pairings.complete', bootstrap, deviceName }),
-                );
-            },
-            openConnection: async (connectionId) => {
-                this.releaseActiveView();
-                return activation(await this.invoke({ kind: 'connections.open', connectionId }));
-            },
+            pair: (bootstrap, deviceName) =>
+                this.replaceActiveView(async () =>
+                    activation(
+                        await this.invoke({ kind: 'pairings.complete', bootstrap, deviceName }),
+                    ),
+                ),
+            openConnection: (connectionId) =>
+                this.replaceActiveView(async () =>
+                    activation(await this.invoke({ kind: 'connections.open', connectionId })),
+                ),
             closeConnection: async (connectionId) => {
                 this.cancelActivation(connectionId);
                 await this.invoke({ kind: 'connections.close', connectionId });
@@ -172,9 +174,12 @@ export class ElectronRemoteDesktop {
         if (!['file:', 'http:', 'https:'].includes(renderer.protocol))
             throw new Error('The local renderer must be a file or HTTP(S) URL.');
         this._window = window;
+        this._session = window.webContents.session;
         this._localRenderer = localRenderer;
         window.once('closed', () => {
             if (this._window !== window) return;
+            // The session outlives the window: its capability must not reach other loopback services.
+            this.forgetActiveCookie();
             this._window = undefined;
             this._activeOrigin = undefined;
             this._activeConnectionId = undefined;
@@ -199,6 +204,16 @@ export class ElectronRemoteDesktop {
         this._activeOrigin = undefined;
         this._activeConnectionId = undefined;
         this.narrow();
+        // Await the queued removal, but never longer than the dispose bound: an OS cookie write
+        // already in flight cannot be cancelled.
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        await Promise.race([
+            this._cookieWrites,
+            new Promise<void>((done) => {
+                timer = setTimeout(done, this._disposeTimeoutMs);
+            }),
+        ]);
+        clearTimeout(timer);
         await this.stopRuntime();
     }
     private trusted(url: string): boolean {
@@ -318,6 +333,9 @@ export class ElectronRemoteDesktop {
                 this._options.onRemoteRenderer?.(activation.origin);
             } catch (error) {
                 this.narrow();
+                await window.webContents.session.cookies
+                    .remove(activation.origin, activation.cookie.name)
+                    .catch(() => undefined);
                 throw error;
             }
             this._activeOrigin = activation.origin;
@@ -336,13 +354,38 @@ export class ElectronRemoteDesktop {
             throw new Error('The Remote activation owner changed before its view opened.');
         await window.loadURL(activation.origin + '/');
     }
-    private releaseActiveView(): void {
-        if (this._activeConnectionId === undefined) return;
+    /**
+     * Runs an open or pairing that replaces the active view.
+     *
+     * @remarks The Utility closes its current gateway before it connects the next one, so the view is
+     * given up at once. When the replacement fails before the Utility reached that point, the released
+     * gateway is closed explicitly, so no connection stays open without a view.
+     * @param replacement - The open or pairing request and its activation.
+     * @returns The replacement's activation.
+     * @throws The replacement's failure after the released gateway's best-effort close.
+     * @private
+     */
+    private async replaceActiveView<T>(replacement: () => Promise<T>): Promise<T> {
+        const released = this.releaseActiveView();
+        try {
+            return await replacement();
+        } catch (error) {
+            if (released !== undefined && !this._disposed)
+                await this.invoke({ kind: 'connections.close', connectionId: released }).catch(
+                    () => undefined,
+                );
+            throw error;
+        }
+    }
+    private releaseActiveView(): string | undefined {
+        const released = this._activeConnectionId;
+        if (released === undefined) return undefined;
         this.forgetActiveCookie();
         this._activeOrigin = undefined;
         this._activeConnectionId = undefined;
         this.narrow();
         this._requiresLocalReturn = true;
+        return released;
     }
     private cancelActivation(connectionId: string): void {
         if (this._activatingConnectionId !== connectionId) return;
@@ -377,12 +420,12 @@ export class ElectronRemoteDesktop {
      * @private
      */
     private forgetActiveCookie(): void {
-        const window = this._window;
+        const session = this._session;
         const origin = this._activeOrigin;
         const name = this._activeCookieName;
         this._activeCookieName = undefined;
-        if (!window || window.isDestroyed() || !origin || !name) return;
-        const cookies = window.webContents.session.cookies;
+        if (!session || !origin || !name) return;
+        const cookies = session.cookies;
         this._cookieWrites = this._cookieWrites
             .then(() => cookies.remove(origin, name))
             .catch(() => undefined);

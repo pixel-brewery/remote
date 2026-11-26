@@ -79,7 +79,11 @@ export class RemoteHostRuntime implements IRemoteHostLifecycle {
      * @public
      */
     public initialize(): Promise<void> {
-        this._initializing ??= this.run(() => this._host.initialize(), true).catch(() => undefined);
+        if (this._initializing) return this._initializing;
+        if (this._disposed || this._pending >= this._maxPending)
+            // A refused attempt is not cached, so a later call can still restore the host.
+            return Promise.resolve();
+        this._initializing = this.run(() => this._host.initialize(), true).catch(() => undefined);
         return this._initializing;
     }
 
@@ -165,7 +169,14 @@ export class RemoteHostRuntime implements IRemoteHostLifecycle {
      */
     public createPairing(endpointId?: string): Promise<IRemotePairingBootstrap> {
         return this.run(async () => {
-            await this._host.reconcile();
+            try {
+                await this._host.reconcile();
+            } catch (error) {
+                this.retain(error);
+                throw error;
+            }
+            // The reconcile decided availability: a host that serves again shows no retained outage.
+            this._errorCode = undefined;
             return this._host.createPairing(endpointId);
         });
     }
@@ -269,13 +280,7 @@ export class RemoteHostRuntime implements IRemoteHostLifecycle {
                     if (lifecycle) this._errorCode = undefined;
                     return value;
                 } catch (error) {
-                    if (
-                        lifecycle &&
-                        (!(error instanceof RemoteProtocolError) ||
-                            availabilityCodes.includes(error.code))
-                    )
-                        this._errorCode =
-                            error instanceof RemoteProtocolError ? error.code : 'not-ready';
+                    if (lifecycle) this.retain(error);
                     throw error;
                 }
             })
@@ -287,6 +292,17 @@ export class RemoteHostRuntime implements IRemoteHostLifecycle {
             () => undefined,
         );
         return result;
+    }
+    /**
+     * Retains an availability failure for status while leaving caller-specific refusals out.
+     *
+     * @param error - Failure of a lifecycle or pairing reconcile step.
+     *
+     * @private
+     */
+    private retain(error: unknown): void {
+        if (!(error instanceof RemoteProtocolError) || availabilityCodes.includes(error.code))
+            this._errorCode = error instanceof RemoteProtocolError ? error.code : 'not-ready';
     }
     // #endregion
 }

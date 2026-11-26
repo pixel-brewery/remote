@@ -94,6 +94,29 @@ describe('createRemoteRoutesFromOpenApi', () => {
         ]);
     });
 
+    it('refuses a policy whose admitted parameter route also matches an excluded operation', () => {
+        // Arrange
+        const document = {
+            paths: {
+                '/api/documents/{documentId}': { get: operation('readDocument') },
+                '/api/documents/export': { get: operation('exportDocuments') },
+            },
+        };
+        const otherMethod = {
+            paths: {
+                '/api/documents/{documentId}': { get: operation('readDocument') },
+                '/api/documents/export': { post: operation('startExport') },
+            },
+        };
+        // Act / Assert
+        expect(() => createRemoteRoutesFromOpenApi(document, policy)).toThrow(
+            /excluded operation/u,
+        );
+        expect(createRemoteRoutesFromOpenApi(otherMethod, policy).map((route) => route.id)).toEqual(
+            ['readDocument'],
+        );
+    });
+
     it('rejects missing, oversized and duplicate operation identifiers', () => {
         // Arrange
         const shared = { get: operation('same') };

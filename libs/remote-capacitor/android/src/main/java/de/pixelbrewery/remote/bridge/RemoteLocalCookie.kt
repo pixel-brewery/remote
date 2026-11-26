@@ -43,15 +43,25 @@ internal object RemoteLocalCookie {
     internal suspend fun install(origin: String, capability: String) {
         require(isLoopbackOrigin(origin)) { "The local view must be an exact loopback origin." }
         val header = header(capability)
-        check(write(origin, header)) { "The WebView rejected the local view capability." }
+        check(write(origin, header) { true } == true) { "The WebView rejected the local view capability." }
+    }
+
+    /**
+     * Refresh the capability only while [stillActive] holds on the main thread at the moment of the write, so a close,
+     * forget or replacement that ran meanwhile is never undone.
+     */
+    internal suspend fun refresh(origin: String, capability: String, stillActive: () -> Boolean) {
+        if (isLoopbackOrigin(origin)) write(origin, header(capability), stillActive)
     }
 
     /** Remove the capability of a closed gateway origin and flush the removal; removal is best effort. */
     internal suspend fun expire(origin: String) {
-        if (isLoopbackOrigin(origin)) write(origin, expiredHeader())
+        if (isLoopbackOrigin(origin)) write(origin, expiredHeader()) { true }
     }
 
-    private suspend fun write(origin: String, value: String): Boolean = withContext(Dispatchers.Main) {
+    private suspend fun write(origin: String, value: String, guard: () -> Boolean): Boolean? = withContext(Dispatchers.Main) {
+        // The guard and the write run in the same main-thread step; null means the write was skipped.
+        if (!guard()) return@withContext null
         val manager = CookieManager.getInstance()
         val written = suspendCancellableCoroutine { continuation -> manager.setCookie(origin, value) { accepted -> if (continuation.isActive) continuation.resume(accepted) } }
         manager.flush()

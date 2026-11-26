@@ -274,4 +274,42 @@ describe('RemoteHostRuntime', () => {
         );
         kept();
     });
+    it('clears a retained outage once the pairing reconcile finds the network again', async () => {
+        // Arrange
+        const { host, runtime } = fixture();
+        await runtime.initialize();
+        host.enable.mockRejectedValueOnce(
+            new RemoteProtocolError('network', 'No private interface.'),
+        );
+        await expect(runtime.enable()).rejects.toMatchObject({ code: 'network' });
+        const unavailable = runtime.status();
+        // Act
+        await runtime.createPairing();
+        // Assert
+        expect(unavailable).toMatchObject({ state: 'unavailable', errorCode: 'network' });
+        expect(runtime.status()).toMatchObject({ state: 'available' });
+        expect(runtime.status()).not.toHaveProperty('errorCode');
+        await runtime.dispose();
+    });
+
+    it('does not cache an initialization refused by a full queue', async () => {
+        // Arrange
+        const { host, runtime } = fixture(1);
+        let complete: () => void = () => undefined;
+        host.enable.mockImplementationOnce(
+            () =>
+                new Promise<void>((resolve) => {
+                    complete = resolve;
+                }),
+        );
+        const enabling = runtime.enable();
+        // Act
+        await runtime.initialize();
+        complete();
+        await enabling;
+        await runtime.initialize();
+        // Assert
+        expect(host.initialize).toHaveBeenCalledTimes(1);
+        await runtime.dispose();
+    });
 });

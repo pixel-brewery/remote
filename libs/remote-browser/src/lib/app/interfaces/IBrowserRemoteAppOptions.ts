@@ -57,7 +57,9 @@ export interface IBrowserRemoteAppOptions<TMetadata> {
      */
     readonly deviceName?: () => string;
     /**
-     * Deadline in milliseconds for one preparation; defaults to 15000. Expiry publishes `error` with reason `connection`.
+     * Deadline in milliseconds for one preparation; defaults to 15000. For a remote start (an invitation or a native
+     * loopback view) expiry publishes `error` with reason `connection`; an ordinary start whose probe does not answer in
+     * time starts normally.
      *
      * @public
      */

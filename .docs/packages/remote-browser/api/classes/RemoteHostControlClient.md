@@ -78,7 +78,7 @@ The fragment-based pairing URL for QR rendering or conscious copying; treat it a
 #### Remarks
 
 The bootstrap must belong to the status host's app and installation, use one of its advertised
-endpoint origins and expire within the next five minutes. Clear the URL from the view when it expires.
+endpoint origins and expire within the longest lifetime the core access service accepts (15 minutes). Clear the URL from the view when it expires.
 
 #### Throws
 

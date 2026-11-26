@@ -60,7 +60,8 @@ A product validation, authorization or dispatch error.
 
 The host calls the handler only after device, route, capability and optional
 product admission succeeded. The handler records the admission, then removes
-the device transport headers `authorization`, `cookie` and `origin` from both
+the device transport headers `authorization`, `cookie` and `origin` and the
+proxy headers `forwarded`, `x-forwarded-*` and `x-real-ip` from both
 the parsed and raw header views, so the application never mistakes a device
 credential for its own authentication and never re-evaluates the already
 verified LAN origin. The original request and response streams are passed on

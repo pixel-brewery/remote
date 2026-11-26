@@ -15,6 +15,9 @@ import type { IRemoteHostControlClientOptions } from './interfaces/IRemoteHostCo
 import { RemoteHostControlError } from './RemoteHostControlError.js';
 // #endregion
 
+/** The longest invitation lifetime the core access service accepts. */
+const maximumInvitationLifetimeMs = 900_000;
+
 /**
  * Browser client for an application's private local host-control endpoint.
  *
@@ -153,7 +156,7 @@ export class RemoteHostControlClient {
      * Check an invitation against the status it was created for and encode its pairing URL.
      *
      * @remarks The bootstrap must belong to the status host's app and installation, use one of its advertised
-     * endpoint origins and expire within the next five minutes. Clear the URL from the view when it expires.
+     * endpoint origins and expire within the longest lifetime the core access service accepts (15 minutes). Clear the URL from the view when it expires.
      * @param bootstrap - Invitation returned by {@link RemoteHostControlClient.pair}.
      * @param status - Current validated status of the same host.
      * @returns The fragment-based pairing URL for QR rendering or conscious copying; treat it as a secret.
@@ -171,7 +174,7 @@ export class RemoteHostControlClient {
             parsed.data.appId !== status.host.identity.appId ||
             parsed.data.hostId !== status.host.identity.hostId ||
             !status.host.endpoints.some((endpoint) => endpoint.origin === parsed.data.origin) ||
-            !(remaining > 0 && remaining <= 300_000)
+            !(remaining > 0 && remaining <= maximumInvitationLifetimeMs)
         )
             throw new RemoteHostControlError(
                 'invalid-invitation',

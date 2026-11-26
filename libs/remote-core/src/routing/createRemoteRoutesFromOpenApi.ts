@@ -83,13 +83,16 @@ export function createRemoteRoutesFromOpenApi(
         invalid('The OpenAPI document has no path metadata.');
     const routes: IRemoteRouteDefinition[] = [];
     const identifiers = new Set<string>();
+    const excludedOperations: { readonly method: string; readonly path: string }[] = [];
     for (const [template, item] of Object.entries(document.paths)) {
-        if (
-            !include.some((value) => covers(value, template)) ||
-            exclude.some((value) => covers(value, template)) ||
-            item === undefined
-        )
+        if (item === undefined || !include.some((value) => covers(value, template))) continue;
+        if (exclude.some((value) => covers(value, template))) {
+            if (isRecord(item))
+                for (const [method, key] of methods)
+                    if (item[key] !== undefined)
+                        excludedOperations.push({ method, path: routePath(template) });
             continue;
+        }
         if (!isRecord(item)) invalid('The OpenAPI path metadata is invalid.');
         const path = routePath(template);
         const maxRequestBytes = limits
@@ -123,6 +126,14 @@ export function createRemoteRoutesFromOpenApi(
             );
         }
     }
+    // An admitted parameter route that also matches an excluded operation's path would be admitted for
+    // that request, and the application's router may then dispatch the excluded handler.
+    for (const excluded of excludedOperations)
+        for (const route of routes)
+            if (route.method === excluded.method && overlaps(route.path, excluded.path))
+                invalid(
+                    `The admitted route ${route.method} ${route.path} can also match the excluded operation ${excluded.method} ${excluded.path}.`,
+                );
     // The registry owns admission rules; constructing it rejects reserved, malformed or overlapping routes.
     new RemoteRouteRegistry(routes);
     return Object.freeze(routes);
@@ -190,6 +201,29 @@ function isEventStream(operation: IRemoteOpenApiOperation): boolean {
  *
  * @internal
  */
+/**
+ * Reports whether two route patterns can match the same request path.
+ *
+ * @param left - First colon-parameter route pattern.
+ * @param right - Second colon-parameter route pattern.
+ * @returns True when both have the same segment count and every segment pair is equal or contains a parameter.
+ *
+ * @internal
+ */
+function overlaps(left: string, right: string): boolean {
+    const first = left.split('/');
+    const second = right.split('/');
+    return (
+        first.length === second.length &&
+        first.every(
+            (segment, index) =>
+                segment === second[index] ||
+                segment.startsWith(':') ||
+                (second[index] ?? '').startsWith(':'),
+        )
+    );
+}
+
 function covers(value: string, template: string): boolean {
     return value === '/' || template === value || template.startsWith(value + '/');
 }

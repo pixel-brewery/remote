@@ -554,8 +554,37 @@ describe('ElectronRemoteDesktop', () => {
                     ? [value.origin + '/', value.secondOrigin + '/']
                     : [value.origin + '/', localRenderer],
             );
+            // A failed replacement closes the released gateway, so no connection stays open without a view.
+            const closes = value.children
+                .flatMap((child) => child.posted)
+                .filter(
+                    (message) =>
+                        (message as { request?: { kind?: string; connectionId?: string } }).request
+                            ?.kind === 'connections.close',
+                )
+                .map(
+                    (message) =>
+                        (message as { request: { connectionId: string } }).request.connectionId,
+                );
+            expect(closes).toEqual(replacement === 'failure' ? ['connection-one'] : []);
+            expect(value.removedCookies).toHaveLength(1);
         });
     }
+
+    it('removes the active capability from the session when the window closes', async () => {
+        // Arrange
+        const value = fixture();
+        value.cookieWritten.resolve();
+        await value.invoke(value.current.event, {
+            kind: 'connections.open',
+            connectionId: 'connection-one',
+        });
+        // Act
+        value.current.close();
+        await vi.waitFor(() => expect(value.removedCookies).toHaveLength(1));
+        // Assert
+        expect(value.removedCookies).toEqual([value.origin + ' ' + value.writtenCookies[0]?.name]);
+    });
     it('never accepts a forbidden local origin or the local renderer as a gateway view', async () => {
         // Arrange
         const forbidden = fixture({ options: { forbiddenOrigins: ['http://127.0.0.1:49152/'] } });
