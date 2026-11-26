@@ -59,12 +59,12 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "ArrayBufferLike"
                     },
                     "name": "ArrayBufferLike",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 ],
                 "name": "Buffer",
@@ -94,12 +94,12 @@
                           {
                             "type": "reference",
                             "target": {
-                              "packageName": "typescript",
+                              "packageName": "@typescript/old",
                               "packagePath": "lib/lib.es5.d.ts",
                               "qualifiedName": "ArrayBufferLike"
                             },
                             "name": "ArrayBufferLike",
-                            "package": "typescript"
+                            "package": "@typescript/old"
                           }
                         ],
                         "name": "Buffer",
@@ -148,12 +148,12 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "ArrayBufferLike"
                     },
                     "name": "ArrayBufferLike",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 ],
                 "name": "Buffer",
@@ -198,12 +198,12 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "ArrayBufferLike"
                     },
                     "name": "ArrayBufferLike",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 ],
                 "name": "Buffer",
@@ -305,7 +305,7 @@
               "type": {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Promise"
                 },
@@ -318,7 +318,7 @@
                   }
                 ],
                 "name": "Promise",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             }
           ]

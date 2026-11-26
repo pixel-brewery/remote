@@ -109,7 +109,7 @@
                   "type": {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "Pick"
                     },
@@ -117,12 +117,12 @@
                       {
                         "type": "reference",
                         "target": {
-                          "packageName": "typescript",
+                          "packageName": "@typescript/old",
                           "packagePath": "lib/lib.dom.d.ts",
                           "qualifiedName": "Location"
                         },
                         "name": "Location",
-                        "package": "typescript"
+                        "package": "@typescript/old"
                       },
                       {
                         "type": "union",
@@ -147,7 +147,7 @@
                       }
                     ],
                     "name": "Pick",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 },
                 {
@@ -167,7 +167,7 @@
                   "type": {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "Pick"
                     },
@@ -175,12 +175,12 @@
                       {
                         "type": "reference",
                         "target": {
-                          "packageName": "typescript",
+                          "packageName": "@typescript/old",
                           "packagePath": "lib/lib.dom.d.ts",
                           "qualifiedName": "History"
                         },
                         "name": "History",
-                        "package": "typescript"
+                        "package": "@typescript/old"
                       },
                       {
                         "type": "literal",
@@ -188,7 +188,7 @@
                       }
                     ],
                     "name": "Pick",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 }
               ],
@@ -252,7 +252,7 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "Readonly"
                     },
@@ -338,7 +338,7 @@
                       }
                     ],
                     "name": "Readonly",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   },
                   {
                     "type": "literal",
@@ -482,19 +482,19 @@
                   "type": {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.dom.d.ts",
                       "qualifiedName": "AbortSignal"
                     },
                     "name": "AbortSignal",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 }
               ],
               "type": {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Promise"
                 },
@@ -511,7 +511,7 @@
                   }
                 ],
                 "name": "Promise",
-                "package": "typescript"
+                "package": "@typescript/old"
               },
               "implementationOf": {
                 "type": "reference",
@@ -897,7 +897,7 @@
               "type": {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Pick"
                 },
@@ -905,12 +905,12 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.dom.d.ts",
                       "qualifiedName": "Window"
                     },
                     "name": "Window",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   },
                   {
                     "type": "union",
@@ -927,7 +927,7 @@
                   }
                 ],
                 "name": "Pick",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             }
           ],
@@ -998,7 +998,7 @@
               "type": {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Pick"
                 },
@@ -1006,12 +1006,12 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.dom.d.ts",
                       "qualifiedName": "Crypto"
                     },
                     "name": "Crypto",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   },
                   {
                     "type": "literal",
@@ -1019,7 +1019,7 @@
                   }
                 ],
                 "name": "Pick",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             }
           ],
@@ -1100,22 +1100,22 @@
                           {
                             "type": "reference",
                             "target": {
-                              "packageName": "typescript",
+                              "packageName": "@typescript/old",
                               "packagePath": "lib/lib.dom.d.ts",
                               "qualifiedName": "RequestInfo"
                             },
                             "name": "RequestInfo",
-                            "package": "typescript"
+                            "package": "@typescript/old"
                           },
                           {
                             "type": "reference",
                             "target": {
-                              "packageName": "typescript",
+                              "packageName": "@typescript/old",
                               "packagePath": "lib/lib.dom.d.ts",
                               "qualifiedName": "URL"
                             },
                             "name": "URL",
-                            "package": "typescript"
+                            "package": "@typescript/old"
                           }
                         ]
                       }
@@ -1131,19 +1131,19 @@
                       "type": {
                         "type": "reference",
                         "target": {
-                          "packageName": "typescript",
+                          "packageName": "@typescript/old",
                           "packagePath": "lib/lib.dom.d.ts",
                           "qualifiedName": "RequestInit"
                         },
                         "name": "RequestInit",
-                        "package": "typescript"
+                        "package": "@typescript/old"
                       }
                     }
                   ],
                   "type": {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "Promise"
                     },
@@ -1151,16 +1151,16 @@
                       {
                         "type": "reference",
                         "target": {
-                          "packageName": "typescript",
+                          "packageName": "@typescript/old",
                           "packagePath": "lib/lib.dom.d.ts",
                           "qualifiedName": "Response"
                         },
                         "name": "Response",
-                        "package": "typescript"
+                        "package": "@typescript/old"
                       }
                     ],
                     "name": "Promise",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 }
               ]
@@ -1398,12 +1398,12 @@
                   "type": {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.dom.d.ts",
                       "qualifiedName": "WebSocket"
                     },
                     "name": "WebSocket",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 }
               ]
@@ -1482,12 +1482,12 @@
                           {
                             "type": "reference",
                             "target": {
-                              "packageName": "typescript",
+                              "packageName": "@typescript/old",
                               "packagePath": "lib/lib.es5.d.ts",
                               "qualifiedName": "ArrayBuffer"
                             },
                             "name": "ArrayBuffer",
-                            "package": "typescript"
+                            "package": "@typescript/old"
                           }
                         ]
                       }
@@ -1786,7 +1786,7 @@
               "type": {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es2018.asynciterable.d.ts",
                   "qualifiedName": "AsyncIterable"
                 },
@@ -1794,7 +1794,7 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "Uint8Array"
                     },
@@ -1802,20 +1802,20 @@
                       {
                         "type": "reference",
                         "target": {
-                          "packageName": "typescript",
+                          "packageName": "@typescript/old",
                           "packagePath": "lib/lib.es5.d.ts",
                           "qualifiedName": "ArrayBufferLike"
                         },
                         "name": "ArrayBufferLike",
-                        "package": "typescript"
+                        "package": "@typescript/old"
                       }
                     ],
                     "name": "Uint8Array",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 ],
                 "name": "AsyncIterable",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             },
             {
@@ -1842,7 +1842,7 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.es2018.asynciterable.d.ts",
               "qualifiedName": "AsyncIterable"
             },
@@ -1855,7 +1855,7 @@
               }
             ],
             "name": "AsyncIterable",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         }
       ]
@@ -2100,22 +2100,22 @@
       "qualifiedName": "IBrowserRemoteConnectorOptions.fetch"
     },
     "63": {
-      "packageName": "typescript",
+      "packageName": "@typescript/old",
       "packagePath": "lib/lib.dom.d.ts",
       "qualifiedName": "fetch"
     },
     "64": {
-      "packageName": "typescript",
+      "packageName": "@typescript/old",
       "packagePath": "lib/lib.dom.d.ts",
       "qualifiedName": "fetch"
     },
     "65": {
-      "packageName": "typescript",
+      "packageName": "@typescript/old",
       "packagePath": "lib/lib.dom.d.ts",
       "qualifiedName": "input"
     },
     "66": {
-      "packageName": "typescript",
+      "packageName": "@typescript/old",
       "packagePath": "lib/lib.dom.d.ts",
       "qualifiedName": "init"
     },

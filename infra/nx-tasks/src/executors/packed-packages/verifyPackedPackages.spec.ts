@@ -1,6 +1,6 @@
 // #region Imports
 import { execFile } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
@@ -14,7 +14,12 @@ import { verifyPackedPackages } from './verifyPackedPackages.js';
 // #endregion
 
 async function fixture(
-    options: { failInstall?: boolean; linkPackage?: boolean; missingWsTypes?: boolean } = {},
+    options: {
+        failInstall?: boolean;
+        linkPackage?: boolean;
+        missingWsTypes?: boolean;
+        compilerVersion?: string;
+    } = {},
 ) {
     const root = await mkdtemp(join(tmpdir(), 'remote-packed-unit-'));
     const license =
@@ -30,13 +35,48 @@ async function fixture(
         zod: '4.6.7',
         ws: '8.23.0',
     };
+    const nativeVersion = (
+        JSON.parse(
+            await readFile(
+                createRequire(import.meta.url).resolve('@typescript/native/package.json'),
+                'utf8',
+            ),
+        ) as { readonly version: string }
+    ).version;
+    const apiPackageVersion = (
+        JSON.parse(
+            await readFile(
+                createRequire(import.meta.url).resolve('typescript/package.json'),
+                'utf8',
+            ),
+        ) as { readonly version: string }
+    ).version;
     await writeFile(
         join(root, 'package.json'),
-        JSON.stringify({ devDependencies: { typescript: ts.version, ...peers } }),
+        JSON.stringify({
+            devDependencies: {
+                typescript: `npm:@typescript/typescript6@${apiPackageVersion}`,
+                '@typescript/native': `npm:typescript@${nativeVersion}`,
+                ...peers,
+            },
+        }),
     );
     await writeFile(join(root, 'LICENSE'), license);
-    await mkdir(join(root, 'node_modules/typescript/bin'), { recursive: true });
-    await writeFile(join(root, 'node_modules/typescript/bin/tsc'), '');
+    await mkdir(join(root, 'node_modules/typescript'), { recursive: true });
+    await writeFile(
+        join(root, 'node_modules/typescript/package.json'),
+        JSON.stringify({ name: '@typescript/typescript6', version: apiPackageVersion }),
+    );
+    await mkdir(join(root, 'node_modules/@typescript/native/bin'), { recursive: true });
+    await writeFile(join(root, 'node_modules/@typescript/native/bin/tsc'), '');
+    await writeFile(
+        join(root, 'node_modules/@typescript/native/package.json'),
+        JSON.stringify({
+            name: 'typescript',
+            version: nativeVersion,
+            exports: { './package.json': './package.json' },
+        }),
+    );
     const definitions = getPackedPackageDefinitions();
     const manifests = new Map<string, IPackedPackageManifest>();
     for (const definition of definitions) {
@@ -145,8 +185,15 @@ async function fixture(
             return '';
         }
         const actual = [...args];
-        if (actual[0]?.endsWith('/typescript/bin/tsc'))
-            actual[0] = createRequire(import.meta.url).resolve('typescript/bin/tsc');
+        if (actual[0]?.endsWith(join('@typescript', 'native', 'bin', 'tsc'))) {
+            if (actual.includes('--version') && options.compilerVersion !== undefined)
+                return options.compilerVersion;
+            actual[0] = join(
+                dirname(createRequire(import.meta.url).resolve('@typescript/native/package.json')),
+                'bin',
+                'tsc',
+            );
+        }
         return (
             await promisify(execFile)(executable, actual, {
                 cwd: directory,
@@ -217,7 +264,12 @@ describe('verifyPackedPackages', () => {
                 expect(install.environment['NODE_AUTH_TOKEN']).toBeUndefined();
                 expect(install.environment['GH_TOKEN']).toBeUndefined();
                 expect(install.environment['NODE_OPTIONS']).toBeUndefined();
-                expect(f.calls.filter((call) => call.command === process.execPath)).toHaveLength(2);
+                const nativeCompiler = f.calls.find((call) => call.args.includes('--project'))!;
+                expect(nativeCompiler.args[0]).toBe(
+                    await realpath(join(f.root, 'node_modules/@typescript/native/bin/tsc')),
+                );
+                expect(f.calls.some((call) => call.args.includes('--version'))).toBe(true);
+                expect(f.calls.filter((call) => call.command === process.execPath)).toHaveLength(3);
                 await expect(readFile(join(f.consumer(), 'package.json'))).rejects.toMatchObject({
                     code: 'ENOENT',
                 });
@@ -238,12 +290,46 @@ describe('verifyPackedPackages', () => {
                 await expect(verifyPackedPackages(f.root, f.command)).rejects.toMatchObject({
                     stdout: expect.stringContaining("declaration file for module 'ws'"),
                 });
-                expect(f.calls.filter((call) => call.command === process.execPath)).toHaveLength(1);
+                expect(f.calls.filter((call) => call.command === process.execPath)).toHaveLength(2);
             } finally {
                 await rm(f.root, { recursive: true, force: true });
             }
         },
     );
+
+    it('rejects a mismatched compiler instead of accepting API compatibility as native proof', async () => {
+        // Arrange
+        const f = await fixture({ compilerVersion: `Version ${ts.version}\n` });
+        try {
+            // Act and Assert
+            await expect(verifyPackedPackages(f.root, f.command)).rejects.toThrow(
+                'must use the pinned native TypeScript CLI',
+            );
+            expect(f.calls.some((call) => call.args.includes('--project'))).toBe(false);
+            await expect(readFile(join(f.consumer(), 'package.json'))).rejects.toMatchObject({
+                code: 'ENOENT',
+            });
+        } finally {
+            await rm(f.root, { recursive: true, force: true });
+        }
+    });
+
+    it('fails without the native compiler instead of falling back to the API package', async () => {
+        // Arrange
+        const f = await fixture();
+        await rm(join(f.root, 'node_modules/@typescript/native'), { recursive: true });
+        await mkdir(join(f.root, 'node_modules/typescript/bin'), { recursive: true });
+        await writeFile(join(f.root, 'node_modules/typescript/bin/tsc'), '');
+        try {
+            // Act and Assert
+            await expect(verifyPackedPackages(f.root, f.command)).rejects.toMatchObject({
+                code: 'MODULE_NOT_FOUND',
+            });
+            expect(f.calls).toHaveLength(0);
+        } finally {
+            await rm(f.root, { recursive: true, force: true });
+        }
+    });
 
     it('rejects a consumer package aliased back outside the isolated artifact tree', async () => {
         // Arrange

@@ -15,7 +15,7 @@ import {
 } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join, relative, resolve, sep } from 'node:path';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 import ts from 'typescript';
 import { getPackedPackageDefinitions } from './getPackedPackageDefinitions.js';
 import type { IPackedCommandRunner } from './interfaces/IPackedCommandRunner.js';
@@ -35,6 +35,8 @@ import { verifyPackedManifest } from './verifyPackedManifest.js';
  * publishes or reads credentials. It owns and removes only its new temporary tree.
  * Browser and privileged Electron adapters receive strict declaration checks;
  * ordinary Node imports cover the portable, Node and testing public entries.
+ * The pinned native TypeScript CLI checks declarations; the separate published
+ * API compatibility package supplies AST inspection without selecting its compiler.
  * @param root - Workspace root supplied by Nx.
  * @param command - Replaceable external-tool boundary; production uses real tools.
  * @param options - Optional retention of these same verified archives, without repacking.
@@ -51,10 +53,29 @@ export async function verifyPackedPackages(
     const rootManifest = JSON.parse(await readFile(join(root, 'package.json'), 'utf8')) as {
         devDependencies: Record<string, string>;
     };
+    const resolver = createRequire(join(root, 'package.json'));
+    const apiPackage = JSON.parse(
+        await readFile(resolver.resolve('typescript/package.json'), 'utf8'),
+    ) as { readonly name: string; readonly version: string };
+    assert.equal(
+        apiPackage.name,
+        '@typescript/typescript6',
+        'Use the published API compatibility package.',
+    );
+    assert.match(ts.version, /^6\./u, 'AST inspection requires the supported TypeScript 6 API.');
     assert.equal(
         rootManifest.devDependencies['typescript'],
-        ts.version,
-        'Use the exact root TypeScript compiler.',
+        `npm:@typescript/typescript6@${apiPackage.version}`,
+        'Use the exact root TypeScript API compatibility package.',
+    );
+    const nativeVersion = rootManifest.devDependencies['@typescript/native']?.match(
+        /^npm:typescript@(\d+\.\d+\.\d+)$/u,
+    )?.[1];
+    assert(nativeVersion, 'Pin the native TypeScript CLI to an exact published version.');
+    const compiler = join(
+        dirname(resolver.resolve('@typescript/native/package.json')),
+        'bin',
+        'tsc',
     );
     const definitions = getPackedPackageDefinitions();
     const temporary = await mkdtemp(join(tmpdir(), 'remote-packed-packages-'));
@@ -260,7 +281,18 @@ export async function verifyPackedPackages(
                 2,
             ),
         );
-        const compiler = createRequire(join(root, 'package.json')).resolve('typescript/bin/tsc');
+        assert.equal(
+            (
+                await command(
+                    process.execPath,
+                    [compiler, '--version'],
+                    consumer,
+                    consumerEnvironment,
+                )
+            ).trim(),
+            `Version ${nativeVersion}`,
+            'The isolated consumer must use the pinned native TypeScript CLI.',
+        );
         await command(
             process.execPath,
             [compiler, '--project', join(consumer, 'tsconfig.json')],
