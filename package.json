@@ -1,7 +1,7 @@
 {
     "name": "@pixel-brewery/remote-workspace",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Product-neutral remote access, pairing and client runtimes for local desktop applications.",
     "type": "module",
     "license": "MIT",

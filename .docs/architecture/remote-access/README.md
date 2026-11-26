@@ -2,7 +2,7 @@
 
 **Status: implemented SDK source contract, with binding integration rules and separate consumer migrations.**
 
-This handbook describes the current `0.1.0` source, its ownership boundaries and the behavior a replacement implementation must preserve. It is grounded in the canonical schemas, runtime adapters and colocated specs. Source inspection does not establish package publication, a successful latest acceptance run or a real device journey. Executed evidence belongs in the [verification record](../../guides/testing.md); the [implementation contract](../../plan.md) defines the binding delivery scope.
+This handbook describes the current `0.2.0` source, its ownership boundaries and the behavior a replacement implementation must preserve. It is grounded in the canonical schemas, runtime adapters and colocated specs. Source inspection does not establish package publication, a successful latest acceptance run or a real device journey. Executed evidence belongs in the [verification record](../../guides/testing.md); the [implementation contract](../../plan.md) defines the binding delivery scope.
 
 Three distinctions apply throughout:
 
@@ -20,7 +20,7 @@ HTTP LAN is an explicit unencrypted mode. QR possession authorizes the device; i
 
 ## Package boundaries and entry points
 
-Every SDK package publishes ESM JavaScript and declarations from `dist` under version `0.1.0`. Consumers use its package exports. A workspace TypeScript alias, copied source tree or package-manager patch is not a substitute for a valid packed dependency graph. Yarn resolves sibling `workspace:*` dependencies when producing distributable packages; verify the resulting artifacts independently of this checkout.
+Every SDK package publishes ESM JavaScript and declarations from `dist` under one family version, currently `0.2.0` in source. Consumers use its package exports. A workspace TypeScript alias, copied source tree or package-manager patch is not a substitute for a valid packed dependency graph. Yarn resolves sibling `workspace:*` dependencies when producing distributable packages; verify the resulting artifacts independently of this checkout.
 
 | Package and public import                          | Owned responsibility                                                                                                                                                | Direct SDK dependencies and environment                                                                                       |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |

@@ -23,9 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
-import kotlin.coroutines.resume
 // #endregion
 
 /** Fixed validated control surface; no URL fetch, route registration or credential API enters JS. */
@@ -46,6 +44,7 @@ public class RemotePlugin : Plugin() {
         bridge.webView.settings.allowFileAccess = false
         bridge.webView.settings.allowContentAccess = false
         CookieManager.getInstance().setAcceptThirdPartyCookies(bridge.webView, false)
+        refreshCapability()
     }
     /** Execute a canonical native request from packaged content only. */
     @PluginMethod public fun invoke(call: PluginCall) {
@@ -53,21 +52,27 @@ public class RemotePlugin : Plugin() {
         _scope.launch {
             if (!withContext(Dispatchers.Main) { trustedCurrentDocument() }) { call.reject("Remote control requires the application's packaged view.", "forbidden"); return@launch }
             runCatching { _runtime.invoke(request) { activation ->
+                val origin = activation.view.getString("origin")
+                // The runtime closed the previous gateway before opening this one; its capability is obsolete.
+                RemoteNativeConfiguration.activeOrigin?.takeIf { previous -> previous != origin }?.let { previous -> RemoteLocalCookie.expire(previous) }
+                // A persistent, bounded and flushed cookie survives CapacitorCookies' removeSessionCookies() during recreation.
+                RemoteLocalCookie.install(origin, activation.cookie)
                 withContext(Dispatchers.Main) {
-                    val origin = activation.view.getString("origin")
-                    suspendCancellableCoroutine { continuation -> CookieManager.getInstance().setCookie(origin, "remote_local=${activation.cookie}; Path=/; HttpOnly; SameSite=Strict") { installed -> if (continuation.isActive) continuation.resume(installed) } }.also { check(it) }
-                    CookieManager.getInstance().flush()
                     _localOrigin = origin
                     RemoteNativeConfiguration.activeOrigin = origin
+                    RemoteNativeConfiguration.activeCapability = activation.cookie
                     RemoteNativeConfiguration.activeConnectionId = activation.view.getString("connectionId")
                     // The owning Activity must recreate its bridge with the descriptor's loopback origin.
                     // Main-frame navigation alone does not reconfigure Capacitor's trusted bridge origin.
-                    (activity as? IRemoteViewOwner ?: error("The Activity must implement IRemoteViewOwner.")).openRemoteView(origin)
+                    owner().openRemoteView(origin)
                 }
             }.also {
-                if (request.optString("kind") in setOf("connections.close", "connections.forget") && request.optString("connectionId") == RemoteNativeConfiguration.activeConnectionId) withContext(Dispatchers.Main) {
-                    RemoteNativeConfiguration.activeOrigin = null; RemoteNativeConfiguration.activeConnectionId = null; _localOrigin = null
-                    (activity as? IRemoteViewOwner ?: error("The Activity must implement IRemoteViewOwner.")).openRemoteView(null)
+                if (request.optString("kind") in setOf("connections.close", "connections.forget") && request.optString("connectionId") == RemoteNativeConfiguration.activeConnectionId) {
+                    RemoteNativeConfiguration.activeOrigin?.let { closed -> RemoteLocalCookie.expire(closed) }
+                    withContext(Dispatchers.Main) {
+                        RemoteNativeConfiguration.activeOrigin = null; RemoteNativeConfiguration.activeConnectionId = null; RemoteNativeConfiguration.activeCapability = null; _localOrigin = null
+                        owner().openRemoteView(null)
+                    }
                 }
             } }.fold({ response -> call.resolve(JSObject().put("response", JSObject(response.toString()))) }, { call.reject(it.message ?: "Remote operation failed.", "network") })
         }
@@ -86,7 +91,21 @@ public class RemotePlugin : Plugin() {
             .fold({ call.resolve(JSObject().put("bootstrap", JSObject(it.toString()))) }, { call.reject("The QR code is not a Remote invitation.", "invalid-request") })
     }
     public override fun shouldOverrideLoad(url: Uri): Boolean? = !trustedOrigin(url)
+    public override fun handleOnResume() { refreshCapability() }
     public override fun handleOnDestroy() { _scope.cancel() }
+    /** Extend the active view's bounded capability after every bridge load and resume; a closed view has none. */
+    private fun refreshCapability() {
+        val origin = RemoteNativeConfiguration.activeOrigin ?: return
+        val capability = RemoteNativeConfiguration.activeCapability ?: return
+        _scope.launch {
+            runCatching {
+                RemoteLocalCookie.refresh(origin, capability) {
+                    RemoteNativeConfiguration.activeOrigin == origin && RemoteNativeConfiguration.activeCapability == capability
+                }
+            }
+        }
+    }
+    private fun owner(): IRemoteViewOwner = activity as? IRemoteViewOwner ?: error("The Activity must implement IRemoteViewOwner.")
     private fun trustedCurrentDocument(): Boolean = bridge.webView.url?.let { trustedOrigin(Uri.parse(it)) } == true
     private fun trustedOrigin(uri: Uri): Boolean { val origin = "${uri.scheme}://${uri.encodedAuthority}"; return uri.userInfo == null && (origin == _packagedOrigin || origin == _localOrigin) }
 }

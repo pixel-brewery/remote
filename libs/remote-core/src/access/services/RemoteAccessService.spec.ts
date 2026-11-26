@@ -129,6 +129,64 @@ describe('RemoteAccessService', () => {
         expect(grant.status).toBe('paired');
         expect(value.access.getStatus().pendingPairings).toHaveLength(0);
     });
+    it('announces a paired device once, only after its grant is durably stored', async () => {
+        // Arrange
+        const value = fixture();
+        await value.access.initialize();
+        await value.access.setEnabled(true);
+        const bootstrap = await value.access.createPairing('http://192.168.1.2:49152');
+        const events: Array<{ kind: string; stored: boolean }> = [];
+        value.access.subscribe((event) =>
+            events.push({
+                kind: event.kind,
+                stored: JSON.stringify(value.stored()).includes(
+                    'deviceId' in event ? event.deviceId : '\u0000',
+                ),
+            }),
+        );
+        // Act
+        const grant = await value.access.completePairing({
+            ...attempt,
+            challenge: bootstrap.challenge,
+        });
+        await value.access.completePairing({ ...attempt, challenge: bootstrap.challenge });
+        // Assert
+        if (grant.status !== 'paired') throw new Error('Expected grant');
+        expect(events).toEqual([{ kind: 'paired', stored: true }]);
+        expect(value.access.getStatus().devices[0]?.id).toBe(grant.principal.deviceId);
+    });
+    it('announces host-approved devices after approval and stays silent for failed grants', async () => {
+        // Arrange
+        const approval = fixture('host-approval');
+        await approval.access.initialize();
+        await approval.access.setEnabled(true);
+        const invitation = await approval.access.createPairing('http://192.168.1.2:49152');
+        const failing = fixture();
+        await failing.access.initialize();
+        await failing.access.setEnabled(true);
+        const refused = await failing.access.createPairing('http://192.168.1.2:49152');
+        const approved: unknown[] = [];
+        const failed: unknown[] = [];
+        approval.access.subscribe((event) => approved.push(event));
+        failing.access.subscribe((event) => failed.push(event));
+        const pending = await approval.access.completePairing({
+            ...attempt,
+            challenge: invitation.challenge,
+        });
+        failing.fail();
+        // Act
+        const beforeApproval = approved.length;
+        await approval.access.approvePairing(pending.pairingId);
+        await expect(
+            failing.access.completePairing({ ...attempt, challenge: refused.challenge }),
+        ).rejects.toMatchObject({ code: 'persistence' });
+        // Assert
+        expect(beforeApproval).toBe(0);
+        expect(approved).toEqual([
+            { kind: 'paired', deviceId: approval.access.getStatus().devices[0]?.id },
+        ]);
+        expect(failed).toEqual([]);
+    });
     it('revokes a device, emits its identity and prevents challenge-based credential recovery', async () => {
         // Arrange
         const value = fixture();

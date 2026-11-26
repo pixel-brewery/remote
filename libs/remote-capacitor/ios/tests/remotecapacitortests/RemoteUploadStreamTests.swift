@@ -16,8 +16,9 @@ final class RemoteUploadStreamTests: XCTestCase {
             while true { let count = upload.input.read(&bytes, maxLength: bytes.count); if count <= 0 { break }; received.withLockedValue { $0.append(contentsOf: bytes.prefix(count)) } }
         }
         // Act
+        // The bound proves that capacity returns, not how fast: a loaded CI simulator can stall the reader for seconds.
         for _ in 0..<32 { while capacity.wait(timeout: .now()) == .success {}
-            let canRead = try upload.push(Data(repeating: 42, count: 16_384)); if !canRead { XCTAssertEqual(capacity.wait(timeout: .now() + 2), .success) } }; upload.finish()
+            let canRead = try upload.push(Data(repeating: 42, count: 16_384)); if !canRead { XCTAssertEqual(capacity.wait(timeout: .now() + 10), .success) } }; upload.finish()
         wait(for: [finished], timeout: 10)
         // Assert
         let bytes = received.withLockedValue { $0 }; XCTAssertEqual(bytes.count, expected); XCTAssertEqual(bytes, Data(repeating: 42, count: expected)); upload.close()

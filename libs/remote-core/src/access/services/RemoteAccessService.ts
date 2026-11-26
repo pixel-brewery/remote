@@ -391,7 +391,13 @@ export class RemoteAccessService {
         };
     }
     /**
-     * Observes revocation/lifecycle effects. Unsubscribe before disposing a transport.
+     * Observes committed pairing, revocation and lifecycle effects. Unsubscribe before disposing a transport.
+     *
+     * @remarks
+     * Listeners run synchronously after the corresponding commit: `paired` after a
+     * new device grant is durably stored, `revoked` after durable removal, and
+     * `disabled` or `pairings-invalidated` after the lifecycle transition. A
+     * failing listener cannot undo the commit and does not affect other listeners.
      *
      * @param listener - Observer invoked when authorization changes; the returned cleanup removes only this registration.
      * @returns An idempotent cleanup for this registration.
@@ -431,6 +437,8 @@ export class RemoteAccessService {
             expiresAt: pairing.expiresAt,
         };
         pairing.grant = grant;
+        // Observers learn of the grant only after it is durable; a failed save above emits nothing.
+        this.emit({ kind: 'paired', deviceId });
         return grant;
     }
     private requireState(): IRemoteAccessState {

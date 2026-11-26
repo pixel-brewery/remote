@@ -1,12 +1,23 @@
 /**
- * Authorization changes which require transports to terminate owned channels.
+ * Committed authorization changes delivered synchronously to access observers.
+ *
+ * @remarks
+ * Every event follows its durable or lifecycle commit. Transports must terminate
+ * owned channels on `revoked` and `disabled`; `pairings-invalidated` ends every
+ * outstanding invitation. `paired` lets local administration react to a newly
+ * stored device grant, for example by hiding a displayed invitation in its own
+ * view. Listeners run inside the grant operation: they must not call back into the
+ * access service (for example `invalidatePendingPairings()`), which would leave the
+ * device's retry of an unanswered completion without its credential. No event
+ * carries a credential, challenge or token digest. Observers that switch on the
+ * kind must tolerate kinds they do not handle.
  *
  * @public
  */
 export type RemoteAccessEvent =
     | {
           /**
-           * Committed authorization or invitation-lifecycle transition that the observing transport must apply.
+           * A durable device grant was removed; that device's open work must be canceled.
            */
           readonly kind: 'revoked';
           /**
@@ -16,13 +27,23 @@ export type RemoteAccessEvent =
       }
     | {
           /**
-           * Committed authorization or invitation-lifecycle transition that the observing transport must apply.
+           * Disabled intent was committed; every device-owned channel must be canceled.
            */
           readonly kind: 'disabled';
       }
     | {
           /**
-           * Committed authorization or invitation-lifecycle transition that the observing transport must apply.
+           * Every outstanding pairing invitation was invalidated after a stop, rebind or explicit call.
            */
           readonly kind: 'pairings-invalidated';
+      }
+    | {
+          /**
+           * A new device grant was durably stored, either by QR possession or by host approval.
+           */
+          readonly kind: 'paired';
+          /**
+           * Opaque identifier of the newly paired device, matching the sanitized status projection.
+           */
+          readonly deviceId: string;
       };

@@ -2,6 +2,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { request as httpRequest } from 'node:http';
 import { once } from 'node:events';
+import { Writable } from 'node:stream';
 import { WebSocket } from 'ws';
 import { RemoteAccessService } from '@pixel-brewery/remote-core';
 import { remoteRoutes, type IRemoteRouteDefinition } from '@pixel-brewery/remote-protocol';
@@ -92,15 +93,39 @@ async function fixture(application: IRemoteApplicationAdapter, capabilities = ['
                 credentialMode,
             }),
         });
+    const credential = async (): Promise<string> =>
+        ((await (await pair('bearer')).json()) as { credential: string }).credential;
     return {
         host,
         access,
         origin,
         pair,
+        credential,
         failSaves: () => {
             failSave = true;
         },
     };
+}
+
+function stream(origin: string, credential: string) {
+    const client = httpRequest(origin + '/api/value', {
+        method: 'POST',
+        headers: { authorization: 'Bearer ' + credential },
+    });
+    const outcome = new Promise<{ readonly status?: number; readonly body?: string }>(
+        (complete) => {
+            client.once('error', () => complete({}));
+            client.once('response', (response) => {
+                let body = '';
+                response.setEncoding('utf8');
+                response.on('data', (chunk: string) => (body += chunk));
+                response.once('end', () => complete({ status: response.statusCode!, body }));
+                response.once('error', () => complete({}));
+            });
+        },
+    );
+    client.flushHeaders();
+    return { client, outcome };
 }
 
 describe('NodeRemoteHost', () => {
@@ -277,6 +302,136 @@ describe('NodeRemoteHost', () => {
         await request;
         // Assert
         expect(calls).toBe(0);
+    });
+    it('bounds chunked bodies consumed through data listeners and pipes, not only read()', async () => {
+        for (const mode of ['data', 'pipe'] as const) {
+            // Arrange
+            let received = 0;
+            let ended = false;
+            let aborted = false;
+            let reached: () => void = () => undefined;
+            const full = new Promise<void>((complete) => {
+                reached = complete;
+            });
+            const value = await fixture({
+                handle: async (request, response, context) => {
+                    context.signal.addEventListener('abort', () => (aborted = true));
+                    const count = (chunk: Buffer): void => {
+                        received += chunk.byteLength;
+                        if (received >= 8) reached();
+                    };
+                    if (mode === 'data') request.on('data', count);
+                    else
+                        request.pipe(
+                            new Writable({
+                                write(chunk: Buffer, _encoding, done) {
+                                    count(chunk);
+                                    done();
+                                },
+                            }),
+                        );
+                    request.once('end', () => {
+                        ended = true;
+                        response.end('accepted');
+                    });
+                },
+            });
+            const { client, outcome } = stream(value.origin, await value.credential());
+            // Act
+            client.write('abcd');
+            client.write('efgh');
+            await full;
+            client.write('i');
+            client.write('jklmnopq');
+            const result = await outcome;
+            // Assert
+            expect(result.status).toBeUndefined();
+            expect(received).toBe(8);
+            expect(ended).toBe(false);
+            expect(aborted).toBe(true);
+            client.destroy();
+        }
+    });
+
+    it('delivers a chunked body within its quota completely to a consumer attaching late', async () => {
+        // Arrange
+        let flowing: boolean | null | undefined;
+        let sent: () => void = () => undefined;
+        const written = new Promise<void>((complete) => {
+            sent = complete;
+        });
+        const value = await fixture({
+            handle: async (request, response) => {
+                flowing = request.readableFlowing;
+                await written;
+                await new Promise((complete) => setTimeout(complete, 20));
+                let body = '';
+                request.setEncoding('utf8');
+                request.on('data', (chunk: string) => (body += chunk));
+                request.once('end', () => response.end(body));
+            },
+        });
+        const { client, outcome } = stream(value.origin, await value.credential());
+        // Act
+        client.write('abcd');
+        client.end('efgh', () => sent());
+        const result = await outcome;
+        // Assert
+        expect(flowing).toBeNull();
+        expect(result).toEqual({ status: 200, body: 'abcdefgh' });
+    });
+
+    it('refuses a chunked body that exceeded its quota while admission was pending', async () => {
+        // Arrange
+        let calls = 0;
+        let release: () => void = () => undefined;
+        const barrier = new Promise<void>((complete) => {
+            release = complete;
+        });
+        const value = await fixture({
+            authorize: () => barrier,
+            handle: async (_request, response) => {
+                calls++;
+                response.end();
+            },
+        });
+        const { client, outcome } = stream(value.origin, await value.credential());
+        // Act
+        client.write('abcdefgh');
+        client.write('ijkl');
+        await new Promise((complete) => setTimeout(complete, 50));
+        release();
+        const result = await outcome;
+        // Assert
+        expect(result.status).toBe(413);
+        expect(calls).toBe(0);
+        client.destroy();
+    });
+
+    it('notifies host subscribers only after a device grant is durably stored', async () => {
+        // Arrange
+        const value = await fixture({
+            handle: async (_request, response) => {
+                response.end();
+            },
+        });
+        const events: Array<{ kind: string; deviceId?: string; stored: number }> = [];
+        const unsubscribe = value.host.subscribe((event) =>
+            events.push({
+                ...event,
+                stored: value.access.getStatus().devices.length,
+            }),
+        );
+        // Act
+        const paired = (await (await value.pair('bearer')).json()) as {
+            session: { principal: { deviceId: string } };
+        };
+        unsubscribe();
+        await value.host.revokeDevice(paired.session.principal.deviceId);
+        // Assert
+        expect(events).toEqual([
+            { kind: 'paired', deviceId: paired.session.principal.deviceId, stored: 1 },
+        ]);
     });
     it('keeps a failed disable locally stopped when background network reconciliation runs', async () => {
         // Arrange

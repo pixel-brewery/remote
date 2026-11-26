@@ -73,6 +73,27 @@ path. Host-relative application files use the connection's content URL adapter.
 Closing the view, forgetting a connection, switching hosts or revoking access
 cancels its local and remote streams.
 
+## Ready-made application composition
+
+From `0.2.0` the SDK ships the composition that every consumer otherwise
+re-implements. Applications keep their own policy, views and wiring.
+
+| Need                                           | Package and API                                                                                                                                                                                                                                                           |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Serialized host lifecycle without polling      | `remote-node`: `RemoteHostRuntime` rechecks the network when access is enabled, before every invitation and on explicit `reconcile`; only lifecycle operations change its retained availability                                                                           |
+| Private local host controls                    | `remote-node`: `handleRemoteHostControl` (GET status; POST enable, disable, reconcile, pair, revoke). The application authorizes the local caller before calling it                                                                                                       |
+| Request provenance and dispatch                | `remote-node`: `RemoteRequestAdmissions` and `createRemoteApplicationHandler`, which strips device credentials and origin from all header views after admission                                                                                                           |
+| Route registry from an OpenAPI contract        | `remote-core`: `createRemoteRoutesFromOpenApi` with an include/exclude prefix policy and request limits; `createRemoteNativeRouteSources` emits the matching JSON, Kotlin and Swift inventory                                                                             |
+| Live host settings                             | `remote-core`: access events now include `paired`; `NodeRemoteHost.subscribe` forwards them                                                                                                                                                                               |
+| Browser start before the application framework | `remote-browser`: `BrowserRemoteApp` classifies the start, pairs from the fragment (also when it changes in the same document), restores the session, reads the application's capabilities and reports one phase. An ordinary deployment never sees an intermediate state |
+| Local host settings in the browser             | `remote-browser`: `RemoteHostControlClient`, validated by `remote-protocol`'s `remoteHostStatusSchema`                                                                                                                                                                    |
+| Desktop Main and network process               | `remote-electron`: `ElectronRemoteDesktop` in Main, `startElectronRemoteUtility` in the Utility Process and `JsonRemoteProfileStore`. Main opens the gateway view itself, a replacement releases the active view and a closed view's cookie is removed                    |
+
+An application that bundles the Electron utility as an ES module with esbuild
+adds a `createRequire` banner: the SDK's `ws` dependency requires Node built-ins.
+On Android the protected view's cookie is persistent for a bounded time, because
+Capacitor removes session cookies whenever it recreates the bridge.
+
 ## Certificates
 
 Applications own certificate procurement, renewal, protected keys and trust

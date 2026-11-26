@@ -7,7 +7,7 @@
   "flags": {},
   "children": [
     {
-      "id": 1,
+      "id": 34,
       "name": "ElectronRemoteUtility",
       "variant": "declaration",
       "kind": 128,
@@ -35,7 +35,7 @@
       },
       "children": [
         {
-          "id": 26,
+          "id": 59,
           "name": "closeConnection",
           "variant": "declaration",
           "kind": 2048,
@@ -44,7 +44,7 @@
           },
           "signatures": [
             {
-              "id": 27,
+              "id": 60,
               "name": "closeConnection",
               "variant": "signature",
               "kind": 4096,
@@ -72,7 +72,7 @@
               },
               "parameters": [
                 {
-                  "id": 28,
+                  "id": 61,
                   "name": "connectionId",
                   "variant": "param",
                   "kind": 32768,
@@ -111,7 +111,7 @@
           ]
         },
         {
-          "id": 2,
+          "id": 35,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
@@ -120,7 +120,7 @@
           },
           "signatures": [
             {
-              "id": 3,
+              "id": 36,
               "name": "ElectronRemoteUtility",
               "variant": "signature",
               "kind": 16384,
@@ -137,7 +137,7 @@
               },
               "parameters": [
                 {
-                  "id": 4,
+                  "id": 37,
                   "name": "_options",
                   "variant": "param",
                   "kind": 32768,
@@ -152,7 +152,7 @@
                   },
                   "type": {
                     "type": "reference",
-                    "target": 61,
+                    "target": 94,
                     "name": "IRemoteElectronUtilityOptions",
                     "package": "@pixel-brewery/remote-electron"
                   }
@@ -160,7 +160,7 @@
               ],
               "type": {
                 "type": "reference",
-                "target": 1,
+                "target": 34,
                 "name": "ElectronRemoteUtility",
                 "package": "@pixel-brewery/remote-electron"
               }
@@ -168,7 +168,7 @@
           ]
         },
         {
-          "id": 32,
+          "id": 65,
           "name": "dispose",
           "variant": "declaration",
           "kind": 2048,
@@ -177,7 +177,7 @@
           },
           "signatures": [
             {
-              "id": 33,
+              "id": 66,
               "name": "dispose",
               "variant": "signature",
               "kind": 4096,
@@ -223,7 +223,7 @@
           ]
         },
         {
-          "id": 29,
+          "id": 62,
           "name": "forgetConnection",
           "variant": "declaration",
           "kind": 2048,
@@ -232,7 +232,7 @@
           },
           "signatures": [
             {
-              "id": 30,
+              "id": 63,
               "name": "forgetConnection",
               "variant": "signature",
               "kind": 4096,
@@ -260,7 +260,7 @@
               },
               "parameters": [
                 {
-                  "id": 31,
+                  "id": 64,
                   "name": "connectionId",
                   "variant": "param",
                   "kind": 32768,
@@ -299,7 +299,7 @@
           ]
         },
         {
-          "id": 17,
+          "id": 50,
           "name": "listConnections",
           "variant": "declaration",
           "kind": 2048,
@@ -308,7 +308,7 @@
           },
           "signatures": [
             {
-              "id": 18,
+              "id": 51,
               "name": "listConnections",
               "variant": "signature",
               "kind": 4096,
@@ -376,7 +376,7 @@
           ]
         },
         {
-          "id": 23,
+          "id": 56,
           "name": "openConnection",
           "variant": "declaration",
           "kind": 2048,
@@ -385,7 +385,7 @@
           },
           "signatures": [
             {
-              "id": 24,
+              "id": 57,
               "name": "openConnection",
               "variant": "signature",
               "kind": 4096,
@@ -422,7 +422,7 @@
               },
               "parameters": [
                 {
-                  "id": 25,
+                  "id": 58,
                   "name": "connectionId",
                   "variant": "param",
                   "kind": 32768,
@@ -467,7 +467,7 @@
           ]
         },
         {
-          "id": 19,
+          "id": 52,
           "name": "pair",
           "variant": "declaration",
           "kind": 2048,
@@ -476,7 +476,7 @@
           },
           "signatures": [
             {
-              "id": 20,
+              "id": 53,
               "name": "pair",
               "variant": "signature",
               "kind": 4096,
@@ -513,7 +513,7 @@
               },
               "parameters": [
                 {
-                  "id": 21,
+                  "id": 54,
                   "name": "bootstrap",
                   "variant": "param",
                   "kind": 32768,
@@ -538,7 +538,7 @@
                   }
                 },
                 {
-                  "id": 22,
+                  "id": 55,
                   "name": "deviceName",
                   "variant": "param",
                   "kind": 32768,
@@ -587,24 +587,424 @@
         {
           "title": "Constructors",
           "children": [
-            2
+            35
           ]
         },
         {
           "title": "Methods",
           "children": [
-            26,
-            32,
-            29,
-            17,
-            23,
-            19
+            59,
+            65,
+            62,
+            50,
+            56,
+            52
           ]
         }
       ]
     },
     {
-      "id": 61,
+      "id": 4,
+      "name": "IElectronRemoteUtilityProcessOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application composition of the network-owning Utility Process started by "
+          },
+          {
+            "kind": "code",
+            "text": "`startElectronRemoteUtility`"
+          },
+          {
+            "kind": "text",
+            "text": "."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "These values are compiled into the application's own Utility entry. Main supplies only\nthe absolute asset and storage paths at initialization; no value comes from renderer code."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 5,
+          "name": "appId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Canonical lowercase application namespace. Initialization fails when Main announces another one."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 9,
+          "name": "contentPolicy",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "App-owned HTTPS resource permissions of the packaged UI; every flag defaults to false."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "This never adds remote proxy routes, scripts, frames or navigation."
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@typescript/old",
+              "packagePath": "lib/lib.es5.d.ts",
+              "qualifiedName": "Readonly"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Readonly"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 10,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "children": [
+                        {
+                          "id": 13,
+                          "name": "allowHttpsConnections",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {
+                            "isOptional": true
+                          },
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "boolean"
+                          }
+                        },
+                        {
+                          "id": 11,
+                          "name": "allowHttpsImages",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {
+                            "isOptional": true
+                          },
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "boolean"
+                          }
+                        },
+                        {
+                          "id": 12,
+                          "name": "allowHttpsMedia",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {
+                            "isOptional": true
+                          },
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "boolean"
+                          }
+                        }
+                      ],
+                      "groups": [
+                        {
+                          "title": "Properties",
+                          "children": [
+                            13,
+                            11,
+                            12
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "name": "Readonly",
+                "package": "@typescript/old"
+              }
+            ],
+            "name": "Readonly",
+            "package": "@typescript/old"
+          }
+        },
+        {
+          "id": 14,
+          "name": "createProfileStore",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true
+          },
+          "signatures": [
+            {
+              "id": 15,
+              "name": "createProfileStore",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Create the safe profile store below the storage directory announced by Main."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Store of credential-free profiles. Defaults to a "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`JsonRemoteProfileStore`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " at\n"
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`profiles.json`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " in that directory."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 16,
+                  "name": "storageDirectory",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Absolute application-private directory."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-client",
+                  "packagePath": "src/lib/connections/interfaces/IRemoteProfileStore.ts",
+                  "qualifiedName": "IRemoteProfileStore"
+                },
+                "name": "IRemoteProfileStore",
+                "package": "@pixel-brewery/remote-client"
+              }
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "credentialTimeoutMs",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Milliseconds one credential request may wait for Main's OS vault. Defaults to 15000."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 6,
+          "name": "loadRoutes",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 7,
+              "name": "loadRoutes",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Load the application's registered operation inventory once during initialization."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Routes the gateway and upstream transport admit; the canonical route registry validates\nthem before any connection opens."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Any error to fail initialization; Main then stops the Utility Process."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 8,
+                  "name": "assetsPath",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Absolute packaged UI directory announced by Main, for inventories generated\nnext to the packaged assets."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "typeOperator",
+                    "operator": "readonly",
+                    "target": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@pixel-brewery/remote-protocol",
+                          "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                          "qualifiedName": "IRemoteRouteDefinition"
+                        },
+                        "name": "IRemoteRouteDefinition",
+                        "package": "@pixel-brewery/remote-protocol"
+                      }
+                    }
+                  }
+                ],
+                "name": "Promise",
+                "package": "@typescript/old"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            5,
+            9,
+            17
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            14,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94,
       "name": "IRemoteElectronUtilityOptions",
       "variant": "declaration",
       "kind": 256,
@@ -621,7 +1021,7 @@
       },
       "children": [
         {
-          "id": 72,
+          "id": 105,
           "name": "allowLoopbackForTests",
           "variant": "declaration",
           "kind": 1024,
@@ -644,7 +1044,7 @@
           }
         },
         {
-          "id": 62,
+          "id": 95,
           "name": "appId",
           "variant": "declaration",
           "kind": 1024,
@@ -666,7 +1066,7 @@
           }
         },
         {
-          "id": 63,
+          "id": 96,
           "name": "assetsPath",
           "variant": "declaration",
           "kind": 1024,
@@ -688,7 +1088,7 @@
           }
         },
         {
-          "id": 65,
+          "id": 98,
           "name": "contentPolicy",
           "variant": "declaration",
           "kind": 1024,
@@ -735,14 +1135,14 @@
                   {
                     "type": "reflection",
                     "declaration": {
-                      "id": 66,
+                      "id": 99,
                       "name": "__type",
                       "variant": "declaration",
                       "kind": 65536,
                       "flags": {},
                       "children": [
                         {
-                          "id": 69,
+                          "id": 102,
                           "name": "allowHttpsConnections",
                           "variant": "declaration",
                           "kind": 1024,
@@ -755,7 +1155,7 @@
                           }
                         },
                         {
-                          "id": 67,
+                          "id": 100,
                           "name": "allowHttpsImages",
                           "variant": "declaration",
                           "kind": 1024,
@@ -768,7 +1168,7 @@
                           }
                         },
                         {
-                          "id": 68,
+                          "id": 101,
                           "name": "allowHttpsMedia",
                           "variant": "declaration",
                           "kind": 1024,
@@ -785,9 +1185,9 @@
                         {
                           "title": "Properties",
                           "children": [
-                            69,
-                            67,
-                            68
+                            102,
+                            100,
+                            101
                           ]
                         }
                       ]
@@ -803,7 +1203,7 @@
           }
         },
         {
-          "id": 71,
+          "id": 104,
           "name": "credentialStore",
           "variant": "declaration",
           "kind": 1024,
@@ -831,7 +1231,7 @@
           }
         },
         {
-          "id": 70,
+          "id": 103,
           "name": "profileStore",
           "variant": "declaration",
           "kind": 1024,
@@ -859,7 +1259,7 @@
           }
         },
         {
-          "id": 64,
+          "id": 97,
           "name": "routes",
           "variant": "declaration",
           "kind": 1024,
@@ -898,14 +1298,482 @@
         {
           "title": "Properties",
           "children": [
-            72,
-            62,
-            63,
-            65,
-            71,
-            70,
-            64
+            105,
+            95,
+            96,
+            98,
+            104,
+            103,
+            97
           ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "JsonRemoteProfileStore",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Private JSON file of credential-free saved connection profiles for one application namespace."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Use one instance per profile file inside the network-owning Utility Process. Writes are\nvalidated before they are queued, serialized in caller order, flushed and then atomically renamed\nover the previous file, so a failed replacement leaves the last committed file readable. Reads wait\nfor queued writes and return only committed metadata. No handle stays open between calls. The\ncanonical strict profile schema rejects credential or other additional fields; device credentials\nbelong exclusively to the Main-owned OS vault."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 19,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 20,
+              "name": "JsonRemoteProfileStore",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Select the private profile file and the only application namespace it may contain."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error when the path is relative or the namespace is not a canonical application identifier."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 21,
+                  "name": "_path",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Absolute application-owned file path. Its directory is created with mode 0700 on first save."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 22,
+                  "name": "_appId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Canonical lowercase application namespace every stored profile must belong to."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 18,
+                "name": "JsonRemoteProfileStore",
+                "package": "@pixel-brewery/remote-electron"
+              }
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "load",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 27,
+              "name": "load",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Load the committed profiles of this application namespace."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Validated safe profiles, or an empty collection when the file does not exist yet."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error when the file is not a bounded regular file, is malformed, holds more than 64\nprofiles, repeats an identifier or contains another application's profile."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "typeOperator",
+                    "operator": "readonly",
+                    "target": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@pixel-brewery/remote-client",
+                          "packagePath": "src/lib/connections/interfaces/IRemoteSavedConnection.ts",
+                          "qualifiedName": "IRemoteSavedConnection"
+                        },
+                        "name": "IRemoteSavedConnection",
+                        "package": "@pixel-brewery/remote-client"
+                      }
+                    }
+                  }
+                ],
+                "name": "Promise",
+                "package": "@typescript/old"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteProfileStore.load"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteProfileStore.load"
+          }
+        },
+        {
+          "id": 28,
+          "name": "save",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 29,
+              "name": "save",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Durably replace the complete profile collection."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Completion after the flushed private file has atomically replaced its predecessor."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error synchronously for invalid, duplicate, foreign or credential-bearing metadata, and\nthrough the returned promise when the directory is unsafe or persistence fails."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 30,
+                  "name": "profiles",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Complete credential-free snapshot. It is validated and copied before queuing,\nso later caller mutations do not reach the file."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "typeOperator",
+                    "operator": "readonly",
+                    "target": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@pixel-brewery/remote-client",
+                          "packagePath": "src/lib/connections/interfaces/IRemoteSavedConnection.ts",
+                          "qualifiedName": "IRemoteSavedConnection"
+                        },
+                        "name": "IRemoteSavedConnection",
+                        "package": "@pixel-brewery/remote-client"
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "@typescript/old"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteProfileStore.save"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteProfileStore.save"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            19
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            26,
+            28
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-client",
+            "packagePath": "src/lib/connections/interfaces/IRemoteProfileStore.ts",
+            "qualifiedName": "IRemoteProfileStore"
+          },
+          "name": "IRemoteProfileStore",
+          "package": "@pixel-brewery/remote-client"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "startElectronRemoteUtility",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 2,
+          "name": "startElectronRemoteUtility",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Run the application's remote connection owner inside its Electron Utility Process."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Call once from the bundled Utility entry that "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`ElectronRemoteDesktop`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " forks. The\nfunction listens on "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`process.parentPort`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " and announces "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`ready`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "; Main then sends one\ninitialization with the absolute asset and storage paths. Initialization cross-checks the\napplication namespace, loads the routes through "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`loadRoutes`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", validates the content policy with\nits canonical schema and composes an "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`ElectronRemoteUtility`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " whose credential store is a bounded\nrequest channel to Main's OS vault. Only the canonical list, pair, open, close and forget\ncontrols are dispatched; every message is validated before use and each control receives one\ncorrelated reply. The Main/Utility message protocol is internal to this package. A "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`dispose`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\nmessage rejects pending credential requests, closes every owned socket and answers "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`disposed`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";\nMain owns the startup deadline and the bounded shutdown fallback."
+                  }
+                ]
+              },
+              {
+                "tag": "@throws",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Error outside an Electron Utility Process, for a non-canonical namespace or timeout, or\nwhen the runtime was already started on this parent port."
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 3,
+              "name": "options",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Application namespace, route loader and optional content policy, profile store\nfactory and credential timeout."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": 4,
+                "name": "IElectronRemoteUtilityProcessOptions",
+                "package": "@pixel-brewery/remote-electron"
+              }
+            }
+          ],
+          "type": {
+            "type": "intrinsic",
+            "name": "void"
+          }
         }
       ]
     }
@@ -914,13 +1782,21 @@
     {
       "title": "Classes",
       "children": [
-        1
+        34,
+        18
       ]
     },
     {
       "title": "Interfaces",
       "children": [
-        61
+        4,
+        94
+      ]
+    },
+    {
+      "title": "Functions",
+      "children": [
+        1
       ]
     }
   ],
@@ -933,165 +1809,300 @@
     },
     "1": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility"
+      "packagePath": "src/lib/process/startElectronRemoteUtility.ts",
+      "qualifiedName": "startElectronRemoteUtility"
     },
     "2": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.__constructor"
+      "packagePath": "src/lib/process/startElectronRemoteUtility.ts",
+      "qualifiedName": "startElectronRemoteUtility"
     },
     "3": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility"
+      "packagePath": "src/lib/process/startElectronRemoteUtility.ts",
+      "qualifiedName": "options"
     },
     "4": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "_options"
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions"
     },
-    "17": {
+    "5": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.listConnections"
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.appId"
     },
-    "18": {
+    "6": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.listConnections"
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.loadRoutes"
     },
-    "19": {
+    "7": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.pair"
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.loadRoutes"
     },
-    "20": {
+    "8": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.pair"
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "assetsPath"
     },
-    "21": {
+    "9": {
       "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "bootstrap"
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.contentPolicy"
     },
-    "22": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "deviceName"
-    },
-    "23": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.openConnection"
-    },
-    "24": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.openConnection"
-    },
-    "25": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "connectionId"
-    },
-    "26": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.closeConnection"
-    },
-    "27": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.closeConnection"
-    },
-    "28": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "connectionId"
-    },
-    "29": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.forgetConnection"
-    },
-    "30": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.forgetConnection"
-    },
-    "31": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "connectionId"
-    },
-    "32": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.dispose"
-    },
-    "33": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
-      "qualifiedName": "ElectronRemoteUtility.dispose"
-    },
-    "61": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
-      "qualifiedName": "IRemoteElectronUtilityOptions"
-    },
-    "62": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
-      "qualifiedName": "IRemoteElectronUtilityOptions.appId"
-    },
-    "63": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
-      "qualifiedName": "IRemoteElectronUtilityOptions.assetsPath"
-    },
-    "64": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
-      "qualifiedName": "IRemoteElectronUtilityOptions.routes"
-    },
-    "65": {
-      "packageName": "@pixel-brewery/remote-electron",
-      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
-      "qualifiedName": "IRemoteElectronUtilityOptions.contentPolicy"
-    },
-    "66": {
+    "10": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "67": {
+    "11": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
       "qualifiedName": "allowHttpsImages"
     },
-    "68": {
+    "12": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
       "qualifiedName": "allowHttpsMedia"
     },
-    "69": {
+    "13": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
       "qualifiedName": "allowHttpsConnections"
     },
-    "70": {
+    "14": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.createProfileStore"
+    },
+    "15": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.createProfileStore"
+    },
+    "16": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "storageDirectory"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/process/interfaces/IElectronRemoteUtilityProcessOptions.ts",
+      "qualifiedName": "IElectronRemoteUtilityProcessOptions.credentialTimeoutMs"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore"
+    },
+    "19": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore.__constructor"
+    },
+    "20": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore"
+    },
+    "21": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "_path"
+    },
+    "22": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "_appId"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore.load"
+    },
+    "27": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore.load"
+    },
+    "28": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore.save"
+    },
+    "29": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "JsonRemoteProfileStore.save"
+    },
+    "30": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/profiles/JsonRemoteProfileStore.ts",
+      "qualifiedName": "profiles"
+    },
+    "34": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility"
+    },
+    "35": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.__constructor"
+    },
+    "36": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility"
+    },
+    "37": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "_options"
+    },
+    "50": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.listConnections"
+    },
+    "51": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.listConnections"
+    },
+    "52": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.pair"
+    },
+    "53": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.pair"
+    },
+    "54": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "bootstrap"
+    },
+    "55": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "deviceName"
+    },
+    "56": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.openConnection"
+    },
+    "57": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.openConnection"
+    },
+    "58": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "connectionId"
+    },
+    "59": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.closeConnection"
+    },
+    "60": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.closeConnection"
+    },
+    "61": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "connectionId"
+    },
+    "62": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.forgetConnection"
+    },
+    "63": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.forgetConnection"
+    },
+    "64": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "connectionId"
+    },
+    "65": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.dispose"
+    },
+    "66": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.dispose"
+    },
+    "94": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions"
+    },
+    "95": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.appId"
+    },
+    "96": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.assetsPath"
+    },
+    "97": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.routes"
+    },
+    "98": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.contentPolicy"
+    },
+    "99": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "100": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsImages"
+    },
+    "101": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsMedia"
+    },
+    "102": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsConnections"
+    },
+    "103": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
       "qualifiedName": "IRemoteElectronUtilityOptions.profileStore"
     },
-    "71": {
+    "104": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
       "qualifiedName": "IRemoteElectronUtilityOptions.credentialStore"
     },
-    "72": {
+    "105": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
       "qualifiedName": "IRemoteElectronUtilityOptions.allowLoopbackForTests"

@@ -4,7 +4,7 @@
   "packages": [
     {
       "name": "@pixel-brewery/remote-angular",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-angular",
@@ -37,7 +37,7 @@
     },
     {
       "name": "@pixel-brewery/remote-browser",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-browser",
@@ -48,6 +48,16 @@
               "name": "BrowserPairingLocation",
               "kind": "Class",
               "link": "packages/remote-browser/api/classes/BrowserPairingLocation.md"
+            },
+            {
+              "name": "BrowserRemoteApp",
+              "kind": "Class",
+              "link": "packages/remote-browser/api/classes/BrowserRemoteApp.md"
+            },
+            {
+              "name": "BrowserRemoteAppPhase",
+              "kind": "Type Alias",
+              "link": "packages/remote-browser/api/type-aliases/BrowserRemoteAppPhase.md"
             },
             {
               "name": "BrowserRemoteConnector",
@@ -70,6 +80,11 @@
               "link": "packages/remote-browser/api/functions/createBrowserOperationId.md"
             },
             {
+              "name": "IBrowserRemoteAppOptions",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IBrowserRemoteAppOptions.md"
+            },
+            {
               "name": "IBrowserRemoteConnectorOptions",
               "kind": "Interface",
               "link": "packages/remote-browser/api/interfaces/IBrowserRemoteConnectorOptions.md"
@@ -80,14 +95,44 @@
               "link": "packages/remote-browser/api/interfaces/IBrowserRemoteEventsOptions.md"
             },
             {
+              "name": "IBrowserRemotePairingScanner",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IBrowserRemotePairingScanner.md"
+            },
+            {
+              "name": "IBrowserRemoteWindow",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IBrowserRemoteWindow.md"
+            },
+            {
+              "name": "IRemoteHostControlClientOptions",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IRemoteHostControlClientOptions.md"
+            },
+            {
               "name": "IRemoteServerEvent",
               "kind": "Interface",
               "link": "packages/remote-browser/api/interfaces/IRemoteServerEvent.md"
             },
             {
+              "name": "readRemoteJson",
+              "kind": "Function",
+              "link": "packages/remote-browser/api/functions/readRemoteJson.md"
+            },
+            {
               "name": "readRemoteServerEvents",
               "kind": "Function",
               "link": "packages/remote-browser/api/functions/readRemoteServerEvents.md"
+            },
+            {
+              "name": "RemoteHostControlClient",
+              "kind": "Class",
+              "link": "packages/remote-browser/api/classes/RemoteHostControlClient.md"
+            },
+            {
+              "name": "RemoteHostControlError",
+              "kind": "Class",
+              "link": "packages/remote-browser/api/classes/RemoteHostControlError.md"
             }
           ]
         }
@@ -95,7 +140,7 @@
     },
     {
       "name": "@pixel-brewery/remote-capacitor",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-capacitor",
@@ -138,7 +183,7 @@
     },
     {
       "name": "@pixel-brewery/remote-client",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-client",
@@ -221,13 +266,23 @@
     },
     {
       "name": "@pixel-brewery/remote-core",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-core",
           "markdown": "packages/remote-core/api/index.md",
           "reflection": "api/remote-core/reflection.json",
           "exports": [
+            {
+              "name": "createRemoteNativeRouteSources",
+              "kind": "Function",
+              "link": "packages/remote-core/api/functions/createRemoteNativeRouteSources.md"
+            },
+            {
+              "name": "createRemoteRoutesFromOpenApi",
+              "kind": "Function",
+              "link": "packages/remote-core/api/functions/createRemoteRoutesFromOpenApi.md"
+            },
             {
               "name": "IRemoteAccessDependencies",
               "kind": "Interface",
@@ -247,6 +302,46 @@
               "name": "IRemoteClock",
               "kind": "Interface",
               "link": "packages/remote-core/api/interfaces/IRemoteClock.md"
+            },
+            {
+              "name": "IRemoteNativeRouteSourceOptions",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteNativeRouteSourceOptions.md"
+            },
+            {
+              "name": "IRemoteNativeRouteSources",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteNativeRouteSources.md"
+            },
+            {
+              "name": "IRemoteOpenApiDocument",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteOpenApiDocument.md"
+            },
+            {
+              "name": "IRemoteOpenApiOperation",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteOpenApiOperation.md"
+            },
+            {
+              "name": "IRemoteOpenApiPathItem",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteOpenApiPathItem.md"
+            },
+            {
+              "name": "IRemoteOpenApiRequestLimit",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteOpenApiRequestLimit.md"
+            },
+            {
+              "name": "IRemoteOpenApiResponse",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteOpenApiResponse.md"
+            },
+            {
+              "name": "IRemoteOpenApiRoutePolicy",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteOpenApiRoutePolicy.md"
             },
             {
               "name": "IRemotePairingGrant",
@@ -279,7 +374,7 @@
     },
     {
       "name": "@pixel-brewery/remote-electron",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-electron",
@@ -307,6 +402,16 @@
               "name": "ElectronRemoteController",
               "kind": "Class",
               "link": "packages/remote-electron/api/subpaths/main/classes/ElectronRemoteController.md"
+            },
+            {
+              "name": "ElectronRemoteDesktop",
+              "kind": "Class",
+              "link": "packages/remote-electron/api/subpaths/main/classes/ElectronRemoteDesktop.md"
+            },
+            {
+              "name": "IElectronRemoteDesktopOptions",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/main/interfaces/IElectronRemoteDesktopOptions.md"
             },
             {
               "name": "IElectronSafeStorage",
@@ -358,9 +463,24 @@
               "link": "packages/remote-electron/api/subpaths/utility/classes/ElectronRemoteUtility.md"
             },
             {
+              "name": "IElectronRemoteUtilityProcessOptions",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/utility/interfaces/IElectronRemoteUtilityProcessOptions.md"
+            },
+            {
               "name": "IRemoteElectronUtilityOptions",
               "kind": "Interface",
               "link": "packages/remote-electron/api/subpaths/utility/interfaces/IRemoteElectronUtilityOptions.md"
+            },
+            {
+              "name": "JsonRemoteProfileStore",
+              "kind": "Class",
+              "link": "packages/remote-electron/api/subpaths/utility/classes/JsonRemoteProfileStore.md"
+            },
+            {
+              "name": "startElectronRemoteUtility",
+              "kind": "Function",
+              "link": "packages/remote-electron/api/subpaths/utility/functions/startElectronRemoteUtility.md"
             }
           ]
         }
@@ -368,13 +488,23 @@
     },
     {
       "name": "@pixel-brewery/remote-node",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-node",
           "markdown": "packages/remote-node/api/index.md",
           "reflection": "api/remote-node/reflection.json",
           "exports": [
+            {
+              "name": "createRemoteApplicationHandler",
+              "kind": "Function",
+              "link": "packages/remote-node/api/functions/createRemoteApplicationHandler.md"
+            },
+            {
+              "name": "handleRemoteHostControl",
+              "kind": "Function",
+              "link": "packages/remote-node/api/functions/handleRemoteHostControl.md"
+            },
             {
               "name": "INodeRemoteHostOptions",
               "kind": "Interface",
@@ -384,6 +514,26 @@
               "name": "IRemoteApplicationAdapter",
               "kind": "Interface",
               "link": "packages/remote-node/api/interfaces/IRemoteApplicationAdapter.md"
+            },
+            {
+              "name": "IRemoteHostControl",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteHostControl.md"
+            },
+            {
+              "name": "IRemoteHostControlOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteHostControlOptions.md"
+            },
+            {
+              "name": "IRemoteHostLifecycle",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteHostLifecycle.md"
+            },
+            {
+              "name": "IRemoteHostRuntimeOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteHostRuntimeOptions.md"
             },
             {
               "name": "IRemoteHostStatus",
@@ -419,6 +569,26 @@
               "name": "NodeRemoteHost",
               "kind": "Class",
               "link": "packages/remote-node/api/classes/NodeRemoteHost.md"
+            },
+            {
+              "name": "parseRemoteHostControlCommand",
+              "kind": "Function",
+              "link": "packages/remote-node/api/functions/parseRemoteHostControlCommand.md"
+            },
+            {
+              "name": "RemoteHostControlCommand",
+              "kind": "Type Alias",
+              "link": "packages/remote-node/api/type-aliases/RemoteHostControlCommand.md"
+            },
+            {
+              "name": "RemoteHostRuntime",
+              "kind": "Class",
+              "link": "packages/remote-node/api/classes/RemoteHostRuntime.md"
+            },
+            {
+              "name": "RemoteRequestAdmissions",
+              "kind": "Class",
+              "link": "packages/remote-node/api/classes/RemoteRequestAdmissions.md"
             },
             {
               "name": "selectPrivateHost",
@@ -470,6 +640,16 @@
           "reflection": "api/remote-node/subpaths/host/reflection.json",
           "exports": [
             {
+              "name": "createRemoteApplicationHandler",
+              "kind": "Function",
+              "link": "packages/remote-node/api/subpaths/host/functions/createRemoteApplicationHandler.md"
+            },
+            {
+              "name": "handleRemoteHostControl",
+              "kind": "Function",
+              "link": "packages/remote-node/api/subpaths/host/functions/handleRemoteHostControl.md"
+            },
+            {
               "name": "INodeRemoteHostOptions",
               "kind": "Interface",
               "link": "packages/remote-node/api/subpaths/host/interfaces/INodeRemoteHostOptions.md"
@@ -478,6 +658,26 @@
               "name": "IRemoteApplicationAdapter",
               "kind": "Interface",
               "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteApplicationAdapter.md"
+            },
+            {
+              "name": "IRemoteHostControl",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteHostControl.md"
+            },
+            {
+              "name": "IRemoteHostControlOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteHostControlOptions.md"
+            },
+            {
+              "name": "IRemoteHostLifecycle",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteHostLifecycle.md"
+            },
+            {
+              "name": "IRemoteHostRuntimeOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteHostRuntimeOptions.md"
             },
             {
               "name": "IRemoteHostStatus",
@@ -513,6 +713,26 @@
               "name": "NodeRemoteHost",
               "kind": "Class",
               "link": "packages/remote-node/api/subpaths/host/classes/NodeRemoteHost.md"
+            },
+            {
+              "name": "parseRemoteHostControlCommand",
+              "kind": "Function",
+              "link": "packages/remote-node/api/subpaths/host/functions/parseRemoteHostControlCommand.md"
+            },
+            {
+              "name": "RemoteHostControlCommand",
+              "kind": "Type Alias",
+              "link": "packages/remote-node/api/subpaths/host/type-aliases/RemoteHostControlCommand.md"
+            },
+            {
+              "name": "RemoteHostRuntime",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/host/classes/RemoteHostRuntime.md"
+            },
+            {
+              "name": "RemoteRequestAdmissions",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/host/classes/RemoteRequestAdmissions.md"
             },
             {
               "name": "selectPrivateHost",
@@ -559,7 +779,7 @@
     },
     {
       "name": "@pixel-brewery/remote-protocol",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-protocol",
@@ -610,6 +830,11 @@
               "name": "IRemoteHostIdentity",
               "kind": "Type Alias",
               "link": "packages/remote-protocol/api/type-aliases/IRemoteHostIdentity.md"
+            },
+            {
+              "name": "IRemoteHostStatusSnapshot",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteHostStatusSnapshot.md"
             },
             {
               "name": "IRemoteLocalView",
@@ -712,6 +937,11 @@
               "link": "packages/remote-protocol/api/variables/remoteHostIdentitySchema.md"
             },
             {
+              "name": "remoteHostStatusSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteHostStatusSchema.md"
+            },
+            {
               "name": "remoteLocalViewSchema",
               "kind": "Variable",
               "link": "packages/remote-protocol/api/variables/remoteLocalViewSchema.md"
@@ -777,7 +1007,7 @@
     },
     {
       "name": "@pixel-brewery/remote-testing",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "entryPoints": [
         {
           "importPath": "@pixel-brewery/remote-testing",
