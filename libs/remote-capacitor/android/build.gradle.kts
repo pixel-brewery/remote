@@ -13,7 +13,7 @@ kotlin { jvmToolchain(21) }
 val ktor = "3.6.2"
 dependencies {
     api(project(":capacitor-android"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
     implementation("io.ktor:ktor-client-cio:$ktor")
     implementation("io.ktor:ktor-client-websockets:$ktor")
     implementation("io.ktor:ktor-server-cio:$ktor")
