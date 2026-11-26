@@ -5,6 +5,38 @@ import { isNativeDependencyChange } from './isNativeDependencyChange.mjs';
 const gradle = 'libs/remote-capacitor/android/build.gradle.kts';
 const swift = 'libs/remote-capacitor/Package.swift';
 
+test('permits Kotlin compiler version updates at the AGP built-in Kotlin classpath owner', () => {
+    // Arrange
+    const before =
+        'buildscript {\n    dependencies {\n        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21")\n    }\n}\n';
+    const after = before.replace('2.4.21', '3.0.0');
+    // Act / Assert
+    assert.equal(isNativeDependencyChange(gradle, before, after), true);
+});
+
+test('rejects Kotlin classpath artifact replacement and accompanying executable Gradle changes', () => {
+    // Arrange
+    const before = '    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21")\n';
+    const after = before.replace('2.4.21', '3.0.0');
+    // Act / Assert
+    assert.equal(
+        isNativeDependencyChange(gradle, before, after.replace('org.jetbrains.kotlin:', 'other:')),
+        false,
+    );
+    assert.equal(
+        isNativeDependencyChange(gradle, before, `${after}tasks.register("publishCredentials")\n`),
+        false,
+    );
+    assert.equal(
+        isNativeDependencyChange(
+            gradle,
+            before.replace('kotlin-gradle-plugin:', 'other-plugin:'),
+            after.replace('kotlin-gradle-plugin:', 'other-plugin:'),
+        ),
+        false,
+    );
+});
+
 test('permits native major versions while preserving plugin and artifact identity', () => {
     // Arrange
     const before =
