@@ -1,6 +1,6 @@
 plugins {
     id("com.android.library") version "8.13.2"
-    id("org.jetbrains.kotlin.android") version "2.3.21"
+    id("org.jetbrains.kotlin.android") version "2.4.21"
 }
 android {
     namespace = "de.pixelbrewery.remote"
