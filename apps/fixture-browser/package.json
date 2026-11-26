@@ -6,8 +6,8 @@
     "name": "@pixel-brewery/remote-fixture-browser",
     "dependencies": {
         "@capacitor/core": "8.6.2",
-        "@pixel-brewery/mosaik-elements-foundation": "0.1.205",
-        "@pixel-brewery/mosaik-themes": "0.1.205",
+        "@pixel-brewery/mosaik-elements-foundation": "0.1.213",
+        "@pixel-brewery/mosaik-themes": "0.1.213",
         "@pixel-brewery/remote-browser": "workspace:*",
         "@pixel-brewery/remote-capacitor": "workspace:*",
         "@pixel-brewery/remote-client": "workspace:*",
