@@ -32,6 +32,15 @@ export interface IDependabotConfiguration {
     readonly workflowName: string;
 
     /**
+     * Fixed SHA-256 of the complete explicitly reviewed CI source after canonical action-pin normalization.
+     *
+     * @remarks This attestation belongs to trusted main policy. It is never inferred from pull-request configuration,
+     * context or API input, and CI logic changes require another explicit source review and policy update.
+     * @public
+     */
+    readonly reviewedCiSha256: string;
+
+    /**
      * Exact successful job set required from the latest workflow attempt.
      * @public
      */

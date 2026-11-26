@@ -154,7 +154,41 @@ permission failure remains visible instead of being converted into a test pass.
 
 The published Mosaik `0.1.205` declaration graph has a recorded strict-consumer
 issue ([Mosaik #1397](https://github.com/RueDeRennes/mosaik/issues/1397)). Native Web
-Component registration uses its ordinary JavaScript runtime boundary; all owned
+Component registration in the current `0.1.213` integration retains its ordinary JavaScript runtime boundary; all owned
 connection, application and acceptance contracts remain strict TypeScript. No
 vendor file, declaration suppression or global `skipLibCheck` was introduced to
 hide this application failure.
+
+## Verified dependency delivery
+
+The default-branch Dependabot controller installs no pull-request dependencies
+and loads no pull-request implementation. Its branch/merge writer and its native
+CI authorizer are separate jobs. Authorization has only Actions write plus
+Contents and Pull Requests read permissions, and cannot update a branch or merge.
+
+Only the actual `pull_request` workflow is merge evidence. It must belong to the
+same immutable repository and current bot PR, match the current source and
+workflow attempt, and successfully complete exactly `verify`, `android` and
+`ios`. A human maintainer may have triggered a valid normal PR run. A diagnostic
+`workflow_dispatch` run never satisfies this proof. The authorizer only approves
+an `action_required` original run from the verified native bot identities after
+rechecking the current main/head/test-merge parents, source blobs and refs.
+
+`.github/dependabot-automation.json` contains the fixed `reviewedCiSha256`
+attestation for the complete deliberately reviewed CI source. The canonical
+`pinInvariant` normalization replaces only ordinary immutable action-pin/version
+comment values; all other source bytes remain significant. The controller hashes
+that normalized main source and requires equality with the fixed trusted-main
+value and the normalized PR source. It never learns an attestation from API data,
+PR configuration or workflow input. A CI logic, permission or toolchain change
+requires a deliberate review and corresponding literal policy update before it
+can authorize later native PR runs.
+
+Scheduled reconciliation revisits already-green native runs through the complete
+merger after a transient skip. Current attempts remain authoritative even when an
+unrelated diagnostic run has a larger ID. After merging, continuation requires a
+full confirmed merged-PR response and the exact current destination source.
+Existing same-source main push or dispatch runs are retained in any state,
+including failed, cancelled or queued runs, rather than duplicated. This
+automation does not publish the SDK family; package publication retains the
+separate owner-controlled release workflow.

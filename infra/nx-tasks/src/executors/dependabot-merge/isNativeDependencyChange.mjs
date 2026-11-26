@@ -1,6 +1,10 @@
 const version = '[0-9]+(?:\\.[0-9]+){0,3}(?:[-+][0-9A-Za-z.-]+)?';
 const gradlePatterns = [
     new RegExp(`^(\\s*id\\("[a-zA-Z0-9_.-]+"\\)\\s+version\\s+")${version}("\\s*)$`, 'u'),
+    new RegExp(
+        `^(\\s*classpath\\("org\\.jetbrains\\.kotlin:kotlin-gradle-plugin:)${version}("\\)\\s*)$`,
+        'u',
+    ),
     new RegExp(`^(\\s*val\\s+(?:ktor|[a-zA-Z0-9_]*Version)\\s*=\\s*")${version}("\\s*)$`, 'u'),
     new RegExp(
         `^(\\s*(?:implementation|api|testImplementation|androidTestImplementation|compileOnly|runtimeOnly)\\("[a-zA-Z0-9_.-]+:[a-zA-Z0-9_.-]+:)${version}("\\)\\s*)$`,

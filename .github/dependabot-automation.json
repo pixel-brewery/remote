@@ -26,5 +26,6 @@
         "libs/remote-capacitor/android/build.gradle.kts",
         "libs/remote-capacitor/Package.swift",
         "libs/remote-capacitor/Package.resolved"
-    ]
+    ],
+    "reviewedCiSha256": "79da4e99125a2a3b93ed602a3844ec2a0207ffc86c4550795d9d492c933b1189"
 }
