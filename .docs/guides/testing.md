@@ -23,6 +23,32 @@ sections. Browser/Electron journeys belong to their fixture applications. Native
 sources have platform tests and compiled fixtures. Tests use temporary stores and
 synthetic operations; never modify application databases or user credentials.
 
+## Native compiler and tooling API
+
+Build and typecheck tasks invoke the native TypeScript `7.0.2` CLI. The root and
+Nx tooling workspace both declare `@typescript/native` as the exact published
+`npm:typescript@7.0.2` alias, which provides `tsc`. Tools that import `typescript`
+instead resolve `npm:@typescript/typescript6@6.0.2`, Microsoft's published API
+compatibility package. Its locked API implementation is TypeScript `6.0.3` and
+its separate executable is `tsc6`; ordinary build/typecheck tasks do not use it.
+This follows the official [Microsoft migration](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/)
+and [Nx compatibility contract](https://nx.dev/docs/kb/typescript-7).
+
+Check the actual executables after a regular immutable installation:
+
+```sh
+yarn exec tsc --version
+yarn exec tsc6 --version
+```
+
+The first command must report `7.0.2`; the second reports the locked API's `6.0.3`.
+Nx project analysis, TypeDoc and the repository's AST checks use the API package.
+The packed-package verifier resolves the native package's published CLI, checks
+its `--version` against the exact native pin, and then typechecks the same real
+isolated consumer with strict NodeNext resolution and `skipLibCheck: false`.
+Missing native tooling or an API compiler substituted for it fails verification;
+the verifier never falls back to the workspace API compiler or SDK path aliases.
+
 ## Required cases
 
 - Expired/replayed pairing and interrupted pairing recovery.

@@ -167,7 +167,7 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.es2018.asynciterable.d.ts",
               "qualifiedName": "AsyncIterable"
             },
@@ -175,7 +175,7 @@
               {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Uint8Array"
                 },
@@ -183,16 +183,16 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "ArrayBufferLike"
                     },
                     "name": "ArrayBufferLike",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 ],
                 "name": "Uint8Array",
-                "package": "typescript"
+                "package": "@typescript/old"
               },
               {
                 "type": "intrinsic",
@@ -204,7 +204,7 @@
               }
             ],
             "name": "AsyncIterable",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         },
         {
@@ -228,7 +228,7 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.es5.d.ts",
               "qualifiedName": "Readonly"
             },
@@ -236,7 +236,7 @@
               {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Record"
                 },
@@ -251,11 +251,11 @@
                   }
                 ],
                 "name": "Record",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             ],
             "name": "Readonly",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         },
         {
@@ -323,12 +323,12 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.dom.d.ts",
               "qualifiedName": "AbortSignal"
             },
             "name": "AbortSignal",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         }
       ],
@@ -382,7 +382,7 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.es2018.asynciterable.d.ts",
               "qualifiedName": "AsyncIterable"
             },
@@ -390,7 +390,7 @@
               {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Uint8Array"
                 },
@@ -398,20 +398,20 @@
                   {
                     "type": "reference",
                     "target": {
-                      "packageName": "typescript",
+                      "packageName": "@typescript/old",
                       "packagePath": "lib/lib.es5.d.ts",
                       "qualifiedName": "ArrayBufferLike"
                     },
                     "name": "ArrayBufferLike",
-                    "package": "typescript"
+                    "package": "@typescript/old"
                   }
                 ],
                 "name": "Uint8Array",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             ],
             "name": "AsyncIterable",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         },
         {
@@ -453,7 +453,7 @@
               "type": {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Promise"
                 },
@@ -464,7 +464,7 @@
                   }
                 ],
                 "name": "Promise",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             }
           ]
@@ -489,7 +489,7 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.es5.d.ts",
               "qualifiedName": "Readonly"
             },
@@ -497,7 +497,7 @@
               {
                 "type": "reference",
                 "target": {
-                  "packageName": "typescript",
+                  "packageName": "@typescript/old",
                   "packagePath": "lib/lib.es5.d.ts",
                   "qualifiedName": "Record"
                 },
@@ -512,11 +512,11 @@
                   }
                 ],
                 "name": "Record",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             ],
             "name": "Readonly",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         },
         {
@@ -589,7 +589,7 @@
       "type": {
         "type": "reference",
         "target": {
-          "packageName": "typescript",
+          "packageName": "@typescript/old",
           "packagePath": "lib/lib.es5.d.ts",
           "qualifiedName": "Readonly"
         },
@@ -618,7 +618,7 @@
           }
         ],
         "name": "Readonly",
-        "package": "typescript"
+        "package": "@typescript/old"
       }
     },
     {
@@ -1155,12 +1155,12 @@
           "type": {
             "type": "reference",
             "target": {
-              "packageName": "typescript",
+              "packageName": "@typescript/old",
               "packagePath": "lib/lib.dom.d.ts",
               "qualifiedName": "AbortSignal"
             },
             "name": "AbortSignal",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         }
       ],
@@ -7069,7 +7069,7 @@
                 "type": "reference",
                 "target": -1,
                 "name": "Error.constructor",
-                "package": "typescript"
+                "package": "@typescript/old"
               }
             }
           ],
@@ -7077,7 +7077,7 @@
             "type": "reference",
             "target": -1,
             "name": "Error.constructor",
-            "package": "typescript"
+            "package": "@typescript/old"
           }
         }
       ],
@@ -7099,12 +7099,12 @@
         {
           "type": "reference",
           "target": {
-            "packageName": "typescript",
+            "packageName": "@typescript/old",
             "packagePath": "lib/lib.es5.d.ts",
             "qualifiedName": "Error"
           },
           "name": "Error",
-          "package": "typescript"
+          "package": "@typescript/old"
         }
       ]
     },
@@ -7151,7 +7151,7 @@
       "type": {
         "type": "reference",
         "target": {
-          "packageName": "typescript",
+          "packageName": "@typescript/old",
           "packagePath": "lib/lib.es5.d.ts",
           "qualifiedName": "Readonly"
         },
@@ -7240,7 +7240,7 @@
           }
         ],
         "name": "Readonly",
-        "package": "typescript"
+        "package": "@typescript/old"
       },
       "defaultValue": "..."
     },

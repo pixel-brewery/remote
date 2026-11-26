@@ -21,6 +21,15 @@ yarn docs:check
 
 The Nx executor builds the SDK libraries, discovers their package exports and generates Markdown and JSON from TypeDoc 0.28.20 and typedoc-plugin-markdown 4.14.1. Conversion checks that the reflected declarations match TypeScript's exports. It validates documentation and verifies that each indexed destination exists.
 
+TypeDoc and the export/AST inspection owners consume the published TypeScript API
+compatibility package through the `typescript` npm alias. The workspace separately
+uses native TypeScript 7.0.2 for its `tsc` build/typecheck commands and isolated
+packed consumers. TypeScript 7.0 does not supply the legacy API these tools use;
+keeping Microsoft's explicit compatibility package preserves strict documentation
+validation without replacing the native compiler. See the
+[compiler and API verification contract](testing.md#native-compiler-and-tooling-api)
+for exact pins and executable checks.
+
 - Package Markdown lives under `.docs/packages/<package>/api/`. Start from the [package reference links](../README.md#runtime-entry-points).
 - [The API index](../api/api-index.json) lists packages, import paths, exports and their destinations. Links and reflection paths are relative to `.docs/`.
 - The TypeDoc reflection for each package lives under `.docs/api/<package>/reflection.json`.
