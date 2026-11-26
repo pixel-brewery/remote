@@ -16,7 +16,7 @@ import AVFoundation
     @objc public func invoke(_ call: CAPPluginCall) {
         Task { @MainActor [self] in
             guard trustedDocument(), let host = RemoteNativeHost.installed, let request = call.getObject("request"), let store = webView?.configuration.websiteDataStore.httpCookieStore else { call.reject("Untrusted or unconfigured Remote view.", "forbidden"); return }
-            do { let response = try await host.runtime.invoke(request) { activation in try await host.activate(activation, store: store) }; if ["connections.close", "connections.forget"].contains(request["kind"] as? String ?? ""), let connectionId = request["connectionId"] as? String { try host.close(connectionId: connectionId) }; call.resolve(["response": response]) } catch { call.reject("Remote operation failed: \(error)", "network") }
+            do { let response = try await host.runtime.invoke(request) { activation in try await host.activate(activation, store: store) }; if ["connections.close", "connections.forget"].contains(request["kind"] as? String ?? ""), let connectionId = request["connectionId"] as? String { try await host.close(connectionId: connectionId) }; call.resolve(["response": response]) } catch { call.reject("Remote operation failed: \(error)", "network") }
         }
     }
     @objc public func scanPairing(_ call: CAPPluginCall) {

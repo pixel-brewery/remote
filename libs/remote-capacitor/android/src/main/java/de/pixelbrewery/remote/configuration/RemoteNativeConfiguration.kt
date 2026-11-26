@@ -1,6 +1,7 @@
 package de.pixelbrewery.remote.configuration
 
 // #region Imports
+import de.pixelbrewery.remote.bridge.RemoteLocalCookie
 import de.pixelbrewery.remote.transport.RemoteNativeRuntime
 import de.pixelbrewery.remote.transport.RemoteRouteMatcher
 import android.content.Context
@@ -37,13 +38,20 @@ public class RemoteNativeConfiguration(
         @Volatile private var _configuration: RemoteNativeConfiguration? = null
         @Volatile internal var activeOrigin: String? = null
         @Volatile internal var activeConnectionId: String? = null
+        /** Ephemeral capability of the active view, kept in memory only to refresh its bounded cookie. */
+        @Volatile internal var activeCapability: String? = null
         private var _runtime: RemoteNativeRuntime? = null
         /** Configure once from Application.onCreate, before any WebView exists. */
         @JvmStatic public fun install(configuration: RemoteNativeConfiguration) { synchronized(this) { check(_configuration == null); _configuration = configuration } }
         internal fun requireInstalled(): RemoteNativeConfiguration = checkNotNull(_configuration) { "Install the application-owned Remote configuration before creating its bridge." }
         @Synchronized internal fun runtime(context: Context): RemoteNativeRuntime = _runtime ?: RemoteNativeRuntime(context.applicationContext, requireInstalled()).also { _runtime = it }
-        /** Close all owned streams when the native application owner explicitly exits the remote capability. */
-        @JvmStatic public suspend fun dispose() { val runtime = synchronized(this) { _runtime.also { _runtime = null; activeOrigin = null; activeConnectionId = null } }; runtime?.dispose() }
+        /** Close all owned streams and remove the active view's capability cookie when the native application owner exits the remote capability. */
+        @JvmStatic public suspend fun dispose() {
+            val origin = activeOrigin
+            val runtime = synchronized(this) { _runtime.also { _runtime = null; activeOrigin = null; activeConnectionId = null; activeCapability = null } }
+            runtime?.dispose()
+            origin?.let { RemoteLocalCookie.expire(it) }
+        }
         /** Copy the application's packaged public assets into a private immutable content directory. */
         @JvmStatic public fun copyPackagedAssets(context: Context, source: String, destination: File) {
             require(source.isNotEmpty() && !source.contains(".."))

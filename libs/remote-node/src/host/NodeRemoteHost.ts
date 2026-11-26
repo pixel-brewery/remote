@@ -20,10 +20,11 @@ import {
     type IRemotePrincipal,
     type IRemoteRequestContext,
 } from '@pixel-brewery/remote-protocol';
-import { RemoteRouteRegistry } from '@pixel-brewery/remote-core';
+import { RemoteRouteRegistry, type RemoteAccessEvent } from '@pixel-brewery/remote-core';
 import { NodeHttpLanTransport } from '../transport/NodeHttpLanTransport.js';
 import { selectPrivateHost } from '../transport/selectPrivateHost.js';
 import type { INodeRemoteHostOptions } from './interfaces/INodeRemoteHostOptions.js';
+import type { IRemoteHostLifecycle } from './interfaces/IRemoteHostLifecycle.js';
 import type { IRemoteHostStatus } from './interfaces/IRemoteHostStatus.js';
 import type { IRemoteBoundServer } from './interfaces/IRemoteBoundServer.js';
 import type { IRemoteActiveRequest } from './interfaces/IRemoteActiveRequest.js';
@@ -50,7 +51,7 @@ const mimeTypes: Readonly<Record<string, string>> = {
  *
  * @public
  */
-export class NodeRemoteHost {
+export class NodeRemoteHost implements IRemoteHostLifecycle {
     // #region Fields
     private readonly _registry: RemoteRouteRegistry;
     private readonly _servers: IRemoteBoundServer[] = [];
@@ -247,6 +248,22 @@ export class NodeRemoteHost {
      */
     public revokeAllDevices(): Promise<void> {
         return this._options.access.revokeAllDevices();
+    }
+    /**
+     * Observes committed access events of this host's authorization owner.
+     *
+     * @remarks
+     * Delegates to the composed access service, so listeners receive `paired`,
+     * `revoked`, `disabled` and `pairings-invalidated` synchronously after each
+     * commit. Registrations are independent of the listener lifecycle; release
+     * them before or after disposal as the owner requires.
+     *
+     * @param listener - Synchronous observer; a throwing listener cannot undo the commit.
+     * @returns An idempotent cleanup removing only this registration.
+     * @public
+     */
+    public subscribe(listener: (event: RemoteAccessEvent) => void): () => void {
+        return this._options.access.subscribe(listener);
     }
     /**
      * Stops resources without clearing durable activation; safe to call repeatedly.
@@ -634,20 +651,24 @@ export class NodeRemoteHost {
         const declared = request.headers['content-length'];
         if (declared !== undefined && (!/^\d+$/u.test(declared) || Number(declared) > maximum))
             throw new RemoteProtocolError('resource-limit', 'The request body is too large.');
-        const read = request.read.bind(request);
-        let received = 0;
-        // Count bytes at consumption without adding a data listener or changing request identity.
-        request.read = (size?: number): unknown => {
-            const chunk: unknown = read(size);
-            if (typeof chunk === 'string') received += Buffer.byteLength(chunk);
+        // Bytes that arrived during admission are already buffered and count against the quota.
+        let received = request.readableLength;
+        if (received > maximum)
+            throw new RemoteProtocolError('resource-limit', 'The request body is too large.');
+        const push = request.push.bind(request);
+        // Count where the HTTP parser enters body bytes into the stream. Paused reads, 'data'
+        // listeners, pipes and async iteration all consume through this one path, so the quota
+        // holds for every consumer without adding a listener or switching the stream mode.
+        request.push = (chunk: unknown, encoding?: BufferEncoding): boolean => {
+            if (typeof chunk === 'string') received += Buffer.byteLength(chunk, encoding);
             else if (chunk instanceof Uint8Array) received += chunk.byteLength;
             if (received > maximum) {
                 request.destroy(
                     new RemoteProtocolError('resource-limit', 'The request body is too large.'),
                 );
-                return null;
+                return false;
             }
-            return chunk;
+            return push(chunk, encoding);
         };
     }
     private async readJson(request: IncomingMessage): Promise<unknown> {

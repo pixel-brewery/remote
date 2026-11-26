@@ -1,8 +1,8 @@
 # Type Alias: RemoteAccessEvent
 
-> **RemoteAccessEvent** = \{ `deviceId`: `string`; `kind`: `"revoked"`; \} \| \{ `kind`: `"disabled"`; \} \| \{ `kind`: `"pairings-invalidated"`; \}
+> **RemoteAccessEvent** = \{ `deviceId`: `string`; `kind`: `"revoked"`; \} \| \{ `kind`: `"disabled"`; \} \| \{ `kind`: `"pairings-invalidated"`; \} \| \{ `deviceId`: `string`; `kind`: `"paired"`; \}
 
-Authorization changes which require transports to terminate owned channels.
+Committed authorization changes delivered synchronously to access observers.
 
 ## Union Members
 
@@ -20,7 +20,7 @@ Opaque identifier of one durably paired device.
 
 > `readonly` **kind**: `"revoked"`
 
-Committed authorization or invitation-lifecycle transition that the observing transport must apply.
+A durable device grant was removed; that device's open work must be canceled.
 
 ***
 
@@ -32,7 +32,7 @@ Committed authorization or invitation-lifecycle transition that the observing tr
 
 > `readonly` **kind**: `"disabled"`
 
-Committed authorization or invitation-lifecycle transition that the observing transport must apply.
+Disabled intent was committed; every device-owned channel must be canceled.
 
 ***
 
@@ -44,4 +44,31 @@ Committed authorization or invitation-lifecycle transition that the observing tr
 
 > `readonly` **kind**: `"pairings-invalidated"`
 
-Committed authorization or invitation-lifecycle transition that the observing transport must apply.
+Every outstanding pairing invitation was invalidated after a stop, rebind or explicit call.
+
+***
+
+### Type Literal
+
+\{ `deviceId`: `string`; `kind`: `"paired"`; \}
+
+#### deviceId
+
+> `readonly` **deviceId**: `string`
+
+Opaque identifier of the newly paired device, matching the sanitized status projection.
+
+#### kind
+
+> `readonly` **kind**: `"paired"`
+
+A new device grant was durably stored, either by QR possession or by host approval.
+
+## Remarks
+
+Every event follows its durable or lifecycle commit. Transports must terminate
+owned channels on `revoked` and `disabled`; `pairings-invalidated` ends every
+outstanding invitation. `paired` lets local administration react to a newly
+stored device grant, for example by closing a displayed invitation. No event
+carries a credential, challenge or token digest. Observers that switch on the
+kind must tolerate kinds they do not handle.

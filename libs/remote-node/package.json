@@ -1,6 +1,6 @@
 {
     "name": "@pixel-brewery/remote-node",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "type": "module",
     "description": "Private LAN hosts, streaming client gateways and Node infrastructure.",
     "license": "MIT",

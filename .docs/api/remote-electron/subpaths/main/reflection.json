@@ -465,7 +465,7 @@
       ]
     },
     {
-      "id": 45,
+      "id": 171,
       "name": "ElectronRemoteController",
       "variant": "declaration",
       "kind": 128,
@@ -493,7 +493,7 @@
       },
       "children": [
         {
-          "id": 46,
+          "id": 172,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
@@ -502,7 +502,7 @@
           },
           "signatures": [
             {
-              "id": 47,
+              "id": 173,
               "name": "ElectronRemoteController",
               "variant": "signature",
               "kind": 16384,
@@ -519,7 +519,7 @@
               },
               "parameters": [
                 {
-                  "id": 48,
+                  "id": 174,
                   "name": "_options",
                   "variant": "param",
                   "kind": 32768,
@@ -534,7 +534,7 @@
                   },
                   "type": {
                     "type": "reference",
-                    "target": 85,
+                    "target": 211,
                     "name": "IRemoteElectronMainOptions",
                     "package": "@pixel-brewery/remote-electron"
                   }
@@ -542,7 +542,7 @@
               ],
               "type": {
                 "type": "reference",
-                "target": 45,
+                "target": 171,
                 "name": "ElectronRemoteController",
                 "package": "@pixel-brewery/remote-electron"
               }
@@ -550,7 +550,7 @@
           ]
         },
         {
-          "id": 50,
+          "id": 176,
           "name": "handle",
           "variant": "declaration",
           "kind": 2048,
@@ -559,7 +559,7 @@
           },
           "signatures": [
             {
-              "id": 51,
+              "id": 177,
               "name": "handle",
               "variant": "signature",
               "kind": 4096,
@@ -596,7 +596,7 @@
               },
               "parameters": [
                 {
-                  "id": 52,
+                  "id": 178,
                   "name": "event",
                   "variant": "param",
                   "kind": 32768,
@@ -622,7 +622,7 @@
                   }
                 },
                 {
-                  "id": 53,
+                  "id": 179,
                   "name": "raw",
                   "variant": "param",
                   "kind": 32768,
@@ -663,14 +663,14 @@
                           {
                             "type": "reflection",
                             "declaration": {
-                              "id": 54,
+                              "id": 180,
                               "name": "__type",
                               "variant": "declaration",
                               "kind": 65536,
                               "flags": {},
                               "children": [
                                 {
-                                  "id": 56,
+                                  "id": 182,
                                   "name": "connections",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -691,14 +691,14 @@
                                           {
                                             "type": "reflection",
                                             "declaration": {
-                                              "id": 57,
+                                              "id": 183,
                                               "name": "__type",
                                               "variant": "declaration",
                                               "kind": 65536,
                                               "flags": {},
                                               "children": [
                                                 {
-                                                  "id": 64,
+                                                  "id": 190,
                                                   "name": "endpoints",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -719,14 +719,14 @@
                                                           {
                                                             "type": "reflection",
                                                             "declaration": {
-                                                              "id": 65,
+                                                              "id": 191,
                                                               "name": "__type",
                                                               "variant": "declaration",
                                                               "kind": 65536,
                                                               "flags": {},
                                                               "children": [
                                                                 {
-                                                                  "id": 66,
+                                                                  "id": 192,
                                                                   "name": "id",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -737,7 +737,7 @@
                                                                   }
                                                                 },
                                                                 {
-                                                                  "id": 68,
+                                                                  "id": 194,
                                                                   "name": "origin",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -748,7 +748,7 @@
                                                                   }
                                                                 },
                                                                 {
-                                                                  "id": 67,
+                                                                  "id": 193,
                                                                   "name": "transportId",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -763,9 +763,9 @@
                                                                 {
                                                                   "title": "Properties",
                                                                   "children": [
-                                                                    66,
-                                                                    68,
-                                                                    67
+                                                                    192,
+                                                                    194,
+                                                                    193
                                                                   ]
                                                                 }
                                                               ]
@@ -779,7 +779,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 58,
+                                                  "id": 184,
                                                   "name": "id",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -790,7 +790,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 60,
+                                                  "id": 186,
                                                   "name": "identity",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -814,14 +814,14 @@
                                                           {
                                                             "type": "reflection",
                                                             "declaration": {
-                                                              "id": 61,
+                                                              "id": 187,
                                                               "name": "__type",
                                                               "variant": "declaration",
                                                               "kind": 65536,
                                                               "flags": {},
                                                               "children": [
                                                                 {
-                                                                  "id": 62,
+                                                                  "id": 188,
                                                                   "name": "appId",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -839,7 +839,7 @@
                                                                   }
                                                                 },
                                                                 {
-                                                                  "id": 63,
+                                                                  "id": 189,
                                                                   "name": "hostId",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -861,8 +861,8 @@
                                                                 {
                                                                   "title": "Properties",
                                                                   "children": [
-                                                                    62,
-                                                                    63
+                                                                    188,
+                                                                    189
                                                                   ]
                                                                 }
                                                               ]
@@ -891,7 +891,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 59,
+                                                  "id": 185,
                                                   "name": "label",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -902,7 +902,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 69,
+                                                  "id": 195,
                                                   "name": "selectedEndpointId",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -917,11 +917,11 @@
                                                 {
                                                   "title": "Properties",
                                                   "children": [
-                                                    64,
-                                                    58,
-                                                    60,
-                                                    59,
-                                                    69
+                                                    190,
+                                                    184,
+                                                    186,
+                                                    185,
+                                                    195
                                                   ]
                                                 }
                                               ]
@@ -935,7 +935,7 @@
                                   }
                                 },
                                 {
-                                  "id": 55,
+                                  "id": 181,
                                   "name": "kind",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -950,8 +950,8 @@
                                 {
                                   "title": "Properties",
                                   "children": [
-                                    56,
-                                    55
+                                    182,
+                                    181
                                   ]
                                 }
                               ]
@@ -972,14 +972,14 @@
                           {
                             "type": "reflection",
                             "declaration": {
-                              "id": 70,
+                              "id": 196,
                               "name": "__type",
                               "variant": "declaration",
                               "kind": 65536,
                               "flags": {},
                               "children": [
                                 {
-                                  "id": 71,
+                                  "id": 197,
                                   "name": "kind",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -990,7 +990,7 @@
                                   }
                                 },
                                 {
-                                  "id": 72,
+                                  "id": 198,
                                   "name": "view",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -1014,14 +1014,14 @@
                                           {
                                             "type": "reflection",
                                             "declaration": {
-                                              "id": 73,
+                                              "id": 199,
                                               "name": "__type",
                                               "variant": "declaration",
                                               "kind": 65536,
                                               "flags": {},
                                               "children": [
                                                 {
-                                                  "id": 74,
+                                                  "id": 200,
                                                   "name": "connectionId",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -1039,7 +1039,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 75,
+                                                  "id": 201,
                                                   "name": "identity",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -1063,14 +1063,14 @@
                                                           {
                                                             "type": "reflection",
                                                             "declaration": {
-                                                              "id": 76,
+                                                              "id": 202,
                                                               "name": "__type",
                                                               "variant": "declaration",
                                                               "kind": 65536,
                                                               "flags": {},
                                                               "children": [
                                                                 {
-                                                                  "id": 77,
+                                                                  "id": 203,
                                                                   "name": "appId",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -1088,7 +1088,7 @@
                                                                   }
                                                                 },
                                                                 {
-                                                                  "id": 78,
+                                                                  "id": 204,
                                                                   "name": "hostId",
                                                                   "variant": "declaration",
                                                                   "kind": 1024,
@@ -1110,8 +1110,8 @@
                                                                 {
                                                                   "title": "Properties",
                                                                   "children": [
-                                                                    77,
-                                                                    78
+                                                                    203,
+                                                                    204
                                                                   ]
                                                                 }
                                                               ]
@@ -1140,7 +1140,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 79,
+                                                  "id": 205,
                                                   "name": "origin",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -1162,9 +1162,9 @@
                                                 {
                                                   "title": "Properties",
                                                   "children": [
-                                                    74,
-                                                    75,
-                                                    79
+                                                    200,
+                                                    201,
+                                                    205
                                                   ]
                                                 }
                                               ]
@@ -1197,8 +1197,8 @@
                                 {
                                   "title": "Properties",
                                   "children": [
-                                    71,
-                                    72
+                                    197,
+                                    198
                                   ]
                                 }
                               ]
@@ -1219,14 +1219,14 @@
                           {
                             "type": "reflection",
                             "declaration": {
-                              "id": 80,
+                              "id": 206,
                               "name": "__type",
                               "variant": "declaration",
                               "kind": 65536,
                               "flags": {},
                               "children": [
                                 {
-                                  "id": 81,
+                                  "id": 207,
                                   "name": "kind",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -1241,7 +1241,7 @@
                                 {
                                   "title": "Properties",
                                   "children": [
-                                    81
+                                    207
                                   ]
                                 }
                               ]
@@ -1265,13 +1265,852 @@
         {
           "title": "Constructors",
           "children": [
+            172
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            176
+          ]
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "ElectronRemoteDesktop",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Electron Main owner of one application's remote controls, OS vault and network Utility Process."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Construct after Electron app readiness, "
+              },
+              {
+                "kind": "code",
+                "text": "`attach`"
+              },
+              {
+                "kind": "text",
+                "text": " the current primary window and await\n"
+              },
+              {
+                "kind": "code",
+                "text": "`dispose`"
+              },
+              {
+                "kind": "text",
+                "text": " during application shutdown. Construction registers exactly one IPC handler on the\nconfigured channel and performs no network, process or Keychain work. The first control lazily\nforks the Utility Process started by "
+              },
+              {
+                "kind": "code",
+                "text": "`startElectronRemoteUtility`"
+              },
+              {
+                "kind": "text",
+                "text": "; only Main opens the\n"
+              },
+              {
+                "kind": "code",
+                "text": "`safeStorage`"
+              },
+              {
+                "kind": "text",
+                "text": "-backed "
+              },
+              {
+                "kind": "code",
+                "text": "`ElectronCredentialVault`"
+              },
+              {
+                "kind": "text",
+                "text": " and answers the Utility's credential requests.\n\nOpening a saved connection or completing a pairing first releases the active view, because the\nUtility closes the current gateway before it connects the next one; a failed replacement returns\nthe window to its local renderer. A successful activation installs the private loopback cookie in\nthe window session, ordered behind every earlier cookie write, then reports the origin through\n"
+              },
+              {
+                "kind": "code",
+                "text": "`onRemoteRenderer`"
+              },
+              {
+                "kind": "text",
+                "text": " and lets Main itself load "
+              },
+              {
+                "kind": "code",
+                "text": "`origin + '/'`"
+              },
+              {
+                "kind": "text",
+                "text": ": the gateway admits only a navigation\nwithout a site ("
+              },
+              {
+                "kind": "code",
+                "text": "`Sec-Fetch-Site: none`"
+              },
+              {
+                "kind": "text",
+                "text": "), which a renderer-initiated navigation never has. Each\nactivation belongs to its original validated invocation; closing or forgetting that connection,\nstarting another selection, closing or replacing the window, a Utility exit or disposal prevents\nan obsolete activation from publishing trust or navigating. Closing the window stops the Utility."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 84,
+          "name": "attach",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 85,
+              "name": "attach",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Bind the controls to the current primary window and its original local renderer."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error after disposal, while another live window is attached, or for any other renderer URL."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 86,
+                  "name": "window",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Sandboxed, context-isolated application window whose main frame invokes the channel."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "electron",
+                      "packagePath": "electron.d.ts",
+                      "qualifiedName": "Electron.CrossProcessExports.BrowserWindow"
+                    },
+                    "name": "BrowserWindow",
+                    "package": "electron",
+                    "qualifiedName": "Electron.CrossProcessExports.BrowserWindow"
+                  }
+                },
+                {
+                  "id": 87,
+                  "name": "localRenderer",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact packaged "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`file:`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " URL or local HTTP(S) renderer origin loaded after\na remote view closes. Its origin is never accepted as a gateway view."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 47,
+              "name": "ElectronRemoteDesktop",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Validate the application composition and register its single fixed IPC channel."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for a non-canonical namespace or channel, a relative path, an invalid forbidden\norigin or timeout, or when Electron already has a handler registered for the channel."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 48,
+                  "name": "_options",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Application namespace, channel, absolute paths, forbidden origins, callbacks\nand optional timeouts. Defaults are documented on the options interface."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 150,
+                    "name": "IElectronRemoteDesktopOptions",
+                    "package": "@pixel-brewery/remote-electron"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 45,
+                "name": "ElectronRemoteDesktop",
+                "package": "@pixel-brewery/remote-electron"
+              }
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "name": "dispose",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 89,
+              "name": "dispose",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Remove the IPC handler and stop the owned Utility Process."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@remarks",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The first call rejects further control work, asks the Utility to dispose and kills it\nafter its "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`disposed`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " signal or the dispose timeout. Repeated calls resolve immediately.\nProfiles and encrypted grants stay durable; no remote host is revoked."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Completion after the Utility Process has stopped."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "@typescript/old"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
             46
           ]
         },
         {
           "title": "Methods",
           "children": [
-            50
+            84,
+            88
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150,
+      "name": "IElectronRemoteDesktopOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application-owned composition of the generic Electron Main remote owner."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Main supplies these values after app readiness from its own trusted configuration;\nrenderer controls can never replace them. The application keeps its window, navigation policy,\nroute inventory and storage locations; the SDK owns process, credential and view orchestration."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 167,
+          "name": "allowLoopbackForTests",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Test-only acceptance of loopback upstream peers, forwarded to the Utility runtime.\nDefaults to false; never enable it in a production build."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "boolean"
+          }
+        },
+        {
+          "id": 151,
+          "name": "appId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Canonical lowercase application namespace. Pairings, profiles, credentials and activations of\nany other namespace are rejected."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 154,
+          "name": "assetsPath",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Absolute immutable packaged UI directory served by the protected loopback gateway."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 152,
+          "name": "channel",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Fixed IPC channel the application's preload invokes. Exactly one handler is registered on it\nand removed again by dispose."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 170,
+          "name": "disposeTimeoutMs",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Milliseconds dispose waits for the Utility's "
+              },
+              {
+                "kind": "code",
+                "text": "`disposed`"
+              },
+              {
+                "kind": "text",
+                "text": " signal or exit before it kills the\nprocess. Defaults to 2000."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 156,
+          "name": "forbiddenOrigins",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Origins that are never accepted as a gateway view, for example an embedded local backend\nthat also listens on "
+              },
+              {
+                "kind": "code",
+                "text": "`127.0.0.1`"
+              },
+              {
+                "kind": "text",
+                "text": ". The attached local renderer is always forbidden as well.\nDefaults to an empty list."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "id": 168,
+          "name": "initializationTimeoutMs",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Milliseconds the Utility Process may take from fork to "
+              },
+              {
+                "kind": "code",
+                "text": "`initialized`"
+              },
+              {
+                "kind": "text",
+                "text": ". Defaults to 15000."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 161,
+          "name": "logger",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Receives Utility Process output in chunks of at most 8192 characters. Without a logger the\nUtility inherits Main's standard streams."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 162,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 163,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 164,
+                      "name": "stream",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "union",
+                        "types": [
+                          {
+                            "type": "literal",
+                            "value": "stdout"
+                          },
+                          {
+                            "type": "literal",
+                            "value": "stderr"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": 165,
+                      "name": "text",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 157,
+          "name": "onRemoteRenderer",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Called with the selected gateway origin once its cookie is installed and before Main opens it,\nand with undefined when the window returns to the local renderer or the owner closes. The\napplication uses it to widen or narrow its own navigation and window controls."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 158,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 159,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 160,
+                      "name": "origin",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "union",
+                        "types": [
+                          {
+                            "type": "intrinsic",
+                            "name": "string"
+                          },
+                          {
+                            "type": "intrinsic",
+                            "name": "undefined"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 169,
+          "name": "operationTimeoutMs",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Milliseconds one control operation may take in the Utility Process. Defaults to 30000; an\nexpired write has an unknown outcome and must be reconciled before it is retried."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 166,
+          "name": "serviceName",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Operating-system service name of the network Utility Process. Defaults to "
+              },
+              {
+                "kind": "code",
+                "text": "`Remote network`"
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 155,
+          "name": "storageDirectory",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Absolute application-private directory. Main keeps the OS-encrypted "
+              },
+              {
+                "kind": "code",
+                "text": "`credentials.json`"
+              },
+              {
+                "kind": "text",
+                "text": " here;\nthe Utility Process keeps its safe profile metadata in the same directory."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 153,
+          "name": "utilityPath",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Absolute path of the bundled Utility Process entry that calls "
+              },
+              {
+                "kind": "code",
+                "text": "`startElectronRemoteUtility`"
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            167,
+            151,
+            154,
+            152,
+            170,
+            156,
+            168,
+            161,
+            157,
+            169,
+            166,
+            155,
+            153
           ]
         }
       ]
@@ -1536,7 +2375,7 @@
       ]
     },
     {
-      "id": 126,
+      "id": 252,
       "name": "IRemoteElectronActivation",
       "variant": "declaration",
       "kind": 256,
@@ -1553,7 +2392,7 @@
       },
       "children": [
         {
-          "id": 135,
+          "id": 261,
           "name": "connectionId",
           "variant": "declaration",
           "kind": 1024,
@@ -1573,7 +2412,7 @@
           }
         },
         {
-          "id": 127,
+          "id": 253,
           "name": "cookie",
           "variant": "declaration",
           "kind": 1024,
@@ -1592,14 +2431,14 @@
           "type": {
             "type": "reflection",
             "declaration": {
-              "id": 128,
+              "id": 254,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 132,
+                  "id": 258,
                   "name": "httpOnly",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1621,7 +2460,7 @@
                   }
                 },
                 {
-                  "id": 129,
+                  "id": 255,
                   "name": "name",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1643,7 +2482,7 @@
                   }
                 },
                 {
-                  "id": 131,
+                  "id": 257,
                   "name": "path",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1665,7 +2504,7 @@
                   }
                 },
                 {
-                  "id": 133,
+                  "id": 259,
                   "name": "sameSite",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1687,7 +2526,7 @@
                   }
                 },
                 {
-                  "id": 134,
+                  "id": 260,
                   "name": "secure",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1709,7 +2548,7 @@
                   }
                 },
                 {
-                  "id": 130,
+                  "id": 256,
                   "name": "value",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1735,12 +2574,12 @@
                 {
                   "title": "Properties",
                   "children": [
-                    132,
-                    129,
-                    131,
-                    133,
-                    134,
-                    130
+                    258,
+                    255,
+                    257,
+                    259,
+                    260,
+                    256
                   ]
                 }
               ]
@@ -1748,7 +2587,7 @@
           }
         },
         {
-          "id": 136,
+          "id": 262,
           "name": "identity",
           "variant": "declaration",
           "kind": 1024,
@@ -1775,14 +2614,14 @@
                   {
                     "type": "reflection",
                     "declaration": {
-                      "id": 137,
+                      "id": 263,
                       "name": "__type",
                       "variant": "declaration",
                       "kind": 65536,
                       "flags": {},
                       "children": [
                         {
-                          "id": 138,
+                          "id": 264,
                           "name": "appId",
                           "variant": "declaration",
                           "kind": 1024,
@@ -1800,7 +2639,7 @@
                           }
                         },
                         {
-                          "id": 139,
+                          "id": 265,
                           "name": "hostId",
                           "variant": "declaration",
                           "kind": 1024,
@@ -1822,8 +2661,8 @@
                         {
                           "title": "Properties",
                           "children": [
-                            138,
-                            139
+                            264,
+                            265
                           ]
                         }
                       ]
@@ -1858,7 +2697,7 @@
           }
         },
         {
-          "id": 140,
+          "id": 266,
           "name": "origin",
           "variant": "declaration",
           "kind": 1024,
@@ -1882,10 +2721,10 @@
         {
           "title": "Properties",
           "children": [
-            135,
-            127,
-            136,
-            140
+            261,
+            253,
+            262,
+            266
           ]
         }
       ],
@@ -1903,7 +2742,7 @@
       ]
     },
     {
-      "id": 85,
+      "id": 211,
       "name": "IRemoteElectronMainOptions",
       "variant": "declaration",
       "kind": 256,
@@ -1920,7 +2759,7 @@
       },
       "children": [
         {
-          "id": 92,
+          "id": 218,
           "name": "activateView",
           "variant": "declaration",
           "kind": 1024,
@@ -1939,34 +2778,34 @@
           "type": {
             "type": "reflection",
             "declaration": {
-              "id": 93,
+              "id": 219,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "signatures": [
                 {
-                  "id": 94,
+                  "id": 220,
                   "name": "__type",
                   "variant": "signature",
                   "kind": 4096,
                   "flags": {},
                   "parameters": [
                     {
-                      "id": 95,
+                      "id": 221,
                       "name": "activation",
                       "variant": "param",
                       "kind": 32768,
                       "flags": {},
                       "type": {
                         "type": "reference",
-                        "target": 126,
+                        "target": 252,
                         "name": "IRemoteElectronActivation",
                         "package": "@pixel-brewery/remote-electron"
                       }
                     },
                     {
-                      "id": 96,
+                      "id": 222,
                       "name": "event",
                       "variant": "param",
                       "kind": 32768,
@@ -2006,7 +2845,7 @@
           }
         },
         {
-          "id": 86,
+          "id": 212,
           "name": "appId",
           "variant": "declaration",
           "kind": 1024,
@@ -2028,7 +2867,7 @@
           }
         },
         {
-          "id": 88,
+          "id": 214,
           "name": "isTrustedSender",
           "variant": "declaration",
           "kind": 1024,
@@ -2047,21 +2886,21 @@
           "type": {
             "type": "reflection",
             "declaration": {
-              "id": 89,
+              "id": 215,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "signatures": [
                 {
-                  "id": 90,
+                  "id": 216,
                   "name": "__type",
                   "variant": "signature",
                   "kind": 4096,
                   "flags": {},
                   "parameters": [
                     {
-                      "id": 91,
+                      "id": 217,
                       "name": "event",
                       "variant": "param",
                       "kind": 32768,
@@ -2089,7 +2928,7 @@
           }
         },
         {
-          "id": 87,
+          "id": 213,
           "name": "runtime",
           "variant": "declaration",
           "kind": 1024,
@@ -2107,7 +2946,7 @@
           },
           "type": {
             "type": "reference",
-            "target": 97,
+            "target": 223,
             "name": "IRemoteElectronRuntime",
             "package": "@pixel-brewery/remote-electron"
           }
@@ -2117,16 +2956,16 @@
         {
           "title": "Properties",
           "children": [
-            92,
-            86,
-            88,
-            87
+            218,
+            212,
+            214,
+            213
           ]
         }
       ]
     },
     {
-      "id": 97,
+      "id": 223,
       "name": "IRemoteElectronRuntime",
       "variant": "declaration",
       "kind": 256,
@@ -2154,7 +2993,7 @@
       },
       "children": [
         {
-          "id": 120,
+          "id": 246,
           "name": "closeConnection",
           "variant": "declaration",
           "kind": 2048,
@@ -2163,7 +3002,7 @@
           },
           "signatures": [
             {
-              "id": 121,
+              "id": 247,
               "name": "closeConnection",
               "variant": "signature",
               "kind": 4096,
@@ -2191,7 +3030,7 @@
               },
               "parameters": [
                 {
-                  "id": 122,
+                  "id": 248,
                   "name": "connectionId",
                   "variant": "param",
                   "kind": 32768,
@@ -2230,7 +3069,7 @@
           ]
         },
         {
-          "id": 123,
+          "id": 249,
           "name": "forgetConnection",
           "variant": "declaration",
           "kind": 2048,
@@ -2239,7 +3078,7 @@
           },
           "signatures": [
             {
-              "id": 124,
+              "id": 250,
               "name": "forgetConnection",
               "variant": "signature",
               "kind": 4096,
@@ -2267,7 +3106,7 @@
               },
               "parameters": [
                 {
-                  "id": 125,
+                  "id": 251,
                   "name": "connectionId",
                   "variant": "param",
                   "kind": 32768,
@@ -2306,7 +3145,7 @@
           ]
         },
         {
-          "id": 98,
+          "id": 224,
           "name": "listConnections",
           "variant": "declaration",
           "kind": 2048,
@@ -2315,7 +3154,7 @@
           },
           "signatures": [
             {
-              "id": 99,
+              "id": 225,
               "name": "listConnections",
               "variant": "signature",
               "kind": 4096,
@@ -2365,14 +3204,14 @@
                           {
                             "type": "reflection",
                             "declaration": {
-                              "id": 100,
+                              "id": 226,
                               "name": "__type",
                               "variant": "declaration",
                               "kind": 65536,
                               "flags": {},
                               "children": [
                                 {
-                                  "id": 107,
+                                  "id": 233,
                                   "name": "endpoints",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -2393,14 +3232,14 @@
                                           {
                                             "type": "reflection",
                                             "declaration": {
-                                              "id": 108,
+                                              "id": 234,
                                               "name": "__type",
                                               "variant": "declaration",
                                               "kind": 65536,
                                               "flags": {},
                                               "children": [
                                                 {
-                                                  "id": 109,
+                                                  "id": 235,
                                                   "name": "id",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -2411,7 +3250,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 111,
+                                                  "id": 237,
                                                   "name": "origin",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -2422,7 +3261,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 110,
+                                                  "id": 236,
                                                   "name": "transportId",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -2437,9 +3276,9 @@
                                                 {
                                                   "title": "Properties",
                                                   "children": [
-                                                    109,
-                                                    111,
-                                                    110
+                                                    235,
+                                                    237,
+                                                    236
                                                   ]
                                                 }
                                               ]
@@ -2453,7 +3292,7 @@
                                   }
                                 },
                                 {
-                                  "id": 101,
+                                  "id": 227,
                                   "name": "id",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -2464,7 +3303,7 @@
                                   }
                                 },
                                 {
-                                  "id": 103,
+                                  "id": 229,
                                   "name": "identity",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -2488,14 +3327,14 @@
                                           {
                                             "type": "reflection",
                                             "declaration": {
-                                              "id": 104,
+                                              "id": 230,
                                               "name": "__type",
                                               "variant": "declaration",
                                               "kind": 65536,
                                               "flags": {},
                                               "children": [
                                                 {
-                                                  "id": 105,
+                                                  "id": 231,
                                                   "name": "appId",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -2513,7 +3352,7 @@
                                                   }
                                                 },
                                                 {
-                                                  "id": 106,
+                                                  "id": 232,
                                                   "name": "hostId",
                                                   "variant": "declaration",
                                                   "kind": 1024,
@@ -2535,8 +3374,8 @@
                                                 {
                                                   "title": "Properties",
                                                   "children": [
-                                                    105,
-                                                    106
+                                                    231,
+                                                    232
                                                   ]
                                                 }
                                               ]
@@ -2565,7 +3404,7 @@
                                   }
                                 },
                                 {
-                                  "id": 102,
+                                  "id": 228,
                                   "name": "label",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -2576,7 +3415,7 @@
                                   }
                                 },
                                 {
-                                  "id": 112,
+                                  "id": 238,
                                   "name": "selectedEndpointId",
                                   "variant": "declaration",
                                   "kind": 1024,
@@ -2591,11 +3430,11 @@
                                 {
                                   "title": "Properties",
                                   "children": [
-                                    107,
-                                    101,
-                                    103,
-                                    102,
-                                    112
+                                    233,
+                                    227,
+                                    229,
+                                    228,
+                                    238
                                   ]
                                 }
                               ]
@@ -2615,7 +3454,7 @@
           ]
         },
         {
-          "id": 117,
+          "id": 243,
           "name": "openConnection",
           "variant": "declaration",
           "kind": 2048,
@@ -2624,7 +3463,7 @@
           },
           "signatures": [
             {
-              "id": 118,
+              "id": 244,
               "name": "openConnection",
               "variant": "signature",
               "kind": 4096,
@@ -2652,7 +3491,7 @@
               },
               "parameters": [
                 {
-                  "id": 119,
+                  "id": 245,
                   "name": "connectionId",
                   "variant": "param",
                   "kind": 32768,
@@ -2681,7 +3520,7 @@
                 "typeArguments": [
                   {
                     "type": "reference",
-                    "target": 126,
+                    "target": 252,
                     "name": "IRemoteElectronActivation",
                     "package": "@pixel-brewery/remote-electron"
                   }
@@ -2693,7 +3532,7 @@
           ]
         },
         {
-          "id": 113,
+          "id": 239,
           "name": "pair",
           "variant": "declaration",
           "kind": 2048,
@@ -2702,7 +3541,7 @@
           },
           "signatures": [
             {
-              "id": 114,
+              "id": 240,
               "name": "pair",
               "variant": "signature",
               "kind": 4096,
@@ -2730,7 +3569,7 @@
               },
               "parameters": [
                 {
-                  "id": 115,
+                  "id": 241,
                   "name": "bootstrap",
                   "variant": "param",
                   "kind": 32768,
@@ -2755,7 +3594,7 @@
                   }
                 },
                 {
-                  "id": 116,
+                  "id": 242,
                   "name": "deviceName",
                   "variant": "param",
                   "kind": 32768,
@@ -2784,7 +3623,7 @@
                 "typeArguments": [
                   {
                     "type": "reference",
-                    "target": 126,
+                    "target": 252,
                     "name": "IRemoteElectronActivation",
                     "package": "@pixel-brewery/remote-electron"
                   }
@@ -2800,11 +3639,11 @@
         {
           "title": "Methods",
           "children": [
-            120,
-            123,
-            98,
-            117,
-            113
+            246,
+            249,
+            224,
+            243,
+            239
           ]
         }
       ]
@@ -2815,16 +3654,18 @@
       "title": "Classes",
       "children": [
         1,
+        171,
         45
       ]
     },
     {
       "title": "Interfaces",
       "children": [
+        150,
         34,
-        126,
-        85,
-        97
+        252,
+        211,
+        223
       ]
     }
   ],
@@ -2967,460 +3808,615 @@
     },
     "45": {
       "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop"
+    },
+    "46": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop.__constructor"
+    },
+    "47": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop"
+    },
+    "48": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "_options"
+    },
+    "84": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop.attach"
+    },
+    "85": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop.attach"
+    },
+    "86": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "window"
+    },
+    "87": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "localRenderer"
+    },
+    "88": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop.dispose"
+    },
+    "89": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/ElectronRemoteDesktop.ts",
+      "qualifiedName": "ElectronRemoteDesktop.dispose"
+    },
+    "150": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions"
+    },
+    "151": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.appId"
+    },
+    "152": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.channel"
+    },
+    "153": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.utilityPath"
+    },
+    "154": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.assetsPath"
+    },
+    "155": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.storageDirectory"
+    },
+    "156": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.forbiddenOrigins"
+    },
+    "157": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.onRemoteRenderer"
+    },
+    "158": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "159": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "160": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "origin"
+    },
+    "161": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.logger"
+    },
+    "162": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "163": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "164": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "stream"
+    },
+    "165": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "text"
+    },
+    "166": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.serviceName"
+    },
+    "167": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.allowLoopbackForTests"
+    },
+    "168": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.initializationTimeoutMs"
+    },
+    "169": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.operationTimeoutMs"
+    },
+    "170": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/desktop/interfaces/IElectronRemoteDesktopOptions.ts",
+      "qualifiedName": "IElectronRemoteDesktopOptions.disposeTimeoutMs"
+    },
+    "171": {
+      "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "ElectronRemoteController"
     },
-    "46": {
+    "172": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "ElectronRemoteController.__constructor"
     },
-    "47": {
+    "173": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "ElectronRemoteController"
     },
-    "48": {
+    "174": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "_options"
     },
-    "50": {
+    "176": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "ElectronRemoteController.handle"
     },
-    "51": {
+    "177": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "ElectronRemoteController.handle"
     },
-    "52": {
+    "178": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "event"
     },
-    "53": {
+    "179": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
       "qualifiedName": "raw"
     },
-    "54": {
+    "180": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "55": {
+    "181": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "kind"
     },
-    "56": {
+    "182": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "connections"
     },
-    "57": {
+    "183": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "58": {
+    "184": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "id"
     },
-    "59": {
+    "185": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "label"
     },
-    "60": {
+    "186": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "identity"
     },
-    "61": {
+    "187": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type"
     },
-    "62": {
+    "188": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.appId"
     },
-    "63": {
+    "189": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.hostId"
     },
-    "64": {
+    "190": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "endpoints"
     },
-    "65": {
+    "191": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "66": {
+    "192": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "id"
     },
-    "67": {
+    "193": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "transportId"
     },
-    "68": {
+    "194": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "origin"
     },
-    "69": {
+    "195": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "selectedEndpointId"
     },
-    "70": {
+    "196": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "71": {
+    "197": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "kind"
     },
-    "72": {
+    "198": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "view"
     },
-    "73": {
+    "199": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type"
     },
-    "74": {
+    "200": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.connectionId"
     },
-    "75": {
+    "201": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.identity"
     },
-    "76": {
+    "202": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type"
     },
-    "77": {
+    "203": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.appId"
     },
-    "78": {
+    "204": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.hostId"
     },
-    "79": {
+    "205": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "__type.origin"
     },
-    "80": {
+    "206": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "81": {
+    "207": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
       "qualifiedName": "kind"
     },
-    "85": {
+    "211": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "IRemoteElectronMainOptions"
     },
-    "86": {
+    "212": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "IRemoteElectronMainOptions.appId"
     },
-    "87": {
+    "213": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "IRemoteElectronMainOptions.runtime"
     },
-    "88": {
+    "214": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "IRemoteElectronMainOptions.isTrustedSender"
     },
-    "89": {
+    "215": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "__type"
     },
-    "90": {
+    "216": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "__type"
     },
-    "91": {
+    "217": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "event"
     },
-    "92": {
+    "218": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "IRemoteElectronMainOptions.activateView"
     },
-    "93": {
+    "219": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "__type"
     },
-    "94": {
+    "220": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "__type"
     },
-    "95": {
+    "221": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "activation"
     },
-    "96": {
+    "222": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
       "qualifiedName": "event"
     },
-    "97": {
+    "223": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime"
     },
-    "98": {
+    "224": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.listConnections"
     },
-    "99": {
+    "225": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.listConnections"
     },
-    "100": {
+    "226": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "101": {
+    "227": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "id"
     },
-    "102": {
+    "228": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "label"
     },
-    "103": {
+    "229": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "identity"
     },
-    "104": {
+    "230": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "__type"
     },
-    "105": {
+    "231": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "__type.appId"
     },
-    "106": {
+    "232": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "__type.hostId"
     },
-    "107": {
+    "233": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "endpoints"
     },
-    "108": {
+    "234": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "109": {
+    "235": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "id"
     },
-    "110": {
+    "236": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "transportId"
     },
-    "111": {
+    "237": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "origin"
     },
-    "112": {
+    "238": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
       "qualifiedName": "selectedEndpointId"
     },
-    "113": {
+    "239": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.pair"
     },
-    "114": {
+    "240": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.pair"
     },
-    "115": {
+    "241": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "bootstrap"
     },
-    "116": {
+    "242": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "deviceName"
     },
-    "117": {
+    "243": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.openConnection"
     },
-    "118": {
+    "244": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.openConnection"
     },
-    "119": {
+    "245": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "connectionId"
     },
-    "120": {
+    "246": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.closeConnection"
     },
-    "121": {
+    "247": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.closeConnection"
     },
-    "122": {
+    "248": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "connectionId"
     },
-    "123": {
+    "249": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.forgetConnection"
     },
-    "124": {
+    "250": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "IRemoteElectronRuntime.forgetConnection"
     },
-    "125": {
+    "251": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
       "qualifiedName": "connectionId"
     },
-    "126": {
+    "252": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "IRemoteElectronActivation"
     },
-    "127": {
+    "253": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "IRemoteElectronActivation.cookie"
     },
-    "128": {
+    "254": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type"
     },
-    "129": {
+    "255": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type.name"
     },
-    "130": {
+    "256": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type.value"
     },
-    "131": {
+    "257": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type.path"
     },
-    "132": {
+    "258": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type.httpOnly"
     },
-    "133": {
+    "259": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type.sameSite"
     },
-    "134": {
+    "260": {
       "packageName": "@pixel-brewery/remote-electron",
       "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
       "qualifiedName": "__type.secure"
     },
-    "135": {
+    "261": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
       "qualifiedName": "connectionId"
     },
-    "136": {
+    "262": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
       "qualifiedName": "identity"
     },
-    "137": {
+    "263": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
       "qualifiedName": "__type"
     },
-    "138": {
+    "264": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
       "qualifiedName": "__type.appId"
     },
-    "139": {
+    "265": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
       "qualifiedName": "__type.hostId"
     },
-    "140": {
+    "266": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
       "qualifiedName": "origin"

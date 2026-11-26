@@ -63,9 +63,24 @@ the verifier never falls back to the workspace API compiler or SDK path aliases.
 - Packed exports/declarations independent of workspace aliases.
 - Real browser LAN origin plus Electron/Android/iOS platform journeys.
 
+## Composition record — 2026-11-26 (`0.2.0` source)
+
+The `0.2.0` source adds the application composition APIs. Executed for that source:
+the full `yarn verify` (including packed consumers and API drift for all 16 entry
+points); new colocated Vitest suites for the host runtime, private host controls,
+request admissions and dispatch, OpenAPI routes and native route sources, the
+browser start gate (32 cases), the host-control client, the Electron Main
+orchestrator (all cases of the first consumer's regression suite plus cookie
+removal), the Utility entry and the profile store; streamed and piped chunked bodies
+above a route limit are refused; Android `remote-capacitor:android-compile` compiled
+the AAR and ran its JUnit tests including the persistent-cookie case under
+AGP9.5.3/Gradle9.6.0/JDK21; the iOS simulator scheme ran twelve XCTest cases,
+including cookie removal on close. The browser fixture e2e and the Electron journey
+were not rerun locally; CI runs them at the committed head.
+
 ## Verified implementation record — 2026-11-26
 
-The current source family is `0.1.0`. These results are actual executed checks;
+The source family at this record was `0.1.0`. These results are actual executed checks;
 publication and consumer completion are not inferred from them.
 
 | Boundary                 | Executed evidence                                                                                                                                                                                                                                                                                                                              |

@@ -7,6 +7,378 @@
   "flags": {},
   "children": [
     {
+      "id": 175,
+      "name": "createRemoteNativeRouteSources",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 176,
+          "name": "createRemoteNativeRouteSources",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Emits one canonical route inventory as JSON, Kotlin and Swift source text."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "The routes are validated and canonicalized through "
+                  },
+                  {
+                    "kind": "inline-tag",
+                    "tag": "@link",
+                    "text": "RemoteRouteRegistry",
+                    "target": 157
+                  },
+                  {
+                    "kind": "text",
+                    "text": "\nand sorted by path, method and identifier using code-unit order, so the output\nis independent of input order. Kotlin and Swift construct the remote-capacitor\n"
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`RemoteNativeConfiguration.Route`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " values with an explicit "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`maxRequestBytes`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";\nthe native SDKs accept at most 64 MiB. String literals escape quotes,\nbackslashes, control and line-separator characters, and Kotlin "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`$`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " templates.\nGeneration is pure: it writes no file and starts no runtime."
+                  }
+                ]
+              },
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Frozen JSON, Kotlin and Swift source strings, each ending with a newline."
+                  }
+                ]
+              },
+              {
+                "tag": "@throws",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "RemoteProtocolError with "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`invalid-request`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " for an empty or registry-inadmissible route set, a route\nwithout an explicit request quota or above the native 64 MiB limit, an invalid application namespace,\nprotocol version or native identifier."
+                  }
+                ]
+              },
+              {
+                "tag": "@example",
+                "content": [
+                  {
+                    "kind": "code",
+                    "text": "```ts\nconst sources = createRemoteNativeRouteSources(routes, {\n    appId: 'com.example.product',\n    kotlin: { packageName: 'com.example.product.remote', objectName: 'ProductRemoteRoutes' },\n    swift: { typeName: 'ProductRemoteRoutes' },\n});\n```"
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 177,
+              "name": "routes",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Complete product route set, typically from "
+                  },
+                  {
+                    "kind": "inline-tag",
+                    "tag": "@link",
+                    "text": "createRemoteRoutesFromOpenApi",
+                    "target": 171
+                  },
+                  {
+                    "kind": "text",
+                    "text": "."
+                  }
+                ]
+              },
+              "type": {
+                "type": "typeOperator",
+                "operator": "readonly",
+                "target": {
+                  "type": "array",
+                  "elementType": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                      "qualifiedName": "IRemoteRouteDefinition"
+                    },
+                    "name": "IRemoteRouteDefinition",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              }
+            },
+            {
+              "id": 178,
+              "name": "options",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Application namespace, protocol version and native declaration names."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": 204,
+                "name": "IRemoteNativeRouteSourceOptions",
+                "package": "@pixel-brewery/remote-core"
+              }
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "target": 214,
+            "name": "IRemoteNativeRouteSources",
+            "package": "@pixel-brewery/remote-core"
+          }
+        }
+      ]
+    },
+    {
+      "id": 171,
+      "name": "createRemoteRoutesFromOpenApi",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 172,
+          "name": "createRemoteRoutesFromOpenApi",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Derives explicit remote route registrations from an application's actual OpenAPI contract."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "The policy is an allowlist: only operations below an included prefix and\noutside every excluded prefix are admitted, and methods other than GET, HEAD,\nPOST, PUT, PATCH and DELETE are ignored. GET and HEAD require the read\ncapability and may be retried as safe reads; every other method requires the\nwrite capability and is never replayed. An operation with an inline\n"
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`text/event-stream`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " response becomes an "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`sse`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " route and is never retried.\nComplete "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`{name}`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " template segments become "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`:name`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " parameters; partial,\nduplicate or colon-prefixed literal segments are rejected. Each operation's\n"
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`operationId`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " becomes the route identifier and must be unique. Every route\ncarries an explicit request quota: the longest matching per-prefix limit or\nthe policy default of 4 MiB. The complete result is validated by\n"
+                  },
+                  {
+                    "kind": "inline-tag",
+                    "tag": "@link",
+                    "text": "RemoteRouteRegistry",
+                    "target": 157
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", so reserved SDK paths and overlapping patterns\nfail. Routes keep the document's path order and GET, HEAD, POST, PUT, PATCH,\nDELETE method order. Derivation performs no I/O and starts no listener."
+                  }
+                ]
+              },
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "A frozen array of frozen route definitions; empty when no operation is admitted."
+                  }
+                ]
+              },
+              {
+                "tag": "@throws",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "RemoteProtocolError with "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`invalid-request`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " for an invalid policy, malformed operation metadata,\na missing, oversized or duplicate operation identifier, an unsupported path parameter, or a route set\nthat the route registry rejects."
+                  }
+                ]
+              },
+              {
+                "tag": "@example",
+                "content": [
+                  {
+                    "kind": "code",
+                    "text": "```ts\nconst routes = createRemoteRoutesFromOpenApi(openApiDocument, {\n    include: ['/api/documents'],\n    exclude: ['/api/documents/export'],\n    readCapability: 'documents:read',\n    writeCapability: 'documents:write',\n    requestLimits: [{ prefix: '/api/documents/uploads', maxRequestBytes: 16777216 }],\n});\n```"
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 173,
+              "name": "document",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Structural OpenAPI 3 document whose "
+                  },
+                  {
+                    "kind": "code",
+                    "text": "`paths`"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " are read; references are not resolved."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": 179,
+                "name": "IRemoteOpenApiDocument",
+                "package": "@pixel-brewery/remote-core"
+              }
+            },
+            {
+              "id": 174,
+              "name": "policy",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Application-owned prefixes, capabilities and request quotas selecting remote operations."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": 194,
+                "name": "IRemoteOpenApiRoutePolicy",
+                "package": "@pixel-brewery/remote-core"
+              }
+            }
+          ],
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-protocol",
+                  "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                  "qualifiedName": "IRemoteRouteDefinition"
+                },
+                "name": "IRemoteRouteDefinition",
+                "package": "@pixel-brewery/remote-protocol"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": 1,
       "name": "IRemoteAccessDependencies",
       "variant": "declaration",
@@ -71,7 +443,7 @@
           },
           "type": {
             "type": "reference",
-            "target": 179,
+            "target": 229,
             "name": "IRemoteClock",
             "package": "@pixel-brewery/remote-core"
           }
@@ -224,7 +596,7 @@
           },
           "type": {
             "type": "reference",
-            "target": 168,
+            "target": 218,
             "name": "IRemoteSecurity",
             "package": "@pixel-brewery/remote-core"
           }
@@ -248,7 +620,7 @@
           },
           "type": {
             "type": "reference",
-            "target": 148,
+            "target": 151,
             "name": "IRemoteAccessStore",
             "package": "@pixel-brewery/remote-core"
           }
@@ -595,7 +967,7 @@
       ]
     },
     {
-      "id": 148,
+      "id": 151,
       "name": "IRemoteAccessStore",
       "variant": "declaration",
       "kind": 256,
@@ -612,7 +984,7 @@
       },
       "children": [
         {
-          "id": 149,
+          "id": 152,
           "name": "load",
           "variant": "declaration",
           "kind": 2048,
@@ -621,7 +993,7 @@
           },
           "signatures": [
             {
-              "id": 150,
+              "id": 153,
               "name": "load",
               "variant": "signature",
               "kind": 4096,
@@ -667,7 +1039,7 @@
           ]
         },
         {
-          "id": 151,
+          "id": 154,
           "name": "save",
           "variant": "declaration",
           "kind": 2048,
@@ -676,7 +1048,7 @@
           },
           "signatures": [
             {
-              "id": 152,
+              "id": 155,
               "name": "save",
               "variant": "signature",
               "kind": 4096,
@@ -704,7 +1076,7 @@
               },
               "parameters": [
                 {
-                  "id": 153,
+                  "id": 156,
                   "name": "state",
                   "variant": "param",
                   "kind": 32768,
@@ -753,14 +1125,14 @@
         {
           "title": "Methods",
           "children": [
-            149,
-            151
+            152,
+            154
           ]
         }
       ]
     },
     {
-      "id": 179,
+      "id": 229,
       "name": "IRemoteClock",
       "variant": "declaration",
       "kind": 256,
@@ -777,7 +1149,7 @@
       },
       "children": [
         {
-          "id": 180,
+          "id": 230,
           "name": "now",
           "variant": "declaration",
           "kind": 2048,
@@ -786,7 +1158,7 @@
           },
           "signatures": [
             {
-              "id": 181,
+              "id": 231,
               "name": "now",
               "variant": "signature",
               "kind": 4096,
@@ -824,13 +1196,1334 @@
         {
           "title": "Methods",
           "children": [
+            230
+          ]
+        }
+      ]
+    },
+    {
+      "id": 204,
+      "name": "IRemoteNativeRouteSourceOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application-owned names used to emit route inventories for browser and native clients."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Every name is validated as a plain identifier before it is written into source\ntext, so generated files cannot contain injected declarations."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 205,
+          "name": "appId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application namespace written into the JSON inventory; lowercase letter first, then letters, digits, dots or hyphens, at most 80 characters."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 207,
+          "name": "kotlin",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Android target declaring a Kotlin "
+              },
+              {
+                "kind": "code",
+                "text": "`object`"
+              },
+              {
+                "kind": "text",
+                "text": " with a "
+              },
+              {
+                "kind": "code",
+                "text": "`routes`"
+              },
+              {
+                "kind": "text",
+                "text": " list of "
+              },
+              {
+                "kind": "code",
+                "text": "`RemoteNativeConfiguration.Route`"
+              },
+              {
+                "kind": "text",
+                "text": " values."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 208,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 210,
+                  "name": "objectName",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Kotlin identifier of the generated internal object."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 209,
+                  "name": "packageName",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Dot-separated Kotlin package of the generated file, for example "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`com.example.product.remote`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": "."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    210,
+                    209
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 206,
+          "name": "protocolVersion",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Protocol major version written into the JSON inventory; defaults to the current remote protocol version."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 211,
+          "name": "swift",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "iOS target declaring a Swift "
+              },
+              {
+                "kind": "code",
+                "text": "`enum`"
+              },
+              {
+                "kind": "text",
+                "text": " whose throwing "
+              },
+              {
+                "kind": "code",
+                "text": "`make()`"
+              },
+              {
+                "kind": "text",
+                "text": " returns "
+              },
+              {
+                "kind": "code",
+                "text": "`RemoteNativeConfiguration.Route`"
+              },
+              {
+                "kind": "text",
+                "text": " values."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 212,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 213,
+                  "name": "typeName",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Swift identifier of the generated internal enum."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    213
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            205,
+            207,
+            206,
+            211
+          ]
+        }
+      ]
+    },
+    {
+      "id": 214,
+      "name": "IRemoteNativeRouteSources",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Generated route inventories sharing one canonical, deterministically ordered route set."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Every string ends with a newline. Writing the files, choosing their locations\nand checking them for drift remain the application's build responsibility."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 215,
+          "name": "json",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "JSON document "
+              },
+              {
+                "kind": "code",
+                "text": "`{ appId, protocolVersion, routes }`"
+              },
+              {
+                "kind": "text",
+                "text": " for web clients and gateways."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 216,
+          "name": "kotlin",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Kotlin source constructing "
+              },
+              {
+                "kind": "code",
+                "text": "`RemoteNativeConfiguration.Route`"
+              },
+              {
+                "kind": "text",
+                "text": " values for the Android SDK."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 217,
+          "name": "swift",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Swift source constructing "
+              },
+              {
+                "kind": "code",
+                "text": "`RemoteNativeConfiguration.Route`"
+              },
+              {
+                "kind": "text",
+                "text": " values for the iOS SDK."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            215,
+            216,
+            217
+          ]
+        }
+      ]
+    },
+    {
+      "id": 179,
+      "name": "IRemoteOpenApiDocument",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Minimal structural view of an OpenAPI 3 document used to derive remote routes."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Only "
+              },
+              {
+                "kind": "code",
+                "text": "`paths`"
+              },
+              {
+                "kind": "text",
+                "text": " is read. Generated documents from any framework are accepted\nstructurally; no OpenAPI library is required. References are not resolved."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 180,
+          "name": "paths",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "OpenAPI path templates such as "
+              },
+              {
+                "kind": "code",
+                "text": "`/api/items/{id}`"
+              },
+              {
+                "kind": "text",
+                "text": ", mapped to their operations."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@typescript/old",
+              "packagePath": "lib/lib.es5.d.ts",
+              "qualifiedName": "Readonly"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Record"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "string"
+                  },
+                  {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "reference",
+                        "target": 181,
+                        "name": "IRemoteOpenApiPathItem",
+                        "package": "@pixel-brewery/remote-core"
+                      },
+                      {
+                        "type": "intrinsic",
+                        "name": "undefined"
+                      }
+                    ]
+                  }
+                ],
+                "name": "Record",
+                "package": "@typescript/old"
+              }
+            ],
+            "name": "Readonly",
+            "package": "@typescript/old"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
             180
           ]
         }
       ]
     },
     {
-      "id": 137,
+      "id": 188,
+      "name": "IRemoteOpenApiOperation",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Structural view of one OpenAPI operation as read by remote route derivation."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 189,
+          "name": "operationId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Stable operation identifier, used unchanged as the remote route identifier."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Admitted operations require a nonempty identifier of at most 160 characters\nthat is unique across the derived route set."
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 190,
+          "name": "responses",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Declared responses keyed by status code; their media types select the event-stream kind."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@typescript/old",
+              "packagePath": "lib/lib.es5.d.ts",
+              "qualifiedName": "Readonly"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Record"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "string"
+                  },
+                  {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "reference",
+                        "target": 191,
+                        "name": "IRemoteOpenApiResponse",
+                        "package": "@pixel-brewery/remote-core"
+                      },
+                      {
+                        "type": "intrinsic",
+                        "name": "undefined"
+                      }
+                    ]
+                  }
+                ],
+                "name": "Record",
+                "package": "@typescript/old"
+              }
+            ],
+            "name": "Readonly",
+            "package": "@typescript/old"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            189,
+            190
+          ]
+        }
+      ]
+    },
+    {
+      "id": 181,
+      "name": "IRemoteOpenApiPathItem",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Operations of one OpenAPI path template, restricted to the methods remote routes can admit."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Other path-item members such as "
+              },
+              {
+                "kind": "code",
+                "text": "`parameters`"
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "code",
+                "text": "`options`"
+              },
+              {
+                "kind": "text",
+                "text": " or "
+              },
+              {
+                "kind": "code",
+                "text": "`trace`"
+              },
+              {
+                "kind": "text",
+                "text": " are ignored;\nthey never become remote operations."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 187,
+          "name": "delete",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional DELETE operation; derived routes are writes that are never replayed."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 188,
+            "name": "IRemoteOpenApiOperation",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 182,
+          "name": "get",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional GET operation; derived routes are reads that may be retried as safe reads."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 188,
+            "name": "IRemoteOpenApiOperation",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 183,
+          "name": "head",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional HEAD operation; derived routes are reads that may be retried as safe reads."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 188,
+            "name": "IRemoteOpenApiOperation",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 186,
+          "name": "patch",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional PATCH operation; derived routes are writes that are never replayed."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 188,
+            "name": "IRemoteOpenApiOperation",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 184,
+          "name": "post",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional POST operation; derived routes are writes that are never replayed."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 188,
+            "name": "IRemoteOpenApiOperation",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 185,
+          "name": "put",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional PUT operation; derived routes are writes that are never replayed."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 188,
+            "name": "IRemoteOpenApiOperation",
+            "package": "@pixel-brewery/remote-core"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            187,
+            182,
+            183,
+            186,
+            184,
+            185
+          ]
+        }
+      ]
+    },
+    {
+      "id": 201,
+      "name": "IRemoteOpenApiRequestLimit",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Request-body quota applied to every derived route below one path prefix."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 203,
+          "name": "maxRequestBytes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum consumed request-body bytes for matching routes; a non-negative safe integer."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 202,
+          "name": "prefix",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "OpenAPI path prefix matched on complete segments, for example "
+              },
+              {
+                "kind": "code",
+                "text": "`/api/files`"
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "The prefix matches the path itself and every path below it. When several\nlimits match, the longest prefix wins."
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            203,
+            202
+          ]
+        }
+      ]
+    },
+    {
+      "id": 191,
+      "name": "IRemoteOpenApiResponse",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Structural view of one OpenAPI response or response reference."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "References are not resolved, so a referenced response never marks an\noperation as an event stream. Declare "
+              },
+              {
+                "kind": "code",
+                "text": "`text/event-stream`"
+              },
+              {
+                "kind": "text",
+                "text": " inline for SSE."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 192,
+          "name": "$ref",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Unresolved component reference; present only for reference responses."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 193,
+          "name": "content",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Response media types; a "
+              },
+              {
+                "kind": "code",
+                "text": "`text/event-stream`"
+              },
+              {
+                "kind": "text",
+                "text": " entry, with or without parameters, derives an SSE route."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@typescript/old",
+              "packagePath": "lib/lib.es5.d.ts",
+              "qualifiedName": "Readonly"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@typescript/old",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Record"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "string"
+                  },
+                  {
+                    "type": "intrinsic",
+                    "name": "unknown"
+                  }
+                ],
+                "name": "Record",
+                "package": "@typescript/old"
+              }
+            ],
+            "name": "Readonly",
+            "package": "@typescript/old"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            192,
+            193
+          ]
+        }
+      ]
+    },
+    {
+      "id": 194,
+      "name": "IRemoteOpenApiRoutePolicy",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application-owned allowlist that turns selected OpenAPI operations into remote routes."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Appearing in the document never makes an operation remote by itself: only\noperations below an included prefix and outside every excluded prefix are\nadmitted. Prefixes match complete path segments of the OpenAPI template, so\n"
+              },
+              {
+                "kind": "code",
+                "text": "`/api/items`"
+              },
+              {
+                "kind": "text",
+                "text": " admits "
+              },
+              {
+                "kind": "code",
+                "text": "`/api/items`"
+              },
+              {
+                "kind": "text",
+                "text": " and "
+              },
+              {
+                "kind": "code",
+                "text": "`/api/items/{id}`"
+              },
+              {
+                "kind": "text",
+                "text": " but not "
+              },
+              {
+                "kind": "code",
+                "text": "`/api/itemsets`"
+              },
+              {
+                "kind": "text",
+                "text": ".\nProduct resource authorization still runs in the application after admission."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 196,
+          "name": "exclude",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional prefixes withheld from remote access even when an included prefix covers them."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "id": 195,
+          "name": "include",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Admitted OpenAPI path prefixes; at least one is required."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "id": 199,
+          "name": "maxRequestBytes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Default request-body quota in bytes for derived routes; defaults to 4 MiB (4194304)."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 197,
+          "name": "readCapability",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Capability required by every derived GET and HEAD route."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 200,
+          "name": "requestLimits",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional per-prefix quotas overriding the default; the longest matching prefix wins."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": 201,
+                "name": "IRemoteOpenApiRequestLimit",
+                "package": "@pixel-brewery/remote-core"
+              }
+            }
+          }
+        },
+        {
+          "id": 198,
+          "name": "writeCapability",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Capability required by every derived POST, PUT, PATCH and DELETE route."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            196,
+            195,
+            199,
+            197,
+            200,
+            198
+          ]
+        }
+      ]
+    },
+    {
+      "id": 140,
       "name": "IRemotePairingGrant",
       "variant": "declaration",
       "kind": 2097152,
@@ -851,14 +2544,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 138,
+              "id": 141,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 141,
+                  "id": 144,
                   "name": "expiresAt",
                   "variant": "declaration",
                   "kind": 1024,
@@ -879,7 +2572,7 @@
                   }
                 },
                 {
-                  "id": 140,
+                  "id": 143,
                   "name": "pairingId",
                   "variant": "declaration",
                   "kind": 1024,
@@ -900,7 +2593,7 @@
                   }
                 },
                 {
-                  "id": 139,
+                  "id": 142,
                   "name": "status",
                   "variant": "declaration",
                   "kind": 1024,
@@ -925,9 +2618,9 @@
                 {
                   "title": "Properties",
                   "children": [
-                    141,
-                    140,
-                    139
+                    144,
+                    143,
+                    142
                   ]
                 }
               ]
@@ -936,14 +2629,14 @@
           {
             "type": "reflection",
             "declaration": {
-              "id": 142,
+              "id": 145,
               "name": "__type",
               "variant": "declaration",
               "kind": 65536,
               "flags": {},
               "children": [
                 {
-                  "id": 146,
+                  "id": 149,
                   "name": "credential",
                   "variant": "declaration",
                   "kind": 1024,
@@ -964,7 +2657,7 @@
                   }
                 },
                 {
-                  "id": 147,
+                  "id": 150,
                   "name": "expiresAt",
                   "variant": "declaration",
                   "kind": 1024,
@@ -985,7 +2678,7 @@
                   }
                 },
                 {
-                  "id": 144,
+                  "id": 147,
                   "name": "pairingId",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1006,7 +2699,7 @@
                   }
                 },
                 {
-                  "id": 145,
+                  "id": 148,
                   "name": "principal",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1033,7 +2726,7 @@
                   }
                 },
                 {
-                  "id": 143,
+                  "id": 146,
                   "name": "status",
                   "variant": "declaration",
                   "kind": 1024,
@@ -1058,11 +2751,11 @@
                 {
                   "title": "Properties",
                   "children": [
-                    146,
+                    149,
+                    150,
                     147,
-                    144,
-                    145,
-                    143
+                    148,
+                    146
                   ]
                 }
               ]
@@ -1072,7 +2765,7 @@
       }
     },
     {
-      "id": 168,
+      "id": 218,
       "name": "IRemoteSecurity",
       "variant": "declaration",
       "kind": 256,
@@ -1089,7 +2782,7 @@
       },
       "children": [
         {
-          "id": 175,
+          "id": 225,
           "name": "equalDigest",
           "variant": "declaration",
           "kind": 2048,
@@ -1098,7 +2791,7 @@
           },
           "signatures": [
             {
-              "id": 176,
+              "id": 226,
               "name": "equalDigest",
               "variant": "signature",
               "kind": 4096,
@@ -1126,7 +2819,7 @@
               },
               "parameters": [
                 {
-                  "id": 177,
+                  "id": 227,
                   "name": "left",
                   "variant": "param",
                   "kind": 32768,
@@ -1145,7 +2838,7 @@
                   }
                 },
                 {
-                  "id": 178,
+                  "id": 228,
                   "name": "right",
                   "variant": "param",
                   "kind": 32768,
@@ -1172,7 +2865,7 @@
           ]
         },
         {
-          "id": 172,
+          "id": 222,
           "name": "hashToken",
           "variant": "declaration",
           "kind": 2048,
@@ -1181,7 +2874,7 @@
           },
           "signatures": [
             {
-              "id": 173,
+              "id": 223,
               "name": "hashToken",
               "variant": "signature",
               "kind": 4096,
@@ -1209,7 +2902,7 @@
               },
               "parameters": [
                 {
-                  "id": 174,
+                  "id": 224,
                   "name": "value",
                   "variant": "param",
                   "kind": 32768,
@@ -1236,7 +2929,7 @@
           ]
         },
         {
-          "id": 169,
+          "id": 219,
           "name": "randomToken",
           "variant": "declaration",
           "kind": 2048,
@@ -1245,7 +2938,7 @@
           },
           "signatures": [
             {
-              "id": 170,
+              "id": 220,
               "name": "randomToken",
               "variant": "signature",
               "kind": 4096,
@@ -1273,7 +2966,7 @@
               },
               "parameters": [
                 {
-                  "id": 171,
+                  "id": 221,
                   "name": "bytes",
                   "variant": "param",
                   "kind": 32768,
@@ -1306,9 +2999,9 @@
         {
           "title": "Methods",
           "children": [
-            175,
-            172,
-            169
+            225,
+            222,
+            219
           ]
         }
       ]
@@ -1325,7 +3018,50 @@
         "summary": [
           {
             "kind": "text",
-            "text": "Authorization changes which require transports to terminate owned channels."
+            "text": "Committed authorization changes delivered synchronously to access observers."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Every event follows its durable or lifecycle commit. Transports must terminate\nowned channels on "
+              },
+              {
+                "kind": "code",
+                "text": "`revoked`"
+              },
+              {
+                "kind": "text",
+                "text": " and "
+              },
+              {
+                "kind": "code",
+                "text": "`disabled`"
+              },
+              {
+                "kind": "text",
+                "text": "; "
+              },
+              {
+                "kind": "code",
+                "text": "`pairings-invalidated`"
+              },
+              {
+                "kind": "text",
+                "text": " ends every\noutstanding invitation. "
+              },
+              {
+                "kind": "code",
+                "text": "`paired`"
+              },
+              {
+                "kind": "text",
+                "text": " lets local administration react to a newly\nstored device grant, for example by closing a displayed invitation. No event\ncarries a credential, challenge or token digest. Observers that switch on the\nkind must tolerate kinds they do not handle."
+              }
+            ]
           }
         ]
       },
@@ -1374,7 +3110,7 @@
                     "summary": [
                       {
                         "kind": "text",
-                        "text": "Committed authorization or invitation-lifecycle transition that the observing transport must apply."
+                        "text": "A durable device grant was removed; that device's open work must be canceled."
                       }
                     ]
                   },
@@ -1416,7 +3152,7 @@
                     "summary": [
                       {
                         "kind": "text",
-                        "text": "Committed authorization or invitation-lifecycle transition that the observing transport must apply."
+                        "text": "Disabled intent was committed; every device-owned channel must be canceled."
                       }
                     ]
                   },
@@ -1457,7 +3193,7 @@
                     "summary": [
                       {
                         "kind": "text",
-                        "text": "Committed authorization or invitation-lifecycle transition that the observing transport must apply."
+                        "text": "Every outstanding pairing invitation was invalidated after a stop, rebind or explicit call."
                       }
                     ]
                   },
@@ -1476,12 +3212,75 @@
                 }
               ]
             }
+          },
+          {
+            "type": "reflection",
+            "declaration": {
+              "id": 33,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 35,
+                  "name": "deviceId",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque identifier of the newly paired device, matching the sanitized status projection."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 34,
+                  "name": "kind",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "A new device grant was durably stored, either by QR possession or by host approval."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "paired"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    35,
+                    34
+                  ]
+                }
+              ]
+            }
           }
         ]
       }
     },
     {
-      "id": 33,
+      "id": 36,
       "name": "RemoteAccessService",
       "variant": "declaration",
       "kind": 128,
@@ -1498,7 +3297,7 @@
       },
       "children": [
         {
-          "id": 85,
+          "id": 88,
           "name": "approvePairing",
           "variant": "declaration",
           "kind": 2048,
@@ -1507,7 +3306,7 @@
           },
           "signatures": [
             {
-              "id": 86,
+              "id": 89,
               "name": "approvePairing",
               "variant": "signature",
               "kind": 4096,
@@ -1535,7 +3334,7 @@
               },
               "parameters": [
                 {
-                  "id": 87,
+                  "id": 90,
                   "name": "pairingId",
                   "variant": "param",
                   "kind": 32768,
@@ -1574,7 +3373,7 @@
           ]
         },
         {
-          "id": 91,
+          "id": 94,
           "name": "authorize",
           "variant": "declaration",
           "kind": 2048,
@@ -1583,7 +3382,7 @@
           },
           "signatures": [
             {
-              "id": 92,
+              "id": 95,
               "name": "authorize",
               "variant": "signature",
               "kind": 4096,
@@ -1611,7 +3410,7 @@
               },
               "parameters": [
                 {
-                  "id": 93,
+                  "id": 96,
                   "name": "credential",
                   "variant": "param",
                   "kind": 32768,
@@ -1649,14 +3448,14 @@
                       {
                         "type": "reflection",
                         "declaration": {
-                          "id": 94,
+                          "id": 97,
                           "name": "__type",
                           "variant": "declaration",
                           "kind": 65536,
                           "flags": {},
                           "children": [
                             {
-                              "id": 95,
+                              "id": 98,
                               "name": "appId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1667,7 +3466,7 @@
                               }
                             },
                             {
-                              "id": 98,
+                              "id": 101,
                               "name": "capabilities",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1685,7 +3484,7 @@
                               }
                             },
                             {
-                              "id": 97,
+                              "id": 100,
                               "name": "deviceId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1696,7 +3495,7 @@
                               }
                             },
                             {
-                              "id": 96,
+                              "id": 99,
                               "name": "hostId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -1711,10 +3510,10 @@
                             {
                               "title": "Properties",
                               "children": [
-                                95,
                                 98,
-                                97,
-                                96
+                                101,
+                                100,
+                                99
                               ]
                             }
                           ]
@@ -1732,7 +3531,7 @@
           ]
         },
         {
-          "id": 82,
+          "id": 85,
           "name": "completePairing",
           "variant": "declaration",
           "kind": 2048,
@@ -1741,7 +3540,7 @@
           },
           "signatures": [
             {
-              "id": 83,
+              "id": 86,
               "name": "completePairing",
               "variant": "signature",
               "kind": 4096,
@@ -1787,7 +3586,7 @@
               },
               "parameters": [
                 {
-                  "id": 84,
+                  "id": 87,
                   "name": "input",
                   "variant": "param",
                   "kind": 32768,
@@ -1822,7 +3621,7 @@
                 "typeArguments": [
                   {
                     "type": "reference",
-                    "target": 137,
+                    "target": 140,
                     "name": "IRemotePairingGrant",
                     "package": "@pixel-brewery/remote-core"
                   }
@@ -1834,7 +3633,7 @@
           ]
         },
         {
-          "id": 34,
+          "id": 37,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
@@ -1843,7 +3642,7 @@
           },
           "signatures": [
             {
-              "id": 35,
+              "id": 38,
               "name": "RemoteAccessService",
               "variant": "signature",
               "kind": 16384,
@@ -1860,7 +3659,7 @@
               },
               "parameters": [
                 {
-                  "id": 36,
+                  "id": 39,
                   "name": "_dependencies",
                   "variant": "param",
                   "kind": 32768,
@@ -1883,7 +3682,7 @@
               ],
               "type": {
                 "type": "reference",
-                "target": 33,
+                "target": 36,
                 "name": "RemoteAccessService",
                 "package": "@pixel-brewery/remote-core"
               }
@@ -1891,7 +3690,7 @@
           ]
         },
         {
-          "id": 73,
+          "id": 76,
           "name": "createPairing",
           "variant": "declaration",
           "kind": 2048,
@@ -1900,7 +3699,7 @@
           },
           "signatures": [
             {
-              "id": 74,
+              "id": 77,
               "name": "createPairing",
               "variant": "signature",
               "kind": 4096,
@@ -1946,7 +3745,7 @@
               },
               "parameters": [
                 {
-                  "id": 75,
+                  "id": 78,
                   "name": "origin",
                   "variant": "param",
                   "kind": 32768,
@@ -1984,14 +3783,14 @@
                       {
                         "type": "reflection",
                         "declaration": {
-                          "id": 76,
+                          "id": 79,
                           "name": "__type",
                           "variant": "declaration",
                           "kind": 65536,
                           "flags": {},
                           "children": [
                             {
-                              "id": 77,
+                              "id": 80,
                               "name": "appId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2002,7 +3801,7 @@
                               }
                             },
                             {
-                              "id": 80,
+                              "id": 83,
                               "name": "challenge",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2013,7 +3812,7 @@
                               }
                             },
                             {
-                              "id": 81,
+                              "id": 84,
                               "name": "expiresAt",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2024,7 +3823,7 @@
                               }
                             },
                             {
-                              "id": 78,
+                              "id": 81,
                               "name": "hostId",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2035,7 +3834,7 @@
                               }
                             },
                             {
-                              "id": 79,
+                              "id": 82,
                               "name": "origin",
                               "variant": "declaration",
                               "kind": 1024,
@@ -2050,11 +3849,11 @@
                             {
                               "title": "Properties",
                               "children": [
-                                77,
                                 80,
+                                83,
+                                84,
                                 81,
-                                78,
-                                79
+                                82
                               ]
                             }
                           ]
@@ -2072,7 +3871,7 @@
           ]
         },
         {
-          "id": 66,
+          "id": 69,
           "name": "enabled",
           "variant": "declaration",
           "kind": 262144,
@@ -2080,7 +3879,7 @@
             "isPublic": true
           },
           "getSignature": {
-            "id": 67,
+            "id": 70,
             "name": "enabled",
             "variant": "signature",
             "kind": 524288,
@@ -2113,7 +3912,7 @@
           }
         },
         {
-          "id": 106,
+          "id": 109,
           "name": "getStatus",
           "variant": "declaration",
           "kind": 2048,
@@ -2122,7 +3921,7 @@
           },
           "signatures": [
             {
-              "id": 107,
+              "id": 110,
               "name": "getStatus",
               "variant": "signature",
               "kind": 4096,
@@ -2158,7 +3957,7 @@
           ]
         },
         {
-          "id": 68,
+          "id": 71,
           "name": "initialize",
           "variant": "declaration",
           "kind": 2048,
@@ -2167,7 +3966,7 @@
           },
           "signatures": [
             {
-              "id": 69,
+              "id": 72,
               "name": "initialize",
               "variant": "signature",
               "kind": 4096,
@@ -2222,7 +4021,7 @@
           ]
         },
         {
-          "id": 64,
+          "id": 67,
           "name": "initialized",
           "variant": "declaration",
           "kind": 262144,
@@ -2230,7 +4029,7 @@
             "isPublic": true
           },
           "getSignature": {
-            "id": 65,
+            "id": 68,
             "name": "initialized",
             "variant": "signature",
             "kind": 524288,
@@ -2263,7 +4062,7 @@
           }
         },
         {
-          "id": 104,
+          "id": 107,
           "name": "invalidatePendingPairings",
           "variant": "declaration",
           "kind": 2048,
@@ -2272,7 +4071,7 @@
           },
           "signatures": [
             {
-              "id": 105,
+              "id": 108,
               "name": "invalidatePendingPairings",
               "variant": "signature",
               "kind": 4096,
@@ -2295,7 +4094,7 @@
           ]
         },
         {
-          "id": 88,
+          "id": 91,
           "name": "rejectPairing",
           "variant": "declaration",
           "kind": 2048,
@@ -2304,7 +4103,7 @@
           },
           "signatures": [
             {
-              "id": 89,
+              "id": 92,
               "name": "rejectPairing",
               "variant": "signature",
               "kind": 4096,
@@ -2332,7 +4131,7 @@
               },
               "parameters": [
                 {
-                  "id": 90,
+                  "id": 93,
                   "name": "pairingId",
                   "variant": "param",
                   "kind": 32768,
@@ -2371,7 +4170,7 @@
           ]
         },
         {
-          "id": 102,
+          "id": 105,
           "name": "revokeAllDevices",
           "variant": "declaration",
           "kind": 2048,
@@ -2380,7 +4179,7 @@
           },
           "signatures": [
             {
-              "id": 103,
+              "id": 106,
               "name": "revokeAllDevices",
               "variant": "signature",
               "kind": 4096,
@@ -2426,7 +4225,7 @@
           ]
         },
         {
-          "id": 99,
+          "id": 102,
           "name": "revokeDevice",
           "variant": "declaration",
           "kind": 2048,
@@ -2435,7 +4234,7 @@
           },
           "signatures": [
             {
-              "id": 100,
+              "id": 103,
               "name": "revokeDevice",
               "variant": "signature",
               "kind": 4096,
@@ -2472,7 +4271,7 @@
               },
               "parameters": [
                 {
-                  "id": 101,
+                  "id": 104,
                   "name": "deviceId",
                   "variant": "param",
                   "kind": 32768,
@@ -2511,7 +4310,7 @@
           ]
         },
         {
-          "id": 70,
+          "id": 73,
           "name": "setEnabled",
           "variant": "declaration",
           "kind": 2048,
@@ -2520,7 +4319,7 @@
           },
           "signatures": [
             {
-              "id": 71,
+              "id": 74,
               "name": "setEnabled",
               "variant": "signature",
               "kind": 4096,
@@ -2548,7 +4347,7 @@
               },
               "parameters": [
                 {
-                  "id": 72,
+                  "id": 75,
                   "name": "enabled",
                   "variant": "param",
                   "kind": 32768,
@@ -2587,7 +4386,7 @@
           ]
         },
         {
-          "id": 108,
+          "id": 111,
           "name": "subscribe",
           "variant": "declaration",
           "kind": 2048,
@@ -2596,7 +4395,7 @@
           },
           "signatures": [
             {
-              "id": 109,
+              "id": 112,
               "name": "subscribe",
               "variant": "signature",
               "kind": 4096,
@@ -2607,10 +4406,51 @@
                 "summary": [
                   {
                     "kind": "text",
-                    "text": "Observes revocation/lifecycle effects. Unsubscribe before disposing a transport."
+                    "text": "Observes committed pairing, revocation and lifecycle effects. Unsubscribe before disposing a transport."
                   }
                 ],
                 "blockTags": [
+                  {
+                    "tag": "@remarks",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Listeners run synchronously after the corresponding commit: "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`paired`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " after a\nnew device grant is durably stored, "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`revoked`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " after durable removal, and\n"
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`disabled`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " or "
+                      },
+                      {
+                        "kind": "code",
+                        "text": "`pairings-invalidated`"
+                      },
+                      {
+                        "kind": "text",
+                        "text": " after the lifecycle transition. A\nfailing listener cannot undo the commit and does not affect other listeners."
+                      }
+                    ]
+                  },
                   {
                     "tag": "@returns",
                     "content": [
@@ -2624,7 +4464,7 @@
               },
               "parameters": [
                 {
-                  "id": 110,
+                  "id": 113,
                   "name": "listener",
                   "variant": "param",
                   "kind": 32768,
@@ -2640,21 +4480,21 @@
                   "type": {
                     "type": "reflection",
                     "declaration": {
-                      "id": 111,
+                      "id": 114,
                       "name": "__type",
                       "variant": "declaration",
                       "kind": 65536,
                       "flags": {},
                       "signatures": [
                         {
-                          "id": 112,
+                          "id": 115,
                           "name": "__type",
                           "variant": "signature",
                           "kind": 4096,
                           "flags": {},
                           "parameters": [
                             {
-                              "id": 113,
+                              "id": 116,
                               "name": "event",
                               "variant": "param",
                               "kind": 32768,
@@ -2680,14 +4520,14 @@
               "type": {
                 "type": "reflection",
                 "declaration": {
-                  "id": 114,
+                  "id": 117,
                   "name": "__type",
                   "variant": "declaration",
                   "kind": 65536,
                   "flags": {},
                   "signatures": [
                     {
-                      "id": 115,
+                      "id": 118,
                       "name": "__type",
                       "variant": "signature",
                       "kind": 4096,
@@ -2708,37 +4548,37 @@
         {
           "title": "Constructors",
           "children": [
-            34
+            37
           ]
         },
         {
           "title": "Accessors",
           "children": [
-            66,
-            64
+            69,
+            67
           ]
         },
         {
           "title": "Methods",
           "children": [
-            85,
-            91,
-            82,
-            73,
-            106,
-            68,
-            104,
             88,
+            94,
+            85,
+            76,
+            109,
+            71,
+            107,
+            91,
+            105,
             102,
-            99,
-            70,
-            108
+            73,
+            111
           ]
         }
       ]
     },
     {
-      "id": 154,
+      "id": 157,
       "name": "RemoteRouteRegistry",
       "variant": "declaration",
       "kind": 128,
@@ -2755,7 +4595,7 @@
       },
       "children": [
         {
-          "id": 163,
+          "id": 166,
           "name": "authorize",
           "variant": "declaration",
           "kind": 2048,
@@ -2764,7 +4604,7 @@
           },
           "signatures": [
             {
-              "id": 164,
+              "id": 167,
               "name": "authorize",
               "variant": "signature",
               "kind": 4096,
@@ -2801,7 +4641,7 @@
               },
               "parameters": [
                 {
-                  "id": 165,
+                  "id": 168,
                   "name": "method",
                   "variant": "param",
                   "kind": 32768,
@@ -2820,7 +4660,7 @@
                   }
                 },
                 {
-                  "id": 166,
+                  "id": 169,
                   "name": "path",
                   "variant": "param",
                   "kind": 32768,
@@ -2839,7 +4679,7 @@
                   }
                 },
                 {
-                  "id": 167,
+                  "id": 170,
                   "name": "principal",
                   "variant": "param",
                   "kind": 32768,
@@ -2878,7 +4718,7 @@
           ]
         },
         {
-          "id": 155,
+          "id": 158,
           "name": "constructor",
           "variant": "declaration",
           "kind": 512,
@@ -2887,7 +4727,7 @@
           },
           "signatures": [
             {
-              "id": 156,
+              "id": 159,
               "name": "RemoteRouteRegistry",
               "variant": "signature",
               "kind": 16384,
@@ -2915,7 +4755,7 @@
               },
               "parameters": [
                 {
-                  "id": 157,
+                  "id": 160,
                   "name": "routes",
                   "variant": "param",
                   "kind": 32768,
@@ -2949,7 +4789,7 @@
               ],
               "type": {
                 "type": "reference",
-                "target": 154,
+                "target": 157,
                 "name": "RemoteRouteRegistry",
                 "package": "@pixel-brewery/remote-core"
               }
@@ -2957,7 +4797,7 @@
           ]
         },
         {
-          "id": 159,
+          "id": 162,
           "name": "match",
           "variant": "declaration",
           "kind": 2048,
@@ -2966,7 +4806,7 @@
           },
           "signatures": [
             {
-              "id": 160,
+              "id": 163,
               "name": "match",
               "variant": "signature",
               "kind": 4096,
@@ -3003,7 +4843,7 @@
               },
               "parameters": [
                 {
-                  "id": 161,
+                  "id": 164,
                   "name": "method",
                   "variant": "param",
                   "kind": 32768,
@@ -3022,7 +4862,7 @@
                   }
                 },
                 {
-                  "id": 162,
+                  "id": 165,
                   "name": "input",
                   "variant": "param",
                   "kind": 32768,
@@ -3059,14 +4899,14 @@
         {
           "title": "Constructors",
           "children": [
-            155
+            158
           ]
         },
         {
           "title": "Methods",
           "children": [
-            163,
-            159
+            166,
+            162
           ]
         }
       ]
@@ -3076,8 +4916,8 @@
     {
       "title": "Classes",
       "children": [
-        33,
-        154
+        36,
+        157
       ]
     },
     {
@@ -3085,16 +4925,31 @@
       "children": [
         1,
         11,
-        148,
+        151,
+        229,
+        204,
+        214,
         179,
-        168
+        188,
+        181,
+        201,
+        191,
+        194,
+        218
       ]
     },
     {
       "title": "Type Aliases",
       "children": [
-        137,
+        140,
         25
+      ]
+    },
+    {
+      "title": "Functions",
+      "children": [
+        175,
+        171
       ]
     }
   ],
@@ -3267,153 +5122,153 @@
     },
     "33": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService"
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type"
     },
     "34": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.__constructor"
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type.kind"
     },
     "35": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService"
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type.deviceId"
     },
     "36": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService"
+    },
+    "37": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.__constructor"
+    },
+    "38": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService"
+    },
+    "39": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
       "qualifiedName": "_dependencies"
-    },
-    "64": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.initialized"
-    },
-    "65": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.initialized"
-    },
-    "66": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.enabled"
     },
     "67": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.enabled"
+      "qualifiedName": "RemoteAccessService.initialized"
     },
     "68": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.initialize"
+      "qualifiedName": "RemoteAccessService.initialized"
     },
     "69": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.initialize"
+      "qualifiedName": "RemoteAccessService.enabled"
     },
     "70": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.setEnabled"
+      "qualifiedName": "RemoteAccessService.enabled"
     },
     "71": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.setEnabled"
+      "qualifiedName": "RemoteAccessService.initialize"
     },
     "72": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "enabled"
+      "qualifiedName": "RemoteAccessService.initialize"
     },
     "73": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.createPairing"
+      "qualifiedName": "RemoteAccessService.setEnabled"
     },
     "74": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.createPairing"
+      "qualifiedName": "RemoteAccessService.setEnabled"
     },
     "75": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "origin"
+      "qualifiedName": "enabled"
     },
     "76": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.createPairing"
+    },
+    "77": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.createPairing"
+    },
+    "78": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "origin"
+    },
+    "79": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "77": {
+    "80": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "appId"
     },
-    "78": {
+    "81": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "hostId"
     },
-    "79": {
+    "82": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "origin"
     },
-    "80": {
+    "83": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "challenge"
     },
-    "81": {
+    "84": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
       "qualifiedName": "expiresAt"
     },
-    "82": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.completePairing"
-    },
-    "83": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.completePairing"
-    },
-    "84": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "input"
-    },
     "85": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.approvePairing"
+      "qualifiedName": "RemoteAccessService.completePairing"
     },
     "86": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.approvePairing"
+      "qualifiedName": "RemoteAccessService.completePairing"
     },
     "87": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "pairingId"
+      "qualifiedName": "input"
     },
     "88": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.rejectPairing"
+      "qualifiedName": "RemoteAccessService.approvePairing"
     },
     "89": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.rejectPairing"
+      "qualifiedName": "RemoteAccessService.approvePairing"
     },
     "90": {
       "packageName": "@pixel-brewery/remote-core",
@@ -3423,117 +5278,117 @@
     "91": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.authorize"
+      "qualifiedName": "RemoteAccessService.rejectPairing"
     },
     "92": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.authorize"
+      "qualifiedName": "RemoteAccessService.rejectPairing"
     },
     "93": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "credential"
+      "qualifiedName": "pairingId"
     },
     "94": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.authorize"
+    },
+    "95": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.authorize"
+    },
+    "96": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "credential"
+    },
+    "97": {
       "packageName": "zod",
       "packagePath": "v4/core/util.d.cts",
       "qualifiedName": "__type"
     },
-    "95": {
+    "98": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
       "qualifiedName": "appId"
     },
-    "96": {
+    "99": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
       "qualifiedName": "hostId"
     },
-    "97": {
+    "100": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
       "qualifiedName": "deviceId"
     },
-    "98": {
+    "101": {
       "packageName": "@pixel-brewery/remote-protocol",
       "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
       "qualifiedName": "capabilities"
     },
-    "99": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.revokeDevice"
-    },
-    "100": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.revokeDevice"
-    },
-    "101": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "deviceId"
-    },
     "102": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.revokeAllDevices"
+      "qualifiedName": "RemoteAccessService.revokeDevice"
     },
     "103": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.revokeAllDevices"
+      "qualifiedName": "RemoteAccessService.revokeDevice"
     },
     "104": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.invalidatePendingPairings"
+      "qualifiedName": "deviceId"
     },
     "105": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.invalidatePendingPairings"
+      "qualifiedName": "RemoteAccessService.revokeAllDevices"
     },
     "106": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.getStatus"
+      "qualifiedName": "RemoteAccessService.revokeAllDevices"
     },
     "107": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.getStatus"
+      "qualifiedName": "RemoteAccessService.invalidatePendingPairings"
     },
     "108": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.subscribe"
+      "qualifiedName": "RemoteAccessService.invalidatePendingPairings"
     },
     "109": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "RemoteAccessService.subscribe"
+      "qualifiedName": "RemoteAccessService.getStatus"
     },
     "110": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "listener"
+      "qualifiedName": "RemoteAccessService.getStatus"
     },
     "111": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "RemoteAccessService.subscribe"
     },
     "112": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "RemoteAccessService.subscribe"
     },
     "113": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/access/services/RemoteAccessService.ts",
-      "qualifiedName": "event"
+      "qualifiedName": "listener"
     },
     "114": {
       "packageName": "@pixel-brewery/remote-core",
@@ -3545,222 +5400,472 @@
       "packagePath": "src/access/services/RemoteAccessService.ts",
       "qualifiedName": "__type"
     },
-    "137": {
+    "116": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "IRemotePairingGrant"
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "event"
     },
-    "138": {
+    "117": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
       "qualifiedName": "__type"
     },
-    "139": {
+    "118": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.status"
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "__type"
     },
     "140": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.pairingId"
+      "qualifiedName": "IRemotePairingGrant"
     },
     "141": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.expiresAt"
+      "qualifiedName": "__type"
     },
     "142": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type"
+      "qualifiedName": "__type.status"
     },
     "143": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.status"
+      "qualifiedName": "__type.pairingId"
     },
     "144": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.pairingId"
+      "qualifiedName": "__type.expiresAt"
     },
     "145": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.principal"
+      "qualifiedName": "__type"
     },
     "146": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.credential"
+      "qualifiedName": "__type.status"
     },
     "147": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
-      "qualifiedName": "__type.expiresAt"
+      "qualifiedName": "__type.pairingId"
     },
     "148": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
-      "qualifiedName": "IRemoteAccessStore"
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.principal"
     },
     "149": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
-      "qualifiedName": "IRemoteAccessStore.load"
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.credential"
     },
     "150": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
-      "qualifiedName": "IRemoteAccessStore.load"
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.expiresAt"
     },
     "151": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
-      "qualifiedName": "IRemoteAccessStore.save"
+      "qualifiedName": "IRemoteAccessStore"
     },
     "152": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
-      "qualifiedName": "IRemoteAccessStore.save"
+      "qualifiedName": "IRemoteAccessStore.load"
     },
     "153": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
-      "qualifiedName": "state"
+      "qualifiedName": "IRemoteAccessStore.load"
     },
     "154": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry"
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore.save"
     },
     "155": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry.__constructor"
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore.save"
     },
     "156": {
       "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry"
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "state"
     },
     "157": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "routes"
+      "qualifiedName": "RemoteRouteRegistry"
+    },
+    "158": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry.__constructor"
     },
     "159": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry.match"
+      "qualifiedName": "RemoteRouteRegistry"
     },
     "160": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry.match"
-    },
-    "161": {
-      "packageName": "@pixel-brewery/remote-core",
-      "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "method"
+      "qualifiedName": "routes"
     },
     "162": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "input"
+      "qualifiedName": "RemoteRouteRegistry.match"
     },
     "163": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry.authorize"
+      "qualifiedName": "RemoteRouteRegistry.match"
     },
     "164": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "RemoteRouteRegistry.authorize"
+      "qualifiedName": "method"
     },
     "165": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "method"
+      "qualifiedName": "input"
     },
     "166": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "path"
+      "qualifiedName": "RemoteRouteRegistry.authorize"
     },
     "167": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/routing/RemoteRouteRegistry.ts",
-      "qualifiedName": "principal"
+      "qualifiedName": "RemoteRouteRegistry.authorize"
     },
     "168": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "method"
+    },
+    "169": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "path"
+    },
+    "170": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "principal"
+    },
+    "171": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteRoutesFromOpenApi.ts",
+      "qualifiedName": "createRemoteRoutesFromOpenApi"
+    },
+    "172": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteRoutesFromOpenApi.ts",
+      "qualifiedName": "createRemoteRoutesFromOpenApi"
+    },
+    "173": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteRoutesFromOpenApi.ts",
+      "qualifiedName": "document"
+    },
+    "174": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteRoutesFromOpenApi.ts",
+      "qualifiedName": "policy"
+    },
+    "175": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteNativeRouteSources.ts",
+      "qualifiedName": "createRemoteNativeRouteSources"
+    },
+    "176": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteNativeRouteSources.ts",
+      "qualifiedName": "createRemoteNativeRouteSources"
+    },
+    "177": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteNativeRouteSources.ts",
+      "qualifiedName": "routes"
+    },
+    "178": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/createRemoteNativeRouteSources.ts",
+      "qualifiedName": "options"
+    },
+    "179": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiDocument.ts",
+      "qualifiedName": "IRemoteOpenApiDocument"
+    },
+    "180": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiDocument.ts",
+      "qualifiedName": "IRemoteOpenApiDocument.paths"
+    },
+    "181": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem"
+    },
+    "182": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem.get"
+    },
+    "183": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem.head"
+    },
+    "184": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem.post"
+    },
+    "185": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem.put"
+    },
+    "186": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem.patch"
+    },
+    "187": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiPathItem.ts",
+      "qualifiedName": "IRemoteOpenApiPathItem.delete"
+    },
+    "188": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiOperation.ts",
+      "qualifiedName": "IRemoteOpenApiOperation"
+    },
+    "189": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiOperation.ts",
+      "qualifiedName": "IRemoteOpenApiOperation.operationId"
+    },
+    "190": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiOperation.ts",
+      "qualifiedName": "IRemoteOpenApiOperation.responses"
+    },
+    "191": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiResponse.ts",
+      "qualifiedName": "IRemoteOpenApiResponse"
+    },
+    "192": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiResponse.ts",
+      "qualifiedName": "IRemoteOpenApiResponse.$ref"
+    },
+    "193": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiResponse.ts",
+      "qualifiedName": "IRemoteOpenApiResponse.content"
+    },
+    "194": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy"
+    },
+    "195": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy.include"
+    },
+    "196": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy.exclude"
+    },
+    "197": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy.readCapability"
+    },
+    "198": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy.writeCapability"
+    },
+    "199": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy.maxRequestBytes"
+    },
+    "200": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRoutePolicy.ts",
+      "qualifiedName": "IRemoteOpenApiRoutePolicy.requestLimits"
+    },
+    "201": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRequestLimit.ts",
+      "qualifiedName": "IRemoteOpenApiRequestLimit"
+    },
+    "202": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRequestLimit.ts",
+      "qualifiedName": "IRemoteOpenApiRequestLimit.prefix"
+    },
+    "203": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteOpenApiRequestLimit.ts",
+      "qualifiedName": "IRemoteOpenApiRequestLimit.maxRequestBytes"
+    },
+    "204": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "IRemoteNativeRouteSourceOptions"
+    },
+    "205": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "IRemoteNativeRouteSourceOptions.appId"
+    },
+    "206": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "IRemoteNativeRouteSourceOptions.protocolVersion"
+    },
+    "207": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "IRemoteNativeRouteSourceOptions.kotlin"
+    },
+    "208": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "209": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "__type.packageName"
+    },
+    "210": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "__type.objectName"
+    },
+    "211": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "IRemoteNativeRouteSourceOptions.swift"
+    },
+    "212": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "213": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSourceOptions.ts",
+      "qualifiedName": "__type.typeName"
+    },
+    "214": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSources.ts",
+      "qualifiedName": "IRemoteNativeRouteSources"
+    },
+    "215": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSources.ts",
+      "qualifiedName": "IRemoteNativeRouteSources.json"
+    },
+    "216": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSources.ts",
+      "qualifiedName": "IRemoteNativeRouteSources.kotlin"
+    },
+    "217": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/interfaces/IRemoteNativeRouteSources.ts",
+      "qualifiedName": "IRemoteNativeRouteSources.swift"
+    },
+    "218": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity"
     },
-    "169": {
+    "219": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity.randomToken"
     },
-    "170": {
+    "220": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity.randomToken"
     },
-    "171": {
+    "221": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "bytes"
     },
-    "172": {
+    "222": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity.hashToken"
     },
-    "173": {
+    "223": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity.hashToken"
     },
-    "174": {
+    "224": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "value"
     },
-    "175": {
+    "225": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity.equalDigest"
     },
-    "176": {
+    "226": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "IRemoteSecurity.equalDigest"
     },
-    "177": {
+    "227": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "left"
     },
-    "178": {
+    "228": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
       "qualifiedName": "right"
     },
-    "179": {
+    "229": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/time/interfaces/IRemoteClock.ts",
       "qualifiedName": "IRemoteClock"
     },
-    "180": {
+    "230": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/time/interfaces/IRemoteClock.ts",
       "qualifiedName": "IRemoteClock.now"
     },
-    "181": {
+    "231": {
       "packageName": "@pixel-brewery/remote-core",
       "packagePath": "src/time/interfaces/IRemoteClock.ts",
       "qualifiedName": "IRemoteClock.now"

@@ -293,7 +293,7 @@ Resolves after the activation intent is durably committed.
 
 > **subscribe**(`listener`): () => `void`
 
-Observes revocation/lifecycle effects. Unsubscribe before disposing a transport.
+Observes committed pairing, revocation and lifecycle effects. Unsubscribe before disposing a transport.
 
 #### Parameters
 
@@ -308,3 +308,10 @@ Observer invoked when authorization changes; the returned cleanup removes only t
 An idempotent cleanup for this registration.
 
 () => `void`
+
+#### Remarks
+
+Listeners run synchronously after the corresponding commit: `paired` after a
+new device grant is durably stored, `revoked` after durable removal, and
+`disabled` or `pairings-invalidated` after the lifecycle transition. A
+failing listener cannot undo the commit and does not affect other listeners.

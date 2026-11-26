@@ -3,6 +3,10 @@
 Supervised private-LAN host. One application dispatcher owns product validation and authorization.
 Network, listeners and streams start only through initialize/enable/reconcile and are disposed explicitly.
 
+## Implements
+
+- [`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md)
+
 ## Constructors
 
 ### Constructor
@@ -61,6 +65,10 @@ Optional endpoint identifier. Omission selects the first available advertised en
 
 The secret-bearing invitation for the selected endpoint. Deliver it out of band and never log it.
 
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`createPairing`](../interfaces/IRemoteHostLifecycle.md#createpairing)
+
 ***
 
 ### disable()
@@ -74,6 +82,10 @@ Closes access first, then persists disabled intent. A failed save keeps this run
 `Promise`\<`void`\>
 
 Resolves after listeners close and disabled intent is durably stored.
+
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`disable`](../interfaces/IRemoteHostLifecycle.md#disable)
 
 ***
 
@@ -89,6 +101,10 @@ Stops resources without clearing durable activation; safe to call repeatedly.
 
 Resolves after owned resources close. Repeated calls do not create additional work.
 
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`dispose`](../interfaces/IRemoteHostLifecycle.md#dispose)
+
 ***
 
 ### enable()
@@ -102,6 +118,10 @@ Persists activation before starting; unavailable networks retain the user's inte
 `Promise`\<`void`\>
 
 Resolves after durable activation and successful listener binding.
+
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`enable`](../interfaces/IRemoteHostLifecycle.md#enable)
 
 ***
 
@@ -117,6 +137,10 @@ Restores authorization and immutable asset root, then reconciles persisted activ
 
 Resolves after validated restoration and any requested lifecycle reconciliation.
 
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`initialize`](../interfaces/IRemoteHostLifecycle.md#initialize)
+
 ***
 
 ### reconcile()
@@ -130,6 +154,10 @@ Serializes network re-evaluation; no-op when the selected interface is unchanged
 `Promise`\<`void`\>
 
 Resolves after the current selected interface and listener state agree.
+
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`reconcile`](../interfaces/IRemoteHostLifecycle.md#reconcile)
 
 ***
 
@@ -167,6 +195,10 @@ Identifier of the device whose durable grant and owned streams must be revoked.
 
 Resolves after durable removal and synchronous revocation notification.
 
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`revokeDevice`](../interfaces/IRemoteHostLifecycle.md#revokedevice)
+
 ***
 
 ### status()
@@ -180,3 +212,40 @@ Returns sanitized network/device state after initialization.
 [`IRemoteHostStatus`](../interfaces/IRemoteHostStatus.md)
 
 A credential-free snapshot of listener and device-administration state.
+
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`status`](../interfaces/IRemoteHostLifecycle.md#status)
+
+***
+
+### subscribe()
+
+> **subscribe**(`listener`): () => `void`
+
+Observes committed access events of this host's authorization owner.
+
+#### Parameters
+
+##### listener
+
+(`event`) => `void`
+
+Synchronous observer; a throwing listener cannot undo the commit.
+
+#### Returns
+
+An idempotent cleanup removing only this registration.
+
+() => `void`
+
+#### Remarks
+
+Delegates to the composed access service, so listeners receive `paired`,
+`revoked`, `disabled` and `pairings-invalidated` synchronously after each
+commit. Registrations are independent of the listener lifecycle; release
+them before or after disposal as the owner requires.
+
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`subscribe`](../interfaces/IRemoteHostLifecycle.md#subscribe)

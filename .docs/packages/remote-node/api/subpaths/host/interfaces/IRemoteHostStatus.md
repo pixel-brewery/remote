@@ -30,6 +30,6 @@ Public identity and currently advertised listener endpoints of this owned host.
 
 ### state
 
-> `readonly` **state**: `"disabled"` \| `"disposed"` \| `"starting"` \| `"available"` \| `"rebinding"` \| `"stopping"` \| `"unavailable"`
+> `readonly` **state**: `"disabled"` \| `"disposed"` \| `"available"` \| `"rebinding"` \| `"starting"` \| `"stopping"` \| `"unavailable"`
 
 Current listener lifecycle state. Unavailable does not erase the persisted activation preference.

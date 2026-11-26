@@ -68,6 +68,17 @@ portal. A verified remote context admits registered requests to that same
 pipeline. The private host launch cookie and local workspace activation remain
 separate. The native client does not create another datastore or backend owner.
 
+## Application composition
+
+`0.2.0` moves the composition the first consumers wrote by hand into the SDK:
+the serialized host lifecycle and private host controls, request provenance and
+dispatch, route registries derived from an OpenAPI contract with their native
+inventories, the browser start gate and host-control client, and the Electron Main
+and Utility composition with a profile store. Consumers keep product policy, views
+and wiring. The same release fixes streamed request bodies that bypassed the route
+limit, adds the `paired` access event and keeps the Android protected-view cookie
+across bridge recreation.
+
 ## Acceptance
 
 The complete delivery includes all nine packages, real browser/Electron/native

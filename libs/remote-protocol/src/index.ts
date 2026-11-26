@@ -14,6 +14,8 @@ export type { IRemoteHostIdentity } from './host/interfaces/IRemoteHostIdentity.
 export { remoteEndpointSchema } from './host/schemas/remoteEndpointSchema.js';
 export { remoteHostDescriptorSchema } from './host/schemas/remoteHostDescriptorSchema.js';
 export { remoteHostIdentitySchema } from './host/schemas/remoteHostIdentitySchema.js';
+export type { IRemoteHostStatusSnapshot } from './host/interfaces/IRemoteHostStatusSnapshot.js';
+export { remoteHostStatusSchema } from './host/schemas/remoteHostStatusSchema.js';
 export type { IRemoteLocalView } from './native/interfaces/IRemoteLocalView.js';
 export type { IRemoteNativeRequest } from './native/interfaces/IRemoteNativeRequest.js';
 export type { IRemoteNativeResponse } from './native/interfaces/IRemoteNativeResponse.js';

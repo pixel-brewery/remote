@@ -26,6 +26,13 @@ referrer. Treat the URL as temporary secret material. Browser pairing uses an
 HttpOnly cookie; native pairing carries a wire bearer that the privileged adapter
 protects and removes before returning application state.
 
+`remoteHostStatusSchema` validates the private host-administration snapshot an
+application serves only to its own local host view: listener state, the public
+descriptor, activation intent, paired device metadata and consumed pending
+pairings (`IRemoteHostStatusSnapshot`). It mirrors the Node host status and
+rejects unknown fields at every level, so token hashes, credentials and pairing
+challenges cannot enter a browser projection.
+
 `normalizeRemotePath` produces a canonical decoded admission path without its
 query. It rejects authorities, traversal, encoded separators, controls and
 ambiguous repeated escapes. `isPrivateAddress` recognizes complete numeric

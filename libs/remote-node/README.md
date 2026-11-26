@@ -48,7 +48,11 @@ intent. A failed disable save keeps the current runtime stopped until an explici
 The dispatcher receives the original request and response streams after device,
 route and capability checks. It retains product validation and resource
 permissions. Bounds cover request bodies, connections, WebSockets, protocol JSON,
-headers and shutdown. Host/Origin checks reject foreign browser callers.
+headers and shutdown. A route's `maxRequestBytes` counts bytes where the HTTP
+parser enters them into the request stream, including bytes buffered during
+admission. It therefore holds for `read()`, `data` listeners, pipes and async
+iteration alike, without switching the stream mode; an overrun destroys the
+request and aborts the context signal. Host/Origin checks reject foreign browser callers.
 Revocation cancels existing HTTP/SSE responses, pending event admission and
 WebSockets. Binary Range, multipart boundaries and product query strings retain
 their HTTP meaning.
@@ -78,6 +82,60 @@ Close the gateway, then dispose its transport when the native connection ends.
 before atomic replacement. The application owns the containing private directory
 and must provide one writer. Missing records restore as absent; malformed or
 symbolic-link records fail instead of being silently overwritten.
+
+## Application composition
+
+`RemoteHostRuntime` wraps a `NodeRemoteHost`, or any `IRemoteHostLifecycle`,
+for one application process. It serializes initialize, enable, disable,
+reconcile, pairing and revocation in one queue of at most 16 running or queued
+commands by default (`maxPendingOperations`); a full queue fails with
+`resource-limit`. It creates no timer and never polls. `createPairing()`
+reconciles the network inside the same queued operation, so invitations name
+the current address. Only lifecycle commands set or clear the retained
+availability failure that `status()` reports as `unavailable`. `initialize()`
+keeps the application usable when restoration fails. `dispose()` lets running
+work finish, refuses queued commands, closes the host once and returns the same
+promise for every call. `subscribe()` forwards the host's access events, such as
+`paired`, and releases its registrations at disposal.
+
+`handleRemoteHostControl(request, response, control, options)` serves a closed
+local administration endpoint on plain Node `IncomingMessage`/`ServerResponse`:
+`GET <prefix>/status` and `POST <prefix>/enable|disable|reconcile|pair|revoke`
+with strict JSON bodies (`{}`, `{ endpointId? }`, `{ deviceId }`). The default
+prefix is `/__host/remote/v1` and the default body limit 2 KiB. Queries and
+trailing paths return 404, wrong methods 405 with `Allow`, invalid input 422,
+oversized declared or streamed bodies 413, a missing control, full queue or
+unavailable host 503. Writes return the resulting status; `pair` returns the
+secret-bearing invitation. The caller must authorize the local caller first and
+must never route device requests here.
+
+`RemoteRequestAdmissions` records which request objects the host admitted, with
+`admit(request, context)` returning an idempotent release, `has(request)` and
+`context(request)`. Provenance cannot be derived from headers.
+`createRemoteApplicationHandler(dispatch, admit)` returns the `application.handle`
+implementation for an existing HTTP pipeline. It admits the request and removes
+`authorization`, `cookie` and `origin` from the parsed, distinct and raw header
+views after SDK authorization. It releases the admission exactly once on
+response finish, close or context abort, and rethrows dispatch failures after
+that cleanup.
+
+```ts
+const admissions = new RemoteRequestAdmissions();
+const host = new NodeRemoteHost({
+    // identity, name, access, routes, assetsPath as above
+    application: {
+        handle: createRemoteApplicationHandler(requestListener, (request, context) =>
+            admissions.admit(request, context),
+        ),
+    },
+});
+const runtime = new RemoteHostRuntime(host);
+await runtime.initialize();
+// In the locally authorized administration middleware:
+await handleRemoteHostControl(request, response, runtime);
+// On application shutdown, before closing the pipeline's services:
+await runtime.dispose();
+```
 
 See the generated [API reference](../../.docs/packages/remote-node/api/index.md)
 and the independent [host fixtures](../../apps/fixture-host/README.md).
