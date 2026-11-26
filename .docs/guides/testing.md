@@ -107,6 +107,14 @@ Set `GRADLE_BIN` only when an existing matching wrapper supplies Gradle 9.6.0. T
 installed iPhone simulator without creating another one; an explicit
 `REMOTE_IOS_DESTINATION` can select an existing device.
 
+Capacitor 8 requires Xcode 26 or later. The iOS CI job uses the supported
+`macos-15` ARM64 image and explicitly selects
+`DEVELOPER_DIR=/Applications/Xcode_26.3.app/Contents/Developer`; the image's older
+default Xcode is insufficient. Xcode 26.3 supplies Swift 6.2.3 and the iOS 26.2
+simulator SDK. The job reports the selected Xcode and Swift versions, then runs
+the same SDK compile, all simulator tests and both fixture app builds. The
+`ios` required check, timeout and read-only token permissions remain unchanged.
+
 The library and Counter/Notes fixture use [built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin),
 with no separate `org.jetbrains.kotlin.android` application or opt-out flags. Both
 native Gradle entry points select KGP 2.4.21 through Google's documented
