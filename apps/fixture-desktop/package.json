@@ -14,9 +14,9 @@
     "devDependencies": {
         "@pixel-brewery/remote-fixture-browser": "workspace:*",
         "@pixel-brewery/remote-fixture-host": "workspace:*",
-        "@playwright/test": "1.65.0",
+        "@playwright/test": "1.65.1",
         "electron": "45.5.0",
-        "playwright": "1.65.0",
+        "playwright": "1.65.1",
         "vite": "8.3.8"
     },
     "scripts": {
