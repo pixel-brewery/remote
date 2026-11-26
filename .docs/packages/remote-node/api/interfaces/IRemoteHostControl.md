@@ -95,6 +95,28 @@ RemoteProtocolError when the network or persistent state is unavailable.
 
 ***
 
+### revokeAllDevices()
+
+> **revokeAllDevices**(): `Promise`\<`void`\>
+
+Revokes every durable device grant and cancels their active remote work.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+Resolves after all durable grants are removed and their streams are canceled.
+
+#### Remarks
+
+The saved activation intent is unchanged, so remote access stays enabled for new pairings.
+
+#### Throws
+
+RemoteProtocolError when the revocation cannot be saved.
+
+***
+
 ### revokeDevice()
 
 > **revokeDevice**(`deviceId`): `Promise`\<`void`\>

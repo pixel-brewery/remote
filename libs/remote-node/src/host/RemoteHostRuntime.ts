@@ -196,6 +196,20 @@ export class RemoteHostRuntime implements IRemoteHostLifecycle {
     }
 
     /**
+     * Revokes every device after earlier commands settle.
+     *
+     * @remarks Activation intent is unchanged; a failure never changes the retained availability.
+     * @returns Resolves after durable revocation and cancellation of every device's streams.
+     * @throws RemoteProtocolError with `disposed` after disposal, `resource-limit` when the queue is full,
+     * or the host's error when the revocation cannot be saved.
+     *
+     * @public
+     */
+    public revokeAllDevices(): Promise<void> {
+        return this.run(() => this._host.revokeAllDevices());
+    }
+
+    /**
      * Forwards committed access events of the wrapped host.
      *
      * @remarks

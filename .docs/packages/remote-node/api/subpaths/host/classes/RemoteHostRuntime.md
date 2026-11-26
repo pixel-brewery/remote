@@ -210,6 +210,33 @@ or the host's error while the interface or persistent state is unavailable.
 
 ***
 
+### revokeAllDevices()
+
+> **revokeAllDevices**(): `Promise`\<`void`\>
+
+Revokes every device after earlier commands settle.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+Resolves after durable revocation and cancellation of every device's streams.
+
+#### Remarks
+
+Activation intent is unchanged; a failure never changes the retained availability.
+
+#### Throws
+
+RemoteProtocolError with `disposed` after disposal, `resource-limit` when the queue is full,
+or the host's error when the revocation cannot be saved.
+
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`revokeAllDevices`](../interfaces/IRemoteHostLifecycle.md#revokealldevices)
+
+***
+
 ### revokeDevice()
 
 > **revokeDevice**(`deviceId`): `Promise`\<`void`\>

@@ -35,6 +35,7 @@ function control() {
         disable: vi.fn(() => Promise.resolve()),
         reconcile: vi.fn(() => Promise.resolve()),
         revokeDevice: vi.fn((_deviceId: string) => Promise.resolve()),
+        revokeAllDevices: vi.fn(() => Promise.resolve()),
         createPairing: vi.fn(async (_endpointId?: string) => ({
             appId: 'test.app',
             hostId: 'installation',

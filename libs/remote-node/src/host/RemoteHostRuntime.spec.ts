@@ -32,6 +32,7 @@ function fixture(maxPendingOperations?: number) {
             expiresAt: '2026-11-26T10:05:00.000Z',
         })),
         revokeDevice: vi.fn(() => Promise.resolve()),
+        revokeAllDevices: vi.fn(() => Promise.resolve()),
         reconcile: vi.fn(() => Promise.resolve()),
         dispose: vi.fn(() => Promise.resolve()),
         subscribe: vi.fn((listener: (event: RemoteAccessEvent) => void) => {
@@ -149,6 +150,9 @@ describe('RemoteHostRuntime', () => {
         host.revokeDevice.mockRejectedValueOnce(
             new RemoteProtocolError('persistence', 'Unable to persist device authorization.'),
         );
+        host.revokeAllDevices.mockRejectedValueOnce(
+            new RemoteProtocolError('persistence', 'Unable to persist device authorization.'),
+        );
         host.disable.mockRejectedValueOnce(
             new RemoteProtocolError('persistence', 'Unable to persist device authorization.'),
         );
@@ -158,6 +162,7 @@ describe('RemoteHostRuntime', () => {
         await expect(runtime.revokeDevice('device')).rejects.toMatchObject({
             code: 'persistence',
         });
+        await expect(runtime.revokeAllDevices()).rejects.toMatchObject({ code: 'persistence' });
         const afterCommands = runtime.status();
         await expect(runtime.disable()).rejects.toMatchObject({ code: 'persistence' });
         const afterLifecycle = runtime.status();

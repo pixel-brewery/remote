@@ -173,6 +173,10 @@ Revokes every device without removing the stored activation preference.
 
 Resolves after all durable grants are removed and their streams are canceled.
 
+#### Implementation of
+
+[`IRemoteHostLifecycle`](../interfaces/IRemoteHostLifecycle.md).[`revokeAllDevices`](../interfaces/IRemoteHostLifecycle.md#revokealldevices)
+
 ***
 
 ### revokeDevice()

@@ -71,4 +71,14 @@ export interface IRemoteHostControl {
      * @public
      */
     revokeDevice(deviceId: string): Promise<void>;
+    /**
+     * Revokes every durable device grant and cancels their active remote work.
+     *
+     * @remarks The saved activation intent is unchanged, so remote access stays enabled for new pairings.
+     * @returns Resolves after all durable grants are removed and their streams are canceled.
+     * @throws RemoteProtocolError when the revocation cannot be saved.
+     *
+     * @public
+     */
+    revokeAllDevices(): Promise<void>;
 }
