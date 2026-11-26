@@ -10,7 +10,7 @@ Reuse your application's operations and web interface in browser, desktop and mo
 
 [Website](https://pixel-brewery.github.io/remote/) · [Why Remote](#why-remote-exists) · [Architecture](#architecture) · [Developer setup](#developer-setup) · [Agent documentation](#documentation-for-your-coding-agent) · [Documentation](.docs/README.md) · [Product icon](.github/assets/remote-icon.png)
 
-> **Status** · Initial implementation and verification are in progress. The [verification record](.docs/guides/testing.md) distinguishes source implementation, automated checks and native device evidence.
+> **Status** · SDK `0.1.0` is published as nine public GitHub Packages. The [completed release](https://github.com/pixel-brewery/remote/actions/runs/45865646952) verifies the original package bytes and registry access. The [verification record](.docs/guides/testing.md) distinguishes automated SDK checks from application and native device evidence.
 
 ## Why Remote exists
 
@@ -43,6 +43,8 @@ flowchart LR
 The first configuration is HTTP LAN, an explicitly unencrypted transport. A QR code grants access; it does not encrypt network traffic. HTTPS adapters consume certificates supplied by the application. Remote contains no shared private key, product domain or hosted control service.
 
 ## Packages
+
+All nine packages are available at version `0.1.0` in [GitHub Packages](https://github.com/orgs/pixel-brewery/packages?repo_name=remote). Consumers use the `@pixel-brewery` registry configuration and authenticated package access described in the [integration guide](.docs/guides/integrate-remote.md).
 
 | Package                           | Responsibility                                        |
 | --------------------------------- | ----------------------------------------------------- |
