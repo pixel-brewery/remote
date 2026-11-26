@@ -82,14 +82,18 @@ for (const kind of ['counter', 'notes'] as const) {
             await FixtureJourney.ready(launched.page);
             await launched.page.getByTestId('connection-close').click();
             await launched.page.getByTestId('connection-forget').click();
-            await launched.page.waitForFunction(
-                async () =>
-                    (
-                        await (
-                            window as unknown as { remote: IRemoteControlBridge }
-                        ).remote.listConnections()
-                    ).length === 0,
-            );
+            await expect
+                .poll(() =>
+                    launched.page.evaluate(
+                        async () =>
+                            (
+                                await (
+                                    window as unknown as { remote: IRemoteControlBridge }
+                                ).remote.listConnections()
+                            ).length,
+                    ),
+                )
+                .toBe(0);
             expect(
                 await readFile(join(directory, kind, `remote-${kind}`, 'credentials.json'), 'utf8'),
             ).toBe('{}');
