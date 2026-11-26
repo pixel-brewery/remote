@@ -1,0 +1,68 @@
+name: Publish GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-pages.yml
+      - .github/assets/remote-icon.png
+      - .node-version
+      - .yarnrc.yml
+      - package.json
+      - libs/remote-capacitor/package.json
+      - yarn.lock
+      - 'site/**'
+  workflow_dispatch:
+    inputs:
+      expected_head_sha:
+        description: Exact dependency merge source
+        required: false
+        default: ''
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      ${{ github.repository == 'pixel-brewery/remote' && !github.event.repository.private &&
+          github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      packages: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Require the requested merge source
+        env:
+          EXPECTED_HEAD_SHA: ${{ inputs.expected_head_sha }}
+        run: test -z "$EXPECTED_HEAD_SHA" || test "$EXPECTED_HEAD_SHA" = "$GITHUB_SHA"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - run: corepack enable
+      - run: yarn install --immutable
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Build the project site
+        run: yarn nx run remote-site:build
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist/site
+
+      - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        id: deployment

@@ -1,0 +1,21 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "lib": ["ES2024", "DOM"],
+        "rootDir": "src",
+        "outDir": "dist",
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "types": [],
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.spec.ts"],
+    "references": [
+        {
+            "path": "../remote-protocol/tsconfig.lib.json"
+        }
+    ]
+}

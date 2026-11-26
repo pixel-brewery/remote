@@ -1,0 +1,6 @@
+.local/
+.build/
+.swiftpm/
+android/.gradle/
+android/build/
+android/local.properties

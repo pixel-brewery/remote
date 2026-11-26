@@ -1,0 +1,42 @@
+{
+    "name": "remote-capacitor",
+    "projectType": "library",
+    "sourceRoot": "libs/remote-capacitor/src",
+    "tags": ["runtime:capacitor"],
+    "targets": {
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": ["{projectRoot}/dist"]
+        },
+        "typecheck": {
+            "dependsOn": ["build"]
+        },
+        "test": {
+            "dependsOn": ["build"]
+        },
+        "android-compile": {
+            "executor": "@pixel-brewery/nx-tasks:native-check",
+            "cache": false,
+            "dependsOn": ["nx-tasks:native:check"],
+            "options": {
+                "platform": "android"
+            }
+        },
+        "ios-compile": {
+            "executor": "@pixel-brewery/nx-tasks:native-check",
+            "cache": false,
+            "dependsOn": ["nx-tasks:native:check"],
+            "options": {
+                "platform": "ios"
+            }
+        },
+        "ios-test": {
+            "executor": "@pixel-brewery/nx-tasks:native-check",
+            "cache": false,
+            "dependsOn": ["nx-tasks:native:check"],
+            "options": {
+                "platform": "ios-test"
+            }
+        }
+    }
+}

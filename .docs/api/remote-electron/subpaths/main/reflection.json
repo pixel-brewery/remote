@@ -1,0 +1,3437 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-electron/main",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 1,
+      "name": "ElectronCredentialVault",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Main-owned OS-encrypted atomic credential records, namespaced by app and host."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Construct only after Electron app readiness. basic_text is rejected; no plaintext fallback exists."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 2,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 3,
+              "name": "ElectronCredentialVault",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Compose the private record path and Electron Main safeStorage capability."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for relative paths or unavailable/insecure storage backends."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 4,
+                  "name": "_path",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Absolute application-private credential file path."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 5,
+                  "name": "_safeStorage",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "OS-backed encryption API, kept outside Utility and renderer."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 34,
+                    "name": "IElectronSafeStorage",
+                    "package": "@pixel-brewery/remote-electron"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 1,
+                "name": "ElectronCredentialVault",
+                "package": "@pixel-brewery/remote-electron"
+              }
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "delete",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 17,
+              "name": "delete",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Remove one local credential while preserving all other installations."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Atomic update completion."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 18,
+                  "name": "identity",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact namespace to remove."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+                      "qualifiedName": "IRemoteHostIdentity"
+                    },
+                    "name": "IRemoteHostIdentity",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteCredentialStore.delete"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteCredentialStore.delete"
+          }
+        },
+        {
+          "id": 9,
+          "name": "get",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 10,
+              "name": "get",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Decrypt only the selected application's installation credential."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Credential, or null when that namespace is absent."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for malformed records or unavailable OS encryption."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 11,
+                  "name": "identity",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact product and host namespace."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+                      "qualifiedName": "IRemoteHostIdentity"
+                    },
+                    "name": "IRemoteHostIdentity",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "intrinsic",
+                        "name": "string"
+                      },
+                      {
+                        "type": "literal",
+                        "value": null
+                      }
+                    ]
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteCredentialStore.get"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteCredentialStore.get"
+          }
+        },
+        {
+          "id": 12,
+          "name": "set",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 13,
+              "name": "set",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Encrypt and atomically replace one installation's credential."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Durable encrypted-file replacement completion."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 14,
+                  "name": "identity",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Product and host namespace established before credential dispatch."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+                      "qualifiedName": "IRemoteHostIdentity"
+                    },
+                    "name": "IRemoteHostIdentity",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 15,
+                  "name": "credential",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque server-issued secret, bounded to 256 characters."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteCredentialStore.set"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteCredentialStore.set"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            2
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            16,
+            9,
+            12
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-client",
+            "packagePath": "src/lib/credentials/interfaces/IRemoteCredentialStore.ts",
+            "qualifiedName": "IRemoteCredentialStore"
+          },
+          "name": "IRemoteCredentialStore",
+          "package": "@pixel-brewery/remote-client"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "ElectronRemoteController",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Main IPC router validates real sender authority and strips private gateway activation fields."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Main performs credential mediation and view activation; network work stays behind the Utility proxy."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 46,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 47,
+              "name": "ElectronRemoteController",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Compose an existing application IPC and Utility boundary."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 48,
+                  "name": "_options",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Trusted sender predicate, typed Utility proxy and native cookie installer."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 85,
+                    "name": "IRemoteElectronMainOptions",
+                    "package": "@pixel-brewery/remote-electron"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 45,
+                "name": "ElectronRemoteController",
+                "package": "@pixel-brewery/remote-electron"
+              }
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "handle",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 51,
+              "name": "handle",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Handle one fixed-channel invocation after validating its actual Electron event."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Safe schema-validated response with no gateway cookie or remote bearer credential."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for subframes, untrusted senders or invalid control operations."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 52,
+                  "name": "event",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Main-provided invocation event, never serialized sender data from JS."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "electron",
+                      "packagePath": "electron.d.ts",
+                      "qualifiedName": "Electron.IpcMainInvokeEvent"
+                    },
+                    "name": "IpcMainInvokeEvent",
+                    "package": "electron",
+                    "qualifiedName": "Electron.IpcMainInvokeEvent"
+                  }
+                },
+                {
+                  "id": 53,
+                  "name": "raw",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Untrusted canonical control request."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "unknown"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.es5.d.ts",
+                          "qualifiedName": "Readonly"
+                        },
+                        "typeArguments": [
+                          {
+                            "type": "reflection",
+                            "declaration": {
+                              "id": 54,
+                              "name": "__type",
+                              "variant": "declaration",
+                              "kind": 65536,
+                              "flags": {},
+                              "children": [
+                                {
+                                  "id": 56,
+                                  "name": "connections",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "typeOperator",
+                                    "operator": "readonly",
+                                    "target": {
+                                      "type": "array",
+                                      "elementType": {
+                                        "type": "reference",
+                                        "target": {
+                                          "packageName": "typescript",
+                                          "packagePath": "lib/lib.es5.d.ts",
+                                          "qualifiedName": "Readonly"
+                                        },
+                                        "typeArguments": [
+                                          {
+                                            "type": "reflection",
+                                            "declaration": {
+                                              "id": 57,
+                                              "name": "__type",
+                                              "variant": "declaration",
+                                              "kind": 65536,
+                                              "flags": {},
+                                              "children": [
+                                                {
+                                                  "id": 64,
+                                                  "name": "endpoints",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "typeOperator",
+                                                    "operator": "readonly",
+                                                    "target": {
+                                                      "type": "array",
+                                                      "elementType": {
+                                                        "type": "reference",
+                                                        "target": {
+                                                          "packageName": "typescript",
+                                                          "packagePath": "lib/lib.es5.d.ts",
+                                                          "qualifiedName": "Readonly"
+                                                        },
+                                                        "typeArguments": [
+                                                          {
+                                                            "type": "reflection",
+                                                            "declaration": {
+                                                              "id": 65,
+                                                              "name": "__type",
+                                                              "variant": "declaration",
+                                                              "kind": 65536,
+                                                              "flags": {},
+                                                              "children": [
+                                                                {
+                                                                  "id": 66,
+                                                                  "name": "id",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "intrinsic",
+                                                                    "name": "string"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "id": 68,
+                                                                  "name": "origin",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "intrinsic",
+                                                                    "name": "string"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "id": 67,
+                                                                  "name": "transportId",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "intrinsic",
+                                                                    "name": "string"
+                                                                  }
+                                                                }
+                                                              ],
+                                                              "groups": [
+                                                                {
+                                                                  "title": "Properties",
+                                                                  "children": [
+                                                                    66,
+                                                                    68,
+                                                                    67
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
+                                                        ],
+                                                        "name": "Readonly",
+                                                        "package": "typescript"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "id": 58,
+                                                  "name": "id",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "intrinsic",
+                                                    "name": "string"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 60,
+                                                  "name": "identity",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "reference",
+                                                    "target": {
+                                                      "packageName": "zod",
+                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                      "qualifiedName": "ZodReadonly"
+                                                    },
+                                                    "typeArguments": [
+                                                      {
+                                                        "type": "reference",
+                                                        "target": {
+                                                          "packageName": "zod",
+                                                          "packagePath": "v4/classic/schemas.d.cts",
+                                                          "qualifiedName": "ZodObject"
+                                                        },
+                                                        "typeArguments": [
+                                                          {
+                                                            "type": "reflection",
+                                                            "declaration": {
+                                                              "id": 61,
+                                                              "name": "__type",
+                                                              "variant": "declaration",
+                                                              "kind": 65536,
+                                                              "flags": {},
+                                                              "children": [
+                                                                {
+                                                                  "id": 62,
+                                                                  "name": "appId",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "reference",
+                                                                    "target": {
+                                                                      "packageName": "zod",
+                                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                                      "qualifiedName": "ZodString"
+                                                                    },
+                                                                    "name": "z.ZodString",
+                                                                    "package": "zod",
+                                                                    "qualifiedName": "ZodString"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "id": 63,
+                                                                  "name": "hostId",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "reference",
+                                                                    "target": {
+                                                                      "packageName": "zod",
+                                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                                      "qualifiedName": "ZodString"
+                                                                    },
+                                                                    "name": "z.ZodString",
+                                                                    "package": "zod",
+                                                                    "qualifiedName": "ZodString"
+                                                                  }
+                                                                }
+                                                              ],
+                                                              "groups": [
+                                                                {
+                                                                  "title": "Properties",
+                                                                  "children": [
+                                                                    62,
+                                                                    63
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          },
+                                                          {
+                                                            "type": "reference",
+                                                            "target": {
+                                                              "packageName": "zod",
+                                                              "packagePath": "v4/core/schemas.d.cts",
+                                                              "qualifiedName": "$strict"
+                                                            },
+                                                            "name": "z.core.$strict",
+                                                            "package": "zod",
+                                                            "qualifiedName": "$strict"
+                                                          }
+                                                        ],
+                                                        "name": "z.ZodObject",
+                                                        "package": "zod",
+                                                        "qualifiedName": "ZodObject"
+                                                      }
+                                                    ],
+                                                    "name": "z.ZodReadonly",
+                                                    "package": "zod",
+                                                    "qualifiedName": "ZodReadonly"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 59,
+                                                  "name": "label",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "intrinsic",
+                                                    "name": "string"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 69,
+                                                  "name": "selectedEndpointId",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "intrinsic",
+                                                    "name": "string"
+                                                  }
+                                                }
+                                              ],
+                                              "groups": [
+                                                {
+                                                  "title": "Properties",
+                                                  "children": [
+                                                    64,
+                                                    58,
+                                                    60,
+                                                    59,
+                                                    69
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        "name": "Readonly",
+                                        "package": "typescript"
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": 55,
+                                  "name": "kind",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "literal",
+                                    "value": "connections"
+                                  }
+                                }
+                              ],
+                              "groups": [
+                                {
+                                  "title": "Properties",
+                                  "children": [
+                                    56,
+                                    55
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "name": "Readonly",
+                        "package": "typescript"
+                      },
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.es5.d.ts",
+                          "qualifiedName": "Readonly"
+                        },
+                        "typeArguments": [
+                          {
+                            "type": "reflection",
+                            "declaration": {
+                              "id": 70,
+                              "name": "__type",
+                              "variant": "declaration",
+                              "kind": 65536,
+                              "flags": {},
+                              "children": [
+                                {
+                                  "id": 71,
+                                  "name": "kind",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "literal",
+                                    "value": "view"
+                                  }
+                                },
+                                {
+                                  "id": 72,
+                                  "name": "view",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "reference",
+                                    "target": {
+                                      "packageName": "zod",
+                                      "packagePath": "v4/classic/schemas.d.cts",
+                                      "qualifiedName": "ZodReadonly"
+                                    },
+                                    "typeArguments": [
+                                      {
+                                        "type": "reference",
+                                        "target": {
+                                          "packageName": "zod",
+                                          "packagePath": "v4/classic/schemas.d.cts",
+                                          "qualifiedName": "ZodObject"
+                                        },
+                                        "typeArguments": [
+                                          {
+                                            "type": "reflection",
+                                            "declaration": {
+                                              "id": 73,
+                                              "name": "__type",
+                                              "variant": "declaration",
+                                              "kind": 65536,
+                                              "flags": {},
+                                              "children": [
+                                                {
+                                                  "id": 74,
+                                                  "name": "connectionId",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "reference",
+                                                    "target": {
+                                                      "packageName": "zod",
+                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                      "qualifiedName": "ZodString"
+                                                    },
+                                                    "name": "z.ZodString",
+                                                    "package": "zod",
+                                                    "qualifiedName": "ZodString"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 75,
+                                                  "name": "identity",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "reference",
+                                                    "target": {
+                                                      "packageName": "zod",
+                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                      "qualifiedName": "ZodReadonly"
+                                                    },
+                                                    "typeArguments": [
+                                                      {
+                                                        "type": "reference",
+                                                        "target": {
+                                                          "packageName": "zod",
+                                                          "packagePath": "v4/classic/schemas.d.cts",
+                                                          "qualifiedName": "ZodObject"
+                                                        },
+                                                        "typeArguments": [
+                                                          {
+                                                            "type": "reflection",
+                                                            "declaration": {
+                                                              "id": 76,
+                                                              "name": "__type",
+                                                              "variant": "declaration",
+                                                              "kind": 65536,
+                                                              "flags": {},
+                                                              "children": [
+                                                                {
+                                                                  "id": 77,
+                                                                  "name": "appId",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "reference",
+                                                                    "target": {
+                                                                      "packageName": "zod",
+                                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                                      "qualifiedName": "ZodString"
+                                                                    },
+                                                                    "name": "z.ZodString",
+                                                                    "package": "zod",
+                                                                    "qualifiedName": "ZodString"
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "id": 78,
+                                                                  "name": "hostId",
+                                                                  "variant": "declaration",
+                                                                  "kind": 1024,
+                                                                  "flags": {},
+                                                                  "type": {
+                                                                    "type": "reference",
+                                                                    "target": {
+                                                                      "packageName": "zod",
+                                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                                      "qualifiedName": "ZodString"
+                                                                    },
+                                                                    "name": "z.ZodString",
+                                                                    "package": "zod",
+                                                                    "qualifiedName": "ZodString"
+                                                                  }
+                                                                }
+                                                              ],
+                                                              "groups": [
+                                                                {
+                                                                  "title": "Properties",
+                                                                  "children": [
+                                                                    77,
+                                                                    78
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          },
+                                                          {
+                                                            "type": "reference",
+                                                            "target": {
+                                                              "packageName": "zod",
+                                                              "packagePath": "v4/core/schemas.d.cts",
+                                                              "qualifiedName": "$strict"
+                                                            },
+                                                            "name": "z.core.$strict",
+                                                            "package": "zod",
+                                                            "qualifiedName": "$strict"
+                                                          }
+                                                        ],
+                                                        "name": "z.ZodObject",
+                                                        "package": "zod",
+                                                        "qualifiedName": "ZodObject"
+                                                      }
+                                                    ],
+                                                    "name": "z.ZodReadonly",
+                                                    "package": "zod",
+                                                    "qualifiedName": "ZodReadonly"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 79,
+                                                  "name": "origin",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "reference",
+                                                    "target": {
+                                                      "packageName": "zod",
+                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                      "qualifiedName": "ZodURL"
+                                                    },
+                                                    "name": "z.ZodURL",
+                                                    "package": "zod",
+                                                    "qualifiedName": "ZodURL"
+                                                  }
+                                                }
+                                              ],
+                                              "groups": [
+                                                {
+                                                  "title": "Properties",
+                                                  "children": [
+                                                    74,
+                                                    75,
+                                                    79
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "type": "reference",
+                                            "target": {
+                                              "packageName": "zod",
+                                              "packagePath": "v4/core/schemas.d.cts",
+                                              "qualifiedName": "$strict"
+                                            },
+                                            "name": "z.core.$strict",
+                                            "package": "zod",
+                                            "qualifiedName": "$strict"
+                                          }
+                                        ],
+                                        "name": "z.ZodObject",
+                                        "package": "zod",
+                                        "qualifiedName": "ZodObject"
+                                      }
+                                    ],
+                                    "name": "z.ZodReadonly",
+                                    "package": "zod",
+                                    "qualifiedName": "ZodReadonly"
+                                  }
+                                }
+                              ],
+                              "groups": [
+                                {
+                                  "title": "Properties",
+                                  "children": [
+                                    71,
+                                    72
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "name": "Readonly",
+                        "package": "typescript"
+                      },
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.es5.d.ts",
+                          "qualifiedName": "Readonly"
+                        },
+                        "typeArguments": [
+                          {
+                            "type": "reflection",
+                            "declaration": {
+                              "id": 80,
+                              "name": "__type",
+                              "variant": "declaration",
+                              "kind": 65536,
+                              "flags": {},
+                              "children": [
+                                {
+                                  "id": 81,
+                                  "name": "kind",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "literal",
+                                    "value": "done"
+                                  }
+                                }
+                              ],
+                              "groups": [
+                                {
+                                  "title": "Properties",
+                                  "children": [
+                                    81
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "name": "Readonly",
+                        "package": "typescript"
+                      }
+                    ]
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            46
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            50
+          ]
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "IElectronSafeStorage",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Structural Electron Main safeStorage port, never exposed through preload."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 40,
+          "name": "decryptString",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 41,
+              "name": "decryptString",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Decrypt within Electron Main only."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Decrypted value for Main-process mediation only."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 42,
+                  "name": "value",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "OS-encrypted bytes previously produced by this application's safeStorage instance."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "buffer.buffer.d.ts",
+                      "qualifiedName": "__global.Buffer"
+                    },
+                    "name": "Buffer",
+                    "package": "@types/node",
+                    "qualifiedName": "__global.Buffer"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "name": "encryptString",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 38,
+              "name": "encryptString",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Encrypt within Electron Main using the OS store."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "OS-encrypted bytes safe to persist."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 39,
+                  "name": "value",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Plaintext secret to encrypt inside Electron Main."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              }
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "name": "getSelectedStorageBackend",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true
+          },
+          "signatures": [
+            {
+              "id": 44,
+              "name": "getSelectedStorageBackend",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Linux backends named basic_text are explicitly rejected."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Name of the selected backend; basic_text must be rejected."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "name": "isEncryptionAvailable",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 36,
+              "name": "isEncryptionAvailable",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Whether OS-backed encryption is actually available."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Whether OS-backed encryption is available."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "boolean"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            40,
+            37,
+            43,
+            35
+          ]
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "name": "IRemoteElectronActivation",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Main-only local-view activation. Strip the cookie before returning a renderer response."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 135,
+          "name": "connectionId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isReadonly": true,
+            "isInherited": true
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          },
+          "inheritedFrom": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteLocalView.connectionId",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 127,
+          "name": "cookie",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Ephemeral loopback capability installed through Electron session.cookies in Main."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 128,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 132,
+                  "name": "httpOnly",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isPublic": true,
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Required protection against JavaScript cookie access."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": true
+                  }
+                },
+                {
+                  "id": 129,
+                  "name": "name",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isPublic": true,
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Gateway-selected cookie name."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 131,
+                  "name": "path",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isPublic": true,
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Root cookie path within the selected loopback view."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "/"
+                  }
+                },
+                {
+                  "id": 133,
+                  "name": "sameSite",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isPublic": true,
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Required cross-site request restriction."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "strict"
+                  }
+                },
+                {
+                  "id": 134,
+                  "name": "secure",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isPublic": true,
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "HTTP loopback mode uses a non-Secure capability; remote TLS policy is independent."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": false
+                  }
+                },
+                {
+                  "id": 130,
+                  "name": "value",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isPublic": true,
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Private random local capability; never serialize into renderer state."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    132,
+                    129,
+                    131,
+                    133,
+                    134,
+                    130
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 136,
+          "name": "identity",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isReadonly": true,
+            "isInherited": true
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "zod",
+              "packagePath": "v4/classic/schemas.d.cts",
+              "qualifiedName": "ZodReadonly"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "zod",
+                  "packagePath": "v4/classic/schemas.d.cts",
+                  "qualifiedName": "ZodObject"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 137,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "children": [
+                        {
+                          "id": 138,
+                          "name": "appId",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {},
+                          "type": {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "zod",
+                              "packagePath": "v4/classic/schemas.d.cts",
+                              "qualifiedName": "ZodString"
+                            },
+                            "name": "z.ZodString",
+                            "package": "zod",
+                            "qualifiedName": "ZodString"
+                          }
+                        },
+                        {
+                          "id": 139,
+                          "name": "hostId",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {},
+                          "type": {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "zod",
+                              "packagePath": "v4/classic/schemas.d.cts",
+                              "qualifiedName": "ZodString"
+                            },
+                            "name": "z.ZodString",
+                            "package": "zod",
+                            "qualifiedName": "ZodString"
+                          }
+                        }
+                      ],
+                      "groups": [
+                        {
+                          "title": "Properties",
+                          "children": [
+                            138,
+                            139
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "zod",
+                      "packagePath": "v4/core/schemas.d.cts",
+                      "qualifiedName": "$strict"
+                    },
+                    "name": "z.core.$strict",
+                    "package": "zod",
+                    "qualifiedName": "$strict"
+                  }
+                ],
+                "name": "z.ZodObject",
+                "package": "zod",
+                "qualifiedName": "ZodObject"
+              }
+            ],
+            "name": "z.ZodReadonly",
+            "package": "zod",
+            "qualifiedName": "ZodReadonly"
+          },
+          "inheritedFrom": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteLocalView.identity",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 140,
+          "name": "origin",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isReadonly": true,
+            "isInherited": true
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          },
+          "inheritedFrom": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteLocalView.origin",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            135,
+            127,
+            136,
+            140
+          ]
+        }
+      ],
+      "extendedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-protocol",
+            "packagePath": "src/native/interfaces/IRemoteLocalView.ts",
+            "qualifiedName": "IRemoteLocalView"
+          },
+          "name": "IRemoteLocalView",
+          "package": "@pixel-brewery/remote-protocol"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "name": "IRemoteElectronMainOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Main process composes its existing IPC, Utility port and exact trusted renderer policy."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 92,
+          "name": "activateView",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Install the private local capability and open the owned view before returning a public descriptor."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 93,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 94,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 95,
+                      "name": "activation",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "reference",
+                        "target": 126,
+                        "name": "IRemoteElectronActivation",
+                        "package": "@pixel-brewery/remote-electron"
+                      }
+                    },
+                    {
+                      "id": 96,
+                      "name": "event",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "electron",
+                          "packagePath": "electron.d.ts",
+                          "qualifiedName": "Electron.IpcMainInvokeEvent"
+                        },
+                        "name": "IpcMainInvokeEvent",
+                        "package": "electron",
+                        "qualifiedName": "Electron.IpcMainInvokeEvent"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Promise"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "intrinsic",
+                        "name": "void"
+                      }
+                    ],
+                    "name": "Promise",
+                    "package": "typescript"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 86,
+          "name": "appId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Immutable product namespace checked in Main before pairing or activating a Utility response."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 88,
+          "name": "isTrustedSender",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Inspect the real Electron event, never caller-supplied sender fields."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 89,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 90,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 91,
+                      "name": "event",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "electron",
+                          "packagePath": "electron.d.ts",
+                          "qualifiedName": "Electron.IpcMainInvokeEvent"
+                        },
+                        "name": "IpcMainInvokeEvent",
+                        "package": "electron",
+                        "qualifiedName": "Electron.IpcMainInvokeEvent"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "boolean"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 87,
+          "name": "runtime",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Narrow typed proxy to the application's network-owning Utility Process."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 97,
+            "name": "IRemoteElectronRuntime",
+            "package": "@pixel-brewery/remote-electron"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            92,
+            86,
+            88,
+            87
+          ]
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "name": "IRemoteElectronRuntime",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Narrow application-supplied Utility proxy consumed by Main IPC routing."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "This port contains no process object, arbitrary request method or credential retrieval API."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 120,
+          "name": "closeConnection",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 121,
+              "name": "closeConnection",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Cancel the selected view without forgetting its grant."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Owned stream cancellation completion."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 122,
+                  "name": "connectionId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Active profile identifier; other identifiers leave it running."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 123,
+          "name": "forgetConnection",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 124,
+              "name": "forgetConnection",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Remove one local profile and protected credential."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Durable removal completion after owned stream cancellation."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 125,
+                  "name": "connectionId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact saved-profile identifier to forget."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 98,
+          "name": "listConnections",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 99,
+              "name": "listConnections",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Read safe profile metadata."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Product-scoped saved profiles without credentials."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "typeOperator",
+                    "operator": "readonly",
+                    "target": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.es5.d.ts",
+                          "qualifiedName": "Readonly"
+                        },
+                        "typeArguments": [
+                          {
+                            "type": "reflection",
+                            "declaration": {
+                              "id": 100,
+                              "name": "__type",
+                              "variant": "declaration",
+                              "kind": 65536,
+                              "flags": {},
+                              "children": [
+                                {
+                                  "id": 107,
+                                  "name": "endpoints",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "typeOperator",
+                                    "operator": "readonly",
+                                    "target": {
+                                      "type": "array",
+                                      "elementType": {
+                                        "type": "reference",
+                                        "target": {
+                                          "packageName": "typescript",
+                                          "packagePath": "lib/lib.es5.d.ts",
+                                          "qualifiedName": "Readonly"
+                                        },
+                                        "typeArguments": [
+                                          {
+                                            "type": "reflection",
+                                            "declaration": {
+                                              "id": 108,
+                                              "name": "__type",
+                                              "variant": "declaration",
+                                              "kind": 65536,
+                                              "flags": {},
+                                              "children": [
+                                                {
+                                                  "id": 109,
+                                                  "name": "id",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "intrinsic",
+                                                    "name": "string"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 111,
+                                                  "name": "origin",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "intrinsic",
+                                                    "name": "string"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 110,
+                                                  "name": "transportId",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "intrinsic",
+                                                    "name": "string"
+                                                  }
+                                                }
+                                              ],
+                                              "groups": [
+                                                {
+                                                  "title": "Properties",
+                                                  "children": [
+                                                    109,
+                                                    111,
+                                                    110
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        "name": "Readonly",
+                                        "package": "typescript"
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "id": 101,
+                                  "name": "id",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "intrinsic",
+                                    "name": "string"
+                                  }
+                                },
+                                {
+                                  "id": 103,
+                                  "name": "identity",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "reference",
+                                    "target": {
+                                      "packageName": "zod",
+                                      "packagePath": "v4/classic/schemas.d.cts",
+                                      "qualifiedName": "ZodReadonly"
+                                    },
+                                    "typeArguments": [
+                                      {
+                                        "type": "reference",
+                                        "target": {
+                                          "packageName": "zod",
+                                          "packagePath": "v4/classic/schemas.d.cts",
+                                          "qualifiedName": "ZodObject"
+                                        },
+                                        "typeArguments": [
+                                          {
+                                            "type": "reflection",
+                                            "declaration": {
+                                              "id": 104,
+                                              "name": "__type",
+                                              "variant": "declaration",
+                                              "kind": 65536,
+                                              "flags": {},
+                                              "children": [
+                                                {
+                                                  "id": 105,
+                                                  "name": "appId",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "reference",
+                                                    "target": {
+                                                      "packageName": "zod",
+                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                      "qualifiedName": "ZodString"
+                                                    },
+                                                    "name": "z.ZodString",
+                                                    "package": "zod",
+                                                    "qualifiedName": "ZodString"
+                                                  }
+                                                },
+                                                {
+                                                  "id": 106,
+                                                  "name": "hostId",
+                                                  "variant": "declaration",
+                                                  "kind": 1024,
+                                                  "flags": {},
+                                                  "type": {
+                                                    "type": "reference",
+                                                    "target": {
+                                                      "packageName": "zod",
+                                                      "packagePath": "v4/classic/schemas.d.cts",
+                                                      "qualifiedName": "ZodString"
+                                                    },
+                                                    "name": "z.ZodString",
+                                                    "package": "zod",
+                                                    "qualifiedName": "ZodString"
+                                                  }
+                                                }
+                                              ],
+                                              "groups": [
+                                                {
+                                                  "title": "Properties",
+                                                  "children": [
+                                                    105,
+                                                    106
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "type": "reference",
+                                            "target": {
+                                              "packageName": "zod",
+                                              "packagePath": "v4/core/schemas.d.cts",
+                                              "qualifiedName": "$strict"
+                                            },
+                                            "name": "z.core.$strict",
+                                            "package": "zod",
+                                            "qualifiedName": "$strict"
+                                          }
+                                        ],
+                                        "name": "z.ZodObject",
+                                        "package": "zod",
+                                        "qualifiedName": "ZodObject"
+                                      }
+                                    ],
+                                    "name": "z.ZodReadonly",
+                                    "package": "zod",
+                                    "qualifiedName": "ZodReadonly"
+                                  }
+                                },
+                                {
+                                  "id": 102,
+                                  "name": "label",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "intrinsic",
+                                    "name": "string"
+                                  }
+                                },
+                                {
+                                  "id": 112,
+                                  "name": "selectedEndpointId",
+                                  "variant": "declaration",
+                                  "kind": 1024,
+                                  "flags": {},
+                                  "type": {
+                                    "type": "intrinsic",
+                                    "name": "string"
+                                  }
+                                }
+                              ],
+                              "groups": [
+                                {
+                                  "title": "Properties",
+                                  "children": [
+                                    107,
+                                    101,
+                                    103,
+                                    102,
+                                    112
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "name": "Readonly",
+                        "package": "typescript"
+                      }
+                    }
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 117,
+          "name": "openConnection",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 118,
+              "name": "openConnection",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Restore one saved device grant and open its protected local gateway."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Main-only local-view activation."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 119,
+                  "name": "connectionId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact saved-profile identifier."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": 126,
+                    "name": "IRemoteElectronActivation",
+                    "package": "@pixel-brewery/remote-electron"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 113,
+          "name": "pair",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 114,
+              "name": "pair",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Pair and protect a device grant in the privileged runtime."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Main-only cookie activation after durable native credential storage."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 115,
+                  "name": "bootstrap",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Short-lived invitation for the immutable product namespace."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/pairing/interfaces/IRemotePairingBootstrap.ts",
+                      "qualifiedName": "IRemotePairingBootstrap"
+                    },
+                    "name": "IRemotePairingBootstrap",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 116,
+                  "name": "deviceName",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Stable user-selected label for this attempt."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": 126,
+                    "name": "IRemoteElectronActivation",
+                    "package": "@pixel-brewery/remote-electron"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            120,
+            123,
+            98,
+            117,
+            113
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        1,
+        45
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        34,
+        126,
+        85,
+        97
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-electron",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/main.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.__constructor"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "_path"
+    },
+    "5": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "_safeStorage"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.get"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.get"
+    },
+    "11": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "identity"
+    },
+    "12": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.set"
+    },
+    "13": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.set"
+    },
+    "14": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "identity"
+    },
+    "15": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "credential"
+    },
+    "16": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.delete"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "ElectronCredentialVault.delete"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/ElectronCredentialVault.ts",
+      "qualifiedName": "identity"
+    },
+    "34": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage"
+    },
+    "35": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.isEncryptionAvailable"
+    },
+    "36": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.isEncryptionAvailable"
+    },
+    "37": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.encryptString"
+    },
+    "38": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.encryptString"
+    },
+    "39": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "value"
+    },
+    "40": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.decryptString"
+    },
+    "41": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.decryptString"
+    },
+    "42": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "value"
+    },
+    "43": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.getSelectedStorageBackend"
+    },
+    "44": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/credentials/interfaces/IElectronSafeStorage.ts",
+      "qualifiedName": "IElectronSafeStorage.getSelectedStorageBackend"
+    },
+    "45": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "ElectronRemoteController"
+    },
+    "46": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "ElectronRemoteController.__constructor"
+    },
+    "47": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "ElectronRemoteController"
+    },
+    "48": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "_options"
+    },
+    "50": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "ElectronRemoteController.handle"
+    },
+    "51": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "ElectronRemoteController.handle"
+    },
+    "52": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "event"
+    },
+    "53": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/ElectronRemoteController.ts",
+      "qualifiedName": "raw"
+    },
+    "54": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "55": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "kind"
+    },
+    "56": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "connections"
+    },
+    "57": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "58": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "id"
+    },
+    "59": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "label"
+    },
+    "60": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "identity"
+    },
+    "61": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type"
+    },
+    "62": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.appId"
+    },
+    "63": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.hostId"
+    },
+    "64": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "endpoints"
+    },
+    "65": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "66": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "id"
+    },
+    "67": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "transportId"
+    },
+    "68": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "origin"
+    },
+    "69": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "selectedEndpointId"
+    },
+    "70": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "71": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "kind"
+    },
+    "72": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "view"
+    },
+    "73": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type"
+    },
+    "74": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.connectionId"
+    },
+    "75": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.identity"
+    },
+    "76": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type"
+    },
+    "77": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.appId"
+    },
+    "78": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.hostId"
+    },
+    "79": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "__type.origin"
+    },
+    "80": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "81": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteNativeResponseSchema.ts",
+      "qualifiedName": "kind"
+    },
+    "85": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "IRemoteElectronMainOptions"
+    },
+    "86": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "IRemoteElectronMainOptions.appId"
+    },
+    "87": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "IRemoteElectronMainOptions.runtime"
+    },
+    "88": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "IRemoteElectronMainOptions.isTrustedSender"
+    },
+    "89": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "90": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "91": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "event"
+    },
+    "92": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "IRemoteElectronMainOptions.activateView"
+    },
+    "93": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "94": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "95": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "activation"
+    },
+    "96": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronMainOptions.ts",
+      "qualifiedName": "event"
+    },
+    "97": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime"
+    },
+    "98": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.listConnections"
+    },
+    "99": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.listConnections"
+    },
+    "100": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "101": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "id"
+    },
+    "102": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "label"
+    },
+    "103": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "identity"
+    },
+    "104": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "__type"
+    },
+    "105": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "__type.appId"
+    },
+    "106": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "__type.hostId"
+    },
+    "107": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "endpoints"
+    },
+    "108": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "109": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "id"
+    },
+    "110": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "transportId"
+    },
+    "111": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "origin"
+    },
+    "112": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteSavedConnectionSchema.ts",
+      "qualifiedName": "selectedEndpointId"
+    },
+    "113": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.pair"
+    },
+    "114": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.pair"
+    },
+    "115": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "bootstrap"
+    },
+    "116": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "deviceName"
+    },
+    "117": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.openConnection"
+    },
+    "118": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.openConnection"
+    },
+    "119": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "connectionId"
+    },
+    "120": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.closeConnection"
+    },
+    "121": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.closeConnection"
+    },
+    "122": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "connectionId"
+    },
+    "123": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.forgetConnection"
+    },
+    "124": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "IRemoteElectronRuntime.forgetConnection"
+    },
+    "125": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronRuntime.ts",
+      "qualifiedName": "connectionId"
+    },
+    "126": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "IRemoteElectronActivation"
+    },
+    "127": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "IRemoteElectronActivation.cookie"
+    },
+    "128": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type"
+    },
+    "129": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type.name"
+    },
+    "130": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type.value"
+    },
+    "131": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type.path"
+    },
+    "132": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type.httpOnly"
+    },
+    "133": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type.sameSite"
+    },
+    "134": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/gateway/interfaces/IRemoteElectronActivation.ts",
+      "qualifiedName": "__type.secure"
+    },
+    "135": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
+      "qualifiedName": "connectionId"
+    },
+    "136": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
+      "qualifiedName": "identity"
+    },
+    "137": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
+      "qualifiedName": "__type"
+    },
+    "138": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
+      "qualifiedName": "__type.appId"
+    },
+    "139": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
+      "qualifiedName": "__type.hostId"
+    },
+    "140": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/native/schemas/remoteLocalViewSchema.ts",
+      "qualifiedName": "origin"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-electron/src/main.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

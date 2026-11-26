@@ -1,0 +1,22 @@
+{
+    "extends": "./tsconfig.lib.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "composite": false,
+        "noEmit": true,
+        "types": ["node", "vitest/globals"]
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": [],
+    "references": [
+        {
+            "path": "../../libs/remote-protocol/tsconfig.lib.json"
+        },
+        {
+            "path": "../../libs/remote-core/tsconfig.lib.json"
+        },
+        {
+            "path": "../../libs/remote-node/tsconfig.lib.json"
+        }
+    ]
+}

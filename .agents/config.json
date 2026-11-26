@@ -1,0 +1,15 @@
+{
+    "codexSubagents": {
+        "ci-monitor-subagent": "CI helper for /monitor-ci. Fetches CI status, retrieves fix details, or updates self-healing fixes. Executes one MCP tool call and returns the result."
+    },
+    "roles": {
+        "architect": {
+            "skill": "remote-architect",
+            "description": "Design and review Remote interfaces, runtime boundaries and implementation plans."
+        },
+        "designer": {
+            "skill": "remote-designer",
+            "description": "Design and review Remote surfaces with the shared Mosaik design contract."
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "schemaVersion": 1,
+    "language": "en",
+    "project": {
+        "name": "Remote",
+        "slug": "remote",
+        "website": "https://pixel-brewery.github.io/remote/",
+        "repository": "https://github.com/pixel-brewery/remote"
+    },
+    "description": "Product-neutral device pairing and remote access for desktop, browser and native clients.",
+    "image": {
+        "file": "project-card.webp",
+        "format": "webp",
+        "width": 960,
+        "height": 540,
+        "alt": "Remote's indigo interlocking-link mark beside an ivory desktop and glass phone joined by an indigo connector."
+    },
+    "icon": {
+        "file": "remote-icon.png",
+        "format": "png",
+        "width": 512,
+        "height": 512,
+        "alt": "Two interlocking indigo rounded links on a transparent background."
+    },
+    "artwork": {
+        "kind": "illustration",
+        "generator": "Built-in ImageGen",
+        "generatedOn": "2026-11-26",
+        "prompt": "A warm off-white studio portfolio card with a black Remote wordmark, an indigo #5B4BDB interlocking-link mark, an ivory ceramic desktop frame and frosted glass phone joined by an indigo connector. Preserve the approved logo and Cursor-series materials; use indigo instead of petrol."
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "executors": {
+        "api-docs": {
+            "implementation": "./src/executors/api-docs/executor",
+            "schema": "./src/executors/api-docs/schema.json",
+            "description": "Generate or check the Remote SDK's TypeDoc reference."
+        },
+        "native-protocol": {
+            "implementation": "./src/executors/native-protocol/executor",
+            "schema": "./src/executors/native-protocol/schema.json",
+            "description": "Generate or check canonical native protocol schemas and conformance vectors."
+        },
+        "source-conventions": {
+            "implementation": "./src/executors/source-conventions/executor",
+            "schema": "./src/executors/source-conventions/schema.json",
+            "description": "Verify lowercase feature directories, declaration placement, TSDoc and Git index casing."
+        },
+        "dependabot-merge": {
+            "implementation": "./src/executors/dependabot-merge/executor",
+            "schema": "./src/executors/dependabot-merge/schema.json",
+            "description": "Reconcile strictly verified dependency updates using trusted default-branch code."
+        },
+        "packed-packages": {
+            "implementation": "./src/executors/packed-packages/executor",
+            "schema": "./src/executors/packed-packages/schema.json",
+            "description": "Validate isolated packed artifacts, published exports and consumer declarations."
+        },
+        "native-check": {
+            "implementation": "./src/executors/native-check/executor",
+            "schema": "./src/executors/native-check/schema.json",
+            "description": "Run the canonical native-check boundary through Nx."
+        },
+        "desktop-fixture": {
+            "implementation": "./src/executors/desktop-fixture/executor",
+            "schema": "./src/executors/desktop-fixture/schema.json",
+            "description": "Run the canonical desktop-fixture boundary through Nx."
+        },
+        "mobile-fixture": {
+            "implementation": "./src/executors/mobile-fixture/executor",
+            "schema": "./src/executors/mobile-fixture/schema.json",
+            "description": "Run the canonical mobile-fixture boundary through Nx."
+        },
+        "theme-artifact": {
+            "implementation": "./src/executors/theme-artifact/executor",
+            "schema": "./src/executors/theme-artifact/schema.json",
+            "description": "Generate or check the shared fixture theme through the pinned public Mosaik runtime."
+        },
+        "package-release": {
+            "implementation": "./src/executors/package-release/executor",
+            "schema": "./src/executors/package-release/schema.json",
+            "description": "Prepare or explicitly publish an immutable verified SDK package family."
+        }
+    }
+}

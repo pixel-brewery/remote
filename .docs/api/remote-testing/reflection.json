@@ -1,0 +1,2618 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-testing",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 66,
+      "name": "FakeRemoteClock",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Deterministic clock and scheduler shared by pairing and client-recovery tests."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 85,
+          "name": "advance",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 86,
+              "name": "advance",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Advances monotonically, running due callbacks with a guard against accidental infinite retry loops."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 87,
+                  "name": "milliseconds",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Finite nonnegative duration by which to advance the fake clock."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 68,
+              "name": "FakeRemoteClock",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Uses a stable UTC instant unless a test supplies another one."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 69,
+                  "name": "now",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Initial UTC epoch milliseconds; omission uses the deterministic 2026-01-01 test instant."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  },
+                  "defaultValue": "..."
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 66,
+                "name": "FakeRemoteClock",
+                "package": "@pixel-brewery/remote-testing"
+              }
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "name": "now",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 76,
+              "name": "now",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Returns the current injected UTC instant."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The injected Unix time in milliseconds."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "number"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteClock.now"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteClock.now"
+          }
+        },
+        {
+          "id": 73,
+          "name": "pending",
+          "variant": "declaration",
+          "kind": 262144,
+          "flags": {
+            "isPublic": true
+          },
+          "getSignature": {
+            "id": 74,
+            "name": "pending",
+            "variant": "signature",
+            "kind": 524288,
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "summary": [
+                {
+                  "kind": "text",
+                  "text": "Number of callbacks waiting to run."
+                }
+              ],
+              "blockTags": [
+                {
+                  "tag": "@returns",
+                  "content": [
+                    {
+                      "kind": "text",
+                      "text": "The number of callbacks still waiting in the deterministic scheduler."
+                    }
+                  ]
+                }
+              ]
+            },
+            "type": {
+              "type": "intrinsic",
+              "name": "number"
+            }
+          }
+        },
+        {
+          "id": 77,
+          "name": "schedule",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 78,
+              "name": "schedule",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Schedules a cancelable callback, ordering equal deadlines by registration."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An idempotent cancellation function for this scheduled callback."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 79,
+                  "name": "callback",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Callback invoked at its scheduled deadline."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 80,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 81,
+                          "name": "__type",
+                          "variant": "signature",
+                          "kind": 4096,
+                          "flags": {},
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "void"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": 82,
+                  "name": "delayMilliseconds",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Finite nonnegative delay relative to the injected clock."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 83,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "signatures": [
+                    {
+                      "id": 84,
+                      "name": "__type",
+                      "variant": "signature",
+                      "kind": 4096,
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "void"
+                      }
+                    }
+                  ]
+                }
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteClientClock.schedule"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteClientClock.schedule"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            67
+          ]
+        },
+        {
+          "title": "Accessors",
+          "children": [
+            73
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            85,
+            75,
+            77
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-core",
+            "packagePath": "src/time/interfaces/IRemoteClock.ts",
+            "qualifiedName": "IRemoteClock"
+          },
+          "name": "IRemoteClock",
+          "package": "@pixel-brewery/remote-core"
+        },
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-client",
+            "packagePath": "src/lib/session/interfaces/IRemoteClientClock.ts",
+            "qualifiedName": "IRemoteClientClock"
+          },
+          "name": "IRemoteClientClock",
+          "package": "@pixel-brewery/remote-client"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "FakeRemoteConnector",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Scripted connector exposing attempted endpoint selection without requiring real network I/O."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 44,
+          "name": "connect",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 45,
+              "name": "connect",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Invokes the configured factory once, rejecting already-cancelled attempts."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The scripted transport created for this endpoint; the test factory defines descriptor and authentication behavior."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 46,
+                  "name": "input",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Untrusted input validated by the canonical contract before use."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteEndpoint.ts",
+                      "qualifiedName": "IRemoteEndpoint"
+                    },
+                    "name": "IRemoteEndpoint",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 47,
+                  "name": "signal",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Cancellation signal for this attempt. A transport returned after cancellation is disposed before the attempt rejects."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.dom.d.ts",
+                      "qualifiedName": "AbortSignal"
+                    },
+                    "name": "AbortSignal",
+                    "package": "typescript"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-client",
+                      "packagePath": "src/lib/transport/interfaces/IRemoteClientTransport.ts",
+                      "qualifiedName": "IRemoteClientTransport"
+                    },
+                    "name": "IRemoteClientTransport",
+                    "package": "@pixel-brewery/remote-client"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteConnector.connect"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteConnector.connect"
+          }
+        },
+        {
+          "id": 38,
+          "name": "connections",
+          "variant": "declaration",
+          "kind": 262144,
+          "flags": {
+            "isPublic": true
+          },
+          "getSignature": {
+            "id": 39,
+            "name": "connections",
+            "variant": "signature",
+            "kind": 524288,
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "summary": [
+                {
+                  "kind": "text",
+                  "text": "Detached endpoint attempts, in dispatch order."
+                }
+              ],
+              "blockTags": [
+                {
+                  "tag": "@returns",
+                  "content": [
+                    {
+                      "kind": "text",
+                      "text": "Detached endpoint attempts in their original dispatch order."
+                    }
+                  ]
+                }
+              ]
+            },
+            "type": {
+              "type": "typeOperator",
+              "operator": "readonly",
+              "target": {
+                "type": "array",
+                "elementType": {
+                  "type": "reference",
+                  "target": {
+                    "packageName": "typescript",
+                    "packagePath": "lib/lib.es5.d.ts",
+                    "qualifiedName": "Readonly"
+                  },
+                  "typeArguments": [
+                    {
+                      "type": "reflection",
+                      "declaration": {
+                        "id": 40,
+                        "name": "__type",
+                        "variant": "declaration",
+                        "kind": 65536,
+                        "flags": {},
+                        "children": [
+                          {
+                            "id": 41,
+                            "name": "id",
+                            "variant": "declaration",
+                            "kind": 1024,
+                            "flags": {},
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "string"
+                            }
+                          },
+                          {
+                            "id": 43,
+                            "name": "origin",
+                            "variant": "declaration",
+                            "kind": 1024,
+                            "flags": {},
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "string"
+                            }
+                          },
+                          {
+                            "id": 42,
+                            "name": "transportId",
+                            "variant": "declaration",
+                            "kind": 1024,
+                            "flags": {},
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "string"
+                            }
+                          }
+                        ],
+                        "groups": [
+                          {
+                            "title": "Properties",
+                            "children": [
+                              41,
+                              43,
+                              42
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "name": "Readonly",
+                  "package": "typescript"
+                }
+              }
+            }
+          }
+        },
+        {
+          "id": 19,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 20,
+              "name": "FakeRemoteConnector",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Supplies the transport factory so each test controls real responses and race boundaries."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 21,
+                  "name": "id",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Transport identifier used to select this connector."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 22,
+                  "name": "_create",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Scripted transport factory called once per admitted connection attempt."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 23,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 24,
+                          "name": "__type",
+                          "variant": "signature",
+                          "kind": 4096,
+                          "flags": {},
+                          "parameters": [
+                            {
+                              "id": 25,
+                              "name": "endpoint",
+                              "variant": "param",
+                              "kind": 32768,
+                              "flags": {},
+                              "type": {
+                                "type": "reference",
+                                "target": {
+                                  "packageName": "@pixel-brewery/remote-protocol",
+                                  "packagePath": "src/host/interfaces/IRemoteEndpoint.ts",
+                                  "qualifiedName": "IRemoteEndpoint"
+                                },
+                                "name": "IRemoteEndpoint",
+                                "package": "@pixel-brewery/remote-protocol"
+                              }
+                            },
+                            {
+                              "id": 26,
+                              "name": "signal",
+                              "variant": "param",
+                              "kind": 32768,
+                              "flags": {},
+                              "type": {
+                                "type": "reference",
+                                "target": {
+                                  "packageName": "typescript",
+                                  "packagePath": "lib/lib.dom.d.ts",
+                                  "qualifiedName": "AbortSignal"
+                                },
+                                "name": "AbortSignal",
+                                "package": "typescript"
+                              }
+                            }
+                          ],
+                          "type": {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "typescript",
+                              "packagePath": "lib/lib.es5.d.ts",
+                              "qualifiedName": "Promise"
+                            },
+                            "typeArguments": [
+                              {
+                                "type": "reference",
+                                "target": {
+                                  "packageName": "@pixel-brewery/remote-client",
+                                  "packagePath": "src/lib/transport/interfaces/IRemoteClientTransport.ts",
+                                  "qualifiedName": "IRemoteClientTransport"
+                                },
+                                "name": "IRemoteClientTransport",
+                                "package": "@pixel-brewery/remote-client"
+                              }
+                            ],
+                            "name": "Promise",
+                            "package": "typescript"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 18,
+                "name": "FakeRemoteConnector",
+                "package": "@pixel-brewery/remote-testing"
+              }
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "name": "id",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Transport identifier selected by this test connector."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          },
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteConnector.id"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            19
+          ]
+        },
+        {
+          "title": "Properties",
+          "children": [
+            37
+          ]
+        },
+        {
+          "title": "Accessors",
+          "children": [
+            38
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            44
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-client",
+            "packagePath": "src/lib/transport/interfaces/IRemoteConnector.ts",
+            "qualifiedName": "IRemoteConnector"
+          },
+          "name": "IRemoteConnector",
+          "package": "@pixel-brewery/remote-client"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "name": "IRemoteContractVectors",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Public wire examples and boundary rejection cases for independent adapter implementations."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 90,
+          "name": "bootstrap",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Fixed expired example invitation. Its challenge is fake test data."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-protocol",
+              "packagePath": "src/pairing/interfaces/IRemotePairingBootstrap.ts",
+              "qualifiedName": "IRemotePairingBootstrap"
+            },
+            "name": "IRemotePairingBootstrap",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 94,
+          "name": "contentPolicies",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Valid independently selectable HTTPS content permissions, including the deny-by-default empty input."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Readonly"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Readonly"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reflection",
+                        "declaration": {
+                          "id": 95,
+                          "name": "__type",
+                          "variant": "declaration",
+                          "kind": 65536,
+                          "flags": {},
+                          "children": [
+                            {
+                              "id": 98,
+                              "name": "allowHttpsConnections",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {
+                                "isOptional": true
+                              },
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "boolean"
+                              }
+                            },
+                            {
+                              "id": 96,
+                              "name": "allowHttpsImages",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {
+                                "isOptional": true
+                              },
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "boolean"
+                              }
+                            },
+                            {
+                              "id": 97,
+                              "name": "allowHttpsMedia",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {
+                                "isOptional": true
+                              },
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "boolean"
+                              }
+                            }
+                          ],
+                          "groups": [
+                            {
+                              "title": "Properties",
+                              "children": [
+                                98,
+                                96,
+                                97
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "name": "Readonly",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Readonly",
+                "package": "typescript"
+              }
+            }
+          }
+        },
+        {
+          "id": 89,
+          "name": "host",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Credential-free descriptor for the fixed notes fixture installation."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-protocol",
+              "packagePath": "src/host/interfaces/IRemoteHostDescriptor.ts",
+              "qualifiedName": "IRemoteHostDescriptor"
+            },
+            "name": "IRemoteHostDescriptor",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 99,
+          "name": "invalidContentPolicies",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Invalid content policies that attempt script permission or use non-boolean flags."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "unknown"
+              }
+            }
+          }
+        },
+        {
+          "id": 92,
+          "name": "invalidOrigins",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Destinations production private-LAN connectors must reject."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "id": 93,
+          "name": "invalidPaths",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Ambiguous or foreign request targets every route boundary must reject."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "id": 91,
+          "name": "session",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Authorized device projection belonging to the same fixture installation."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-protocol",
+              "packagePath": "src/sessions/interfaces/IRemoteSessionDescriptor.ts",
+              "qualifiedName": "IRemoteSessionDescriptor"
+            },
+            "name": "IRemoteSessionDescriptor",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            90,
+            94,
+            89,
+            99,
+            92,
+            93,
+            91
+          ]
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "name": "IRemoteRouteMatchVector",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "One canonical route-admission example reusable by TypeScript and generated native tests."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 103,
+          "name": "method",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Exact caller HTTP method to admit."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 101,
+          "name": "name",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Human-readable invariant exercised by the vector."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 105,
+          "name": "operationId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Winning operation identifier, or null when admission must fail closed."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "literal",
+                "value": null
+              }
+            ]
+          }
+        },
+        {
+          "id": 104,
+          "name": "path",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Original origin-form target, including its optional query."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 102,
+          "name": "routes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Immutable operation registrations for this case."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-protocol",
+                  "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                  "qualifiedName": "IRemoteRouteDefinition"
+                },
+                "name": "IRemoteRouteDefinition",
+                "package": "@pixel-brewery/remote-protocol"
+              }
+            }
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            103,
+            101,
+            105,
+            104,
+            102
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "MemoryRemoteAccessStore",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Isolated atomic store for access-core and adapter tests; rejected saves preserve the previous record."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 2,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 3,
+              "name": "MemoryRemoteAccessStore",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Seeds a fresh store, including intentionally invalid restoration inputs."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 4,
+                  "name": "value",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Initial detached record, including deliberately malformed restoration data for negative tests."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "unknown"
+                  },
+                  "defaultValue": "null"
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 1,
+                "name": "MemoryRemoteAccessStore",
+                "package": "@pixel-brewery/remote-testing"
+              }
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "failNextSave",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 16,
+              "name": "failNextSave",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Makes exactly the next save fail before replacing any durable record."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 17,
+                  "name": "error",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Failure to inject before exactly the next store commit."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Error"
+                    },
+                    "name": "Error",
+                    "package": "typescript"
+                  },
+                  "defaultValue": "..."
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "load",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 11,
+              "name": "load",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Returns a detached record so tests cannot mutate persisted authority accidentally."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Unknown persisted data, or null when no record exists."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "unknown"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteAccessStore.load"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteAccessStore.load"
+          }
+        },
+        {
+          "id": 12,
+          "name": "save",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 13,
+              "name": "save",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Atomically commits a canonical state or reports the configured injected failure."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves only after the replacement commits; rejects without changing the previous record."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 14,
+                  "name": "state",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Complete canonical access record to replace atomically; a rejected write must preserve the preceding record."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemoteAccessState.ts",
+                      "qualifiedName": "IRemoteAccessState"
+                    },
+                    "name": "IRemoteAccessState",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteAccessStore.save"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteAccessStore.save"
+          }
+        },
+        {
+          "id": 8,
+          "name": "writes",
+          "variant": "declaration",
+          "kind": 262144,
+          "flags": {
+            "isPublic": true
+          },
+          "getSignature": {
+            "id": 9,
+            "name": "writes",
+            "variant": "signature",
+            "kind": 524288,
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "summary": [
+                {
+                  "kind": "text",
+                  "text": "Number of successfully committed writes."
+                }
+              ],
+              "blockTags": [
+                {
+                  "tag": "@returns",
+                  "content": [
+                    {
+                      "kind": "text",
+                      "text": "The number of saves committed since construction."
+                    }
+                  ]
+                }
+              ]
+            },
+            "type": {
+              "type": "intrinsic",
+              "name": "number"
+            }
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            2
+          ]
+        },
+        {
+          "title": "Accessors",
+          "children": [
+            8
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            15,
+            10,
+            12
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-core",
+            "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+            "qualifiedName": "IRemoteAccessStore"
+          },
+          "name": "IRemoteAccessStore",
+          "package": "@pixel-brewery/remote-core"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "MemoryRemoteCredentialStore",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Test-only credential namespace; production apps supply an OS-protected store."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 49,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {},
+          "signatures": [
+            {
+              "id": 50,
+              "name": "MemoryRemoteCredentialStore",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {},
+              "type": {
+                "type": "reference",
+                "target": 48,
+                "name": "MemoryRemoteCredentialStore",
+                "package": "@pixel-brewery/remote-testing"
+              }
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "name": "delete",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 60,
+              "name": "delete",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Removes exactly one app/host secret."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after local removal; unrelated hosts are preserved."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 61,
+                  "name": "identity",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact application and installation namespace to address in protected storage."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+                      "qualifiedName": "IRemoteHostIdentity"
+                    },
+                    "name": "IRemoteHostIdentity",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteCredentialStore.delete"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteCredentialStore.delete"
+          }
+        },
+        {
+          "id": 52,
+          "name": "get",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 53,
+              "name": "get",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Reads exactly one app/host secret."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The credential in exactly this app/host namespace, or null when absent."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 54,
+                  "name": "identity",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact application and installation namespace to address in protected storage."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+                      "qualifiedName": "IRemoteHostIdentity"
+                    },
+                    "name": "IRemoteHostIdentity",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "intrinsic",
+                        "name": "string"
+                      },
+                      {
+                        "type": "literal",
+                        "value": null
+                      }
+                    ]
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteCredentialStore.get"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteCredentialStore.get"
+          }
+        },
+        {
+          "id": 55,
+          "name": "set",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 56,
+              "name": "set",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Replaces exactly one app/host secret."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after the credential is protected in exactly this app/host namespace."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 57,
+                  "name": "identity",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact application and installation namespace to address in protected storage."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+                      "qualifiedName": "IRemoteHostIdentity"
+                    },
+                    "name": "IRemoteHostIdentity",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 58,
+                  "name": "credential",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Plaintext device bearer confined to the privileged runtime. Never project or log it."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteCredentialStore.set"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteCredentialStore.set"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            49
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            59,
+            52,
+            55
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-client",
+            "packagePath": "src/lib/credentials/interfaces/IRemoteCredentialStore.ts",
+            "qualifiedName": "IRemoteCredentialStore"
+          },
+          "name": "IRemoteCredentialStore",
+          "package": "@pixel-brewery/remote-client"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "name": "remoteContractVectors",
+      "variant": "declaration",
+      "kind": 32,
+      "flags": {
+        "isPublic": true,
+        "isConst": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Fixed public wire examples and rejection cases for independently implemented adapters."
+          }
+        ]
+      },
+      "type": {
+        "type": "reference",
+        "target": 88,
+        "name": "IRemoteContractVectors",
+        "package": "@pixel-brewery/remote-testing"
+      },
+      "defaultValue": "..."
+    },
+    {
+      "id": 106,
+      "name": "remoteRouteMatchVectors",
+      "variant": "declaration",
+      "kind": 32,
+      "flags": {
+        "isPublic": true,
+        "isConst": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Serialized admission cases covering exact methods, complete parameters, canonical paths and ambiguity denial."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "The owning runtime implementation is RemoteRouteRegistry. Native adapters must produce the same winners and denials."
+              }
+            ]
+          }
+        ]
+      },
+      "type": {
+        "type": "typeOperator",
+        "operator": "readonly",
+        "target": {
+          "type": "array",
+          "elementType": {
+            "type": "reference",
+            "target": 100,
+            "name": "IRemoteRouteMatchVector",
+            "package": "@pixel-brewery/remote-testing"
+          }
+        }
+      },
+      "defaultValue": "..."
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        66,
+        18,
+        1,
+        48
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        88,
+        100
+      ]
+    },
+    {
+      "title": "Variables",
+      "children": [
+        65,
+        106
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-testing",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/index.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.__constructor"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "value"
+    },
+    "8": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.writes"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.writes"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.load"
+    },
+    "11": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.load"
+    },
+    "12": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.save"
+    },
+    "13": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.save"
+    },
+    "14": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "state"
+    },
+    "15": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.failNextSave"
+    },
+    "16": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "MemoryRemoteAccessStore.failNextSave"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/access/MemoryRemoteAccessStore.ts",
+      "qualifiedName": "error"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector"
+    },
+    "19": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector.__constructor"
+    },
+    "20": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector"
+    },
+    "21": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "id"
+    },
+    "22": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "_create"
+    },
+    "23": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "__type"
+    },
+    "24": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "__type"
+    },
+    "25": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "endpoint"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "signal"
+    },
+    "37": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector.id"
+    },
+    "38": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector.connections"
+    },
+    "39": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector.connections"
+    },
+    "40": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "41": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/host/schemas/remoteEndpointSchema.ts",
+      "qualifiedName": "id"
+    },
+    "42": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/host/schemas/remoteEndpointSchema.ts",
+      "qualifiedName": "transportId"
+    },
+    "43": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/host/schemas/remoteEndpointSchema.ts",
+      "qualifiedName": "origin"
+    },
+    "44": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector.connect"
+    },
+    "45": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "FakeRemoteConnector.connect"
+    },
+    "46": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "input"
+    },
+    "47": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/connections/FakeRemoteConnector.ts",
+      "qualifiedName": "signal"
+    },
+    "48": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore"
+    },
+    "52": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore.get"
+    },
+    "53": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore.get"
+    },
+    "54": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "identity"
+    },
+    "55": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore.set"
+    },
+    "56": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore.set"
+    },
+    "57": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "identity"
+    },
+    "58": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "credential"
+    },
+    "59": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore.delete"
+    },
+    "60": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "MemoryRemoteCredentialStore.delete"
+    },
+    "61": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/credentials/MemoryRemoteCredentialStore.ts",
+      "qualifiedName": "identity"
+    },
+    "65": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/remoteContractVectors.ts",
+      "qualifiedName": "remoteContractVectors"
+    },
+    "66": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock"
+    },
+    "67": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.__constructor"
+    },
+    "68": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock"
+    },
+    "69": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "now"
+    },
+    "73": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.pending"
+    },
+    "74": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.pending"
+    },
+    "75": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.now"
+    },
+    "76": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.now"
+    },
+    "77": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.schedule"
+    },
+    "78": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.schedule"
+    },
+    "79": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "callback"
+    },
+    "80": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "__type"
+    },
+    "81": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "__type"
+    },
+    "82": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "delayMilliseconds"
+    },
+    "83": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "__type"
+    },
+    "84": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "__type"
+    },
+    "85": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.advance"
+    },
+    "86": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "FakeRemoteClock.advance"
+    },
+    "87": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/time/FakeRemoteClock.ts",
+      "qualifiedName": "milliseconds"
+    },
+    "88": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors"
+    },
+    "89": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.host"
+    },
+    "90": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.bootstrap"
+    },
+    "91": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.session"
+    },
+    "92": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.invalidOrigins"
+    },
+    "93": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.invalidPaths"
+    },
+    "94": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.contentPolicies"
+    },
+    "95": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "96": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsImages"
+    },
+    "97": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsMedia"
+    },
+    "98": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsConnections"
+    },
+    "99": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteContractVectors.ts",
+      "qualifiedName": "IRemoteContractVectors.invalidContentPolicies"
+    },
+    "100": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteRouteMatchVector.ts",
+      "qualifiedName": "IRemoteRouteMatchVector"
+    },
+    "101": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteRouteMatchVector.ts",
+      "qualifiedName": "IRemoteRouteMatchVector.name"
+    },
+    "102": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteRouteMatchVector.ts",
+      "qualifiedName": "IRemoteRouteMatchVector.routes"
+    },
+    "103": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteRouteMatchVector.ts",
+      "qualifiedName": "IRemoteRouteMatchVector.method"
+    },
+    "104": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteRouteMatchVector.ts",
+      "qualifiedName": "IRemoteRouteMatchVector.path"
+    },
+    "105": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/interfaces/IRemoteRouteMatchVector.ts",
+      "qualifiedName": "IRemoteRouteMatchVector.operationId"
+    },
+    "106": {
+      "packageName": "@pixel-brewery/remote-testing",
+      "packagePath": "src/protocol/remoteRouteMatchVectors.ts",
+      "qualifiedName": "remoteRouteMatchVectors"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-testing/src/index.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

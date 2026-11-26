@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "version": 1,
+    "title": "Native protocol resources",
+    "type": "object",
+    "properties": { "mode": { "type": "string", "enum": ["write", "check"], "default": "check" } },
+    "required": ["mode"],
+    "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+{
+    "repository": "pixel-brewery/remote",
+    "repositoryId": 1472760702,
+    "workflowFile": "ci.yml",
+    "workflowName": "Verify",
+    "requiredJobs": ["verify", "android", "ios"],
+    "postMergeWorkflows": [
+        {
+            "file": "ci.yml"
+        },
+        {
+            "file": "publish-pages.yml",
+            "paths": [
+                ".github/workflows/publish-pages.yml",
+                ".github/assets/",
+                ".node-version",
+                ".yarnrc.yml",
+                "package.json",
+                "libs/remote-capacitor/package.json",
+                "yarn.lock",
+                "site/"
+            ]
+        }
+    ],
+    "nativeManifests": [
+        "libs/remote-capacitor/android/build.gradle.kts",
+        "libs/remote-capacitor/Package.swift",
+        "libs/remote-capacitor/Package.resolved"
+    ]
+}

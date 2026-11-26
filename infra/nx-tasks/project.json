@@ -1,0 +1,141 @@
+{
+    "name": "nx-tasks",
+    "projectType": "library",
+    "tags": ["infra"],
+    "implicitDependencies": [
+        "remote-protocol",
+        "remote-core",
+        "remote-node",
+        "remote-client",
+        "remote-browser",
+        "remote-angular",
+        "remote-electron",
+        "remote-capacitor",
+        "remote-testing"
+    ],
+    "targets": {
+        "docs": {
+            "executor": "@pixel-brewery/nx-tasks:api-docs",
+            "dependsOn": ["^build"],
+            "cache": false,
+            "outputs": ["{workspaceRoot}/.docs/api", "{workspaceRoot}/.docs/packages/*/api"],
+            "options": {
+                "mode": "write"
+            }
+        },
+        "docs:check": {
+            "executor": "@pixel-brewery/nx-tasks:api-docs",
+            "dependsOn": ["^build"],
+            "cache": false,
+            "options": {
+                "mode": "check"
+            }
+        },
+        "native:generate": {
+            "executor": "@pixel-brewery/nx-tasks:native-protocol",
+            "dependsOn": ["remote-protocol:build", "remote-core:build", "remote-testing:build"],
+            "cache": false,
+            "options": {
+                "mode": "write"
+            },
+            "outputs": [
+                "{workspaceRoot}/libs/remote-capacitor/android/src/main/assets/remote-protocol-v1.json",
+                "{workspaceRoot}/libs/remote-capacitor/ios/sources/remotecapacitor/resources/remote-protocol-v1.json"
+            ]
+        },
+        "native:check": {
+            "executor": "@pixel-brewery/nx-tasks:native-protocol",
+            "dependsOn": ["remote-protocol:build", "remote-core:build", "remote-testing:build"],
+            "cache": false,
+            "options": {
+                "mode": "check"
+            }
+        },
+        "source:check": {
+            "executor": "@pixel-brewery/nx-tasks:source-conventions",
+            "cache": false
+        },
+        "dependabot:reconcile": {
+            "executor": "@pixel-brewery/nx-tasks:dependabot-merge",
+            "cache": false
+        },
+        "format": {
+            "executor": "nx:run-commands",
+            "cache": false,
+            "options": {
+                "command": "yarn exec prettier --write ."
+            }
+        },
+        "format:check": {
+            "executor": "nx:run-commands",
+            "cache": false,
+            "options": {
+                "command": "yarn exec prettier --check ."
+            }
+        },
+        "packages:check": {
+            "executor": "@pixel-brewery/nx-tasks:packed-packages",
+            "dependsOn": ["^build"],
+            "cache": false
+        },
+        "architecture:check": {
+            "executor": "nx:run-commands",
+            "cache": false,
+            "options": {
+                "command": "python3 .agents/skills/architect/scripts/check_inheritance.py --root . --derived remote-architect"
+            }
+        },
+        "theme:generate": {
+            "executor": "@pixel-brewery/nx-tasks:theme-artifact",
+            "cache": false,
+            "options": {
+                "mode": "write"
+            },
+            "outputs": [
+                "{workspaceRoot}/apps/fixture-browser/src/theme/fixtureTheme.json",
+                "{workspaceRoot}/site/theme/remoteTheme.json"
+            ]
+        },
+        "theme:check": {
+            "executor": "@pixel-brewery/nx-tasks:theme-artifact",
+            "cache": false,
+            "options": {
+                "mode": "check"
+            }
+        },
+        "packages:release:preflight": {
+            "executor": "@pixel-brewery/nx-tasks:package-release",
+            "cache": false,
+            "options": {
+                "phase": "preflight",
+                "artifactDirectory": "out/package-release"
+            }
+        },
+        "packages:release:prepare": {
+            "executor": "@pixel-brewery/nx-tasks:package-release",
+            "cache": false,
+            "options": {
+                "phase": "prepare",
+                "artifactDirectory": "out/package-release"
+            },
+            "dependsOn": ["^build"],
+            "outputs": ["{workspaceRoot}/out/package-release"]
+        },
+        "packages:release:publish": {
+            "executor": "@pixel-brewery/nx-tasks:package-release",
+            "cache": false,
+            "options": {
+                "phase": "publish",
+                "artifactDirectory": "out/package-release"
+            }
+        },
+        "packages:release:verify": {
+            "executor": "@pixel-brewery/nx-tasks:package-release",
+            "cache": false,
+            "options": {
+                "phase": "verify",
+                "artifactDirectory": "out/package-release"
+            }
+        }
+    }
+}

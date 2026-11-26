@@ -1,0 +1,14 @@
+{
+    "servers": {
+        "mosaik": {
+            "type": "stdio",
+            "command": "yarn",
+            "args": ["exec", "mosaik-mcp"]
+        },
+        "nx-mcp": {
+            "type": "stdio",
+            "command": "yarn",
+            "args": ["nx", "mcp"]
+        }
+    }
+}

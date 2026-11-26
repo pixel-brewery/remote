@@ -1,0 +1,437 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-angular",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 7,
+      "name": "injectRemoteSession",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 8,
+          "name": "injectRemoteSession",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Project the injected canonical lifecycle into Angular read-only signals."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "The original session, its current snapshot and a derived ready signal."
+                  }
+                ]
+              },
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Call within an Angular injection context. Consumer destruction removes only its subscription; the provider owns disposal."
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 9,
+            "name": "IRemoteSessionSignals",
+            "package": "@pixel-brewery/remote-angular"
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "IRemoteSessionSignals",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Read-only signal projection over the canonical client session."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 12,
+          "name": "ready",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Whether application operations may currently be requested."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@angular/core",
+              "packagePath": "types/_chrome_dev_tools_performance-chunk.d.ts",
+              "qualifiedName": "Signal"
+            },
+            "typeArguments": [
+              {
+                "type": "intrinsic",
+                "name": "boolean"
+              }
+            ],
+            "name": "Signal",
+            "package": "@angular/core"
+          }
+        },
+        {
+          "id": 10,
+          "name": "session",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "The same session registered by the application."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-client",
+              "packagePath": "src/lib/session/RemoteSession.ts",
+              "qualifiedName": "RemoteSession"
+            },
+            "name": "RemoteSession",
+            "package": "@pixel-brewery/remote-client"
+          }
+        },
+        {
+          "id": 11,
+          "name": "state",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Credential-free current state."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@angular/core",
+              "packagePath": "types/_chrome_dev_tools_performance-chunk.d.ts",
+              "qualifiedName": "Signal"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-client",
+                  "packagePath": "src/lib/session/RemoteSessionState.ts",
+                  "qualifiedName": "RemoteSessionState"
+                },
+                "name": "RemoteSessionState",
+                "package": "@pixel-brewery/remote-client"
+              }
+            ],
+            "name": "Signal",
+            "package": "@angular/core"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            12,
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "provideRemoteSession",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 3,
+          "name": "provideRemoteSession",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Register one headless session with injector-owned cleanup and no eager network initialization."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Environment providers for a root or lazy route scope."
+                  }
+                ]
+              },
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "The injector disposes the same session that signal consumers observe. The application calls initialize explicitly."
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 4,
+              "name": "factory",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Injection-context factory selecting the application identity and runtime connector."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 5,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "signatures": [
+                    {
+                      "id": 6,
+                      "name": "__type",
+                      "variant": "signature",
+                      "kind": 4096,
+                      "flags": {},
+                      "type": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@pixel-brewery/remote-client",
+                          "packagePath": "src/lib/session/RemoteSession.ts",
+                          "qualifiedName": "RemoteSession"
+                        },
+                        "name": "RemoteSession",
+                        "package": "@pixel-brewery/remote-client"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@angular/core",
+              "packagePath": "types/_chrome_dev_tools_performance-chunk.d.ts",
+              "qualifiedName": "EnvironmentProviders"
+            },
+            "name": "EnvironmentProviders",
+            "package": "@angular/core"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "REMOTE_SESSION",
+      "variant": "declaration",
+      "kind": 32,
+      "flags": {
+        "isPublic": true,
+        "isConst": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application-scoped canonical session token; consumers do not construct a second state owner."
+          }
+        ]
+      },
+      "type": {
+        "type": "reference",
+        "target": {
+          "packageName": "@angular/core",
+          "packagePath": "types/_chrome_dev_tools_performance-chunk.d.ts",
+          "qualifiedName": "InjectionToken"
+        },
+        "typeArguments": [
+          {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-client",
+              "packagePath": "src/lib/session/RemoteSession.ts",
+              "qualifiedName": "RemoteSession"
+            },
+            "name": "RemoteSession",
+            "package": "@pixel-brewery/remote-client"
+          }
+        ],
+        "name": "InjectionToken",
+        "package": "@angular/core"
+      },
+      "defaultValue": "..."
+    }
+  ],
+  "groups": [
+    {
+      "title": "Interfaces",
+      "children": [
+        9
+      ]
+    },
+    {
+      "title": "Variables",
+      "children": [
+        1
+      ]
+    },
+    {
+      "title": "Functions",
+      "children": [
+        7,
+        2
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-angular",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/index.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/providers/REMOTE_SESSION.ts",
+      "qualifiedName": "REMOTE_SESSION"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/providers/provideRemoteSession.ts",
+      "qualifiedName": "provideRemoteSession"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/providers/provideRemoteSession.ts",
+      "qualifiedName": "provideRemoteSession"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/providers/provideRemoteSession.ts",
+      "qualifiedName": "factory"
+    },
+    "5": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/providers/provideRemoteSession.ts",
+      "qualifiedName": "__type"
+    },
+    "6": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/providers/provideRemoteSession.ts",
+      "qualifiedName": "__type"
+    },
+    "7": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/signals/injectRemoteSession.ts",
+      "qualifiedName": "injectRemoteSession"
+    },
+    "8": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/signals/injectRemoteSession.ts",
+      "qualifiedName": "injectRemoteSession"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/signals/interfaces/IRemoteSessionSignals.ts",
+      "qualifiedName": "IRemoteSessionSignals"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/signals/interfaces/IRemoteSessionSignals.ts",
+      "qualifiedName": "IRemoteSessionSignals.session"
+    },
+    "11": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/signals/interfaces/IRemoteSessionSignals.ts",
+      "qualifiedName": "IRemoteSessionSignals.state"
+    },
+    "12": {
+      "packageName": "@pixel-brewery/remote-angular",
+      "packagePath": "src/lib/signals/interfaces/IRemoteSessionSignals.ts",
+      "qualifiedName": "IRemoteSessionSignals.ready"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-angular/src/index.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

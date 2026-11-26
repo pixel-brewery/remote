@@ -1,0 +1,26 @@
+{
+    "context": {
+        "fileName": [
+            "AGENTS.md",
+            "GEMINI.md"
+        ]
+    },
+    "mcpServers": {
+        "mosaik": {
+            "command": "yarn",
+            "args": [
+                "exec",
+                "mosaik-mcp"
+            ],
+            "cwd": "."
+        },
+        "nx-mcp": {
+            "command": "yarn",
+            "args": [
+                "nx",
+                "mcp"
+            ],
+            "cwd": "."
+        }
+    }
+}

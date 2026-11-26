@@ -1,0 +1,922 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-node/security",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 14,
+      "name": "IRemoteTlsMaterial",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application-supplied server identity, confined to the privileged Node runtime."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 17,
+          "name": "ca",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional PEM issuer chain consumed by the TLS implementation."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "ArrayBufferLike"
+                    },
+                    "name": "ArrayBufferLike",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              },
+              {
+                "type": "typeOperator",
+                "operator": "readonly",
+                "target": {
+                  "type": "array",
+                  "elementType": {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "intrinsic",
+                        "name": "string"
+                      },
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@types/node",
+                          "packagePath": "buffer.buffer.d.ts",
+                          "qualifiedName": "__global.Buffer"
+                        },
+                        "typeArguments": [
+                          {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "typescript",
+                              "packagePath": "lib/lib.es5.d.ts",
+                              "qualifiedName": "ArrayBufferLike"
+                            },
+                            "name": "ArrayBufferLike",
+                            "package": "typescript"
+                          }
+                        ],
+                        "name": "Buffer",
+                        "package": "@types/node",
+                        "qualifiedName": "__global.Buffer"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": 16,
+          "name": "cert",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-supplied PEM certificate or certificate chain."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "ArrayBufferLike"
+                    },
+                    "name": "ArrayBufferLike",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              }
+            ]
+          }
+        },
+        {
+          "id": 15,
+          "name": "key",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-supplied private server key. Keep this value confined to the privileged runtime."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "ArrayBufferLike"
+                    },
+                    "name": "ArrayBufferLike",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              }
+            ]
+          }
+        },
+        {
+          "id": 18,
+          "name": "passphrase",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional private-key decryption passphrase supplied by the application."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            17,
+            16,
+            15,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "IRemoteTlsProvider",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Applications own issuance, renewal and protected storage. The SDK only consumes supplied material."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 20,
+          "name": "getMaterial",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 21,
+              "name": "getMaterial",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Loads the current app-owned certificate, key and optional chain for the TLS listener."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The current material supplied and protected by the application."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": 14,
+                    "name": "IRemoteTlsMaterial",
+                    "package": "@pixel-brewery/remote-node"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "subscribe",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true
+          },
+          "signatures": [
+            {
+              "id": 23,
+              "name": "subscribe",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Optionally observes renewal of application-owned TLS identity material."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An idempotent cleanup removing this renewal registration. No initial callback is required."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 24,
+                  "name": "listener",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Called after new material is available; the adapter reloads it through getMaterial."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 25,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 26,
+                          "name": "__type",
+                          "variant": "signature",
+                          "kind": 4096,
+                          "flags": {},
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "void"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 27,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "signatures": [
+                    {
+                      "id": 28,
+                      "name": "__type",
+                      "variant": "signature",
+                      "kind": 4096,
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "void"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            20,
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "NodeRemoteSecurity",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Node cryptographic defaults with no import-time I/O."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 2,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {},
+          "signatures": [
+            {
+              "id": 3,
+              "name": "NodeRemoteSecurity",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {},
+              "type": {
+                "type": "reference",
+                "target": 1,
+                "name": "NodeRemoteSecurity",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "equalDigest",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 11,
+              "name": "equalDigest",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Compares validated digests without content-dependent early exit."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "True only when both valid digests contain the same bytes."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 12,
+                  "name": "left",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "First validated digest to compare."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 13,
+                  "name": "right",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Second validated digest to compare."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "boolean"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteSecurity.equalDigest"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteSecurity.equalDigest"
+          }
+        },
+        {
+          "id": 7,
+          "name": "hashToken",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 8,
+              "name": "hashToken",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Produces the persisted SHA-256 digest; raw tokens are never stored."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The deterministic token digest."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 9,
+                  "name": "value",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Plaintext UTF-8 token to digest with SHA-256."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteSecurity.hashToken"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteSecurity.hashToken"
+          }
+        },
+        {
+          "id": 4,
+          "name": "randomToken",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 5,
+              "name": "randomToken",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates a base64url bearer from operating-system entropy."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An unpredictable URL-safe credential."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RangeError when entropy is outside the integer range 16 through 64 bytes."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 6,
+                  "name": "bytes",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Entropy bytes to encode. Defaults to 32; the Node implementation accepts integers from 16 through 64."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  },
+                  "defaultValue": "32"
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteSecurity.randomToken"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteSecurity.randomToken"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            2
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            10,
+            7,
+            4
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-core",
+            "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+            "qualifiedName": "IRemoteSecurity"
+          },
+          "name": "IRemoteSecurity",
+          "package": "@pixel-brewery/remote-core"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        1
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        14,
+        19
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-node",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity.randomToken"
+    },
+    "5": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity.randomToken"
+    },
+    "6": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "bytes"
+    },
+    "7": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity.hashToken"
+    },
+    "8": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity.hashToken"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "value"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity.equalDigest"
+    },
+    "11": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "NodeRemoteSecurity.equalDigest"
+    },
+    "12": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "left"
+    },
+    "13": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/NodeRemoteSecurity.ts",
+      "qualifiedName": "right"
+    },
+    "14": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial"
+    },
+    "15": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.key"
+    },
+    "16": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.cert"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.ca"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.passphrase"
+    },
+    "19": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider"
+    },
+    "20": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.getMaterial"
+    },
+    "21": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.getMaterial"
+    },
+    "22": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.subscribe"
+    },
+    "23": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.subscribe"
+    },
+    "24": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "listener"
+    },
+    "25": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "27": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "28": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-node/src/security.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

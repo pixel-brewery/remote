@@ -1,0 +1,35 @@
+{
+    "name": "remote-site",
+    "projectType": "application",
+    "tags": ["application:public-site"],
+    "targets": {
+        "build": {
+            "executor": "nx:run-commands",
+            "cache": true,
+            "inputs": [
+                "{projectRoot}/**/*",
+                "{workspaceRoot}/package.json",
+                "{workspaceRoot}/yarn.lock"
+            ],
+            "outputs": ["{workspaceRoot}/dist/site"],
+            "options": {
+                "command": "yarn exec vite build site --outDir ../dist/site --base /remote/ --emptyOutDir"
+            },
+            "dependsOn": ["nx-tasks:theme:check"]
+        },
+        "serve": {
+            "executor": "nx:run-commands",
+            "cache": false,
+            "options": {
+                "command": "yarn exec vite site --host 127.0.0.1 --port 4196 --strictPort"
+            }
+        },
+        "preview": {
+            "executor": "nx:run-commands",
+            "cache": false,
+            "options": {
+                "command": "yarn exec vite preview site --outDir ../dist/site --base /remote/ --host 127.0.0.1 --port 4196 --strictPort"
+            }
+        }
+    }
+}

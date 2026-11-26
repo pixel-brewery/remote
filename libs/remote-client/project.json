@@ -1,0 +1,18 @@
+{
+    "name": "remote-client",
+    "projectType": "library",
+    "sourceRoot": "libs/remote-client/src",
+    "tags": ["runtime:portable"],
+    "targets": {
+        "build": {
+            "dependsOn": ["^build"],
+            "outputs": ["{projectRoot}/dist"]
+        },
+        "typecheck": {
+            "dependsOn": ["build"]
+        },
+        "test": {
+            "dependsOn": ["build"]
+        }
+    }
+}

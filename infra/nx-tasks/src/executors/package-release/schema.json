@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Manual verified SDK package release",
+    "type": "object",
+    "properties": {
+        "phase": {
+            "type": "string",
+            "enum": ["preflight", "prepare", "publish", "verify"],
+            "default": "preflight"
+        },
+        "sourceSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "familyVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)$"
+        },
+        "artifactDirectory": { "type": "string", "minLength": 1 },
+        "artifactId": { "type": "integer", "minimum": 1 }
+    },
+    "required": ["sourceSha", "familyVersion"],
+    "additionalProperties": false
+}

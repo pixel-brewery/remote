@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "title": "Pinned fixture theme artifact",
+    "type": "object",
+    "properties": {
+        "mode": { "type": "string", "enum": ["write", "check"] }
+    },
+    "required": ["mode"],
+    "additionalProperties": false
+}

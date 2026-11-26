@@ -1,0 +1,1813 @@
+{
+  "protocolVersion": 1,
+  "routes": {
+    "host": "/__remote/v1/host",
+    "pairings": "/__remote/v1/pairings",
+    "session": "/__remote/v1/session"
+  },
+  "schemas": {
+    "remoteHostDescriptor": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "identity": {
+          "readOnly": true,
+          "type": "object",
+          "properties": {
+            "appId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+            },
+            "hostId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "appId",
+            "hostId"
+          ],
+          "additionalProperties": false
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "protocolVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "endpoints": {
+          "readOnly": true,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "readOnly": true,
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "transportId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "origin": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "id",
+              "transportId",
+              "origin"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "identity",
+        "name",
+        "protocolVersion",
+        "endpoints"
+      ],
+      "additionalProperties": false
+    },
+    "remotePairingBootstrap": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "appId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "hostId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "origin": {
+          "type": "string",
+          "format": "uri"
+        },
+        "challenge": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 256
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+        }
+      },
+      "required": [
+        "appId",
+        "hostId",
+        "origin",
+        "challenge",
+        "expiresAt"
+      ],
+      "additionalProperties": false
+    },
+    "remotePairingRequest": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "attemptId": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 160
+        },
+        "deviceName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "challenge": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 256
+        },
+        "credentialMode": {
+          "type": "string",
+          "enum": [
+            "cookie",
+            "bearer"
+          ]
+        }
+      },
+      "required": [
+        "attemptId",
+        "deviceName",
+        "challenge",
+        "credentialMode"
+      ],
+      "additionalProperties": false
+    },
+    "remotePairingResponse": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "pending"
+            },
+            "pairingId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "expiresAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            }
+          },
+          "required": [
+            "status",
+            "pairingId",
+            "expiresAt"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "const": "paired"
+            },
+            "session": {
+              "readOnly": true,
+              "type": "object",
+              "properties": {
+                "host": {
+                  "readOnly": true,
+                  "type": "object",
+                  "properties": {
+                    "identity": {
+                      "readOnly": true,
+                      "type": "object",
+                      "properties": {
+                        "appId": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+                        },
+                        "hostId": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 160
+                        }
+                      },
+                      "required": [
+                        "appId",
+                        "hostId"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "protocolVersion": {
+                      "type": "number",
+                      "const": 1
+                    },
+                    "endpoints": {
+                      "readOnly": true,
+                      "maxItems": 8,
+                      "type": "array",
+                      "items": {
+                        "readOnly": true,
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 120
+                          },
+                          "transportId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 120
+                          },
+                          "origin": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "transportId",
+                          "origin"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "name",
+                    "protocolVersion",
+                    "endpoints"
+                  ],
+                  "additionalProperties": false
+                },
+                "principal": {
+                  "readOnly": true,
+                  "type": "object",
+                  "properties": {
+                    "appId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    },
+                    "hostId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "deviceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "capabilities": {
+                      "readOnly": true,
+                      "maxItems": 256,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      }
+                    }
+                  },
+                  "required": [
+                    "appId",
+                    "hostId",
+                    "deviceId",
+                    "capabilities"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "host",
+                "principal"
+              ],
+              "additionalProperties": false
+            },
+            "credential": {
+              "type": "string",
+              "minLength": 32,
+              "maxLength": 256
+            }
+          },
+          "required": [
+            "status",
+            "session"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "remoteSessionDescriptor": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "host": {
+          "readOnly": true,
+          "type": "object",
+          "properties": {
+            "identity": {
+              "readOnly": true,
+              "type": "object",
+              "properties": {
+                "appId": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+                },
+                "hostId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                }
+              },
+              "required": [
+                "appId",
+                "hostId"
+              ],
+              "additionalProperties": false
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "protocolVersion": {
+              "type": "number",
+              "const": 1
+            },
+            "endpoints": {
+              "readOnly": true,
+              "maxItems": 8,
+              "type": "array",
+              "items": {
+                "readOnly": true,
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "transportId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "origin": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": [
+                  "id",
+                  "transportId",
+                  "origin"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "identity",
+            "name",
+            "protocolVersion",
+            "endpoints"
+          ],
+          "additionalProperties": false
+        },
+        "principal": {
+          "readOnly": true,
+          "type": "object",
+          "properties": {
+            "appId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "hostId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "deviceId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "capabilities": {
+              "readOnly": true,
+              "maxItems": 256,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              }
+            }
+          },
+          "required": [
+            "appId",
+            "hostId",
+            "deviceId",
+            "capabilities"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "host",
+        "principal"
+      ],
+      "additionalProperties": false
+    },
+    "remoteSavedConnection": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "identity": {
+          "readOnly": true,
+          "type": "object",
+          "properties": {
+            "appId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+            },
+            "hostId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "appId",
+            "hostId"
+          ],
+          "additionalProperties": false
+        },
+        "endpoints": {
+          "readOnly": true,
+          "minItems": 1,
+          "maxItems": 8,
+          "type": "array",
+          "items": {
+            "readOnly": true,
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "transportId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "origin": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "id",
+              "transportId",
+              "origin"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "selectedEndpointId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "identity",
+        "endpoints",
+        "selectedEndpointId"
+      ],
+      "additionalProperties": false
+    },
+    "remoteNativeRequest": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "connections.list"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "connections.open"
+            },
+            "connectionId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "kind",
+            "connectionId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "connections.close"
+            },
+            "connectionId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "kind",
+            "connectionId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "connections.forget"
+            },
+            "connectionId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "kind",
+            "connectionId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "pairings.complete"
+            },
+            "bootstrap": {
+              "readOnly": true,
+              "type": "object",
+              "properties": {
+                "appId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "hostId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "origin": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "challenge": {
+                  "type": "string",
+                  "minLength": 32,
+                  "maxLength": 256
+                },
+                "expiresAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                }
+              },
+              "required": [
+                "appId",
+                "hostId",
+                "origin",
+                "challenge",
+                "expiresAt"
+              ],
+              "additionalProperties": false
+            },
+            "deviceName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "kind",
+            "bootstrap",
+            "deviceName"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "remoteNativeResponse": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "connections"
+            },
+            "connections": {
+              "readOnly": true,
+              "maxItems": 100,
+              "type": "array",
+              "items": {
+                "readOnly": true,
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160
+                  },
+                  "identity": {
+                    "readOnly": true,
+                    "type": "object",
+                    "properties": {
+                      "appId": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+                      },
+                      "hostId": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      }
+                    },
+                    "required": [
+                      "appId",
+                      "hostId"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "endpoints": {
+                    "readOnly": true,
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "type": "array",
+                    "items": {
+                      "readOnly": true,
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        },
+                        "transportId": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        },
+                        "origin": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "transportId",
+                        "origin"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "selectedEndpointId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                },
+                "required": [
+                  "id",
+                  "label",
+                  "identity",
+                  "endpoints",
+                  "selectedEndpointId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "connections"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "view"
+            },
+            "view": {
+              "readOnly": true,
+              "type": "object",
+              "properties": {
+                "connectionId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "identity": {
+                  "readOnly": true,
+                  "type": "object",
+                  "properties": {
+                    "appId": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+                    },
+                    "hostId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    }
+                  },
+                  "required": [
+                    "appId",
+                    "hostId"
+                  ],
+                  "additionalProperties": false
+                },
+                "origin": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "connectionId",
+                "identity",
+                "origin"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "kind",
+            "view"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "done"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "remoteLocalView": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "connectionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "identity": {
+          "readOnly": true,
+          "type": "object",
+          "properties": {
+            "appId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9.-]{0,79}$"
+            },
+            "hostId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          },
+          "required": [
+            "appId",
+            "hostId"
+          ],
+          "additionalProperties": false
+        },
+        "origin": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "connectionId",
+        "identity",
+        "origin"
+      ],
+      "additionalProperties": false
+    },
+    "remoteErrorResponse": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "invalid-request",
+                "unauthorized",
+                "forbidden",
+                "expired",
+                "consumed",
+                "not-ready",
+                "incompatible",
+                "resource-limit",
+                "persistence",
+                "network",
+                "disposed",
+                "unknown-outcome"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "remoteContentPolicy": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "readOnly": true,
+      "type": "object",
+      "properties": {
+        "allowHttpsImages": {
+          "default": false,
+          "type": "boolean"
+        },
+        "allowHttpsMedia": {
+          "default": false,
+          "type": "boolean"
+        },
+        "allowHttpsConnections": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "semanticRules": {
+    "origins": "HTTP(S) origin only; reject credentials, non-root paths, query strings and fragments.",
+    "sessions": "host.identity.appId and hostId must equal principal.appId and hostId.",
+    "savedConnections": "selectedEndpointId must identify one of the connection endpoints.",
+    "trimmedStrings": "Apply canonical trimming before length validation for deviceName, label and host name.",
+    "networkScope": "Schema acceptance is not network authorization. Native connections separately enforce private-address peer validation and product route registration."
+  },
+  "vectors": [
+    {
+      "schema": "remoteContentPolicy",
+      "name": "content-policy-0",
+      "valid": true,
+      "value": {}
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "content-policy-1",
+      "valid": true,
+      "value": {
+        "allowHttpsImages": true
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "content-policy-2",
+      "valid": true,
+      "value": {
+        "allowHttpsMedia": true
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "content-policy-3",
+      "valid": true,
+      "value": {
+        "allowHttpsConnections": true
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "content-policy-4",
+      "valid": true,
+      "value": {
+        "allowHttpsImages": true,
+        "allowHttpsMedia": true,
+        "allowHttpsConnections": true
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "invalid-content-policy-0",
+      "valid": false,
+      "value": {
+        "allowHttpsScripts": true
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "invalid-content-policy-1",
+      "valid": false,
+      "value": {
+        "allowHttpsImages": "true"
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "invalid-content-policy-2",
+      "valid": false,
+      "value": {
+        "allowHttpsMedia": 1
+      }
+    },
+    {
+      "schema": "remoteContentPolicy",
+      "name": "invalid-content-policy-3",
+      "valid": false,
+      "value": {
+        "allowHttpsConnections": null
+      }
+    },
+    {
+      "schema": "remoteHostDescriptor",
+      "name": "host",
+      "valid": true,
+      "value": {
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "name": "Example host",
+        "protocolVersion": 1,
+        "endpoints": [
+          {
+            "id": "lan",
+            "transportId": "lan-http",
+            "origin": "http://192.168.1.20:4177"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "remoteHostDescriptor",
+      "name": "unsupported-version",
+      "valid": false,
+      "value": {
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "name": "Example host",
+        "protocolVersion": 2,
+        "endpoints": [
+          {
+            "id": "lan",
+            "transportId": "lan-http",
+            "origin": "http://192.168.1.20:4177"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "remoteHostDescriptor",
+      "name": "endpoint-with-path",
+      "valid": false,
+      "value": {
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "name": "Example host",
+        "protocolVersion": 1,
+        "endpoints": [
+          {
+            "id": "lan",
+            "transportId": "lan-http",
+            "origin": "http://192.168.1.20:4177/api"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "remoteHostDescriptor",
+      "name": "endpoint-with-userinfo",
+      "valid": false,
+      "value": {
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "name": "Example host",
+        "protocolVersion": 1,
+        "endpoints": [
+          {
+            "id": "lan",
+            "transportId": "lan-http",
+            "origin": "http://user:password@192.168.1.20"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "remotePairingBootstrap",
+      "name": "bootstrap",
+      "valid": true,
+      "value": {
+        "appId": "example.app",
+        "hostId": "installation-example",
+        "origin": "http://192.168.1.20:4177",
+        "challenge": "example-challenge-0000000000000000",
+        "expiresAt": "2030-01-02T03:04:05Z"
+      }
+    },
+    {
+      "schema": "remotePairingBootstrap",
+      "name": "short-challenge",
+      "valid": false,
+      "value": {
+        "appId": "example.app",
+        "hostId": "installation-example",
+        "origin": "http://192.168.1.20:4177",
+        "challenge": "short",
+        "expiresAt": "2030-01-02T03:04:05Z"
+      }
+    },
+    {
+      "schema": "remotePairingBootstrap",
+      "name": "invalid-expiry",
+      "valid": false,
+      "value": {
+        "appId": "example.app",
+        "hostId": "installation-example",
+        "origin": "http://192.168.1.20:4177",
+        "challenge": "example-challenge-0000000000000000",
+        "expiresAt": "tomorrow"
+      }
+    },
+    {
+      "schema": "remotePairingRequest",
+      "name": "bearer-pairing",
+      "valid": true,
+      "value": {
+        "attemptId": "example-attempt-0001",
+        "deviceName": "Example device",
+        "challenge": "example-challenge-0000000000000000",
+        "credentialMode": "bearer"
+      }
+    },
+    {
+      "schema": "remotePairingRequest",
+      "name": "cookie-pairing",
+      "valid": true,
+      "value": {
+        "attemptId": "example-attempt-0001",
+        "deviceName": "Example device",
+        "challenge": "example-challenge-0000000000000000",
+        "credentialMode": "cookie"
+      }
+    },
+    {
+      "schema": "remotePairingRequest",
+      "name": "unknown-credential-mode",
+      "valid": false,
+      "value": {
+        "attemptId": "example-attempt-0001",
+        "deviceName": "Example device",
+        "challenge": "example-challenge-0000000000000000",
+        "credentialMode": "password"
+      }
+    },
+    {
+      "schema": "remotePairingRequest",
+      "name": "blank-device-name",
+      "valid": false,
+      "value": {
+        "attemptId": "example-attempt-0001",
+        "deviceName": "   ",
+        "challenge": "example-challenge-0000000000000000",
+        "credentialMode": "bearer"
+      }
+    },
+    {
+      "schema": "remotePairingResponse",
+      "name": "paired",
+      "valid": true,
+      "value": {
+        "status": "paired",
+        "session": {
+          "host": {
+            "identity": {
+              "appId": "example.app",
+              "hostId": "installation-example"
+            },
+            "name": "Example host",
+            "protocolVersion": 1,
+            "endpoints": [
+              {
+                "id": "lan",
+                "transportId": "lan-http",
+                "origin": "http://192.168.1.20:4177"
+              }
+            ]
+          },
+          "principal": {
+            "appId": "example.app",
+            "hostId": "installation-example",
+            "deviceId": "example-device",
+            "capabilities": [
+              "example.read"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "schema": "remotePairingResponse",
+      "name": "pending",
+      "valid": true,
+      "value": {
+        "status": "pending",
+        "pairingId": "example-pairing",
+        "expiresAt": "2030-01-02T03:04:05Z"
+      }
+    },
+    {
+      "schema": "remotePairingResponse",
+      "name": "unknown-pairing-state",
+      "valid": false,
+      "value": {
+        "status": "accepted",
+        "session": {
+          "host": {
+            "identity": {
+              "appId": "example.app",
+              "hostId": "installation-example"
+            },
+            "name": "Example host",
+            "protocolVersion": 1,
+            "endpoints": [
+              {
+                "id": "lan",
+                "transportId": "lan-http",
+                "origin": "http://192.168.1.20:4177"
+              }
+            ]
+          },
+          "principal": {
+            "appId": "example.app",
+            "hostId": "installation-example",
+            "deviceId": "example-device",
+            "capabilities": [
+              "example.read"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "schema": "remoteSessionDescriptor",
+      "name": "session",
+      "valid": true,
+      "value": {
+        "host": {
+          "identity": {
+            "appId": "example.app",
+            "hostId": "installation-example"
+          },
+          "name": "Example host",
+          "protocolVersion": 1,
+          "endpoints": [
+            {
+              "id": "lan",
+              "transportId": "lan-http",
+              "origin": "http://192.168.1.20:4177"
+            }
+          ]
+        },
+        "principal": {
+          "appId": "example.app",
+          "hostId": "installation-example",
+          "deviceId": "example-device",
+          "capabilities": [
+            "example.read"
+          ]
+        }
+      }
+    },
+    {
+      "schema": "remoteSessionDescriptor",
+      "name": "cross-app-session",
+      "valid": false,
+      "value": {
+        "host": {
+          "identity": {
+            "appId": "example.app",
+            "hostId": "installation-example"
+          },
+          "name": "Example host",
+          "protocolVersion": 1,
+          "endpoints": [
+            {
+              "id": "lan",
+              "transportId": "lan-http",
+              "origin": "http://192.168.1.20:4177"
+            }
+          ]
+        },
+        "principal": {
+          "appId": "other.app",
+          "hostId": "installation-example",
+          "deviceId": "example-device",
+          "capabilities": [
+            "example.read"
+          ]
+        }
+      }
+    },
+    {
+      "schema": "remoteSessionDescriptor",
+      "name": "cross-installation-session",
+      "valid": false,
+      "value": {
+        "host": {
+          "identity": {
+            "appId": "example.app",
+            "hostId": "installation-example"
+          },
+          "name": "Example host",
+          "protocolVersion": 1,
+          "endpoints": [
+            {
+              "id": "lan",
+              "transportId": "lan-http",
+              "origin": "http://192.168.1.20:4177"
+            }
+          ]
+        },
+        "principal": {
+          "appId": "example.app",
+          "hostId": "other-installation",
+          "deviceId": "example-device",
+          "capabilities": [
+            "example.read"
+          ]
+        }
+      }
+    },
+    {
+      "schema": "remoteSavedConnection",
+      "name": "saved-connection",
+      "valid": true,
+      "value": {
+        "id": "example-connection",
+        "label": "Example",
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "endpoints": [
+          {
+            "id": "lan",
+            "transportId": "lan-http",
+            "origin": "http://192.168.1.20:4177"
+          }
+        ],
+        "selectedEndpointId": "lan"
+      }
+    },
+    {
+      "schema": "remoteSavedConnection",
+      "name": "unknown-selected-endpoint",
+      "valid": false,
+      "value": {
+        "id": "example-connection",
+        "label": "Example",
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "endpoints": [
+          {
+            "id": "lan",
+            "transportId": "lan-http",
+            "origin": "http://192.168.1.20:4177"
+          }
+        ],
+        "selectedEndpointId": "missing"
+      }
+    },
+    {
+      "schema": "remoteNativeRequest",
+      "name": "list-connections",
+      "valid": true,
+      "value": {
+        "kind": "connections.list"
+      }
+    },
+    {
+      "schema": "remoteNativeRequest",
+      "name": "complete-pairing",
+      "valid": true,
+      "value": {
+        "kind": "pairings.complete",
+        "bootstrap": {
+          "appId": "example.app",
+          "hostId": "installation-example",
+          "origin": "http://192.168.1.20:4177",
+          "challenge": "example-challenge-0000000000000000",
+          "expiresAt": "2030-01-02T03:04:05Z"
+        },
+        "deviceName": "Example device"
+      }
+    },
+    {
+      "schema": "remoteNativeRequest",
+      "name": "arbitrary-fetch",
+      "valid": false,
+      "value": {
+        "kind": "fetch",
+        "url": "http://192.168.1.20:4177"
+      }
+    },
+    {
+      "schema": "remoteNativeRequest",
+      "name": "extra-privileged-argument",
+      "valid": false,
+      "value": {
+        "kind": "connections.list",
+        "token": "forbidden"
+      }
+    },
+    {
+      "schema": "remoteNativeResponse",
+      "name": "connection-list",
+      "valid": true,
+      "value": {
+        "kind": "connections",
+        "connections": [
+          {
+            "id": "example-connection",
+            "label": "Example",
+            "identity": {
+              "appId": "example.app",
+              "hostId": "installation-example"
+            },
+            "endpoints": [
+              {
+                "id": "lan",
+                "transportId": "lan-http",
+                "origin": "http://192.168.1.20:4177"
+              }
+            ],
+            "selectedEndpointId": "lan"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "remoteNativeResponse",
+      "name": "view-response",
+      "valid": true,
+      "value": {
+        "kind": "view",
+        "view": {
+          "connectionId": "example-connection",
+          "identity": {
+            "appId": "example.app",
+            "hostId": "installation-example"
+          },
+          "origin": "http://127.0.0.1:4178"
+        }
+      }
+    },
+    {
+      "schema": "remoteNativeResponse",
+      "name": "credential-response",
+      "valid": false,
+      "value": {
+        "kind": "done",
+        "credential": "forbidden"
+      }
+    },
+    {
+      "schema": "remoteLocalView",
+      "name": "local-view",
+      "valid": true,
+      "value": {
+        "connectionId": "example-connection",
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "origin": "http://127.0.0.1:4178"
+      }
+    },
+    {
+      "schema": "remoteLocalView",
+      "name": "view-with-fragment",
+      "valid": false,
+      "value": {
+        "connectionId": "example-connection",
+        "identity": {
+          "appId": "example.app",
+          "hostId": "installation-example"
+        },
+        "origin": "http://127.0.0.1:4178/#credential"
+      }
+    },
+    {
+      "schema": "remoteErrorResponse",
+      "name": "safe-error",
+      "valid": true,
+      "value": {
+        "error": {
+          "code": "unauthorized",
+          "message": "Pair this device first."
+        }
+      }
+    },
+    {
+      "schema": "remoteErrorResponse",
+      "name": "error-with-cause",
+      "valid": false,
+      "value": {
+        "error": {
+          "code": "unauthorized",
+          "message": "Denied",
+          "cause": "/private/location"
+        }
+      }
+    }
+  ],
+  "routeMatchVectors": [
+    {
+      "name": "one complete parameter",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/one",
+      "operationId": "notes.remove"
+    },
+    {
+      "name": "query is outside route matching",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/one?revision=2",
+      "operationId": "notes.remove"
+    },
+    {
+      "name": "exact method required",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "GET",
+      "path": "/api/notes/one",
+      "operationId": null
+    },
+    {
+      "name": "parameter cannot be empty",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/",
+      "operationId": null
+    },
+    {
+      "name": "parameter cannot span segments",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/one/two",
+      "operationId": null
+    },
+    {
+      "name": "encoded path separator denied",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/one%2ftwo",
+      "operationId": null
+    },
+    {
+      "name": "double decode denied",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/%252e%252e",
+      "operationId": null
+    },
+    {
+      "name": "encoded question denied",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/a%3fb",
+      "operationId": null
+    },
+    {
+      "name": "encoded fragment denied",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/a%23b",
+      "operationId": null
+    },
+    {
+      "name": "decoded control denied",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/a%00b",
+      "operationId": null
+    },
+    {
+      "name": "malformed percent denied",
+      "routes": [
+        {
+          "id": "notes.remove",
+          "method": "DELETE",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:write"
+          ],
+          "retry": "never"
+        }
+      ],
+      "method": "DELETE",
+      "path": "/api/notes/%zz",
+      "operationId": null
+    },
+    {
+      "name": "literal plus remains a plus",
+      "routes": [
+        {
+          "id": "notes.plus",
+          "method": "GET",
+          "path": "/api/notes/a+b",
+          "kind": "http",
+          "capabilities": [
+            "notes:read"
+          ],
+          "retry": "safe-read"
+        }
+      ],
+      "method": "GET",
+      "path": "/api/notes/a+b",
+      "operationId": "notes.plus"
+    },
+    {
+      "name": "static route outranks parameter",
+      "routes": [
+        {
+          "id": "notes.read",
+          "method": "GET",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:read"
+          ],
+          "retry": "safe-read"
+        },
+        {
+          "id": "notes.current",
+          "method": "GET",
+          "path": "/api/notes/current",
+          "kind": "http",
+          "capabilities": [
+            "notes:read"
+          ],
+          "retry": "safe-read"
+        }
+      ],
+      "method": "GET",
+      "path": "/api/notes/current",
+      "operationId": "notes.current"
+    },
+    {
+      "name": "equal specificity overlap denied",
+      "routes": [
+        {
+          "id": "notes.read",
+          "method": "GET",
+          "path": "/api/:collection/current",
+          "kind": "http",
+          "capabilities": [
+            "notes:read"
+          ],
+          "retry": "safe-read"
+        },
+        {
+          "id": "notes.read",
+          "method": "GET",
+          "path": "/api/notes/:id",
+          "kind": "http",
+          "capabilities": [
+            "notes:read"
+          ],
+          "retry": "safe-read"
+        }
+      ],
+      "method": "GET",
+      "path": "/api/notes/current",
+      "operationId": null
+    }
+  ]
+}

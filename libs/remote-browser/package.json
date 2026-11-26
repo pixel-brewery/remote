@@ -1,0 +1,43 @@
+{
+    "name": "@pixel-brewery/remote-browser",
+    "version": "0.1.0",
+    "type": "module",
+    "sideEffects": false,
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "name": "remote-browser"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://npm.pkg.github.com"
+    },
+    "scripts": {
+        "build": "tsc -b tsconfig.lib.json",
+        "typecheck": "tsc -p tsconfig.spec.json --noEmit",
+        "test": "vitest run --config vitest.config.ts"
+    },
+    "dependencies": {
+        "@pixel-brewery/remote-client": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pixel-brewery/remote.git",
+        "directory": "libs/remote-browser"
+    }
+}

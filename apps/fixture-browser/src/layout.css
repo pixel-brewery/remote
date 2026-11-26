@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    background: var(--mosaik-scheme-background);
+    color: var(--mosaik-scheme-foreground);
+    font-family: var(--mosaik-font-family);
+}
+main {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding: calc(var(--mosaik-layout-space) * 3);
+    display: grid;
+    gap: calc(var(--mosaik-layout-space) * 2);
+}
+.fields,
+#connections {
+    display: grid;
+    gap: calc(var(--mosaik-layout-space) * 2);
+}
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--mosaik-layout-space);
+}
+pre {
+    max-height: 20rem;
+    overflow: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+@media (max-width: 35rem) {
+    main {
+        padding: var(--mosaik-layout-space);
+    }
+    .actions > * {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 9rem;
+    }
+}

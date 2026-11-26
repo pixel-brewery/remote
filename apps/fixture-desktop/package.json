@@ -1,0 +1,71 @@
+{
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "license": "MIT",
+    "name": "@pixel-brewery/remote-fixture-desktop",
+    "dependencies": {
+        "@pixel-brewery/remote-client": "workspace:*",
+        "@pixel-brewery/remote-electron": "workspace:*",
+        "@pixel-brewery/remote-fixture-host": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*",
+        "zod": "4.6.7"
+    },
+    "devDependencies": {
+        "@pixel-brewery/remote-fixture-browser": "workspace:*",
+        "@pixel-brewery/remote-fixture-host": "workspace:*",
+        "@playwright/test": "1.65.0",
+        "electron": "45.5.0",
+        "playwright": "1.65.0",
+        "vite": "8.3.8"
+    },
+    "scripts": {
+        "build": "nx run fixture-desktop:build",
+        "serve": "electron dist/main.js",
+        "e2e": "playwright test --config playwright.config.ts",
+        "typecheck": "tsc --noEmit -p tsconfig.json"
+    },
+    "nx": {
+        "name": "fixture-desktop",
+        "tags": [
+            "type:fixture",
+            "runtime:electron-main"
+        ],
+        "implicitDependencies": [
+            "fixture-browser"
+        ],
+        "targets": {
+            "build": {
+                "dependsOn": [
+                    "^build",
+                    "fixture-browser:build"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ],
+                "executor": "@pixel-brewery/nx-tasks:desktop-fixture"
+            },
+            "serve": {
+                "dependsOn": [
+                    "build"
+                ]
+            },
+            "e2e": {
+                "executor": "nx:run-commands",
+                "cache": false,
+                "dependsOn": [
+                    "build",
+                    "fixture-host:build"
+                ],
+                "options": {
+                    "command": "yarn exec playwright test --config apps/fixture-desktop/playwright.config.ts"
+                }
+            },
+            "typecheck": {
+                "dependsOn": [
+                    "build"
+                ]
+            }
+        }
+    }
+}

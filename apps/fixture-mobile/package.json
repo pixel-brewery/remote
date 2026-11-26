@@ -1,0 +1,65 @@
+{
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "license": "MIT",
+    "name": "@pixel-brewery/remote-fixture-mobile",
+    "dependencies": {
+        "@capacitor/android": "8.6.2",
+        "@capacitor/core": "8.6.2",
+        "@capacitor/ios": "8.6.2",
+        "@pixel-brewery/remote-capacitor": "workspace:*",
+        "@pixel-brewery/remote-fixture-browser": "workspace:*"
+    },
+    "scripts": {
+        "build": "nx run fixture-mobile:build",
+        "android:build": "nx run fixture-mobile:android-compile",
+        "ios:build": "nx run fixture-mobile:ios-compile"
+    },
+    "nx": {
+        "name": "fixture-mobile",
+        "tags": [
+            "type:fixture",
+            "runtime:capacitor"
+        ],
+        "targets": {
+            "build": {
+                "dependsOn": [
+                    "fixture-browser:build"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ],
+                "executor": "@pixel-brewery/nx-tasks:mobile-fixture"
+            },
+            "android-compile": {
+                "executor": "@pixel-brewery/nx-tasks:native-check",
+                "cache": false,
+                "dependsOn": [
+                    "build",
+                    "nx-tasks:native:check"
+                ],
+                "options": {
+                    "platform": "android",
+                    "gradleTasks": [
+                        "assembleCounterDebug",
+                        "assembleNotesDebug"
+                    ]
+                }
+            },
+            "ios-compile": {
+                "executor": "@pixel-brewery/nx-tasks:native-check",
+                "cache": false,
+                "dependsOn": [
+                    "build",
+                    "nx-tasks:native:check"
+                ],
+                "options": {
+                    "platform": "ios",
+                    "scheme": "RemoteFixture",
+                    "projectFile": "ios/remote-fixture.xcodeproj"
+                }
+            }
+        }
+    }
+}

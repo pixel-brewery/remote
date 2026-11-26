@@ -1,0 +1,5 @@
+.local/
+android/.gradle/
+android/app/build/
+android/local.properties
+ios/**/xcuserdata/

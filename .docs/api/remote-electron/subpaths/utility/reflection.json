@@ -1,0 +1,1108 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-electron/utility",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 1,
+      "name": "ElectronRemoteUtility",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Utility-owned native remote channel and authenticated packaged-content gateway."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "The application supplies a Main-mediated credential port. No plaintext secret or private gateway cookie is sent to renderer JS."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 26,
+          "name": "closeConnection",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 27,
+              "name": "closeConnection",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Cancel one selected view without deleting its persistent grant."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Network and gateway cleanup completion."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 28,
+                  "name": "connectionId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Active view identifier; other identifiers leave it running."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 3,
+              "name": "ElectronRemoteUtility",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Compose immutable application-owned policy and runtime ports."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 4,
+                  "name": "_options",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Product identity, packaged assets, registered routes and private persistence."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 61,
+                    "name": "IRemoteElectronUtilityOptions",
+                    "package": "@pixel-brewery/remote-electron"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 1,
+                "name": "ElectronRemoteUtility",
+                "package": "@pixel-brewery/remote-electron"
+              }
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "dispose",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 33,
+              "name": "dispose",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Cancel every owned socket, local view and pending pairing during Utility shutdown."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Idempotent cleanup completion."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "forgetConnection",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 30,
+              "name": "forgetConnection",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Remove one local profile and Main-mediated credential."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Durable metadata update after cancellation of that profile's streams."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 31,
+                  "name": "connectionId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact stored profile to forget."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "listConnections",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 18,
+              "name": "listConnections",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Read safe profile metadata without decrypting credentials."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Validated profiles limited to this application's namespace."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error if persistence contains another application's identity."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "typeOperator",
+                    "operator": "readonly",
+                    "target": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@pixel-brewery/remote-client",
+                          "packagePath": "src/lib/connections/interfaces/IRemoteSavedConnection.ts",
+                          "qualifiedName": "IRemoteSavedConnection"
+                        },
+                        "name": "IRemoteSavedConnection",
+                        "package": "@pixel-brewery/remote-client"
+                      }
+                    }
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "openConnection",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 24,
+              "name": "openConnection",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Restore a saved host and start its isolated authenticated loopback view."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Main-only activation descriptor after public host identity and session validation."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error when a profile is absent, revoked or unreachable."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 25,
+                  "name": "connectionId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact selected safe-profile identifier."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-node",
+                      "packagePath": "src/gateway/interfaces/IRemoteLocalGatewayView.ts",
+                      "qualifiedName": "IRemoteLocalGatewayView"
+                    },
+                    "name": "IRemoteLocalGatewayView",
+                    "package": "@pixel-brewery/remote-node"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "pair",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 20,
+              "name": "pair",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Complete a native bearer pairing, save its safe profile and activate packaged content."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Privileged activation descriptor for Main, including its private local cookie."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error when host approval is pending, storage fails or verified identities mismatch."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 21,
+                  "name": "bootstrap",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Unexpired invitation for the immutable product namespace."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/pairing/interfaces/IRemotePairingBootstrap.ts",
+                      "qualifiedName": "IRemotePairingBootstrap"
+                    },
+                    "name": "IRemotePairingBootstrap",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 22,
+                  "name": "deviceName",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "User-selected device label; stable across recovery of one attempt."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-node",
+                      "packagePath": "src/gateway/interfaces/IRemoteLocalGatewayView.ts",
+                      "qualifiedName": "IRemoteLocalGatewayView"
+                    },
+                    "name": "IRemoteLocalGatewayView",
+                    "package": "@pixel-brewery/remote-node"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            2
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            26,
+            32,
+            29,
+            17,
+            23,
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "IRemoteElectronUtilityOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Privileged Utility Process composition; no value is accepted from renderer configuration."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 72,
+          "name": "allowLoopbackForTests",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Test-only explicit loopback upstream acceptance."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "boolean"
+          }
+        },
+        {
+          "id": 62,
+          "name": "appId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Immutable product namespace."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 63,
+          "name": "assetsPath",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Immutable packaged UI directory."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 65,
+          "name": "contentPolicy",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "App-owned HTTPS resource permissions for trusted packaged UI; every flag defaults to false."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@remarks",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "This never expands remote proxy routes, scripts, frames or navigation."
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "typescript",
+              "packagePath": "lib/lib.es5.d.ts",
+              "qualifiedName": "Readonly"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Readonly"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 66,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "children": [
+                        {
+                          "id": 69,
+                          "name": "allowHttpsConnections",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {
+                            "isOptional": true
+                          },
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "boolean"
+                          }
+                        },
+                        {
+                          "id": 67,
+                          "name": "allowHttpsImages",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {
+                            "isOptional": true
+                          },
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "boolean"
+                          }
+                        },
+                        {
+                          "id": 68,
+                          "name": "allowHttpsMedia",
+                          "variant": "declaration",
+                          "kind": 1024,
+                          "flags": {
+                            "isOptional": true
+                          },
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "boolean"
+                          }
+                        }
+                      ],
+                      "groups": [
+                        {
+                          "title": "Properties",
+                          "children": [
+                            69,
+                            67,
+                            68
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "name": "Readonly",
+                "package": "typescript"
+              }
+            ],
+            "name": "Readonly",
+            "package": "typescript"
+          }
+        },
+        {
+          "id": 71,
+          "name": "credentialStore",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Narrow Main-mediated credential vault port."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-client",
+              "packagePath": "src/lib/credentials/interfaces/IRemoteCredentialStore.ts",
+              "qualifiedName": "IRemoteCredentialStore"
+            },
+            "name": "IRemoteCredentialStore",
+            "package": "@pixel-brewery/remote-client"
+          }
+        },
+        {
+          "id": 70,
+          "name": "profileStore",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "App-owned safe profile store."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-client",
+              "packagePath": "src/lib/connections/interfaces/IRemoteProfileStore.ts",
+              "qualifiedName": "IRemoteProfileStore"
+            },
+            "name": "IRemoteProfileStore",
+            "package": "@pixel-brewery/remote-client"
+          }
+        },
+        {
+          "id": 64,
+          "name": "routes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Explicit product operation registry."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-protocol",
+                  "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                  "qualifiedName": "IRemoteRouteDefinition"
+                },
+                "name": "IRemoteRouteDefinition",
+                "package": "@pixel-brewery/remote-protocol"
+              }
+            }
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            72,
+            62,
+            63,
+            65,
+            71,
+            70,
+            64
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        1
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        61
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-electron",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/utility.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.__constructor"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "_options"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.listConnections"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.listConnections"
+    },
+    "19": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.pair"
+    },
+    "20": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.pair"
+    },
+    "21": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "bootstrap"
+    },
+    "22": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "deviceName"
+    },
+    "23": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.openConnection"
+    },
+    "24": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.openConnection"
+    },
+    "25": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "connectionId"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.closeConnection"
+    },
+    "27": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.closeConnection"
+    },
+    "28": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "connectionId"
+    },
+    "29": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.forgetConnection"
+    },
+    "30": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.forgetConnection"
+    },
+    "31": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "connectionId"
+    },
+    "32": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.dispose"
+    },
+    "33": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/ElectronRemoteUtility.ts",
+      "qualifiedName": "ElectronRemoteUtility.dispose"
+    },
+    "61": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions"
+    },
+    "62": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.appId"
+    },
+    "63": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.assetsPath"
+    },
+    "64": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.routes"
+    },
+    "65": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.contentPolicy"
+    },
+    "66": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "67": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsImages"
+    },
+    "68": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsMedia"
+    },
+    "69": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/content/schemas/remoteContentPolicySchema.ts",
+      "qualifiedName": "allowHttpsConnections"
+    },
+    "70": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.profileStore"
+    },
+    "71": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.credentialStore"
+    },
+    "72": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemoteElectronUtilityOptions.ts",
+      "qualifiedName": "IRemoteElectronUtilityOptions.allowLoopbackForTests"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-electron/src/utility.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

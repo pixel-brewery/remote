@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-electron",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "comment": {
+    "summary": [
+      {
+        "kind": "text",
+        "text": "Renderer-safe type exports. Main, preload and Utility runtime entrypoints are intentionally separate."
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": 1,
+      "name": "IRemotePreloadBridge",
+      "variant": "declaration",
+      "kind": 2097152,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Safe renderer-facing connection control contract."
+          }
+        ]
+      },
+      "type": {
+        "type": "reference",
+        "target": {
+          "packageName": "@pixel-brewery/remote-client",
+          "packagePath": "src/lib/connections/interfaces/IRemoteControlBridge.ts",
+          "qualifiedName": "IRemoteControlBridge"
+        },
+        "name": "IRemoteControlBridge",
+        "package": "@pixel-brewery/remote-client"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "title": "Type Aliases",
+      "children": [
+        1
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-electron",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/index.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-electron",
+      "packagePath": "src/lib/transport/interfaces/IRemotePreloadBridge.ts",
+      "qualifiedName": "IRemotePreloadBridge"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-electron/src/index.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

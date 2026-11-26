@@ -1,0 +1,50 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    rebase-strategy: auto
+    open-pull-requests-limit: 10
+    versioning-strategy: increase-if-necessary
+    groups:
+      mosaik:
+        patterns: ['@pixel-brewery/mosaik-*', '@pixel-brewery/markdowner-*']
+      angular:
+        patterns: ['@angular/*', '@angular-devkit/*', '@schematics/*']
+      nx:
+        patterns: ['nx', '@nx/*']
+      testing:
+        patterns: ['vitest', '@vitest/*', 'playwright', '@playwright/*']
+      capacitor:
+        patterns: ['@capacitor/*']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    rebase-strategy: auto
+    open-pull-requests-limit: 5
+  - package-ecosystem: gradle
+    directory: /libs/remote-capacitor/android
+    schedule:
+      interval: weekly
+      day: monday
+    rebase-strategy: auto
+    open-pull-requests-limit: 5
+    groups:
+      ktor:
+        patterns: ['io.ktor:*']
+      camera:
+        patterns: ['androidx.camera:*']
+  - package-ecosystem: swift
+    directory: /libs/remote-capacitor
+    schedule:
+      interval: weekly
+      day: monday
+    rebase-strategy: auto
+    open-pull-requests-limit: 5
+    groups:
+      nio:
+        patterns: ['swift-nio*', 'swift-atomics', 'swift-collections', 'swift-system']

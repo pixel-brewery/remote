@@ -1,0 +1,3771 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-node",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 127,
+      "name": "INodeRemoteHostOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Explicit private host composition. No product or certificate service is embedded."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 130,
+          "name": "access",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Sanitized authorization state with neither token hashes nor plaintext credentials."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-core",
+              "packagePath": "src/access/services/RemoteAccessService.ts",
+              "qualifiedName": "RemoteAccessService"
+            },
+            "name": "RemoteAccessService",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 138,
+          "name": "allowLoopbackForTests",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Test-only exception for numeric loopback destinations. Production configuration must omit this flag."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "boolean"
+          }
+        },
+        {
+          "id": 132,
+          "name": "application",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Product dispatcher retaining canonical validation, business decisions and resource authorization."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 151,
+            "name": "IRemoteApplicationAdapter",
+            "package": "@pixel-brewery/remote-node"
+          }
+        },
+        {
+          "id": 134,
+          "name": "assetsPath",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-owned immutable packaged web-asset root. Symbolic links outside the canonical root are rejected."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 143,
+          "name": "contentSecurityPolicy",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-owned packaged-asset content policy. The default permits only same-origin scripts and denies embedding."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 139,
+          "name": "cookieName",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional HTTP token-safe session-cookie name; the default is scoped to the app and host identifiers."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 135,
+          "name": "host",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional numeric private interface address. Omission selects a supported physical private IPv4 interface; wildcard, public and DNS addresses are rejected."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 128,
+          "name": "identity",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application and installation namespace to which this owner belongs."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-protocol",
+              "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+              "qualifiedName": "IRemoteHostIdentity"
+            },
+            "name": "IRemoteHostIdentity",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 140,
+          "name": "maxConnections",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum simultaneous TCP connections. The host defaults to 128 and the local view to 64."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 141,
+          "name": "maxWebSockets",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum active host WebSockets, default 64."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 129,
+          "name": "name",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Human-readable host or device label; never interpreted as authority."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 136,
+          "name": "port",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "First listener port, default 49152. Zero is permitted only by the explicit test-loopback policy."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 137,
+          "name": "portEnd",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Inclusive fallback port bound. The range is capped at 128 alternatives."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 144,
+          "name": "reportFailure",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional sanitized diagnostic callback receiving operation and stable code without credentials or private payloads."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 145,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 146,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 147,
+                      "name": "failure",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "reflection",
+                        "declaration": {
+                          "id": 148,
+                          "name": "__type",
+                          "variant": "declaration",
+                          "kind": 65536,
+                          "flags": {},
+                          "children": [
+                            {
+                              "id": 150,
+                              "name": "code",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {
+                                "isReadonly": true
+                              },
+                              "comment": {
+                                "summary": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Stable protocol failure category safe to cross the process or network boundary."
+                                  }
+                                ]
+                              },
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 149,
+                              "name": "operation",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {
+                                "isReadonly": true
+                              },
+                              "comment": {
+                                "summary": [
+                                  {
+                                    "kind": "text",
+                                    "text": "Sanitized operation category associated with the reported failure; never a URL, credential or product payload."
+                                  }
+                                ]
+                              },
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            }
+                          ],
+                          "groups": [
+                            {
+                              "title": "Properties",
+                              "children": [
+                                150,
+                                149
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 131,
+          "name": "routes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Explicit product operation registry. SDK-reserved operations cannot be overridden and unknown methods or paths are denied."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-protocol",
+                  "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                  "qualifiedName": "IRemoteRouteDefinition"
+                },
+                "name": "IRemoteRouteDefinition",
+                "package": "@pixel-brewery/remote-protocol"
+              }
+            }
+          }
+        },
+        {
+          "id": 142,
+          "name": "shutdownTimeoutMs",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum graceful shutdown wait before remaining sockets are destroyed, default one second."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 133,
+          "name": "transports",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Explicit listener adapters. Defaults to one unencrypted private-LAN HTTP listener."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reference",
+                "target": 188,
+                "name": "IRemoteNodeTransport",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            130,
+            138,
+            132,
+            134,
+            143,
+            139,
+            135,
+            128,
+            140,
+            141,
+            129,
+            136,
+            137,
+            144,
+            131,
+            142,
+            133
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151,
+      "name": "IRemoteApplicationAdapter",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Product-owned request pipeline. Original streams reach the canonical product validators."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 152,
+          "name": "authorize",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true
+          },
+          "signatures": [
+            {
+              "id": 153,
+              "name": "authorize",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Optionally enforces product resource and state rules after device capability admission and before dispatch."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves only when this device may perform the operation in the current product state."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An application error when the operation must be denied."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 154,
+                  "name": "route",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Registered operation being admitted."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                      "qualifiedName": "IRemoteRouteDefinition"
+                    },
+                    "name": "IRemoteRouteDefinition",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 155,
+                  "name": "context",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Authenticated device scope and owned cancellation signal."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemoteRequestContext.ts",
+                      "qualifiedName": "IRemoteRequestContext"
+                    },
+                    "name": "IRemoteRequestContext",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 156,
+          "name": "handle",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 157,
+              "name": "handle",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Runs the application-owned HTTP pipeline using the original request and response streams."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after dispatch is established or completed. Streaming owners must observe the context signal."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "A product validation, authorization or dispatch error."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 158,
+                  "name": "request",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Original IncomingMessage, retaining headers, multipart boundaries and incremental bytes."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".IncomingMessage"
+                    },
+                    "name": "IncomingMessage",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".IncomingMessage"
+                  }
+                },
+                {
+                  "id": 159,
+                  "name": "response",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Original ServerResponse; preserve status, relevant headers and backpressure."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".ServerResponse"
+                    },
+                    "name": "ServerResponse",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".ServerResponse"
+                  }
+                },
+                {
+                  "id": 160,
+                  "name": "context",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Admitted device identity and signal aborted on disconnect or revocation."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemoteRequestContext.ts",
+                      "qualifiedName": "IRemoteRequestContext"
+                    },
+                    "name": "IRemoteRequestContext",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 161,
+          "name": "webSocket",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true
+          },
+          "signatures": [
+            {
+              "id": 162,
+              "name": "webSocket",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Optionally handles one registered, authenticated product event stream."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after event handling is installed. The product must release its own subscriptions when the signal aborts."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An error when event setup fails; the host closes the socket."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 163,
+                  "name": "socket",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Open WebSocket owned by the host; validate every product message."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/ws",
+                      "packagePath": "index.d.mts",
+                      "qualifiedName": "WebSocket"
+                    },
+                    "name": "WebSocket",
+                    "package": "@types/ws"
+                  }
+                },
+                {
+                  "id": 164,
+                  "name": "context",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Admitted operation and device scope; cancellation terminates device-owned work."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemoteRequestContext.ts",
+                      "qualifiedName": "IRemoteRequestContext"
+                    },
+                    "name": "IRemoteRequestContext",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            152,
+            156,
+            161
+          ]
+        }
+      ]
+    },
+    {
+      "id": 165,
+      "name": "IRemoteHostStatus",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Safe network and device administration state."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 168,
+          "name": "access",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Sanitized authorization state with neither token hashes nor plaintext credentials."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-core",
+              "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+              "qualifiedName": "IRemoteAccessStatus"
+            },
+            "name": "IRemoteAccessStatus",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 169,
+          "name": "errorCode",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional safe diagnostic code for the current unavailable state."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 167,
+          "name": "host",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Public identity and currently advertised listener endpoints of this owned host."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-protocol",
+              "packagePath": "src/host/interfaces/IRemoteHostDescriptor.ts",
+              "qualifiedName": "IRemoteHostDescriptor"
+            },
+            "name": "IRemoteHostDescriptor",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 166,
+          "name": "state",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Current listener lifecycle state. Unavailable does not erase the persisted activation preference."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "literal",
+                "value": "disabled"
+              },
+              {
+                "type": "literal",
+                "value": "disposed"
+              },
+              {
+                "type": "literal",
+                "value": "starting"
+              },
+              {
+                "type": "literal",
+                "value": "available"
+              },
+              {
+                "type": "literal",
+                "value": "rebinding"
+              },
+              {
+                "type": "literal",
+                "value": "stopping"
+              },
+              {
+                "type": "literal",
+                "value": "unavailable"
+              }
+            ]
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            168,
+            169,
+            167,
+            166
+          ]
+        }
+      ]
+    },
+    {
+      "id": 188,
+      "name": "IRemoteNodeTransport",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Listener factory seam. Creating an adapter does not bind a network interface."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 191,
+          "name": "create",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 192,
+              "name": "create",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates an unbound HTTP-compatible server for the owning host lifecycle."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An unbound listener whose binding, connections and shutdown remain host-owned."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An error when required application-owned TLS material cannot be loaded."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 193,
+                  "name": "listener",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Original HTTP request dispatcher supplied by the host."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".RequestListener"
+                    },
+                    "name": "RequestListener",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".RequestListener"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".Server"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "query",
+                        "queryType": {
+                          "type": "reference",
+                          "target": {
+                            "packageName": "@types/node",
+                            "packagePath": "http.d.ts",
+                            "qualifiedName": "\"node:http\".IncomingMessage"
+                          },
+                          "name": "IncomingMessage",
+                          "package": "@types/node",
+                          "qualifiedName": "\"node:http\".IncomingMessage",
+                          "preferValues": true
+                        }
+                      },
+                      {
+                        "type": "query",
+                        "queryType": {
+                          "type": "reference",
+                          "target": {
+                            "packageName": "@types/node",
+                            "packagePath": "http.d.ts",
+                            "qualifiedName": "\"node:http\".ServerResponse"
+                          },
+                          "name": "ServerResponse",
+                          "package": "@types/node",
+                          "qualifiedName": "\"node:http\".ServerResponse",
+                          "preferValues": true
+                        }
+                      }
+                    ],
+                    "name": "Server",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".Server"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 189,
+          "name": "id",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Stable identifier within the owning collection."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 190,
+          "name": "scheme",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Protocol advertised by the corresponding listener, either HTTP or HTTPS."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "literal",
+                "value": "http"
+              },
+              {
+                "type": "literal",
+                "value": "https"
+              }
+            ]
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            189,
+            190
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            191
+          ]
+        }
+      ],
+      "implementedBy": [
+        {
+          "type": "reference",
+          "target": 170,
+          "name": "NodeHttpLanTransport"
+        },
+        {
+          "type": "reference",
+          "target": 178,
+          "name": "NodeHttpsLanTransport"
+        }
+      ]
+    },
+    {
+      "id": 206,
+      "name": "IRemoteTlsMaterial",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Application-supplied server identity, confined to the privileged Node runtime."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 209,
+          "name": "ca",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional PEM issuer chain consumed by the TLS implementation."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "ArrayBufferLike"
+                    },
+                    "name": "ArrayBufferLike",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              },
+              {
+                "type": "typeOperator",
+                "operator": "readonly",
+                "target": {
+                  "type": "array",
+                  "elementType": {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "intrinsic",
+                        "name": "string"
+                      },
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@types/node",
+                          "packagePath": "buffer.buffer.d.ts",
+                          "qualifiedName": "__global.Buffer"
+                        },
+                        "typeArguments": [
+                          {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "typescript",
+                              "packagePath": "lib/lib.es5.d.ts",
+                              "qualifiedName": "ArrayBufferLike"
+                            },
+                            "name": "ArrayBufferLike",
+                            "package": "typescript"
+                          }
+                        ],
+                        "name": "Buffer",
+                        "package": "@types/node",
+                        "qualifiedName": "__global.Buffer"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": 208,
+          "name": "cert",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-supplied PEM certificate or certificate chain."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "ArrayBufferLike"
+                    },
+                    "name": "ArrayBufferLike",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              }
+            ]
+          }
+        },
+        {
+          "id": 207,
+          "name": "key",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-supplied private server key. Keep this value confined to the privileged runtime."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              {
+                "type": "reference",
+                "target": {
+                  "packageName": "@types/node",
+                  "packagePath": "buffer.buffer.d.ts",
+                  "qualifiedName": "__global.Buffer"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "ArrayBufferLike"
+                    },
+                    "name": "ArrayBufferLike",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Buffer",
+                "package": "@types/node",
+                "qualifiedName": "__global.Buffer"
+              }
+            ]
+          }
+        },
+        {
+          "id": 210,
+          "name": "passphrase",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional private-key decryption passphrase supplied by the application."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            209,
+            208,
+            207,
+            210
+          ]
+        }
+      ]
+    },
+    {
+      "id": 196,
+      "name": "IRemoteTlsProvider",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Applications own issuance, renewal and protected storage. The SDK only consumes supplied material."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 197,
+          "name": "getMaterial",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 198,
+              "name": "getMaterial",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Loads the current app-owned certificate, key and optional chain for the TLS listener."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The current material supplied and protected by the application."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": 206,
+                    "name": "IRemoteTlsMaterial",
+                    "package": "@pixel-brewery/remote-node"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 199,
+          "name": "subscribe",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true
+          },
+          "signatures": [
+            {
+              "id": 200,
+              "name": "subscribe",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Optionally observes renewal of application-owned TLS identity material."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An idempotent cleanup removing this renewal registration. No initial callback is required."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 201,
+                  "name": "listener",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Called after new material is available; the adapter reloads it through getMaterial."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 202,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 203,
+                          "name": "__type",
+                          "variant": "signature",
+                          "kind": 4096,
+                          "flags": {},
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "void"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 204,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "signatures": [
+                    {
+                      "id": 205,
+                      "name": "__type",
+                      "variant": "signature",
+                      "kind": 4096,
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "void"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            197,
+            199
+          ]
+        }
+      ]
+    },
+    {
+      "id": 170,
+      "name": "NodeHttpLanTransport",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Explicit unencrypted LAN listener. It never silently substitutes for a failed TLS listener."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 171,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {},
+          "signatures": [
+            {
+              "id": 172,
+              "name": "NodeHttpLanTransport",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {},
+              "type": {
+                "type": "reference",
+                "target": 170,
+                "name": "NodeHttpLanTransport",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          ]
+        },
+        {
+          "id": 175,
+          "name": "create",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 176,
+              "name": "create",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates an unbound HTTP server."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The unbound server. The caller must bind and close it through its owning lifecycle."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 177,
+                  "name": "listener",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Original HTTP request dispatcher supplied by the owning host."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".RequestListener"
+                    },
+                    "name": "RequestListener",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".RequestListener"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".Server"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "query",
+                        "queryType": {
+                          "type": "reference",
+                          "target": {
+                            "packageName": "@types/node",
+                            "packagePath": "http.d.ts",
+                            "qualifiedName": "\"node:http\".IncomingMessage"
+                          },
+                          "name": "IncomingMessage",
+                          "package": "@types/node",
+                          "qualifiedName": "\"node:http\".IncomingMessage",
+                          "preferValues": true
+                        }
+                      },
+                      {
+                        "type": "query",
+                        "queryType": {
+                          "type": "reference",
+                          "target": {
+                            "packageName": "@types/node",
+                            "packagePath": "http.d.ts",
+                            "qualifiedName": "\"node:http\".ServerResponse"
+                          },
+                          "name": "ServerResponse",
+                          "package": "@types/node",
+                          "qualifiedName": "\"node:http\".ServerResponse",
+                          "preferValues": true
+                        }
+                      }
+                    ],
+                    "name": "Server",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".Server"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": 192,
+                "name": "IRemoteNodeTransport.create"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": 191,
+            "name": "IRemoteNodeTransport.create"
+          }
+        },
+        {
+          "id": 173,
+          "name": "id",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Stable connector identifier."
+              }
+            ]
+          },
+          "type": {
+            "type": "literal",
+            "value": "lan-http"
+          },
+          "defaultValue": "'lan-http'",
+          "implementationOf": {
+            "type": "reference",
+            "target": 189,
+            "name": "IRemoteNodeTransport.id"
+          }
+        },
+        {
+          "id": 174,
+          "name": "scheme",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Listener protocol."
+              }
+            ]
+          },
+          "type": {
+            "type": "literal",
+            "value": "http"
+          },
+          "defaultValue": "...",
+          "implementationOf": {
+            "type": "reference",
+            "target": 190,
+            "name": "IRemoteNodeTransport.scheme"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            171
+          ]
+        },
+        {
+          "title": "Properties",
+          "children": [
+            173,
+            174
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            175
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": 188,
+          "name": "IRemoteNodeTransport",
+          "package": "@pixel-brewery/remote-node"
+        }
+      ]
+    },
+    {
+      "id": 178,
+      "name": "NodeHttpsLanTransport",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "TLS listener consuming an application-owned certificate provider."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 179,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 180,
+              "name": "NodeHttpsLanTransport",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Binds issuance-independent TLS material."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 181,
+                  "name": "_provider",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Application-owned certificate material and renewal port."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 196,
+                    "name": "IRemoteTlsProvider",
+                    "package": "@pixel-brewery/remote-node"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 178,
+                "name": "NodeHttpsLanTransport",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          ]
+        },
+        {
+          "id": 185,
+          "name": "create",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 186,
+              "name": "create",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates an unbound TLS server and activates renewed material in place."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The unbound server. The caller must bind and close it through its owning lifecycle."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 187,
+                  "name": "listener",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Original HTTP request dispatcher supplied by the owning host."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".RequestListener"
+                    },
+                    "name": "RequestListener",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".RequestListener"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@types/node",
+                      "packagePath": "http.d.ts",
+                      "qualifiedName": "\"node:http\".Server"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "query",
+                        "queryType": {
+                          "type": "reference",
+                          "target": {
+                            "packageName": "@types/node",
+                            "packagePath": "http.d.ts",
+                            "qualifiedName": "\"node:http\".IncomingMessage"
+                          },
+                          "name": "IncomingMessage",
+                          "package": "@types/node",
+                          "qualifiedName": "\"node:http\".IncomingMessage",
+                          "preferValues": true
+                        }
+                      },
+                      {
+                        "type": "query",
+                        "queryType": {
+                          "type": "reference",
+                          "target": {
+                            "packageName": "@types/node",
+                            "packagePath": "http.d.ts",
+                            "qualifiedName": "\"node:http\".ServerResponse"
+                          },
+                          "name": "ServerResponse",
+                          "package": "@types/node",
+                          "qualifiedName": "\"node:http\".ServerResponse",
+                          "preferValues": true
+                        }
+                      }
+                    ],
+                    "name": "Server",
+                    "package": "@types/node",
+                    "qualifiedName": "\"node:http\".Server"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": 192,
+                "name": "IRemoteNodeTransport.create"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": 191,
+            "name": "IRemoteNodeTransport.create"
+          }
+        },
+        {
+          "id": 183,
+          "name": "id",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Stable connector identifier."
+              }
+            ]
+          },
+          "type": {
+            "type": "literal",
+            "value": "lan-https"
+          },
+          "defaultValue": "'lan-https'",
+          "implementationOf": {
+            "type": "reference",
+            "target": 189,
+            "name": "IRemoteNodeTransport.id"
+          }
+        },
+        {
+          "id": 184,
+          "name": "scheme",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Listener protocol."
+              }
+            ]
+          },
+          "type": {
+            "type": "literal",
+            "value": "https"
+          },
+          "defaultValue": "...",
+          "implementationOf": {
+            "type": "reference",
+            "target": 190,
+            "name": "IRemoteNodeTransport.scheme"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            179
+          ]
+        },
+        {
+          "title": "Properties",
+          "children": [
+            183,
+            184
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            185
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": 188,
+          "name": "IRemoteNodeTransport",
+          "package": "@pixel-brewery/remote-node"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "NodeRemoteHost",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Supervised private-LAN host. One application dispatcher owns product validation and authorization.\nNetwork, listeners and streams start only through initialize/enable/reconcile and are disposed explicitly."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 2,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 3,
+              "name": "NodeRemoteHost",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Binds a product adapter and private network policy without starting I/O."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 4,
+                  "name": "_options",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Application-owned composition, routes and runtime limits for this owner."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 127,
+                    "name": "INodeRemoteHostOptions",
+                    "package": "@pixel-brewery/remote-node"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 1,
+                "name": "NodeRemoteHost",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "name": "createPairing",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 37,
+              "name": "createPairing",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates an out-of-band challenge for one available endpoint."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The secret-bearing invitation for the selected endpoint. Deliver it out of band and never log it."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 38,
+                  "name": "endpointId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Optional endpoint identifier. Omission selects the first available advertised endpoint."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Readonly"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reflection",
+                        "declaration": {
+                          "id": 39,
+                          "name": "__type",
+                          "variant": "declaration",
+                          "kind": 65536,
+                          "flags": {},
+                          "children": [
+                            {
+                              "id": 40,
+                              "name": "appId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 43,
+                              "name": "challenge",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 44,
+                              "name": "expiresAt",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 41,
+                              "name": "hostId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 42,
+                              "name": "origin",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            }
+                          ],
+                          "groups": [
+                            {
+                              "title": "Properties",
+                              "children": [
+                                40,
+                                43,
+                                44,
+                                41,
+                                42
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "name": "Readonly",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "descriptor",
+          "variant": "declaration",
+          "kind": 262144,
+          "flags": {
+            "isPublic": true
+          },
+          "getSignature": {
+            "id": 25,
+            "name": "descriptor",
+            "variant": "signature",
+            "kind": 524288,
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "summary": [
+                {
+                  "kind": "text",
+                  "text": "Public descriptor. No credential or product snapshot is exposed here."
+                }
+              ],
+              "blockTags": [
+                {
+                  "tag": "@returns",
+                  "content": [
+                    {
+                      "kind": "text",
+                      "text": "The credential-free public descriptor and currently bound connection origins."
+                    }
+                  ]
+                }
+              ]
+            },
+            "type": {
+              "type": "reference",
+              "target": {
+                "packageName": "@pixel-brewery/remote-protocol",
+                "packagePath": "src/host/interfaces/IRemoteHostDescriptor.ts",
+                "qualifiedName": "IRemoteHostDescriptor"
+              },
+              "name": "IRemoteHostDescriptor",
+              "package": "@pixel-brewery/remote-protocol"
+            }
+          }
+        },
+        {
+          "id": 30,
+          "name": "disable",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 31,
+              "name": "disable",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Closes access first, then persists disabled intent. A failed save keeps this runtime stopped until an explicit enable."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after listeners close and disabled intent is durably stored."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "dispose",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 51,
+              "name": "dispose",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Stops resources without clearing durable activation; safe to call repeatedly."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after owned resources close. Repeated calls do not create additional work."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "enable",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 29,
+              "name": "enable",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Persists activation before starting; unavailable networks retain the user's intent."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after durable activation and successful listener binding."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "initialize",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 27,
+              "name": "initialize",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Restores authorization and immutable asset root, then reconciles persisted activation."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after validated restoration and any requested lifecycle reconciliation."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "reconcile",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 33,
+              "name": "reconcile",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Serializes network re-evaluation; no-op when the selected interface is unchanged."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after the current selected interface and listener state agree."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "name": "revokeAllDevices",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 49,
+              "name": "revokeAllDevices",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Revokes every device without removing the stored activation preference."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after all durable grants are removed and their streams are canceled."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "name": "revokeDevice",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 46,
+              "name": "revokeDevice",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Revokes one device; its active requests and sockets close on the durable change event."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after durable removal and synchronous revocation notification."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 47,
+                  "name": "deviceId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Identifier of the device whose durable grant and owned streams must be revoked."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "status",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 35,
+              "name": "status",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Returns sanitized network/device state after initialization."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "A credential-free snapshot of listener and device-administration state."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": 165,
+                "name": "IRemoteHostStatus",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            2
+          ]
+        },
+        {
+          "title": "Accessors",
+          "children": [
+            24
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            36,
+            30,
+            50,
+            28,
+            26,
+            32,
+            48,
+            45,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "id": 194,
+      "name": "selectPrivateHost",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 195,
+          "name": "selectPrivateHost",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Selects one private physical IPv4 interface deterministically, preferring Wi-Fi/Ethernet."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "One numeric private IPv4 address from a supported physical interface."
+                  }
+                ]
+              },
+              {
+                "tag": "@throws",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "RemoteProtocolError when no supported private interface is available."
+                  }
+                ]
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        170,
+        178,
+        1
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        127,
+        151,
+        165,
+        188,
+        206,
+        196
+      ]
+    },
+    {
+      "title": "Functions",
+      "children": [
+        194
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-node",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.__constructor"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "_options"
+    },
+    "24": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.descriptor"
+    },
+    "25": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.descriptor"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.initialize"
+    },
+    "27": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.initialize"
+    },
+    "28": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.enable"
+    },
+    "29": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.enable"
+    },
+    "30": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.disable"
+    },
+    "31": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.disable"
+    },
+    "32": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.reconcile"
+    },
+    "33": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.reconcile"
+    },
+    "34": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.status"
+    },
+    "35": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.status"
+    },
+    "36": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.createPairing"
+    },
+    "37": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.createPairing"
+    },
+    "38": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "endpointId"
+    },
+    "39": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "40": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "appId"
+    },
+    "41": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "hostId"
+    },
+    "42": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "origin"
+    },
+    "43": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "challenge"
+    },
+    "44": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "expiresAt"
+    },
+    "45": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.revokeDevice"
+    },
+    "46": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.revokeDevice"
+    },
+    "47": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "deviceId"
+    },
+    "48": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.revokeAllDevices"
+    },
+    "49": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.revokeAllDevices"
+    },
+    "50": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.dispose"
+    },
+    "51": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/NodeRemoteHost.ts",
+      "qualifiedName": "NodeRemoteHost.dispose"
+    },
+    "127": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions"
+    },
+    "128": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.identity"
+    },
+    "129": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.name"
+    },
+    "130": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.access"
+    },
+    "131": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.routes"
+    },
+    "132": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.application"
+    },
+    "133": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.transports"
+    },
+    "134": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.assetsPath"
+    },
+    "135": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.host"
+    },
+    "136": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.port"
+    },
+    "137": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.portEnd"
+    },
+    "138": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.allowLoopbackForTests"
+    },
+    "139": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.cookieName"
+    },
+    "140": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.maxConnections"
+    },
+    "141": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.maxWebSockets"
+    },
+    "142": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.shutdownTimeoutMs"
+    },
+    "143": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.contentSecurityPolicy"
+    },
+    "144": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "INodeRemoteHostOptions.reportFailure"
+    },
+    "145": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "146": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "147": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "failure"
+    },
+    "148": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "149": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "__type.operation"
+    },
+    "150": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/INodeRemoteHostOptions.ts",
+      "qualifiedName": "__type.code"
+    },
+    "151": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter"
+    },
+    "152": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter.authorize"
+    },
+    "153": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter.authorize"
+    },
+    "154": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "route"
+    },
+    "155": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "context"
+    },
+    "156": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter.handle"
+    },
+    "157": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter.handle"
+    },
+    "158": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "request"
+    },
+    "159": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "response"
+    },
+    "160": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "context"
+    },
+    "161": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter.webSocket"
+    },
+    "162": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "IRemoteApplicationAdapter.webSocket"
+    },
+    "163": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "socket"
+    },
+    "164": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteApplicationAdapter.ts",
+      "qualifiedName": "context"
+    },
+    "165": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostStatus.ts",
+      "qualifiedName": "IRemoteHostStatus"
+    },
+    "166": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostStatus.ts",
+      "qualifiedName": "IRemoteHostStatus.state"
+    },
+    "167": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostStatus.ts",
+      "qualifiedName": "IRemoteHostStatus.host"
+    },
+    "168": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostStatus.ts",
+      "qualifiedName": "IRemoteHostStatus.access"
+    },
+    "169": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/host/interfaces/IRemoteHostStatus.ts",
+      "qualifiedName": "IRemoteHostStatus.errorCode"
+    },
+    "170": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport"
+    },
+    "173": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport.id"
+    },
+    "174": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport.scheme"
+    },
+    "175": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport.create"
+    },
+    "176": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "NodeHttpLanTransport.create"
+    },
+    "177": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpLanTransport.ts",
+      "qualifiedName": "listener"
+    },
+    "178": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport"
+    },
+    "179": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.__constructor"
+    },
+    "180": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport"
+    },
+    "181": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "_provider"
+    },
+    "183": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.id"
+    },
+    "184": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.scheme"
+    },
+    "185": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.create"
+    },
+    "186": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "NodeHttpsLanTransport.create"
+    },
+    "187": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/NodeHttpsLanTransport.ts",
+      "qualifiedName": "listener"
+    },
+    "188": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport"
+    },
+    "189": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport.id"
+    },
+    "190": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport.scheme"
+    },
+    "191": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport.create"
+    },
+    "192": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "IRemoteNodeTransport.create"
+    },
+    "193": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/interfaces/IRemoteNodeTransport.ts",
+      "qualifiedName": "listener"
+    },
+    "194": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/selectPrivateHost.ts",
+      "qualifiedName": "selectPrivateHost"
+    },
+    "195": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/transport/selectPrivateHost.ts",
+      "qualifiedName": "selectPrivateHost"
+    },
+    "196": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider"
+    },
+    "197": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.getMaterial"
+    },
+    "198": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.getMaterial"
+    },
+    "199": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.subscribe"
+    },
+    "200": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "IRemoteTlsProvider.subscribe"
+    },
+    "201": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "listener"
+    },
+    "202": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "203": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "204": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "205": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsProvider.ts",
+      "qualifiedName": "__type"
+    },
+    "206": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial"
+    },
+    "207": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.key"
+    },
+    "208": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.cert"
+    },
+    "209": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.ca"
+    },
+    "210": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/security/interfaces/IRemoteTlsMaterial.ts",
+      "qualifiedName": "IRemoteTlsMaterial.passphrase"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-node/src/host.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

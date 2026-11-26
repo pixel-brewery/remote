@@ -1,0 +1,364 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-node/persistence",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 1,
+      "name": "JsonRemoteAccessStore",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Atomic private-file persistence. The application selects the file and owns its data lifecycle."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 2,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 3,
+              "name": "JsonRemoteAccessStore",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Binds an application-owned path without creating or reading anything."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 4,
+                  "name": "_path",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Application-selected private record path with one active writer."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 1,
+                "name": "JsonRemoteAccessStore",
+                "package": "@pixel-brewery/remote-node"
+              }
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "load",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 7,
+              "name": "load",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Reads unknown storage for canonical validation by the access owner."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Unknown persisted data, or null when no record exists."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "A filesystem or JSON parse error for unreadable, malformed or symbolic-link storage."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "unknown"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteAccessStore.load"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteAccessStore.load"
+          }
+        },
+        {
+          "id": 8,
+          "name": "save",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 9,
+              "name": "save",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Writes and flushes a private temporary file before an atomic replacement."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves only after the replacement commits; rejects without changing the previous record."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@remarks",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Temporary files use exclusive creation and mode 0600. The file is flushed before atomic rename. Use one writer per installation."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "A validation or filesystem error when the new record cannot be committed."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 10,
+                  "name": "state",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Complete canonical access record to replace atomically; a rejected write must preserve the preceding record."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemoteAccessState.ts",
+                      "qualifiedName": "IRemoteAccessState"
+                    },
+                    "name": "IRemoteAccessState",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteAccessStore.save"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteAccessStore.save"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            2
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            6,
+            8
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-core",
+            "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+            "qualifiedName": "IRemoteAccessStore"
+          },
+          "name": "IRemoteAccessStore",
+          "package": "@pixel-brewery/remote-core"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        1
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-node",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore.__constructor"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "_path"
+    },
+    "6": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore.load"
+    },
+    "7": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore.load"
+    },
+    "8": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore.save"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "JsonRemoteAccessStore.save"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-node",
+      "packagePath": "src/persistence/JsonRemoteAccessStore.ts",
+      "qualifiedName": "state"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-node/src/persistence.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" theme="soho" theme-mode="light">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="description"
+            content="Pair a browser, desktop or mobile client with your desktop application. Remote provides product-neutral sessions and streaming transports."
+        />
+        <meta name="color-scheme" content="light" />
+        <meta property="og:title" content="Remote · Connect your app across devices" />
+        <meta
+            property="og:description"
+            content="Product-neutral device pairing and remote access for desktop applications."
+        />
+        <meta
+            property="og:image"
+            content="https://pixel-brewery.github.io/remote/assets/hero.webp"
+        />
+        <link rel="canonical" href="https://pixel-brewery.github.io/remote/" />
+        <link rel="icon" type="image/png" href="../.github/assets/remote-icon.png" />
+        <link rel="preload" href="./assets/hero.webp" as="image" />
+        <link rel="stylesheet" href="./styles.css" />
+        <script type="module" src="./main.js"></script>
+        <title>Remote · Connect your app across devices</title>
+    </head>
+    <body>
+        <mosaik-anchor
+            class="skip-link"
+            label="Skip to content"
+            data-href="#main"
+            underline="always"
+        ></mosaik-anchor>
+        <div class="page">
+            <header class="site-header">
+                <div class="brand">
+                    <mosaik-image
+                        id="brand-icon"
+                        width="40px"
+                        height="40px"
+                        fit="contain"
+                        alt=""
+                    ></mosaik-image>
+                    <span>Remote</span>
+                </div>
+                <mosaik-anchor
+                    label="View on GitHub"
+                    data-href="https://github.com/pixel-brewery/remote"
+                    underline="always"
+                ></mosaik-anchor>
+            </header>
+            <main id="main" tabindex="-1">
+                <section class="hero" aria-labelledby="title">
+                    <div class="hero-copy">
+                        <h1 id="title">Connect your app across devices.</h1>
+                        <p class="lead">
+                            Remote gives desktop applications a shared way to pair devices,
+                            authorize sessions and deliver their existing features to browser,
+                            desktop and mobile clients.
+                        </p>
+                        <div class="actions">
+                            <mosaik-button
+                                label="Read the integration guide"
+                                variant="primary"
+                                appearance="solid"
+                                data-href="https://github.com/pixel-brewery/remote/blob/main/.docs/guides/integrate-remote.md"
+                            ></mosaik-button>
+                            <mosaik-button
+                                label="Explore the packages"
+                                variant="neutral"
+                                appearance="outline"
+                                data-href="#packages"
+                            ></mosaik-button>
+                        </div>
+                    </div>
+                    <mosaik-image
+                        class="hero-art"
+                        id="hero-art"
+                        ratio="13/5"
+                        width="100%"
+                        fit="cover"
+                        alt="An ivory desktop and frosted glass phone joined by an indigo link, beside the Remote wordmark."
+                    ></mosaik-image>
+                </section>
+                <section class="section" aria-labelledby="capabilities">
+                    <h2 id="capabilities">One connection model, your application</h2>
+                    <div class="features">
+                        <article>
+                            <h3>Pair once</h3>
+                            <p>
+                                A short-lived pairing address grants a device access to the
+                                capabilities your application explicitly registers. Revoke that
+                                device through the same host lifecycle.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Keep existing contracts</h3>
+                            <p>
+                                Deliver API requests, events and content without replacing your
+                                product models. Streaming transports preserve cancellation and media
+                                requests.
+                            </p>
+                        </article>
+                        <article>
+                            <h3>Choose each runtime</h3>
+                            <p>
+                                Compose browser, Angular, Node, Electron and Capacitor adapters
+                                around the same protocol. Your application supplies storage,
+                                authorization and certificates.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+                <section class="section split" id="packages" aria-labelledby="integrate">
+                    <div>
+                        <h2 id="integrate">Add the parts your app needs</h2>
+                        <p>
+                            Protocol and session packages stay independent of UI frameworks. Runtime
+                            adapters own their network and operating-system boundaries.
+                        </p>
+                        <mosaik-anchor
+                            label="Browse the package contracts"
+                            data-href="https://github.com/pixel-brewery/remote/blob/main/.docs/README.md#runtime-entry-points"
+                            underline="always"
+                        ></mosaik-anchor>
+                    </div>
+                    <mosaik-card fit="width" appearance="soft" variant="neutral">
+                        <pre
+                            slot="content"
+                            tabindex="0"
+                            aria-label="Remote package layers"
+                        ><code>remote-protocol → remote-core
+remote-protocol → remote-client
+
+remote-node       remote-browser
+remote-electron   remote-capacitor
+remote-angular   remote-testing</code></pre>
+                    </mosaik-card>
+                </section>
+                <section class="section split" aria-labelledby="setup">
+                    <div>
+                        <h2 id="setup">Start with a local connection</h2>
+                        <p>
+                            The LAN transport connects directly to the host. HTTP is an explicit
+                            unencrypted mode; HTTPS uses certificate material supplied by your
+                            application. No SDK domain or hosted account is required.
+                        </p>
+                        <mosaik-anchor
+                            label="Read the setup and verification guide"
+                            data-href="https://github.com/pixel-brewery/remote/blob/main/.docs/guides/testing.md"
+                            underline="always"
+                        ></mosaik-anchor>
+                    </div>
+                    <mosaik-card fit="width" appearance="soft" variant="neutral">
+                        <pre
+                            slot="content"
+                            tabindex="0"
+                            aria-label="Developer setup commands"
+                        ><code>git clone https://github.com/pixel-brewery/remote.git
+cd remote
+corepack enable
+yarn install --immutable
+yarn verify</code></pre>
+                    </mosaik-card>
+                </section>
+            </main>
+            <footer class="site-footer">
+                <mosaik-anchor
+                    label="Pixel Brewery"
+                    data-href="https://github.com/pixel-brewery"
+                    underline="always"
+                ></mosaik-anchor>
+                <mosaik-anchor
+                    label="Remote on GitHub"
+                    data-href="https://github.com/pixel-brewery/remote"
+                    underline="always"
+                ></mosaik-anchor>
+            </footer>
+        </div>
+    </body>
+</html>

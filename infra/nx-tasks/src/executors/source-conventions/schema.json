@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "version": 1,
+    "title": "Source conventions",
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+}

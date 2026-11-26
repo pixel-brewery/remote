@@ -1,0 +1,3777 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-core",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 1,
+      "name": "IRemoteAccessDependencies",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Explicit application composition for a product-neutral authorization owner."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 6,
+          "name": "capabilities",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Exact operation capabilities granted by the application; resource-level checks remain application-owned."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          }
+        },
+        {
+          "id": 5,
+          "name": "clock",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Injected UTC instant source used for challenge expiration."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 179,
+            "name": "IRemoteClock",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 2,
+          "name": "identity",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application and installation namespace to which this owner belongs."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-protocol",
+              "packagePath": "src/host/interfaces/IRemoteHostIdentity.ts",
+              "qualifiedName": "IRemoteHostIdentity"
+            },
+            "name": "IRemoteHostIdentity",
+            "package": "@pixel-brewery/remote-protocol"
+          }
+        },
+        {
+          "id": 10,
+          "name": "maxDevices",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum durable device grants, default and maximum 100."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 9,
+          "name": "maxPendingPairings",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum retained invitation records, default 32 and at most 128."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 8,
+          "name": "pairingLifetimeMs",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Invitation lifetime in milliseconds; defaults to five minutes and cannot exceed fifteen minutes."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 7,
+          "name": "pairingPolicy",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "QR possession authorizes by default. Set host-approval to require an additional explicit local approval."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "literal",
+                "value": "qr-possession"
+              },
+              {
+                "type": "literal",
+                "value": "host-approval"
+              }
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "name": "security",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Injected entropy, hashing and constant-time digest comparison operations."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 168,
+            "name": "IRemoteSecurity",
+            "package": "@pixel-brewery/remote-core"
+          }
+        },
+        {
+          "id": 3,
+          "name": "store",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Application-owned atomic persistence port with one active writer per installation."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": 148,
+            "name": "IRemoteAccessStore",
+            "package": "@pixel-brewery/remote-core"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            6,
+            5,
+            2,
+            10,
+            9,
+            8,
+            7,
+            4,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "IRemoteAccessStatus",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Safe host-administration projection. No credential or token hash is included."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 13,
+          "name": "devices",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Paired device metadata with credential hashes omitted from public administration projections."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 14,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "children": [
+                    {
+                      "id": 17,
+                      "name": "capabilities",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "Exact operation capabilities granted by the application; resource-level checks remain application-owned."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "typeOperator",
+                        "operator": "readonly",
+                        "target": {
+                          "type": "array",
+                          "elementType": {
+                            "type": "intrinsic",
+                            "name": "string"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "id": 15,
+                      "name": "id",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "Stable identifier within the owning collection."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    },
+                    {
+                      "id": 19,
+                      "name": "lastSeenAt",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isOptional": true,
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "Optional application-maintained last-use UTC instant."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    },
+                    {
+                      "id": 16,
+                      "name": "name",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "Human-readable host or device label; never interpreted as authority."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    },
+                    {
+                      "id": 18,
+                      "name": "pairedAt",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "UTC instant at which the device grant was committed."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    }
+                  ],
+                  "groups": [
+                    {
+                      "title": "Properties",
+                      "children": [
+                        17,
+                        15,
+                        19,
+                        16,
+                        18
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "id": 12,
+          "name": "enabled",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Persisted activation intent. A transport may be unavailable while this value remains true."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "boolean"
+          }
+        },
+        {
+          "id": 20,
+          "name": "pendingPairings",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Consumed invitations still awaiting a successful device grant, without challenges or credentials. Host approval applies only when configured."
+              }
+            ]
+          },
+          "type": {
+            "type": "typeOperator",
+            "operator": "readonly",
+            "target": {
+              "type": "array",
+              "elementType": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 21,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "children": [
+                    {
+                      "id": 23,
+                      "name": "deviceName",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "User-visible name permanently bound to the first attempt consuming this challenge."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    },
+                    {
+                      "id": 24,
+                      "name": "expiresAt",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "Exclusive expiration instant in UTC ISO 8601 format."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    },
+                    {
+                      "id": 22,
+                      "name": "id",
+                      "variant": "declaration",
+                      "kind": 1024,
+                      "flags": {
+                        "isReadonly": true
+                      },
+                      "comment": {
+                        "summary": [
+                          {
+                            "kind": "text",
+                            "text": "Stable identifier within the owning collection."
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    }
+                  ],
+                  "groups": [
+                    {
+                      "title": "Properties",
+                      "children": [
+                        23,
+                        24,
+                        22
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            13,
+            12,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148,
+      "name": "IRemoteAccessStore",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "One host-owned durable writer. A rejected save must leave the preceding record intact."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 149,
+          "name": "load",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 150,
+              "name": "load",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Reads the private record for canonical restoration validation; an absent record is returned as null."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Unknown persisted data, or null when no record exists."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "unknown"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 151,
+          "name": "save",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 152,
+              "name": "save",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Atomically replaces the private access record after validation; rejected writes preserve the preceding record."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves only after the replacement commits; rejects without changing the previous record."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 153,
+                  "name": "state",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Complete canonical access record to replace atomically; a rejected write must preserve the preceding record."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemoteAccessState.ts",
+                      "qualifiedName": "IRemoteAccessState"
+                    },
+                    "name": "IRemoteAccessState",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            149,
+            151
+          ]
+        }
+      ]
+    },
+    {
+      "id": 179,
+      "name": "IRemoteClock",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Injected instant clock; expiration uses UTC epoch milliseconds."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 180,
+          "name": "now",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 181,
+              "name": "now",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Returns the injected current UTC instant in epoch milliseconds."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The injected Unix time in milliseconds."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "number"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            180
+          ]
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "name": "IRemotePairingGrant",
+      "variant": "declaration",
+      "kind": 2097152,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Ephemeral privileged pairing result; Node adapters project its credential appropriately."
+          }
+        ]
+      },
+      "type": {
+        "type": "union",
+        "types": [
+          {
+            "type": "reflection",
+            "declaration": {
+              "id": 138,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 141,
+                  "name": "expiresAt",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exclusive expiration instant in UTC ISO 8601 format."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 140,
+                  "name": "pairingId",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque identifier used by local host administration to approve or reject this attempt."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 139,
+                  "name": "status",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Discriminator identifying whether host approval is pending or a device grant is available."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "pending"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    141,
+                    140,
+                    139
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "reflection",
+            "declaration": {
+              "id": 142,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 146,
+                  "name": "credential",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Ephemeral plaintext bearer for privileged runtime consumption. Persist only its protected client value or host digest."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 147,
+                  "name": "expiresAt",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exclusive expiration instant in UTC ISO 8601 format."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 144,
+                  "name": "pairingId",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque identifier used by local host administration to approve or reject this attempt."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 145,
+                  "name": "principal",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Authenticated device identity and its granted capabilities."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemotePrincipal.ts",
+                      "qualifiedName": "IRemotePrincipal"
+                    },
+                    "name": "IRemotePrincipal",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 143,
+                  "name": "status",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Discriminator identifying whether host approval is pending or a device grant is available."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "paired"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    146,
+                    147,
+                    144,
+                    145,
+                    143
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 168,
+      "name": "IRemoteSecurity",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Host cryptographic primitives. Digests and random credentials never become product state."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 175,
+          "name": "equalDigest",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 176,
+              "name": "equalDigest",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Compares valid fixed-format digests without content-dependent early exit."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "True only when both valid digests contain the same bytes."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 177,
+                  "name": "left",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "First validated digest to compare."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 178,
+                  "name": "right",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Second validated digest to compare."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "id": 172,
+          "name": "hashToken",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 173,
+              "name": "hashToken",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Produces a deterministic digest for lookup or persistence without retaining plaintext."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The deterministic token digest."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 174,
+                  "name": "value",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Input value interpreted by this operation; returned persistence values are detached copies."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          ]
+        },
+        {
+          "id": 169,
+          "name": "randomToken",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 170,
+              "name": "randomToken",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates an unpredictable base64url credential using the requested entropy budget."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An unpredictable URL-safe credential."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 171,
+                  "name": "bytes",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Entropy bytes to encode. Defaults to 32; the Node implementation accepts integers from 16 through 64."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "children": [
+            175,
+            172,
+            169
+          ]
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "RemoteAccessEvent",
+      "variant": "declaration",
+      "kind": 2097152,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Authorization changes which require transports to terminate owned channels."
+          }
+        ]
+      },
+      "type": {
+        "type": "union",
+        "types": [
+          {
+            "type": "reflection",
+            "declaration": {
+              "id": 26,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 28,
+                  "name": "deviceId",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque identifier of one durably paired device."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 27,
+                  "name": "kind",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Committed authorization or invitation-lifecycle transition that the observing transport must apply."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "revoked"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    28,
+                    27
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "reflection",
+            "declaration": {
+              "id": 29,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 30,
+                  "name": "kind",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Committed authorization or invitation-lifecycle transition that the observing transport must apply."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "disabled"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    30
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "reflection",
+            "declaration": {
+              "id": 31,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "children": [
+                {
+                  "id": 32,
+                  "name": "kind",
+                  "variant": "declaration",
+                  "kind": 1024,
+                  "flags": {
+                    "isReadonly": true
+                  },
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Committed authorization or invitation-lifecycle transition that the observing transport must apply."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "literal",
+                    "value": "pairings-invalidated"
+                  }
+                }
+              ],
+              "groups": [
+                {
+                  "title": "Properties",
+                  "children": [
+                    32
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "name": "RemoteAccessService",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Owns durable device authorization and transient one-use pairing challenges.\nAll durable mutations are serialized through one writer. Applications own the store and clock."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 85,
+          "name": "approvePairing",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 86,
+              "name": "approvePairing",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Approves a still-valid attempt when the application opts into host approval."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after the device grant is committed. The client receives it by retrying the same pairing attempt."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 87,
+                  "name": "pairingId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque consumed-attempt identifier from the sanitized host-administration state."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "name": "authorize",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 92,
+              "name": "authorize",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Validates a credential without turning application reads into persistence writes."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The authenticated device principal bound to this application and installation."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 93,
+                  "name": "credential",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Plaintext device bearer confined to the privileged runtime. Never project or log it."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Readonly"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reflection",
+                        "declaration": {
+                          "id": 94,
+                          "name": "__type",
+                          "variant": "declaration",
+                          "kind": 65536,
+                          "flags": {},
+                          "children": [
+                            {
+                              "id": 95,
+                              "name": "appId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 98,
+                              "name": "capabilities",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "typeOperator",
+                                "operator": "readonly",
+                                "target": {
+                                  "type": "array",
+                                  "elementType": {
+                                    "type": "intrinsic",
+                                    "name": "string"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "id": 97,
+                              "name": "deviceId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 96,
+                              "name": "hostId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            }
+                          ],
+                          "groups": [
+                            {
+                              "title": "Properties",
+                              "children": [
+                                95,
+                                98,
+                                97,
+                                96
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "name": "Readonly",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 82,
+          "name": "completePairing",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 83,
+              "name": "completePairing",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Completes or resumes exactly one attempt. A challenge cannot be reassigned to another device."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An ephemeral grant, never a persisted cleartext credential."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@remarks",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Challenge possession consumes one attempt. Repeating the same attempt, label and credential mode is safe until expiry; another attempt is rejected."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError for disabled access, expired or consumed challenges, bounds or persistence failures."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 84,
+                  "name": "input",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Canonical attempt with a stable client-generated identifier."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/pairing/interfaces/IRemotePairingRequest.ts",
+                      "qualifiedName": "IRemotePairingRequest"
+                    },
+                    "name": "IRemotePairingRequest",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": 137,
+                    "name": "IRemotePairingGrant",
+                    "package": "@pixel-brewery/remote-core"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 35,
+              "name": "RemoteAccessService",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Binds one installation to application-owned infrastructure; performs no I/O."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 36,
+                  "name": "_dependencies",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Application-owned persistence, entropy, clock, identity and pairing policy."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 1,
+                    "name": "IRemoteAccessDependencies",
+                    "package": "@pixel-brewery/remote-core"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 33,
+                "name": "RemoteAccessService",
+                "package": "@pixel-brewery/remote-core"
+              }
+            }
+          ]
+        },
+        {
+          "id": 73,
+          "name": "createPairing",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 74,
+              "name": "createPairing",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Creates bounded transient material for the host's QR or copyable pairing URL."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The secret-bearing invitation for the selected endpoint. Deliver it out of band and never log it."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@remarks",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The default lifetime is five minutes and the challenge has 32 bytes of entropy. Only its digest is retained."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError when access is disabled or the pending-invitation limit is reached."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 75,
+                  "name": "origin",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Selected advertised HTTP(S) origin to bind into the one-use pairing invitation."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Readonly"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reflection",
+                        "declaration": {
+                          "id": 76,
+                          "name": "__type",
+                          "variant": "declaration",
+                          "kind": 65536,
+                          "flags": {},
+                          "children": [
+                            {
+                              "id": 77,
+                              "name": "appId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 80,
+                              "name": "challenge",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 81,
+                              "name": "expiresAt",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 78,
+                              "name": "hostId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 79,
+                              "name": "origin",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            }
+                          ],
+                          "groups": [
+                            {
+                              "title": "Properties",
+                              "children": [
+                                77,
+                                80,
+                                81,
+                                78,
+                                79
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "name": "Readonly",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 66,
+          "name": "enabled",
+          "variant": "declaration",
+          "kind": 262144,
+          "flags": {
+            "isPublic": true
+          },
+          "getSignature": {
+            "id": 67,
+            "name": "enabled",
+            "variant": "signature",
+            "kind": 524288,
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "summary": [
+                {
+                  "kind": "text",
+                  "text": "The persisted activation intent; network availability is a transport responsibility."
+                }
+              ],
+              "blockTags": [
+                {
+                  "tag": "@returns",
+                  "content": [
+                    {
+                      "kind": "text",
+                      "text": "The last committed activation intent; false before initialization."
+                    }
+                  ]
+                }
+              ]
+            },
+            "type": {
+              "type": "intrinsic",
+              "name": "boolean"
+            }
+          }
+        },
+        {
+          "id": 106,
+          "name": "getStatus",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 107,
+              "name": "getStatus",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Returns a sanitized administration projection."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "A detached administration projection without plaintext credentials or digests."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": 11,
+                "name": "IRemoteAccessStatus",
+                "package": "@pixel-brewery/remote-core"
+              }
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "name": "initialize",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 69,
+              "name": "initialize",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Restores and validates the private state once. A foreign installation record fails closed."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after validated restoration and any requested lifecycle reconciliation."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError when storage fails or contains a malformed or foreign installation record."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "name": "initialized",
+          "variant": "declaration",
+          "kind": 262144,
+          "flags": {
+            "isPublic": true
+          },
+          "getSignature": {
+            "id": 65,
+            "name": "initialized",
+            "variant": "signature",
+            "kind": 524288,
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "summary": [
+                {
+                  "kind": "text",
+                  "text": "Whether durable initialization has completed."
+                }
+              ],
+              "blockTags": [
+                {
+                  "tag": "@returns",
+                  "content": [
+                    {
+                      "kind": "text",
+                      "text": "True after successful canonical restoration or initial record creation."
+                    }
+                  ]
+                }
+              ]
+            },
+            "type": {
+              "type": "intrinsic",
+              "name": "boolean"
+            }
+          }
+        },
+        {
+          "id": 104,
+          "name": "invalidatePendingPairings",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 105,
+              "name": "invalidatePendingPairings",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Invalidates bootstrap material after network rebind, stop or process shutdown."
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "name": "rejectPairing",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 89,
+              "name": "rejectPairing",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Rejects an attempt and consumes its challenge."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Completes after the selected pending invitation is invalidated."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 90,
+                  "name": "pairingId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Opaque consumed-attempt identifier from the sanitized host-administration state."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "name": "revokeAllDevices",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 103,
+              "name": "revokeAllDevices",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Revokes every durable device and every transient pairing."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after all durable grants are removed and their streams are canceled."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "name": "revokeDevice",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 100,
+              "name": "revokeDevice",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Atomically revokes a device and notifies owned transports after durable commit."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after durable removal and synchronous revocation notification."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError when the device is absent or persistence fails. Failed persistence leaves its grant active."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 101,
+                  "name": "deviceId",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Identifier of the device whose durable grant and owned streams must be revoked."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "name": "setEnabled",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 71,
+              "name": "setEnabled",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Saves activation intent. Disabling invalidates pending pairings and live authorization."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Resolves after the activation intent is durably committed."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 72,
+                  "name": "enabled",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Activation intent to commit before accepting new authorization requests."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "boolean"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              }
+            }
+          ]
+        },
+        {
+          "id": 108,
+          "name": "subscribe",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 109,
+              "name": "subscribe",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Observes revocation/lifecycle effects. Unsubscribe before disposing a transport."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "An idempotent cleanup for this registration."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 110,
+                  "name": "listener",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Observer invoked when authorization changes; the returned cleanup removes only this registration."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 111,
+                      "name": "__type",
+                      "variant": "declaration",
+                      "kind": 65536,
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 112,
+                          "name": "__type",
+                          "variant": "signature",
+                          "kind": 4096,
+                          "flags": {},
+                          "parameters": [
+                            {
+                              "id": 113,
+                              "name": "event",
+                              "variant": "param",
+                              "kind": 32768,
+                              "flags": {},
+                              "type": {
+                                "type": "reference",
+                                "target": 25,
+                                "name": "RemoteAccessEvent",
+                                "package": "@pixel-brewery/remote-core"
+                              }
+                            }
+                          ],
+                          "type": {
+                            "type": "intrinsic",
+                            "name": "void"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 114,
+                  "name": "__type",
+                  "variant": "declaration",
+                  "kind": 65536,
+                  "flags": {},
+                  "signatures": [
+                    {
+                      "id": 115,
+                      "name": "__type",
+                      "variant": "signature",
+                      "kind": 4096,
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "void"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            34
+          ]
+        },
+        {
+          "title": "Accessors",
+          "children": [
+            66,
+            64
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            85,
+            91,
+            82,
+            73,
+            106,
+            68,
+            104,
+            88,
+            102,
+            99,
+            70,
+            108
+          ]
+        }
+      ]
+    },
+    {
+      "id": 154,
+      "name": "RemoteRouteRegistry",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Immutable, deny-by-default product route admission shared by hosts and client gateways."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 163,
+          "name": "authorize",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 164,
+              "name": "authorize",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Resolves and checks every required capability at the actual request boundary."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The admitted route whose complete required capability set is present on the device principal."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError when any required capability is absent."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 165,
+                  "name": "method",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact registered HTTP method to resolve."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 166,
+                  "name": "path",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Origin-form request target whose path is admitted by the route registry; queries are preserved by transports."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 167,
+                  "name": "principal",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Authenticated app, installation, device and capability scope to enforce."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/access/interfaces/IRemotePrincipal.ts",
+                      "qualifiedName": "IRemotePrincipal"
+                    },
+                    "name": "IRemotePrincipal",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-protocol",
+                  "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                  "qualifiedName": "IRemoteRouteDefinition"
+                },
+                "name": "IRemoteRouteDefinition",
+                "package": "@pixel-brewery/remote-protocol"
+              }
+            }
+          ]
+        },
+        {
+          "id": 155,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 156,
+              "name": "RemoteRouteRegistry",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Registers exact methods and paths; colon-prefixed complete segments match one parameter."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError for reserved routes, duplicate patterns or safe-read policy on a mutation."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 157,
+                  "name": "routes",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Explicit exact-method registrations. Parameter segments begin with a colon and match one nonempty path segment."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "typeOperator",
+                    "operator": "readonly",
+                    "target": {
+                      "type": "array",
+                      "elementType": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "@pixel-brewery/remote-protocol",
+                          "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                          "qualifiedName": "IRemoteRouteDefinition"
+                        },
+                        "name": "IRemoteRouteDefinition",
+                        "package": "@pixel-brewery/remote-protocol"
+                      }
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 154,
+                "name": "RemoteRouteRegistry",
+                "package": "@pixel-brewery/remote-core"
+              }
+            }
+          ]
+        },
+        {
+          "id": 159,
+          "name": "match",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 160,
+              "name": "match",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Resolves one route without granting any device authority."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "The single most specific registered operation, without granting authorization."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "RemoteProtocolError when no unique operation is registered or the path is malformed."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 161,
+                  "name": "method",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact registered HTTP method to resolve."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 162,
+                  "name": "input",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Untrusted input validated by the canonical contract before use."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "@pixel-brewery/remote-protocol",
+                  "packagePath": "src/routing/interfaces/IRemoteRouteDefinition.ts",
+                  "qualifiedName": "IRemoteRouteDefinition"
+                },
+                "name": "IRemoteRouteDefinition",
+                "package": "@pixel-brewery/remote-protocol"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            155
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            163,
+            159
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        33,
+        154
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        1,
+        11,
+        148,
+        179,
+        168
+      ]
+    },
+    {
+      "title": "Type Aliases",
+      "children": [
+        137,
+        25
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-core",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/index.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.identity"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.store"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.security"
+    },
+    "5": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.clock"
+    },
+    "6": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.capabilities"
+    },
+    "7": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.pairingPolicy"
+    },
+    "8": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.pairingLifetimeMs"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.maxPendingPairings"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessDependencies.ts",
+      "qualifiedName": "IRemoteAccessDependencies.maxDevices"
+    },
+    "11": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "IRemoteAccessStatus"
+    },
+    "12": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "IRemoteAccessStatus.enabled"
+    },
+    "13": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "IRemoteAccessStatus.devices"
+    },
+    "14": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type"
+    },
+    "15": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.id"
+    },
+    "16": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.name"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.capabilities"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.pairedAt"
+    },
+    "19": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.lastSeenAt"
+    },
+    "20": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "IRemoteAccessStatus.pendingPairings"
+    },
+    "21": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type"
+    },
+    "22": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.id"
+    },
+    "23": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.deviceName"
+    },
+    "24": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/interfaces/IRemoteAccessStatus.ts",
+      "qualifiedName": "__type.expiresAt"
+    },
+    "25": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "RemoteAccessEvent"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type"
+    },
+    "27": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type.kind"
+    },
+    "28": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type.deviceId"
+    },
+    "29": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type"
+    },
+    "30": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type.kind"
+    },
+    "31": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type"
+    },
+    "32": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/models/RemoteAccessEvent.ts",
+      "qualifiedName": "__type.kind"
+    },
+    "33": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService"
+    },
+    "34": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.__constructor"
+    },
+    "35": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService"
+    },
+    "36": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "_dependencies"
+    },
+    "64": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.initialized"
+    },
+    "65": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.initialized"
+    },
+    "66": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.enabled"
+    },
+    "67": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.enabled"
+    },
+    "68": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.initialize"
+    },
+    "69": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.initialize"
+    },
+    "70": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.setEnabled"
+    },
+    "71": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.setEnabled"
+    },
+    "72": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "enabled"
+    },
+    "73": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.createPairing"
+    },
+    "74": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.createPairing"
+    },
+    "75": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "origin"
+    },
+    "76": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "77": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "appId"
+    },
+    "78": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "hostId"
+    },
+    "79": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "origin"
+    },
+    "80": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "challenge"
+    },
+    "81": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "expiresAt"
+    },
+    "82": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.completePairing"
+    },
+    "83": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.completePairing"
+    },
+    "84": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "input"
+    },
+    "85": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.approvePairing"
+    },
+    "86": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.approvePairing"
+    },
+    "87": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "pairingId"
+    },
+    "88": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.rejectPairing"
+    },
+    "89": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.rejectPairing"
+    },
+    "90": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "pairingId"
+    },
+    "91": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.authorize"
+    },
+    "92": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.authorize"
+    },
+    "93": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "credential"
+    },
+    "94": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "95": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
+      "qualifiedName": "appId"
+    },
+    "96": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
+      "qualifiedName": "hostId"
+    },
+    "97": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
+      "qualifiedName": "deviceId"
+    },
+    "98": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/access/schemas/remotePrincipalSchema.ts",
+      "qualifiedName": "capabilities"
+    },
+    "99": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.revokeDevice"
+    },
+    "100": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.revokeDevice"
+    },
+    "101": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "deviceId"
+    },
+    "102": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.revokeAllDevices"
+    },
+    "103": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.revokeAllDevices"
+    },
+    "104": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.invalidatePendingPairings"
+    },
+    "105": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.invalidatePendingPairings"
+    },
+    "106": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.getStatus"
+    },
+    "107": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.getStatus"
+    },
+    "108": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.subscribe"
+    },
+    "109": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "RemoteAccessService.subscribe"
+    },
+    "110": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "listener"
+    },
+    "111": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "__type"
+    },
+    "112": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "__type"
+    },
+    "113": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "event"
+    },
+    "114": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "__type"
+    },
+    "115": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/access/services/RemoteAccessService.ts",
+      "qualifiedName": "__type"
+    },
+    "137": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "IRemotePairingGrant"
+    },
+    "138": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type"
+    },
+    "139": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.status"
+    },
+    "140": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.pairingId"
+    },
+    "141": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.expiresAt"
+    },
+    "142": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type"
+    },
+    "143": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.status"
+    },
+    "144": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.pairingId"
+    },
+    "145": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.principal"
+    },
+    "146": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.credential"
+    },
+    "147": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/pairing/interfaces/IRemotePairingGrant.ts",
+      "qualifiedName": "__type.expiresAt"
+    },
+    "148": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore"
+    },
+    "149": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore.load"
+    },
+    "150": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore.load"
+    },
+    "151": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore.save"
+    },
+    "152": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "IRemoteAccessStore.save"
+    },
+    "153": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/persistence/interfaces/IRemoteAccessStore.ts",
+      "qualifiedName": "state"
+    },
+    "154": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry"
+    },
+    "155": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry.__constructor"
+    },
+    "156": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry"
+    },
+    "157": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "routes"
+    },
+    "159": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry.match"
+    },
+    "160": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry.match"
+    },
+    "161": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "method"
+    },
+    "162": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "input"
+    },
+    "163": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry.authorize"
+    },
+    "164": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "RemoteRouteRegistry.authorize"
+    },
+    "165": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "method"
+    },
+    "166": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "path"
+    },
+    "167": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/routing/RemoteRouteRegistry.ts",
+      "qualifiedName": "principal"
+    },
+    "168": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity"
+    },
+    "169": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity.randomToken"
+    },
+    "170": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity.randomToken"
+    },
+    "171": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "bytes"
+    },
+    "172": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity.hashToken"
+    },
+    "173": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity.hashToken"
+    },
+    "174": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "value"
+    },
+    "175": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity.equalDigest"
+    },
+    "176": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "IRemoteSecurity.equalDigest"
+    },
+    "177": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "left"
+    },
+    "178": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/security/interfaces/IRemoteSecurity.ts",
+      "qualifiedName": "right"
+    },
+    "179": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/time/interfaces/IRemoteClock.ts",
+      "qualifiedName": "IRemoteClock"
+    },
+    "180": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/time/interfaces/IRemoteClock.ts",
+      "qualifiedName": "IRemoteClock.now"
+    },
+    "181": {
+      "packageName": "@pixel-brewery/remote-core",
+      "packagePath": "src/time/interfaces/IRemoteClock.ts",
+      "qualifiedName": "IRemoteClock.now"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-core/src/index.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

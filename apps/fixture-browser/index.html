@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" theme="soho" theme-mode="light">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Remote acceptance fixture</title>
+    </head>
+    <body>
+        <mosaik-theme2 id="fixture-theme" global>
+            <main>
+                <mosaik-text text="Remote acceptance fixture"></mosaik-text>
+                <mosaik-card>
+                    <mosaik-card-header
+                        ><mosaik-card-title text="Connect a host"></mosaik-card-title
+                    ></mosaik-card-header>
+                    <mosaik-card-content>
+                        <div class="fields">
+                            <mosaik-textbox
+                                id="invitation"
+                                label="Pairing invitation URL"
+                                aria-label="Pairing invitation URL"
+                                maxlength="8192"
+                                test-id="invitation"
+                            ></mosaik-textbox>
+                            <mosaik-textbox
+                                id="device"
+                                label="Device name"
+                                value="Remote fixture"
+                                maxlength="120"
+                                test-id="device-name"
+                            ></mosaik-textbox>
+                            <div class="actions">
+                                <mosaik-button
+                                    id="pair"
+                                    label="Pair host"
+                                    variant="primary"
+                                    test-id="pair"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="scan"
+                                    label="Scan QR code"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="scan"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="refresh"
+                                    label="Refresh connections"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="refresh"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="mode"
+                                    label="Switch color mode"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="mode"
+                                ></mosaik-button>
+                            </div>
+                        </div>
+                    </mosaik-card-content>
+                </mosaik-card>
+                <mosaik-message
+                    id="status"
+                    header="Connection"
+                    content="Select a host invitation."
+                    test-id="status"
+                ></mosaik-message>
+                <section id="connections" aria-label="Saved connections"></section>
+                <mosaik-card>
+                    <mosaik-card-header
+                        ><mosaik-card-title
+                            text="Exercise the selected application"
+                        ></mosaik-card-title
+                    ></mosaik-card-header>
+                    <mosaik-card-content>
+                        <div class="fields">
+                            <mosaik-textbox
+                                id="note"
+                                label="Note text"
+                                value="A note from Remote"
+                                maxlength="1000"
+                                test-id="note"
+                            ></mosaik-textbox>
+                            <div class="actions">
+                                <mosaik-button
+                                    id="read"
+                                    label="Read data"
+                                    variant="primary"
+                                    test-id="read"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="write"
+                                    label="Write once"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="write"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="events"
+                                    label="Start event stream"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="events"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="socket"
+                                    label="Test WebSocket"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="socket"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="range"
+                                    label="Read media range"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="range"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="upload"
+                                    label="Upload fixture file"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="upload"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="stop"
+                                    label="Cancel streams"
+                                    appearance="plain"
+                                    variant="neutral"
+                                    test-id="stop"
+                                ></mosaik-button
+                                ><mosaik-button
+                                    id="revoke"
+                                    label="Revoke this device"
+                                    appearance="plain"
+                                    variant="danger"
+                                    test-id="revoke"
+                                ></mosaik-button>
+                            </div>
+                            <pre id="evidence" aria-live="polite" test-id="evidence"></pre>
+                        </div>
+                    </mosaik-card-content>
+                </mosaik-card>
+            </main>
+        </mosaik-theme2>
+        <template id="connection-template">
+            <mosaik-card
+                ><mosaik-card-content>
+                    <mosaik-text data-profile-label></mosaik-text>
+                    <div class="actions">
+                        <mosaik-button
+                            data-operation="open"
+                            label="Open"
+                            variant="neutral"
+                            appearance="plain"
+                            test-id="connection-open"
+                        ></mosaik-button>
+                        <mosaik-button
+                            data-operation="close"
+                            label="Close"
+                            variant="neutral"
+                            appearance="plain"
+                            test-id="connection-close"
+                        ></mosaik-button>
+                        <mosaik-button
+                            data-operation="forget"
+                            label="Forget"
+                            variant="neutral"
+                            appearance="plain"
+                            test-id="connection-forget"
+                        ></mosaik-button>
+                    </div> </mosaik-card-content
+            ></mosaik-card>
+        </template>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

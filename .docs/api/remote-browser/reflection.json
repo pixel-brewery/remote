@@ -1,0 +1,2276 @@
+{
+  "schemaVersion": "2.0",
+  "id": 0,
+  "name": "@pixel-brewery/remote-browser",
+  "variant": "project",
+  "kind": 1,
+  "flags": {},
+  "children": [
+    {
+      "id": 7,
+      "name": "BrowserPairingLocation",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Reads pairing material from a fragment, which the browser never sends in the HTTP request."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Clear only after a durable pairing outcome; retaining a pending attempt permits safe recovery."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 22,
+          "name": "clear",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 23,
+              "name": "clear",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Remove short-lived invitation material without navigating or changing its query."
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 9,
+              "name": "BrowserPairingLocation",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Supply the owning document and history explicitly."
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 10,
+                  "name": "_location",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Current document origin, pathname, search and fragment."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Pick"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.dom.d.ts",
+                          "qualifiedName": "Location"
+                        },
+                        "name": "Location",
+                        "package": "typescript"
+                      },
+                      {
+                        "type": "union",
+                        "types": [
+                          {
+                            "type": "literal",
+                            "value": "origin"
+                          },
+                          {
+                            "type": "literal",
+                            "value": "pathname"
+                          },
+                          {
+                            "type": "literal",
+                            "value": "search"
+                          },
+                          {
+                            "type": "literal",
+                            "value": "hash"
+                          }
+                        ]
+                      }
+                    ],
+                    "name": "Pick",
+                    "package": "typescript"
+                  }
+                },
+                {
+                  "id": 11,
+                  "name": "_history",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "History replacement port used after durable pairing."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Pick"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.dom.d.ts",
+                          "qualifiedName": "History"
+                        },
+                        "name": "History",
+                        "package": "typescript"
+                      },
+                      {
+                        "type": "literal",
+                        "value": "replaceState"
+                      }
+                    ],
+                    "name": "Pick",
+                    "package": "typescript"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 7,
+                "name": "BrowserPairingLocation",
+                "package": "@pixel-brewery/remote-browser"
+              }
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "read",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 15,
+              "name": "read",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Decode and validate one complete invitation fragment."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Invitation, or null when no pairing fragment is present."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for duplicate, missing or malformed pairing fields."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "union",
+                "types": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Readonly"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reflection",
+                        "declaration": {
+                          "id": 16,
+                          "name": "__type",
+                          "variant": "declaration",
+                          "kind": 65536,
+                          "flags": {},
+                          "children": [
+                            {
+                              "id": 17,
+                              "name": "appId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 20,
+                              "name": "challenge",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 21,
+                              "name": "expiresAt",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 18,
+                              "name": "hostId",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            },
+                            {
+                              "id": 19,
+                              "name": "origin",
+                              "variant": "declaration",
+                              "kind": 1024,
+                              "flags": {},
+                              "type": {
+                                "type": "intrinsic",
+                                "name": "string"
+                              }
+                            }
+                          ],
+                          "groups": [
+                            {
+                              "title": "Properties",
+                              "children": [
+                                17,
+                                20,
+                                21,
+                                18,
+                                19
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "name": "Readonly",
+                    "package": "typescript"
+                  },
+                  {
+                    "type": "literal",
+                    "value": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            8
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            22,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "BrowserRemoteConnector",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Same-origin cookie connector with bounded protocol JSON and streamed product bodies."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "Bearer credentials never enter browser state. Dispose aborts both pending headers and bodies."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 31,
+          "name": "connect",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 32,
+              "name": "connect",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Create an owned channel to this document's origin only."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@returns",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "A credential-free transport whose protocol responses are schema validated."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for another origin, transport or an already aborted signal."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 33,
+                  "name": "endpoint",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Selected endpoint matching origin and transport identifier."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-protocol",
+                      "packagePath": "src/host/interfaces/IRemoteEndpoint.ts",
+                      "qualifiedName": "IRemoteEndpoint"
+                    },
+                    "name": "IRemoteEndpoint",
+                    "package": "@pixel-brewery/remote-protocol"
+                  }
+                },
+                {
+                  "id": 34,
+                  "name": "signal",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Channel lifetime cancellation, retained until disposal."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.dom.d.ts",
+                      "qualifiedName": "AbortSignal"
+                    },
+                    "name": "AbortSignal",
+                    "package": "typescript"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Promise"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "@pixel-brewery/remote-client",
+                      "packagePath": "src/lib/transport/interfaces/IRemoteClientTransport.ts",
+                      "qualifiedName": "IRemoteClientTransport"
+                    },
+                    "name": "IRemoteClientTransport",
+                    "package": "@pixel-brewery/remote-client"
+                  }
+                ],
+                "name": "Promise",
+                "package": "typescript"
+              },
+              "implementationOf": {
+                "type": "reference",
+                "target": -1,
+                "name": "IRemoteConnector.connect"
+              }
+            }
+          ],
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteConnector.connect"
+          }
+        },
+        {
+          "id": 25,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 26,
+              "name": "BrowserRemoteConnector",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Construct without fetching or touching browser globals."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for credentials, paths or unsupported schemes in the origin."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 27,
+                  "name": "_options",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Exact current origin, bound browser fetch and protocol byte limit."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 60,
+                    "name": "IBrowserRemoteConnectorOptions",
+                    "package": "@pixel-brewery/remote-browser"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 24,
+                "name": "BrowserRemoteConnector",
+                "package": "@pixel-brewery/remote-browser"
+              }
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "id",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Selected transport family, inferred from HTTP or HTTPS unless configured."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          },
+          "implementationOf": {
+            "type": "reference",
+            "target": -1,
+            "name": "IRemoteConnector.id"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            25
+          ]
+        },
+        {
+          "title": "Properties",
+          "children": [
+            28
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            31
+          ]
+        }
+      ],
+      "implementedTypes": [
+        {
+          "type": "reference",
+          "target": {
+            "packageName": "@pixel-brewery/remote-client",
+            "packagePath": "src/lib/transport/interfaces/IRemoteConnector.ts",
+            "qualifiedName": "IRemoteConnector"
+          },
+          "name": "IRemoteConnector",
+          "package": "@pixel-brewery/remote-client"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "BrowserRemoteEvents",
+      "variant": "declaration",
+      "kind": 128,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Owns one same-origin bounded WebSocket and explicit read-reconciliation callbacks."
+          }
+        ],
+        "blockTags": [
+          {
+            "tag": "@remarks",
+            "content": [
+              {
+                "kind": "text",
+                "text": "This lifecycle never queues or resends application messages."
+              }
+            ]
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 56,
+          "name": "connect",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 57,
+              "name": "connect",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Open once; subsequent calls retain an existing socket."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error after permanent disposal."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "name": "constructor",
+          "variant": "declaration",
+          "kind": 512,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 45,
+              "name": "BrowserRemoteEvents",
+              "variant": "signature",
+              "kind": 16384,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Compose a socket factory and deterministic scheduler."
+                  }
+                ],
+                "blockTags": [
+                  {
+                    "tag": "@throws",
+                    "content": [
+                      {
+                        "kind": "text",
+                        "text": "Error for unsupported origins, relative-path escapes or invalid limits."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 46,
+                  "name": "_options",
+                  "variant": "param",
+                  "kind": 32768,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "Same-origin path, byte/retry bounds and product event observers."
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "reference",
+                    "target": 71,
+                    "name": "IBrowserRemoteEventsOptions",
+                    "package": "@pixel-brewery/remote-browser"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "target": 43,
+                "name": "BrowserRemoteEvents",
+                "package": "@pixel-brewery/remote-browser"
+              }
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "name": "dispose",
+          "variant": "declaration",
+          "kind": 2048,
+          "flags": {
+            "isPublic": true
+          },
+          "signatures": [
+            {
+              "id": 59,
+              "name": "dispose",
+              "variant": "signature",
+              "kind": 4096,
+              "flags": {
+                "isPublic": true
+              },
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Close the socket and pending reconnect timer permanently."
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "children": [
+            44
+          ]
+        },
+        {
+          "title": "Methods",
+          "children": [
+            56,
+            58
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "createBrowserClock",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 2,
+          "name": "createBrowserClock",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Adapt supplied browser timing APIs without reading globals during module import."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Clock with cancellation for every scheduled callback."
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 3,
+              "name": "environment",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Browser timer functions belonging to the owning window."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Pick"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.dom.d.ts",
+                      "qualifiedName": "Window"
+                    },
+                    "name": "Window",
+                    "package": "typescript"
+                  },
+                  {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "literal",
+                        "value": "setTimeout"
+                      },
+                      {
+                        "type": "literal",
+                        "value": "clearTimeout"
+                      }
+                    ]
+                  }
+                ],
+                "name": "Pick",
+                "package": "typescript"
+              }
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-client",
+              "packagePath": "src/lib/session/interfaces/IRemoteClientClock.ts",
+              "qualifiedName": "IRemoteClientClock"
+            },
+            "name": "IRemoteClientClock",
+            "package": "@pixel-brewery/remote-client"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "createBrowserOperationId",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 5,
+          "name": "createBrowserOperationId",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Generate a UUID-shaped operation identifier in an HTTP LAN browser."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Random version-four identifier without requiring crypto.randomUUID."
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 6,
+              "name": "cryptography",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Browser crypto port supporting getRandomValues in insecure contexts."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es5.d.ts",
+                  "qualifiedName": "Pick"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.dom.d.ts",
+                      "qualifiedName": "Crypto"
+                    },
+                    "name": "Crypto",
+                    "package": "typescript"
+                  },
+                  {
+                    "type": "literal",
+                    "value": "getRandomValues"
+                  }
+                ],
+                "name": "Pick",
+                "package": "typescript"
+              }
+            }
+          ],
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "name": "IBrowserRemoteConnectorOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Explicit browser globals make the adapter import-safe and independently testable."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 62,
+          "name": "fetch",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Host-bound browser fetch."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 63,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 64,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "comment": {
+                    "summary": [
+                      {
+                        "kind": "text",
+                        "text": "[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/fetch)"
+                      }
+                    ]
+                  },
+                  "parameters": [
+                    {
+                      "id": 65,
+                      "name": "input",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "union",
+                        "types": [
+                          {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "typescript",
+                              "packagePath": "lib/lib.dom.d.ts",
+                              "qualifiedName": "RequestInfo"
+                            },
+                            "name": "RequestInfo",
+                            "package": "typescript"
+                          },
+                          {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "typescript",
+                              "packagePath": "lib/lib.dom.d.ts",
+                              "qualifiedName": "URL"
+                            },
+                            "name": "URL",
+                            "package": "typescript"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": 66,
+                      "name": "init",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {
+                        "isOptional": true
+                      },
+                      "type": {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.dom.d.ts",
+                          "qualifiedName": "RequestInit"
+                        },
+                        "name": "RequestInit",
+                        "package": "typescript"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Promise"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.dom.d.ts",
+                          "qualifiedName": "Response"
+                        },
+                        "name": "Response",
+                        "package": "typescript"
+                      }
+                    ],
+                    "name": "Promise",
+                    "package": "typescript"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 70,
+          "name": "maximumBufferedRequestBytes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Maximum buffered HTTP/1 request payload, default 8388608 bytes. Exceeding it fails before dispatch.\nNative form/File uploads can use their normal same-origin browser APIs through the registered gateway."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 61,
+          "name": "origin",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Current document origin. Cross-origin credential forwarding is not supported."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 68,
+          "name": "protocolResponseBytes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Bound on SDK JSON responses, not product streams; defaults to 65536 bytes."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 69,
+          "name": "requestBodyMode",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Request upload strategy chosen before dispatch. Defaults to buffered-http1 for LAN and loopback compatibility.\nstreaming-fetch requires a browser/server combination supporting Fetch upload streams over HTTP/2 or HTTP/3."
+              }
+            ]
+          },
+          "type": {
+            "type": "union",
+            "types": [
+              {
+                "type": "literal",
+                "value": "buffered-http1"
+              },
+              {
+                "type": "literal",
+                "value": "streaming-fetch"
+              }
+            ]
+          }
+        },
+        {
+          "id": 67,
+          "name": "transportId",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Defaults to lan-http or lan-https according to the origin."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            62,
+            70,
+            61,
+            68,
+            69,
+            67
+          ]
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "name": "IBrowserRemoteEventsOptions",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Same-origin WebSocket lifecycle supplied by the application."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 78,
+          "name": "clock",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Scheduler used for bounded recovery."
+              }
+            ]
+          },
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "@pixel-brewery/remote-client",
+              "packagePath": "src/lib/session/interfaces/IRemoteClientClock.ts",
+              "qualifiedName": "IRemoteClientClock"
+            },
+            "name": "IRemoteClientClock",
+            "package": "@pixel-brewery/remote-client"
+          }
+        },
+        {
+          "id": 74,
+          "name": "createSocket",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "WebSocket factory without bearer credentials in its URL."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 75,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 76,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 77,
+                      "name": "url",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.dom.d.ts",
+                      "qualifiedName": "WebSocket"
+                    },
+                    "name": "WebSocket",
+                    "package": "typescript"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 86,
+          "name": "maxMessageBytes",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Default maximum message size is 65536 bytes."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        },
+        {
+          "id": 79,
+          "name": "onMessage",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Product-owned wire validation receives each bounded message."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 80,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 81,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 82,
+                      "name": "data",
+                      "variant": "param",
+                      "kind": 32768,
+                      "flags": {},
+                      "type": {
+                        "type": "union",
+                        "types": [
+                          {
+                            "type": "intrinsic",
+                            "name": "string"
+                          },
+                          {
+                            "type": "reference",
+                            "target": {
+                              "packageName": "typescript",
+                              "packagePath": "lib/lib.es5.d.ts",
+                              "qualifiedName": "ArrayBuffer"
+                            },
+                            "name": "ArrayBuffer",
+                            "package": "typescript"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 83,
+          "name": "onReconcile",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Re-read current domain state after every reconnect."
+              }
+            ]
+          },
+          "type": {
+            "type": "reflection",
+            "declaration": {
+              "id": 84,
+              "name": "__type",
+              "variant": "declaration",
+              "kind": 65536,
+              "flags": {},
+              "signatures": [
+                {
+                  "id": 85,
+                  "name": "__type",
+                  "variant": "signature",
+                  "kind": 4096,
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 72,
+          "name": "origin",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Current browser or protected local gateway origin."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 73,
+          "name": "path",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Registered product event path."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 87,
+          "name": "retryLimit",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Default maximum reconnection attempts is eight."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "number"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            78,
+            74,
+            86,
+            79,
+            83,
+            72,
+            73,
+            87
+          ]
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "name": "IRemoteServerEvent",
+      "variant": "declaration",
+      "kind": 256,
+      "flags": {
+        "isPublic": true
+      },
+      "comment": {
+        "summary": [
+          {
+            "kind": "text",
+            "text": "Bounded SSE event; products own interpretation and payload validation."
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 90,
+          "name": "data",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Joined data lines without implicit JSON parsing."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 91,
+          "name": "id",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isOptional": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Optional server event ID; replay is not assumed."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        },
+        {
+          "id": 89,
+          "name": "type",
+          "variant": "declaration",
+          "kind": 1024,
+          "flags": {
+            "isPublic": true,
+            "isReadonly": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Event type, or message when no explicit name is present."
+              }
+            ]
+          },
+          "type": {
+            "type": "intrinsic",
+            "name": "string"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Properties",
+          "children": [
+            90,
+            91,
+            89
+          ]
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "name": "readRemoteServerEvents",
+      "variant": "declaration",
+      "kind": 64,
+      "flags": {
+        "isPublic": true
+      },
+      "signatures": [
+        {
+          "id": 93,
+          "name": "readRemoteServerEvents",
+          "variant": "signature",
+          "kind": 4096,
+          "flags": {
+            "isPublic": true
+          },
+          "comment": {
+            "summary": [
+              {
+                "kind": "text",
+                "text": "Decode bounded SSE events incrementally across UTF-8 and CRLF chunk boundaries."
+              }
+            ],
+            "blockTags": [
+              {
+                "tag": "@returns",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Events only after their terminating empty line; no replay or JSON policy is inferred."
+                  }
+                ]
+              },
+              {
+                "tag": "@throws",
+                "content": [
+                  {
+                    "kind": "text",
+                    "text": "Error when a retained line or event exceeds the bound or UTF-8 is malformed."
+                  }
+                ]
+              }
+            ]
+          },
+          "parameters": [
+            {
+              "id": 94,
+              "name": "chunks",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Stream owned by the caller; iterator cancellation propagates upstream."
+                  }
+                ]
+              },
+              "type": {
+                "type": "reference",
+                "target": {
+                  "packageName": "typescript",
+                  "packagePath": "lib/lib.es2018.asynciterable.d.ts",
+                  "qualifiedName": "AsyncIterable"
+                },
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "target": {
+                      "packageName": "typescript",
+                      "packagePath": "lib/lib.es5.d.ts",
+                      "qualifiedName": "Uint8Array"
+                    },
+                    "typeArguments": [
+                      {
+                        "type": "reference",
+                        "target": {
+                          "packageName": "typescript",
+                          "packagePath": "lib/lib.es5.d.ts",
+                          "qualifiedName": "ArrayBufferLike"
+                        },
+                        "name": "ArrayBufferLike",
+                        "package": "typescript"
+                      }
+                    ],
+                    "name": "Uint8Array",
+                    "package": "typescript"
+                  }
+                ],
+                "name": "AsyncIterable",
+                "package": "typescript"
+              }
+            },
+            {
+              "id": 95,
+              "name": "maxEventBytes",
+              "variant": "param",
+              "kind": 32768,
+              "flags": {},
+              "comment": {
+                "summary": [
+                  {
+                    "kind": "text",
+                    "text": "Per-event memory bound in UTF-8 bytes, default 65536."
+                  }
+                ]
+              },
+              "type": {
+                "type": "intrinsic",
+                "name": "number"
+              },
+              "defaultValue": "65_536"
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "target": {
+              "packageName": "typescript",
+              "packagePath": "lib/lib.es2018.asynciterable.d.ts",
+              "qualifiedName": "AsyncIterable"
+            },
+            "typeArguments": [
+              {
+                "type": "reference",
+                "target": 88,
+                "name": "IRemoteServerEvent",
+                "package": "@pixel-brewery/remote-browser"
+              }
+            ],
+            "name": "AsyncIterable",
+            "package": "typescript"
+          }
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "children": [
+        7,
+        24,
+        43
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "children": [
+        60,
+        71,
+        88
+      ]
+    },
+    {
+      "title": "Functions",
+      "children": [
+        1,
+        4,
+        92
+      ]
+    }
+  ],
+  "packageName": "@pixel-brewery/remote-browser",
+  "symbolIdMap": {
+    "0": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/index.ts",
+      "qualifiedName": ""
+    },
+    "1": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/environment/createBrowserClock.ts",
+      "qualifiedName": "createBrowserClock"
+    },
+    "2": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/environment/createBrowserClock.ts",
+      "qualifiedName": "createBrowserClock"
+    },
+    "3": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/environment/createBrowserClock.ts",
+      "qualifiedName": "environment"
+    },
+    "4": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/environment/createBrowserOperationId.ts",
+      "qualifiedName": "createBrowserOperationId"
+    },
+    "5": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/environment/createBrowserOperationId.ts",
+      "qualifiedName": "createBrowserOperationId"
+    },
+    "6": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/environment/createBrowserOperationId.ts",
+      "qualifiedName": "cryptography"
+    },
+    "7": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation"
+    },
+    "8": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation.__constructor"
+    },
+    "9": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation"
+    },
+    "10": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "_location"
+    },
+    "11": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "_history"
+    },
+    "14": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation.read"
+    },
+    "15": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation.read"
+    },
+    "16": {
+      "packageName": "zod",
+      "packagePath": "v4/core/util.d.cts",
+      "qualifiedName": "__type"
+    },
+    "17": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "appId"
+    },
+    "18": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "hostId"
+    },
+    "19": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "origin"
+    },
+    "20": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "challenge"
+    },
+    "21": {
+      "packageName": "@pixel-brewery/remote-protocol",
+      "packagePath": "src/pairing/schemas/remotePairingBootstrapSchema.ts",
+      "qualifiedName": "expiresAt"
+    },
+    "22": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation.clear"
+    },
+    "23": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/pairing/BrowserPairingLocation.ts",
+      "qualifiedName": "BrowserPairingLocation.clear"
+    },
+    "24": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "BrowserRemoteConnector"
+    },
+    "25": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "BrowserRemoteConnector.__constructor"
+    },
+    "26": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "BrowserRemoteConnector"
+    },
+    "27": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "_options"
+    },
+    "28": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "BrowserRemoteConnector.id"
+    },
+    "31": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "BrowserRemoteConnector.connect"
+    },
+    "32": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "BrowserRemoteConnector.connect"
+    },
+    "33": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "endpoint"
+    },
+    "34": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteConnector.ts",
+      "qualifiedName": "signal"
+    },
+    "43": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents"
+    },
+    "44": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents.__constructor"
+    },
+    "45": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents"
+    },
+    "46": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "_options"
+    },
+    "56": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents.connect"
+    },
+    "57": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents.connect"
+    },
+    "58": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents.dispose"
+    },
+    "59": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/BrowserRemoteEvents.ts",
+      "qualifiedName": "BrowserRemoteEvents.dispose"
+    },
+    "60": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions"
+    },
+    "61": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions.origin"
+    },
+    "62": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions.fetch"
+    },
+    "63": {
+      "packageName": "typescript",
+      "packagePath": "lib/lib.dom.d.ts",
+      "qualifiedName": "fetch"
+    },
+    "64": {
+      "packageName": "typescript",
+      "packagePath": "lib/lib.dom.d.ts",
+      "qualifiedName": "fetch"
+    },
+    "65": {
+      "packageName": "typescript",
+      "packagePath": "lib/lib.dom.d.ts",
+      "qualifiedName": "input"
+    },
+    "66": {
+      "packageName": "typescript",
+      "packagePath": "lib/lib.dom.d.ts",
+      "qualifiedName": "init"
+    },
+    "67": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions.transportId"
+    },
+    "68": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions.protocolResponseBytes"
+    },
+    "69": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions.requestBodyMode"
+    },
+    "70": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteConnectorOptions.ts",
+      "qualifiedName": "IBrowserRemoteConnectorOptions.maximumBufferedRequestBytes"
+    },
+    "71": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions"
+    },
+    "72": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.origin"
+    },
+    "73": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.path"
+    },
+    "74": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.createSocket"
+    },
+    "75": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "76": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "77": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "url"
+    },
+    "78": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.clock"
+    },
+    "79": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.onMessage"
+    },
+    "80": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "81": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "82": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "data"
+    },
+    "83": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.onReconcile"
+    },
+    "84": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "85": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "__type"
+    },
+    "86": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.maxMessageBytes"
+    },
+    "87": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IBrowserRemoteEventsOptions.ts",
+      "qualifiedName": "IBrowserRemoteEventsOptions.retryLimit"
+    },
+    "88": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IRemoteServerEvent.ts",
+      "qualifiedName": "IRemoteServerEvent"
+    },
+    "89": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IRemoteServerEvent.ts",
+      "qualifiedName": "IRemoteServerEvent.type"
+    },
+    "90": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IRemoteServerEvent.ts",
+      "qualifiedName": "IRemoteServerEvent.data"
+    },
+    "91": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/interfaces/IRemoteServerEvent.ts",
+      "qualifiedName": "IRemoteServerEvent.id"
+    },
+    "92": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/readRemoteServerEvents.ts",
+      "qualifiedName": "readRemoteServerEvents"
+    },
+    "93": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/readRemoteServerEvents.ts",
+      "qualifiedName": "readRemoteServerEvents"
+    },
+    "94": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/readRemoteServerEvents.ts",
+      "qualifiedName": "chunks"
+    },
+    "95": {
+      "packageName": "@pixel-brewery/remote-browser",
+      "packagePath": "src/lib/transport/readRemoteServerEvents.ts",
+      "qualifiedName": "maxEventBytes"
+    }
+  },
+  "files": {
+    "entries": {
+      "1": "libs/remote-browser/src/index.ts"
+    },
+    "reflections": {
+      "1": 0
+    }
+  }
+}

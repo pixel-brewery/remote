@@ -1,0 +1,46 @@
+{
+    "name": "@pixel-brewery/remote-testing",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Deterministic clocks, stores and protocol conformance fixtures.",
+    "license": "MIT",
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "!**/*.tsbuildinfo"
+    ],
+    "dependencies": {
+        "@pixel-brewery/remote-client": "workspace:*",
+        "@pixel-brewery/remote-core": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*"
+    },
+    "nx": {
+        "name": "remote-testing",
+        "tags": [
+            "runtime:portable"
+        ]
+    },
+    "scripts": {
+        "build": "tsc -b tsconfig.lib.json",
+        "typecheck": "tsc --noEmit -p tsconfig.spec.json",
+        "test": "vitest run --config vitest.config.ts"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pixel-brewery/remote.git",
+        "directory": "libs/remote-testing"
+    }
+}

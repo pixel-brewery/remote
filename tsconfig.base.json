@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "target": "ES2024",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "lib": ["ES2024"],
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": [],
+        "paths": {
+            "@pixel-brewery/remote-protocol": ["./libs/remote-protocol/src/index.ts"],
+            "@pixel-brewery/remote-core": ["./libs/remote-core/src/index.ts"],
+            "@pixel-brewery/remote-node": ["./libs/remote-node/src/host.ts"],
+            "@pixel-brewery/remote-client": ["./libs/remote-client/src/index.ts"],
+            "@pixel-brewery/remote-browser": ["./libs/remote-browser/src/index.ts"],
+            "@pixel-brewery/remote-angular": ["./libs/remote-angular/src/index.ts"],
+            "@pixel-brewery/remote-electron": ["./libs/remote-electron/src/index.ts"],
+            "@pixel-brewery/remote-capacitor": ["./libs/remote-capacitor/src/index.ts"],
+            "@pixel-brewery/remote-testing": ["./libs/remote-testing/src/index.ts"]
+        }
+    }
+}

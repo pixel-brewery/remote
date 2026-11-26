@@ -1,0 +1,7 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "title": "Verify isolated packed SDK packages",
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+}

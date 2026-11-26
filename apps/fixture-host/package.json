@@ -1,0 +1,42 @@
+{
+    "name": "@pixel-brewery/remote-fixture-host",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "description": "Independent counter and notes applications using the same Remote host runtime.",
+    "license": "MIT",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
+    "dependencies": {
+        "@pixel-brewery/remote-core": "workspace:*",
+        "@pixel-brewery/remote-node": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*",
+        "@types/ws": "8.18.2",
+        "ws": "8.23.0",
+        "zod": "4.6.7"
+    },
+    "scripts": {
+        "build": "tsc -b tsconfig.lib.json",
+        "typecheck": "tsc --noEmit -p tsconfig.spec.json",
+        "test": "vitest run --config vitest.config.ts",
+        "serve": "node dist/main.js"
+    },
+    "nx": {
+        "name": "fixture-host",
+        "tags": [
+            "type:fixture",
+            "runtime:node"
+        ],
+        "targets": {
+            "serve": {
+                "dependsOn": [
+                    "build"
+                ]
+            }
+        }
+    }
+}

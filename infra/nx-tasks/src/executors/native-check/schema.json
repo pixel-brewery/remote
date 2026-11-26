@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "version": 1,
+    "title": "Native project verification",
+    "type": "object",
+    "properties": {
+        "platform": { "type": "string", "enum": ["android", "ios", "ios-test"] },
+        "gradleTasks": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9:]*$" },
+            "minItems": 1
+        },
+        "scheme": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]*$" },
+        "projectFile": { "type": "string" }
+    },
+    "required": ["platform"],
+    "additionalProperties": false
+}

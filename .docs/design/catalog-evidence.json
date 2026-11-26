@@ -1,0 +1,189 @@
+{
+    "package": "@pixel-brewery/mosaik-mcp",
+    "version": "0.1.205",
+    "consultedOn": "2026-11-26",
+    "reference": "Cursor portfolio site",
+    "accent": "#5B4BDB",
+    "calls": [
+        {
+            "name": "get_studio_authoring_rules",
+            "arguments": {},
+            "summary": "Build IElement JSON using only documented mosaik-* tags, properties and slots.\nWithin mosaik-wallet-card faces, use div/section wrappers with style and children for CSS flexbox/grid layout, without props or raw content; mosaik-stack is deprecated.\nText belongs in props.text of mosaik-text; labels belong in the documented label properties.\nUse theme tokens (var(--...)) for colors, spacing and radii. Never hard-code hexadecimal colors.\nUse kebab-case CSS keys and https:// image URLs, or one of the",
+            "ids": []
+        },
+        {
+            "name": "list_studio_templates",
+            "arguments": {
+                "query": "developer landing",
+                "limit": 5
+            },
+            "summary": "[{\"id\":\"template-developer-portfolio\",\"name\":{\"en\":\"Developer portfolio\",\"de\":\"Entwickler-Portfolio\"},\"description\":{\"en\":\"Personal landing page of a design engineer: multilingual greeting with an ID badge, about-me bento, featured work, contribution graph and experience, services, kind words, a retainer, a service booking and a contact page.\",\"de\":\"Pers\u00f6nliche Landingpage eines Design Engineers: mehrsprachige Begr\u00fc\u00dfung mit Ausweiskarte, \u00dcber-mich-Bento, ausgew\u00e4hlte Projekte, Beitragsgrafik und ",
+            "ids": ["template-developer-portfolio"]
+        },
+        {
+            "name": "list_studio_recipes",
+            "arguments": {
+                "query": "landing hero",
+                "limit": 8
+            },
+            "summary": "[{\"id\":\"recipe-hero-app\",\"name\":\"Hero \u00b7 Mobile app\",\"description\":\"Mobile app hero with App Store and Google Play buttons, a download QR code, rating and downloads next to a phone with the app screen.\",\"category\":\"Hero\",\"tags\":[\"hero\",\"mobile\",\"app\",\"download\",\"qr code\",\"phone\"],\"nodeCount\":106,\"useCases\":[\"Mobile app landing page\",\"App store promotion\",\"Consumer app launch\"],\"date\":\"2026-10-12\"},{\"id\":\"recipe-hero-app--audience\",\"name\":\"Hero \u00b7 Mobile app with audience\",\"description\":\"Mobile app",
+            "ids": [
+                "recipe-hero-app",
+                "recipe-hero-app--audience",
+                "recipe-hero-centered",
+                "recipe-hero-centered--minimal",
+                "recipe-hero-centered--email-capture",
+                "recipe-hero-centered--muted-band",
+                "recipe-hero-centered--photo-strip",
+                "recipe-hero-centered--product-preview"
+            ]
+        },
+        {
+            "name": "search_components",
+            "arguments": {
+                "query": "button anchor image card"
+            },
+            "summary": "No components found matching \"button anchor image card\".",
+            "ids": []
+        },
+        {
+            "name": "get_component_docs",
+            "arguments": {
+                "name": "button"
+            },
+            "summary": "# mosaik-button\n\nButton - A versatile interactive element for triggering actions and user interactions.\n\n**Mixins:** Themeable, Reversible, Orientable, ContentAlignable, Fitable, Busyable, Labelable, Iconable\n\n## Examples\n\nBasic button with label:\n```html\n<mosaik-button label=\"Click Me\"></mosaik-button>\n```\n\nButton with variant and appearance:\n```html\n<mosaik-button label=\"Save\" variant=\"primary\" appearance=\"solid\"></mosaik-button>\n```\n\nDisabled button:\n```html\n<mosaik-button label=\"Unavailable\"",
+            "ids": []
+        },
+        {
+            "name": "get_component_docs",
+            "arguments": {
+                "name": "anchor"
+            },
+            "summary": "# mosaik-anchor\n\nAnchor - A hyperlink component for navigation between pages or external resources.\n\n**Mixins:** Themeable, Variantable, Disableable, Labelable\n\n## Examples\n\nBasic anchor link:\n```html\n<mosaik-anchor label=\"Visit Example.com\"></mosaik-anchor>\n```\n\nAnchor with custom underline style:\n```html\n<mosaik-anchor label=\"About Us\" underline=\"hover\"></mosaik-anchor>\n```\n\nAnchor with variant styling:\n```html\n<mosaik-anchor label=\"Learn More\" variant=\"primary\" underline=\"always\"></mosaik-anc",
+            "ids": []
+        },
+        {
+            "name": "get_component_docs",
+            "arguments": {
+                "name": "image"
+            },
+            "summary": "# mosaik-image\n\nImage - A responsive image container with advanced loading states and layout control.\n\nProvides comprehensive image handling with loading indicators, error states, aspect ratio control,\nand flexible content placement. Supports various fit modes, lazy loading, and accessibility features.\nIncludes built-in placeholder states and legend positioning for rich media presentation.\n\n**Mixins:** RenderDeferrable, Themeable, Disableable, Variantable, Dimensionable\n\n## Examples\n\n```html\n<!-",
+            "ids": []
+        },
+        {
+            "name": "get_component_docs",
+            "arguments": {
+                "name": "card"
+            },
+            "summary": "# mosaik-card\n\nCard - A versatile container component for organizing related content in a visually distinct layout.\n\n**Mixins:** Themeable, Elevatable, Appearanceable, Variantable, Insetable, Fitable, Orientable, TextFormattable, Slottable, Selectable, Disableable\n\n## Examples\n\nFull card anatomy with all sub-components:\n```html\n<mosaik-card>\n  <img slot=\"cover\" src=\"hero.jpg\" alt=\"Card cover image\">\n  <mosaik-card-header>\n    <mosaik-card-title text=\"Product Name\"></mosaik-card-title>\n    <mosai",
+            "ids": []
+        },
+        {
+            "name": "lookup_component_api",
+            "arguments": {
+                "tag": "mosaik-button",
+                "aspect": "property"
+            },
+            "summary": "**mosaik-button** - 26 property(s):\n\n- `appearance`\n- `controlValue`\n- `dir`\n- `disabled`\n- `download`\n- `fit`\n- `horizontalContentAlignment`\n- `href`\n- `icon`\n- `iconPosition`\n- `iconSize`\n- `isBusy`\n- `isFocused`\n- `label`\n- `lang`\n- `orientation`\n- `rel`\n- `reverse`\n- `ripple`\n- `size`\n- `target`\n- `themeName`\n- `type`\n- `value`\n- `variant`\n- `verticalContentAlignment`",
+            "ids": []
+        },
+        {
+            "name": "get_framework_guide",
+            "arguments": {
+                "framework": "native"
+            },
+            "summary": "## Native usage model\n\n**Package:** `@pixel-brewery/mosaik-elements-foundation`\n\nNative usage means using Mosaik components directly as Web Components in plain HTML, vanilla JavaScript, or any environment without a framework wrapper. This is the most direct way to use Mosaik and requires no wrapper layer at all.\n\nIn native usage, import `@pixel-brewery/mosaik-elements-foundation` to register all custom elements globally. Then use the `mosaik-*` custom elements directly in HTML markup. Properties",
+            "ids": []
+        },
+        {
+            "name": "get_token_schema",
+            "arguments": {},
+            "summary": "# Mosaik Design Token Schema Reference\n\n> **Purpose:** Machine-readable specification of every token slot in a Mosaik theme. Designed for AI agents, MCP tools, and automated generators that need to understand, modify, or validate the token values of the **four fixed themes** (Joy, Memphis, Cosmopolitan, Soho). This document describes what each token controls and its constraints.\n\n---\n\n## Important: Current Theme Architecture\n\nMosaik has exactly **four themes**: **Joy**, **Memphis**, **Cosmopolit",
+            "ids": []
+        },
+        {
+            "name": "create_theme",
+            "arguments": {
+                "description": "Keep the Soho light Pixel Brewery portfolio foundations: warm ivory backgrounds, black text, indigo primary #5B4BDB for Remote. No petrol/teal accent."
+            },
+            "summary": "# Theme Generation Request\n\n**User description:** \"Keep the Soho light Pixel Brewery portfolio foundations: warm ivory backgrounds, black text, indigo primary #5B4BDB for Remote. No petrol/teal accent.\"\n\nFollow the 7-step pipeline below to generate a complete theme JSON.\nAfter generation, call `validate_theme` with the resulting JSON to check for errors.\n\n---\n# Mosaik Theme Generation Guide\n\n> **Purpose:** This document enables an AI to generate a complete, valid Mosaik theme JSON from a natural",
+            "ids": []
+        },
+        {
+            "name": "get_studio_template",
+            "arguments": {
+                "id": "template-developer-portfolio",
+                "format": "markdown"
+            },
+            "summary": "# Developer portfolio\n\nPersonal landing page of a design engineer: multilingual greeting with an ID badge, about-me bento, featured work, contribution graph and experience, services, kind words, a retainer, a service booking and a contact page.\n\n**Deutsch:** Entwickler-Portfolio\n\nPers\u00f6nliche Landingpage eines Design Engineers: mehrsprachige Begr\u00fc\u00dfung mit Ausweiskarte, \u00dcber-mich-Bento, ausgew\u00e4hlte Projekte, Beitragsgrafik und Werdegang, Leistungen, Kundenstimmen, ein Retainer, eine Leistungsbuchung und eine Kontaktseite.\n\n**Template:** `template-developer-portfolio`  \n**Category:** marketing  \n**Tags:** portfolio, personal, developer, design engineer, freelancer, pricing  \n**Pages:** 2\n\n## Page 1: Home\n\n**Deutsch:** Startseite\n\n### Recipes\n\n- [recipe-navbar-standard](/llms/studio/recipes/recipe-navbar-standard.md)\n- [recipe-hero-personal](/llms/studio/recipes/recipe-hero-personal.md)\n- [r",
+            "ids": []
+        },
+        {
+            "name": "get_studio_recipe_options",
+            "arguments": {
+                "id": "recipe-hero-centered--product-preview"
+            },
+            "summary": "{\"schema\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"announcement\":{\"type\":\"string\",\"maxLength\":4000},\"tone\":{\"type\":\"string\",\"maxLength\":4000},\"emailPlaceholder\":{\"type\":\"string\",\"maxLength\":4000},\"title\":{\"type\":\"string\",\"maxLength\":4000},\"lead\":{\"type\":\"string\",\"maxLength\":4000},\"primaryAction\":{\"type\":\"string\",\"maxLength\":4000},\"primaryIcon\":{\"type\":\"string\",\"maxLength\":4000},\"secondaryAction\":{\"type\":\"string\",\"maxLength\":4000},\"secondaryIcon\":{\"type\":\"string\",\"maxLength\":4000},\"people\":{\"type\":\"array\",\"maxItems\":100,\"items\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"name\":{\"type\":\"string\",\"maxLength\":4000},\"role\":{\"type\":\"string\",\"maxLength\":4000},\"email\":{\"type\":\"string\",\"maxLength\":4000},\"photo\":{\"type\":\"string\",\"maxLength\":4000}}}},\"rating\":{\"type\":\"number\"},\"proof\":{\"type\":\"string\",\"maxLength\":4000},\"media\":{\"type\":\"string\",\"maxLength\":4000},\"",
+            "ids": []
+        },
+        {
+            "name": "get_studio_recipe",
+            "arguments": {
+                "id": "recipe-hero-centered--product-preview",
+                "format": "markdown"
+            },
+            "summary": "# Hero \u00b7 Centered with product preview\n\nCentered hero with an announcement pill, headline, lead and two calls to action above a large product dashboard on a deep band.\n\n**Recipe:** `recipe-hero-centered--product-preview`  \n**Category:** Hero  \n**Tags:** hero, landing, product, dashboard, preview, saas\n\n**Variant of:** [recipe-hero-centered](/llms/studio/recipes/recipe-hero-centered.md)\n\n## Use cases\n\n- SaaS homepage\n- Analytics product launch\n- Platform landing page\n\n## Options schema\n\n```json\n{\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"properties\": {\n    \"announcement\": {\n      \"type\": \"string\",\n      \"maxLength\": 4000\n    },\n    \"tone\": {\n      \"type\": \"string\",\n      \"maxLength\": 4000\n    },\n    \"emailPlaceholder\": {\n      \"type\": \"string\",\n      \"maxLength\": 4000\n    },\n    \"title\": {\n      \"type\": \"string\",\n      \"maxLength\": 4000\n    },\n    \"lead\": {\n      \"type\": \"st",
+            "ids": []
+        },
+        {
+            "name": "get_component_anatomy",
+            "arguments": {
+                "name": "button"
+            },
+            "summary": "# Anatomy of `mosaik-button`\n\nButton - A versatile interactive element for triggering actions and user interactions.\n\n## Parts (7)\n\nCSS Shadow Parts are the visual building blocks of the component that can be targeted with `::part()` for styling.\n\n| Part | Description |\n| --- | --- |\n| `button` | The main button element container |\n| `focusRing` | The focus indicator ring for keyboard navigation |\n| `icon` | The icon display area within the button |\n| `innerStack` | The innerStack part. |\n| `label` | The text label display area within the button |\n| `progressRing` | The busy state progress indicator |\n| `ripple` | The touch feedback ripple effect container |\n\n## Properties (26)\n\nProperties control the behaviour and appearance of the component.\n\n| Property | Type | Default | Description |\n| --- | --- | --- | --- |\n| `appearance` | `\"default\" | \"outline\" | \"plain\" | \"soft\" | \"solid\"` | `` ",
+            "ids": []
+        },
+        {
+            "name": "get_component_anatomy",
+            "arguments": {
+                "name": "anchor"
+            },
+            "summary": "# Anatomy of `mosaik-anchor`\n\nAnchor - A hyperlink component for navigation between pages or external resources.\n\n## Parts (2)\n\nCSS Shadow Parts are the visual building blocks of the component that can be targeted with `::part()` for styling.\n\n| Part | Description |\n| --- | --- |\n| `label` | The text label area of the anchor |\n| `link` | The main link element wrapper |\n\n## Properties (12)\n\nProperties control the behaviour and appearance of the component.\n\n| Property | Type | Default | Description |\n| --- | --- | --- | --- |\n| `controlValue` | `IControlValueDefinition | undefined` | `undefined` | The component-owned form integration, when the component supplies one. |\n| `dir` | `\"ltr\" | \"rtl\" | \"auto\" | \"\"` | `` | The dir property indicates the directionality of the element's text.<br /><br />Supported values are:<br />- `ltr`: Left-to-Right text direction (e.g. English, German)<br />- `r",
+            "ids": []
+        },
+        {
+            "name": "get_component_anatomy",
+            "arguments": {
+                "name": "image"
+            },
+            "summary": "# Anatomy of `mosaik-image`\n\nImage - A responsive image container with advanced loading states and layout control.\n\n## Parts (5)\n\nCSS Shadow Parts are the visual building blocks of the component that can be targeted with `::part()` for styling.\n\n| Part | Description |\n| --- | --- |\n| `image` | The main image element container |\n| `thumbnail` | Blurred low-resolution placeholder image displayed during loading |\n| `placeholder` | Container for loading, error, and empty states |\n| `legend` | Caption or description container |\n| `content` | Overlay content container |\n\n## Properties (21)\n\nProperties control the behaviour and appearance of the component.\n\n| Property | Type | Default | Description |\n| --- | --- | --- | --- |\n| `alt` | `string` | `` | Gets or sets the `alt` property. |\n| `controlValue` | `IControlValueDefinition | undefined` | `undefined` | The component-owned form integration,",
+            "ids": []
+        },
+        {
+            "name": "get_component_anatomy",
+            "arguments": {
+                "name": "card"
+            },
+            "summary": "# Anatomy of `mosaik-card`\n\nCard - A versatile container component for organizing related content in a visually distinct layout.\n\n## Parts (8)\n\nCSS Shadow Parts are the visual building blocks of the component that can be targeted with `::part()` for styling.\n\n| Part | Description |\n| --- | --- |\n| `actions` | Actions section container for buttons and controls |\n| `content` | Main content area container |\n| `cover` | Cover image or media container at the top of the card |\n| `elevation` | Container for card elevation and shadow effects |\n| `footer` | Footer section container for additional content |\n| `header` | Header section for titles and subtitles |\n| `heading` | Header section container wrapping header and inline media |\n| `media` | Media content container for images or visual elements |\n\n## Properties (17)\n\nProperties control the behaviour and appearance of the component.\n\n| Property",
+            "ids": []
+        },
+        {
+            "name": "validate_theme",
+            "artifact": "site/theme/remoteTheme.json",
+            "summary": "\u274c **12 error(s):**\n\n- `name.value` must be a non-empty string.\n- Missing `font.family` token.\n- `layout.radius.value` must be a string.\n- `layout.space.value` must be a string.\n- `layout.thickness.value` must be a string.\n- Missing `color` section.\n- Missing `typographyKey` section.\n- Missing `elevation.none` token.\n- Missing `elevationKey` section.\n- Missing `appearance` section.\n- Missing `variant` section.\n- Missing `duration._`.\n\n**Summary:** Fix 12 error(s) before the theme can be used.",
+            "ids": []
+        },
+        {
+            "name": "validate_theme",
+            "artifact": "apps/fixture-browser/src/theme/fixtureTheme.json",
+            "summary": "\u274c **12 error(s):**\n\n- `name.value` must be a non-empty string.\n- Missing `font.family` token.\n- `layout.radius.value` must be a string.\n- `layout.space.value` must be a string.\n- `layout.thickness.value` must be a string.\n- Missing `color` section.\n- Missing `typographyKey` section.\n- Missing `elevation.none` token.\n- Missing `elevationKey` section.\n- Missing `appearance` section.\n- Missing `variant` section.\n- Missing `duration._`.\n\n**Summary:** Fix 12 error(s) before the theme can be used.",
+            "ids": []
+        }
+    ],
+    "themeValidation": {
+        "inputFormat": "compiled Mosaik runtime theme",
+        "catalogValidatorFormat": "Mosaik design-token source schema",
+        "outcome": "format-mismatch; not a successful token-source validation",
+        "details": "validate_theme checks token objects such as name.value, font.family, color and typographyKey. These generated application artifacts are compiled runtime objects from public SohoTheme.SOHO_THEME plus public ThemeGenerator palettes, consumed by Theme2Element/ThemeService. They are not authored token-source themes. The original rejection results are retained above; runtime/source/browser evidence is recorded separately."
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "lib": ["ES2024", "DOM"],
+        "rootDir": "src",
+        "outDir": "dist",
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "types": ["node"],
+        "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/*.spec.ts"],
+    "references": [
+        {
+            "path": "../remote-protocol/tsconfig.lib.json"
+        },
+        {
+            "path": "../remote-client/tsconfig.lib.json"
+        },
+        {
+            "path": "../remote-node/tsconfig.lib.json"
+        }
+    ]
+}

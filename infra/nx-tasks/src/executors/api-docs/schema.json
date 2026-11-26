@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json-schema.org/schema",
+    "title": "Cursor API documentation",
+    "type": "object",
+    "properties": {
+        "mode": {
+            "type": "string",
+            "enum": ["write", "check"],
+            "description": "Replace the generated reference or compare it with the checkout."
+        }
+    },
+    "required": ["mode"],
+    "additionalProperties": false
+}

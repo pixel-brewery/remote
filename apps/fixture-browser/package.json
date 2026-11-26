@@ -1,0 +1,64 @@
+{
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "license": "MIT",
+    "name": "@pixel-brewery/remote-fixture-browser",
+    "dependencies": {
+        "@capacitor/core": "8.6.2",
+        "@pixel-brewery/mosaik-elements-foundation": "0.1.205",
+        "@pixel-brewery/mosaik-themes": "0.1.205",
+        "@pixel-brewery/remote-browser": "workspace:*",
+        "@pixel-brewery/remote-capacitor": "workspace:*",
+        "@pixel-brewery/remote-client": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*",
+        "reflect-metadata": "0.2.2"
+    },
+    "devDependencies": {
+        "@pixel-brewery/remote-fixture-host": "workspace:*",
+        "@playwright/test": "1.65.0",
+        "playwright": "1.65.0",
+        "vite": "8.3.8"
+    },
+    "scripts": {
+        "build": "vite build",
+        "serve": "vite --host 127.0.0.1",
+        "e2e": "playwright test --config playwright.config.ts",
+        "typecheck": "tsc --noEmit -p tsconfig.json"
+    },
+    "nx": {
+        "name": "fixture-browser",
+        "tags": [
+            "type:fixture",
+            "runtime:browser"
+        ],
+        "targets": {
+            "build": {
+                "dependsOn": [
+                    "^build",
+                    "nx-tasks:theme:check"
+                ],
+                "outputs": [
+                    "{projectRoot}/dist"
+                ]
+            },
+            "e2e": {
+                "executor": "nx:run-commands",
+                "cache": false,
+                "dependsOn": [
+                    "build",
+                    "fixture-host:build"
+                ],
+                "options": {
+                    "command": "yarn exec playwright test --config apps/fixture-browser/playwright.config.ts"
+                }
+            },
+            "typecheck": {
+                "dependsOn": [
+                    "build"
+                ]
+            }
+        }
+    },
+    "exports": {}
+}

@@ -1,0 +1,61 @@
+{
+    "name": "@pixel-brewery/remote-electron",
+    "version": "0.1.0",
+    "type": "module",
+    "sideEffects": false,
+    "license": "MIT",
+    "exports": {
+        "./main": {
+            "types": "./dist/main.d.ts",
+            "import": "./dist/main.js"
+        },
+        "./preload": {
+            "types": "./dist/preload.d.ts",
+            "import": "./dist/preload.js"
+        },
+        "./utility": {
+            "types": "./dist/utility.d.ts",
+            "import": "./dist/utility.js"
+        },
+        "./package.json": "./package.json",
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "!**/*.tsbuildinfo"
+    ],
+    "nx": {
+        "name": "remote-electron"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://npm.pkg.github.com"
+    },
+    "scripts": {
+        "build": "tsc -b tsconfig.lib.json",
+        "typecheck": "tsc -p tsconfig.spec.json --noEmit",
+        "test": "vitest run --config vitest.config.ts"
+    },
+    "dependencies": {
+        "@pixel-brewery/remote-client": "workspace:*",
+        "@pixel-brewery/remote-node": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*",
+        "@types/ws": "8.18.2",
+        "ws": "8.23.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pixel-brewery/remote.git",
+        "directory": "libs/remote-electron"
+    },
+    "peerDependencies": {
+        "electron": ">=45 <46"
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+}

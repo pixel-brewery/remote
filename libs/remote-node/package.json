@@ -1,0 +1,64 @@
+{
+    "name": "@pixel-brewery/remote-node",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Private LAN hosts, streaming client gateways and Node infrastructure.",
+    "license": "MIT",
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "types": "./dist/host.d.ts",
+            "import": "./dist/host.js"
+        },
+        "./host": {
+            "types": "./dist/host.d.ts",
+            "import": "./dist/host.js"
+        },
+        "./client": {
+            "types": "./dist/client.d.ts",
+            "import": "./dist/client.js"
+        },
+        "./persistence": {
+            "types": "./dist/persistence.d.ts",
+            "import": "./dist/persistence.js"
+        },
+        "./security": {
+            "types": "./dist/security.d.ts",
+            "import": "./dist/security.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "!**/*.tsbuildinfo"
+    ],
+    "dependencies": {
+        "@pixel-brewery/remote-client": "workspace:*",
+        "@pixel-brewery/remote-core": "workspace:*",
+        "@pixel-brewery/remote-protocol": "workspace:*",
+        "@types/ws": "8.18.2",
+        "ws": "8.23.0"
+    },
+    "nx": {
+        "name": "remote-node",
+        "tags": [
+            "runtime:node"
+        ]
+    },
+    "scripts": {
+        "build": "tsc -b tsconfig.lib.json",
+        "typecheck": "tsc --noEmit -p tsconfig.spec.json",
+        "test": "vitest run --config vitest.config.ts"
+    },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pixel-brewery/remote.git",
+        "directory": "libs/remote-node"
+    }
+}

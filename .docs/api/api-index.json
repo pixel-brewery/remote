@@ -1,0 +1,832 @@
+{
+  "schemaVersion": 1,
+  "linkBase": ".docs/",
+  "packages": [
+    {
+      "name": "@pixel-brewery/remote-angular",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-angular",
+          "markdown": "packages/remote-angular/api/index.md",
+          "reflection": "api/remote-angular/reflection.json",
+          "exports": [
+            {
+              "name": "injectRemoteSession",
+              "kind": "Function",
+              "link": "packages/remote-angular/api/functions/injectRemoteSession.md"
+            },
+            {
+              "name": "IRemoteSessionSignals",
+              "kind": "Interface",
+              "link": "packages/remote-angular/api/interfaces/IRemoteSessionSignals.md"
+            },
+            {
+              "name": "provideRemoteSession",
+              "kind": "Function",
+              "link": "packages/remote-angular/api/functions/provideRemoteSession.md"
+            },
+            {
+              "name": "REMOTE_SESSION",
+              "kind": "Variable",
+              "link": "packages/remote-angular/api/variables/REMOTE_SESSION.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-browser",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-browser",
+          "markdown": "packages/remote-browser/api/index.md",
+          "reflection": "api/remote-browser/reflection.json",
+          "exports": [
+            {
+              "name": "BrowserPairingLocation",
+              "kind": "Class",
+              "link": "packages/remote-browser/api/classes/BrowserPairingLocation.md"
+            },
+            {
+              "name": "BrowserRemoteConnector",
+              "kind": "Class",
+              "link": "packages/remote-browser/api/classes/BrowserRemoteConnector.md"
+            },
+            {
+              "name": "BrowserRemoteEvents",
+              "kind": "Class",
+              "link": "packages/remote-browser/api/classes/BrowserRemoteEvents.md"
+            },
+            {
+              "name": "createBrowserClock",
+              "kind": "Function",
+              "link": "packages/remote-browser/api/functions/createBrowserClock.md"
+            },
+            {
+              "name": "createBrowserOperationId",
+              "kind": "Function",
+              "link": "packages/remote-browser/api/functions/createBrowserOperationId.md"
+            },
+            {
+              "name": "IBrowserRemoteConnectorOptions",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IBrowserRemoteConnectorOptions.md"
+            },
+            {
+              "name": "IBrowserRemoteEventsOptions",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IBrowserRemoteEventsOptions.md"
+            },
+            {
+              "name": "IRemoteServerEvent",
+              "kind": "Interface",
+              "link": "packages/remote-browser/api/interfaces/IRemoteServerEvent.md"
+            },
+            {
+              "name": "readRemoteServerEvents",
+              "kind": "Function",
+              "link": "packages/remote-browser/api/functions/readRemoteServerEvents.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-capacitor",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-capacitor",
+          "markdown": "packages/remote-capacitor/api/index.md",
+          "reflection": "api/remote-capacitor/reflection.json",
+          "exports": [
+            {
+              "name": "createCapacitorRemoteBridge",
+              "kind": "Function",
+              "link": "packages/remote-capacitor/api/functions/createCapacitorRemoteBridge.md"
+            },
+            {
+              "name": "IRemoteCapacitorBridge",
+              "kind": "Interface",
+              "link": "packages/remote-capacitor/api/interfaces/IRemoteCapacitorBridge.md"
+            },
+            {
+              "name": "IRemoteCapacitorInvocation",
+              "kind": "Interface",
+              "link": "packages/remote-capacitor/api/interfaces/IRemoteCapacitorInvocation.md"
+            },
+            {
+              "name": "IRemoteCapacitorPlugin",
+              "kind": "Interface",
+              "link": "packages/remote-capacitor/api/interfaces/IRemoteCapacitorPlugin.md"
+            },
+            {
+              "name": "IRemoteCapacitorResult",
+              "kind": "Interface",
+              "link": "packages/remote-capacitor/api/interfaces/IRemoteCapacitorResult.md"
+            },
+            {
+              "name": "IRemoteCapacitorScanResult",
+              "kind": "Interface",
+              "link": "packages/remote-capacitor/api/interfaces/IRemoteCapacitorScanResult.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-client",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-client",
+          "markdown": "packages/remote-client/api/index.md",
+          "reflection": "api/remote-client/reflection.json",
+          "exports": [
+            {
+              "name": "createRemoteControlBridge",
+              "kind": "Function",
+              "link": "packages/remote-client/api/functions/createRemoteControlBridge.md"
+            },
+            {
+              "name": "IRemoteClientClock",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteClientClock.md"
+            },
+            {
+              "name": "IRemoteClientTransport",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteClientTransport.md"
+            },
+            {
+              "name": "IRemoteConnectionManagerOptions",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteConnectionManagerOptions.md"
+            },
+            {
+              "name": "IRemoteConnector",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteConnector.md"
+            },
+            {
+              "name": "IRemoteControlBridge",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteControlBridge.md"
+            },
+            {
+              "name": "IRemoteCredentialStore",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteCredentialStore.md"
+            },
+            {
+              "name": "IRemoteProfileStore",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteProfileStore.md"
+            },
+            {
+              "name": "IRemoteSavedConnection",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteSavedConnection.md"
+            },
+            {
+              "name": "IRemoteSessionOptions",
+              "kind": "Interface",
+              "link": "packages/remote-client/api/interfaces/IRemoteSessionOptions.md"
+            },
+            {
+              "name": "RemoteClientError",
+              "kind": "Class",
+              "link": "packages/remote-client/api/classes/RemoteClientError.md"
+            },
+            {
+              "name": "RemoteConnectionManager",
+              "kind": "Class",
+              "link": "packages/remote-client/api/classes/RemoteConnectionManager.md"
+            },
+            {
+              "name": "RemoteSession",
+              "kind": "Class",
+              "link": "packages/remote-client/api/classes/RemoteSession.md"
+            },
+            {
+              "name": "RemoteSessionState",
+              "kind": "Type Alias",
+              "link": "packages/remote-client/api/type-aliases/RemoteSessionState.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-core",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-core",
+          "markdown": "packages/remote-core/api/index.md",
+          "reflection": "api/remote-core/reflection.json",
+          "exports": [
+            {
+              "name": "IRemoteAccessDependencies",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteAccessDependencies.md"
+            },
+            {
+              "name": "IRemoteAccessStatus",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteAccessStatus.md"
+            },
+            {
+              "name": "IRemoteAccessStore",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteAccessStore.md"
+            },
+            {
+              "name": "IRemoteClock",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteClock.md"
+            },
+            {
+              "name": "IRemotePairingGrant",
+              "kind": "Type Alias",
+              "link": "packages/remote-core/api/type-aliases/IRemotePairingGrant.md"
+            },
+            {
+              "name": "IRemoteSecurity",
+              "kind": "Interface",
+              "link": "packages/remote-core/api/interfaces/IRemoteSecurity.md"
+            },
+            {
+              "name": "RemoteAccessEvent",
+              "kind": "Type Alias",
+              "link": "packages/remote-core/api/type-aliases/RemoteAccessEvent.md"
+            },
+            {
+              "name": "RemoteAccessService",
+              "kind": "Class",
+              "link": "packages/remote-core/api/classes/RemoteAccessService.md"
+            },
+            {
+              "name": "RemoteRouteRegistry",
+              "kind": "Class",
+              "link": "packages/remote-core/api/classes/RemoteRouteRegistry.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-electron",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-electron",
+          "markdown": "packages/remote-electron/api/index.md",
+          "reflection": "api/remote-electron/reflection.json",
+          "exports": [
+            {
+              "name": "IRemotePreloadBridge",
+              "kind": "Type Alias",
+              "link": "packages/remote-electron/api/type-aliases/IRemotePreloadBridge.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-electron/main",
+          "markdown": "packages/remote-electron/api/subpaths/main/index.md",
+          "reflection": "api/remote-electron/subpaths/main/reflection.json",
+          "exports": [
+            {
+              "name": "ElectronCredentialVault",
+              "kind": "Class",
+              "link": "packages/remote-electron/api/subpaths/main/classes/ElectronCredentialVault.md"
+            },
+            {
+              "name": "ElectronRemoteController",
+              "kind": "Class",
+              "link": "packages/remote-electron/api/subpaths/main/classes/ElectronRemoteController.md"
+            },
+            {
+              "name": "IElectronSafeStorage",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/main/interfaces/IElectronSafeStorage.md"
+            },
+            {
+              "name": "IRemoteElectronActivation",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/main/interfaces/IRemoteElectronActivation.md"
+            },
+            {
+              "name": "IRemoteElectronMainOptions",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/main/interfaces/IRemoteElectronMainOptions.md"
+            },
+            {
+              "name": "IRemoteElectronRuntime",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/main/interfaces/IRemoteElectronRuntime.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-electron/preload",
+          "markdown": "packages/remote-electron/api/subpaths/preload/index.md",
+          "reflection": "api/remote-electron/subpaths/preload/reflection.json",
+          "exports": [
+            {
+              "name": "createRemotePreloadBridge",
+              "kind": "Function",
+              "link": "packages/remote-electron/api/subpaths/preload/functions/createRemotePreloadBridge.md"
+            },
+            {
+              "name": "IRemotePreloadBridge",
+              "kind": "Type Alias",
+              "link": "packages/remote-electron/api/subpaths/preload/type-aliases/IRemotePreloadBridge.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-electron/utility",
+          "markdown": "packages/remote-electron/api/subpaths/utility/index.md",
+          "reflection": "api/remote-electron/subpaths/utility/reflection.json",
+          "exports": [
+            {
+              "name": "ElectronRemoteUtility",
+              "kind": "Class",
+              "link": "packages/remote-electron/api/subpaths/utility/classes/ElectronRemoteUtility.md"
+            },
+            {
+              "name": "IRemoteElectronUtilityOptions",
+              "kind": "Interface",
+              "link": "packages/remote-electron/api/subpaths/utility/interfaces/IRemoteElectronUtilityOptions.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-node",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-node",
+          "markdown": "packages/remote-node/api/index.md",
+          "reflection": "api/remote-node/reflection.json",
+          "exports": [
+            {
+              "name": "INodeRemoteHostOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/INodeRemoteHostOptions.md"
+            },
+            {
+              "name": "IRemoteApplicationAdapter",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteApplicationAdapter.md"
+            },
+            {
+              "name": "IRemoteHostStatus",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteHostStatus.md"
+            },
+            {
+              "name": "IRemoteNodeTransport",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteNodeTransport.md"
+            },
+            {
+              "name": "IRemoteTlsMaterial",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteTlsMaterial.md"
+            },
+            {
+              "name": "IRemoteTlsProvider",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/interfaces/IRemoteTlsProvider.md"
+            },
+            {
+              "name": "NodeHttpLanTransport",
+              "kind": "Class",
+              "link": "packages/remote-node/api/classes/NodeHttpLanTransport.md"
+            },
+            {
+              "name": "NodeHttpsLanTransport",
+              "kind": "Class",
+              "link": "packages/remote-node/api/classes/NodeHttpsLanTransport.md"
+            },
+            {
+              "name": "NodeRemoteHost",
+              "kind": "Class",
+              "link": "packages/remote-node/api/classes/NodeRemoteHost.md"
+            },
+            {
+              "name": "selectPrivateHost",
+              "kind": "Function",
+              "link": "packages/remote-node/api/functions/selectPrivateHost.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-node/client",
+          "markdown": "packages/remote-node/api/subpaths/client/index.md",
+          "reflection": "api/remote-node/subpaths/client/reflection.json",
+          "exports": [
+            {
+              "name": "INodeLocalGatewayOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/client/interfaces/INodeLocalGatewayOptions.md"
+            },
+            {
+              "name": "INodeRemoteConnectorOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/client/interfaces/INodeRemoteConnectorOptions.md"
+            },
+            {
+              "name": "IRemoteLocalGatewayView",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/client/interfaces/IRemoteLocalGatewayView.md"
+            },
+            {
+              "name": "NodeLocalGateway",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/client/classes/NodeLocalGateway.md"
+            },
+            {
+              "name": "NodeRemoteClientTransport",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/client/classes/NodeRemoteClientTransport.md"
+            },
+            {
+              "name": "NodeRemoteConnector",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/client/classes/NodeRemoteConnector.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-node/host",
+          "markdown": "packages/remote-node/api/subpaths/host/index.md",
+          "reflection": "api/remote-node/subpaths/host/reflection.json",
+          "exports": [
+            {
+              "name": "INodeRemoteHostOptions",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/INodeRemoteHostOptions.md"
+            },
+            {
+              "name": "IRemoteApplicationAdapter",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteApplicationAdapter.md"
+            },
+            {
+              "name": "IRemoteHostStatus",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteHostStatus.md"
+            },
+            {
+              "name": "IRemoteNodeTransport",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteNodeTransport.md"
+            },
+            {
+              "name": "IRemoteTlsMaterial",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteTlsMaterial.md"
+            },
+            {
+              "name": "IRemoteTlsProvider",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/host/interfaces/IRemoteTlsProvider.md"
+            },
+            {
+              "name": "NodeHttpLanTransport",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/host/classes/NodeHttpLanTransport.md"
+            },
+            {
+              "name": "NodeHttpsLanTransport",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/host/classes/NodeHttpsLanTransport.md"
+            },
+            {
+              "name": "NodeRemoteHost",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/host/classes/NodeRemoteHost.md"
+            },
+            {
+              "name": "selectPrivateHost",
+              "kind": "Function",
+              "link": "packages/remote-node/api/subpaths/host/functions/selectPrivateHost.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-node/persistence",
+          "markdown": "packages/remote-node/api/subpaths/persistence/index.md",
+          "reflection": "api/remote-node/subpaths/persistence/reflection.json",
+          "exports": [
+            {
+              "name": "JsonRemoteAccessStore",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/persistence/classes/JsonRemoteAccessStore.md"
+            }
+          ]
+        },
+        {
+          "importPath": "@pixel-brewery/remote-node/security",
+          "markdown": "packages/remote-node/api/subpaths/security/index.md",
+          "reflection": "api/remote-node/subpaths/security/reflection.json",
+          "exports": [
+            {
+              "name": "IRemoteTlsMaterial",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/security/interfaces/IRemoteTlsMaterial.md"
+            },
+            {
+              "name": "IRemoteTlsProvider",
+              "kind": "Interface",
+              "link": "packages/remote-node/api/subpaths/security/interfaces/IRemoteTlsProvider.md"
+            },
+            {
+              "name": "NodeRemoteSecurity",
+              "kind": "Class",
+              "link": "packages/remote-node/api/subpaths/security/classes/NodeRemoteSecurity.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-protocol",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-protocol",
+          "markdown": "packages/remote-protocol/api/index.md",
+          "reflection": "api/remote-protocol/reflection.json",
+          "exports": [
+            {
+              "name": "createRemotePairingUrl",
+              "kind": "Function",
+              "link": "packages/remote-protocol/api/functions/createRemotePairingUrl.md"
+            },
+            {
+              "name": "IRemoteAccessState",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteAccessState.md"
+            },
+            {
+              "name": "IRemoteByteRequest",
+              "kind": "Interface",
+              "link": "packages/remote-protocol/api/interfaces/IRemoteByteRequest.md"
+            },
+            {
+              "name": "IRemoteByteResponse",
+              "kind": "Interface",
+              "link": "packages/remote-protocol/api/interfaces/IRemoteByteResponse.md"
+            },
+            {
+              "name": "IRemoteContentPolicy",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteContentPolicy.md"
+            },
+            {
+              "name": "IRemoteEndpoint",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteEndpoint.md"
+            },
+            {
+              "name": "IRemoteErrorCode",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteErrorCode.md"
+            },
+            {
+              "name": "IRemoteHostDescriptor",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteHostDescriptor.md"
+            },
+            {
+              "name": "IRemoteHostIdentity",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteHostIdentity.md"
+            },
+            {
+              "name": "IRemoteLocalView",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteLocalView.md"
+            },
+            {
+              "name": "IRemoteNativeRequest",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteNativeRequest.md"
+            },
+            {
+              "name": "IRemoteNativeResponse",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteNativeResponse.md"
+            },
+            {
+              "name": "IRemotePairingBootstrap",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemotePairingBootstrap.md"
+            },
+            {
+              "name": "IRemotePairingRequest",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemotePairingRequest.md"
+            },
+            {
+              "name": "IRemotePairingResponse",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemotePairingResponse.md"
+            },
+            {
+              "name": "IRemotePrincipal",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemotePrincipal.md"
+            },
+            {
+              "name": "IRemoteRequestContext",
+              "kind": "Interface",
+              "link": "packages/remote-protocol/api/interfaces/IRemoteRequestContext.md"
+            },
+            {
+              "name": "IRemoteRouteDefinition",
+              "kind": "Interface",
+              "link": "packages/remote-protocol/api/interfaces/IRemoteRouteDefinition.md"
+            },
+            {
+              "name": "IRemoteSavedConnection",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteSavedConnection.md"
+            },
+            {
+              "name": "IRemoteSessionDescriptor",
+              "kind": "Type Alias",
+              "link": "packages/remote-protocol/api/type-aliases/IRemoteSessionDescriptor.md"
+            },
+            {
+              "name": "isPrivateAddress",
+              "kind": "Function",
+              "link": "packages/remote-protocol/api/functions/isPrivateAddress.md"
+            },
+            {
+              "name": "normalizeRemotePath",
+              "kind": "Function",
+              "link": "packages/remote-protocol/api/functions/normalizeRemotePath.md"
+            },
+            {
+              "name": "remoteAccessStateSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteAccessStateSchema.md"
+            },
+            {
+              "name": "remoteContentPolicySchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteContentPolicySchema.md"
+            },
+            {
+              "name": "remoteEndpointSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteEndpointSchema.md"
+            },
+            {
+              "name": "remoteErrorCodeSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteErrorCodeSchema.md"
+            },
+            {
+              "name": "remoteErrorResponseSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteErrorResponseSchema.md"
+            },
+            {
+              "name": "remoteHostDescriptorSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteHostDescriptorSchema.md"
+            },
+            {
+              "name": "remoteHostIdentitySchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteHostIdentitySchema.md"
+            },
+            {
+              "name": "remoteLocalViewSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteLocalViewSchema.md"
+            },
+            {
+              "name": "remoteNativeRequestSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteNativeRequestSchema.md"
+            },
+            {
+              "name": "remoteNativeResponseSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteNativeResponseSchema.md"
+            },
+            {
+              "name": "remotePairingBootstrapSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remotePairingBootstrapSchema.md"
+            },
+            {
+              "name": "remotePairingRequestSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remotePairingRequestSchema.md"
+            },
+            {
+              "name": "remotePairingResponseSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remotePairingResponseSchema.md"
+            },
+            {
+              "name": "remotePrincipalSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remotePrincipalSchema.md"
+            },
+            {
+              "name": "RemoteProtocolError",
+              "kind": "Class",
+              "link": "packages/remote-protocol/api/classes/RemoteProtocolError.md"
+            },
+            {
+              "name": "remoteProtocolVersion",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteProtocolVersion.md"
+            },
+            {
+              "name": "remoteRoutes",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteRoutes.md"
+            },
+            {
+              "name": "remoteSavedConnectionSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteSavedConnectionSchema.md"
+            },
+            {
+              "name": "remoteSessionDescriptorSchema",
+              "kind": "Variable",
+              "link": "packages/remote-protocol/api/variables/remoteSessionDescriptorSchema.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "@pixel-brewery/remote-testing",
+      "version": "0.1.0",
+      "entryPoints": [
+        {
+          "importPath": "@pixel-brewery/remote-testing",
+          "markdown": "packages/remote-testing/api/index.md",
+          "reflection": "api/remote-testing/reflection.json",
+          "exports": [
+            {
+              "name": "FakeRemoteClock",
+              "kind": "Class",
+              "link": "packages/remote-testing/api/classes/FakeRemoteClock.md"
+            },
+            {
+              "name": "FakeRemoteConnector",
+              "kind": "Class",
+              "link": "packages/remote-testing/api/classes/FakeRemoteConnector.md"
+            },
+            {
+              "name": "IRemoteContractVectors",
+              "kind": "Interface",
+              "link": "packages/remote-testing/api/interfaces/IRemoteContractVectors.md"
+            },
+            {
+              "name": "IRemoteRouteMatchVector",
+              "kind": "Interface",
+              "link": "packages/remote-testing/api/interfaces/IRemoteRouteMatchVector.md"
+            },
+            {
+              "name": "MemoryRemoteAccessStore",
+              "kind": "Class",
+              "link": "packages/remote-testing/api/classes/MemoryRemoteAccessStore.md"
+            },
+            {
+              "name": "MemoryRemoteCredentialStore",
+              "kind": "Class",
+              "link": "packages/remote-testing/api/classes/MemoryRemoteCredentialStore.md"
+            },
+            {
+              "name": "remoteContractVectors",
+              "kind": "Variable",
+              "link": "packages/remote-testing/api/variables/remoteContractVectors.md"
+            },
+            {
+              "name": "remoteRouteMatchVectors",
+              "kind": "Variable",
+              "link": "packages/remote-testing/api/variables/remoteRouteMatchVectors.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
