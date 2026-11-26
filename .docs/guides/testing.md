@@ -62,6 +62,9 @@ This machine currently has no usable RFC1918/ULA interface. Local browser eviden
 therefore uses only the explicit `REMOTE_FIXTURE_ALLOW_LOOPBACK=1` fixture mode.
 The normal/CI journey still selects an actual private LAN address and asserts
 `isSecureContext === false`; a loopback pass cannot replace that evidence.
+LAN journeys use the host's bounded private port range. Port zero remains limited
+to the explicitly selected loopback test mode; using it for a real private interface
+would reject fixture startup before the browser or Electron journey begins.
 
 Native compilation and simulator unit tests do not prove camera hardware, LAN
 permission prompts, background/suspension on a real phone, or an OS credential
