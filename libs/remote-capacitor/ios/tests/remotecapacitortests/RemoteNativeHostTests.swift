@@ -12,8 +12,12 @@ import XCTest
         var views: [URL?] = []
         let host = try RemoteNativeHost(configuration: try RemoteNativeConfiguration(appId: "example", assetsDirectory: assets, routes: []), activateView: { views.append($0) })
         addTeardownBlock { await host.dispose(); try? FileManager.default.removeItem(at: assets) }
-        // Retain the data store itself; its cookie store does not keep an ephemeral store alive.
+        // Retain the data store itself; its cookie store does not keep an ephemeral store alive. Older iOS versions apply
+        // cookie-store operations only while a web view of that store exists in the process, as in the real bridge.
         let dataStore = WKWebsiteDataStore.nonPersistent(), store = dataStore.httpCookieStore, origin = URL(string: "http://127.0.0.1:4242")!
+        let configuration = WKWebViewConfiguration()
+        configuration.websiteDataStore = dataStore
+        let webView = WKWebView(frame: .zero, configuration: configuration)
         let capability = String(repeating: "a", count: 64)
         // Act
         try await host.activate(RemoteNativeRuntime.Activation(view: ["origin": origin.absoluteString, "connectionId": "selected"], cookie: capability), store: store)
@@ -30,5 +34,6 @@ import XCTest
         XCTAssertNil(host.localOrigin)
         XCTAssertEqual(views, [origin, nil])
         withExtendedLifetime(dataStore) {}
+        withExtendedLifetime(webView) {}
     }
 }
