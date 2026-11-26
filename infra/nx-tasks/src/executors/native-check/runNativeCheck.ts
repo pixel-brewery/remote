@@ -1,6 +1,6 @@
 // #region Imports
 import { execFile, spawn } from 'node:child_process';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, rm } from 'node:fs/promises';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { promisify } from 'node:util';
 import type { INativeCheckOptions } from './interfaces/INativeCheckOptions.js';
@@ -68,11 +68,16 @@ export async function runNativeCheck(
             throw new Error('The Xcode project must remain inside its owning Nx project.');
         projectArguments.push('-project', project);
     }
-    await run(
+    // `-quiet` hides the failing test, so a test run keeps its result bundle and reports its failures on failure.
+    const results = resolve(output, 'tests.xcresult');
+    const resultArguments = options.platform === 'ios-test' ? ['-resultBundlePath', results] : [];
+    if (resultArguments.length) await rm(results, { recursive: true, force: true });
+    const xcodebuild = run(
         'xcodebuild',
         [
             '-quiet',
             ...projectArguments,
+            ...resultArguments,
             '-scheme',
             scheme,
             '-destination',
@@ -86,6 +91,29 @@ export async function runNativeCheck(
         ],
         root,
     );
+    try {
+        await xcodebuild;
+    } catch (error) {
+        if (resultArguments.length) await reportTestFailures(results);
+        throw error;
+    }
+}
+
+/** Prints the failing tests of a result bundle; a missing or unreadable bundle leaves only the original failure. */
+async function reportTestFailures(results: string): Promise<void> {
+    const summary = await promisify(execFile)(
+        'xcrun',
+        ['xcresulttool', 'get', 'test-results', 'summary', '--path', results, '--compact'],
+        { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 },
+    ).catch(() => undefined);
+    if (!summary) return;
+    let failures: unknown[] = [];
+    try {
+        failures = (JSON.parse(summary.stdout) as { testFailures?: unknown[] }).testFailures ?? [];
+    } catch {
+        return;
+    }
+    for (const failure of failures) console.error(`Failed test: ${JSON.stringify(failure)}`);
 }
 
 async function run(command: string, arguments_: readonly string[], cwd: string): Promise<void> {
