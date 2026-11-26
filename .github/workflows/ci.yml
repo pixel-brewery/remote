@@ -100,9 +100,15 @@ jobs:
       - run: yarn nx run fixture-mobile:android-compile
 
   ios:
-    runs-on: macos-26
+    runs-on: macos-15
     timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
     steps:
+      - name: Report the supported iOS toolchain
+        run: |
+          xcodebuild -version
+          xcrun swift --version
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
