@@ -1,5 +1,36 @@
 # Integrate Remote
 
+## Install the published packages
+
+The nine SDK packages are published together at version `0.1.0` in GitHub
+Packages. Configure your package manager's `@pixel-brewery` scope for
+`https://npm.pkg.github.com` and supply an existing package-readable token through
+the calling environment. Public GitHub npm packages still use authenticated
+registry access. Never commit a token value.
+
+For Yarn, the application can use this `.yarnrc.yml` configuration:
+
+```yaml
+npmScopes:
+    pixel-brewery:
+        npmRegistryServer: 'https://npm.pkg.github.com'
+        npmAlwaysAuth: true
+        npmAuthToken: '${GITHUB_TOKEN-}'
+```
+
+Install the packages needed by the owning runtime at the same family version. A
+Node host consuming the access service and protocol directly starts with:
+
+```sh
+yarn add @pixel-brewery/remote-node@0.1.0 @pixel-brewery/remote-core@0.1.0 @pixel-brewery/remote-protocol@0.1.0
+```
+
+Browser consumers use `remote-browser` and `remote-client`; Angular, Electron and
+Capacitor compositions add their corresponding adapter. Declare direct imports
+in each consuming workspace and let the package manager update the lockfile.
+Keep Node and privileged native adapters outside browser bundles. Do not replace
+published dependencies with source aliases, copied code or package patches.
+
 ## Host responsibilities
 
 Provide a stable `appId` and persist the generated installation identity in the

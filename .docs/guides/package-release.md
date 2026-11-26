@@ -2,6 +2,10 @@
 
 This pipeline prepares one immutable family of the nine SDK packages, then publishes those same checked tarballs only through an explicitly selected manual release. It does not prepare version commits, create an automatic version PR, publish on push, or infer approval from a successful check. The initial source version is `0.1.0`; later versions must already be committed consistently before another manual candidate is considered.
 
+## Published initial family
+
+SDK `0.1.0` was published on 26 November 2026 by [Release packages run 45865646952](https://github.com/pixel-brewery/remote/actions/runs/45865646952). It reused immutable candidate artifact `15130029271` from [the successful preparation](https://github.com/pixel-brewery/remote/actions/runs/45846249443), without rebuilding or repacking. Tag [`v0.1.0`](https://github.com/pixel-brewery/remote/tree/v0.1.0) points to checked source `a2145c094007dc253b969f4c7956f43000b6a613`. All nine package records report public visibility and the canonical repository association; fresh official npm downloads matched the candidate's byte counts, SHA-256 and SHA-512 integrity. Application integration and device acceptance are separate from this package-release evidence.
+
 ## Preconditions and source proof
 
 Use the canonical `pixel-brewery/remote` repository, ID `1472760702`, and select `main` when starting **Release packages**. Supply `source_sha` as its exact forty-character current protected commit and `family_version` as the exact stable version already present in the root and all nine SDK manifests. A dirty or different checkout, stale main, changed package identity, wrong registry or inconsistent family version fails before preparation or publication.
@@ -32,7 +36,7 @@ The official npm CLI publishes the retained `.tgz` files with scripts disabled, 
 
 Success requires every exact version to exist in GitHub's package-version metadata, all package records to link to the canonical repository, and fresh official npm downloads to match the candidate's byte count, SHA-256 and SHA-512 integrity. Every package record must explicitly report `visibility=public`.
 
-GitHub initially creates npm packages privately. Linking a public repository inherits access permissions, not package visibility; `npm publish --access public` alone is not a visibility proof. If a package remains private, the upload is preserved and the pipeline reports the affected names as an owner action instead of claiming completion. An authorized owner must open each package's **Package settings** and change its visibility, then resume the original candidate. The pipeline makes no ACL/visibility mutation and introduces no administrative token. [GitHub package visibility and inherited permissions](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility).
+Do not infer package visibility from the linked repository or `npm publish --access public` alone. If a package remains private, the upload is preserved and the pipeline reports the affected names as an owner action instead of claiming completion. An authorized owner must open each package's **Package settings** and change its visibility, then resume the original candidate. The initial `0.1.0` family already passed the explicit public-visibility checks and needed no visibility repair. The pipeline makes no ACL/visibility mutation and introduces no administrative token. [GitHub package visibility and inherited permissions](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility).
 
 The verified read-access policy is public visibility plus the expected repository association. GitHub's package metadata does not enumerate the complete owner/team/admin grant matrix; inspect those administrative grants in Package settings when needed. Public npm packages on GitHub still require appropriate authenticated registry access for installation. The pipeline does not fabricate anonymous installation or arbitrary cross-repository access.
 
@@ -53,4 +57,4 @@ The single typed executor is `@pixel-brewery/nx-tasks:package-release`, with `ph
 | `nx-tasks:packages:release:publish`   | No build prerequisites; approved manual tag/upload using the retained artifact.                              |
 | `nx-tasks:packages:release:verify`    | No build prerequisites; source, immutable artifact, tag, registry bytes and public-access verification only. |
 
-All four targets are noncacheable. This guide and the workflow prepare a reviewable manual capability; they are not evidence that any dispatch, tag or package publication has occurred.
+All four targets are noncacheable. Workflow definitions alone do not prove that publication occurred; the completed initial-family run above records the executed release.
