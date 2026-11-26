@@ -13,20 +13,20 @@ import WebKit
     internal let runtime: RemoteNativeRuntime
     internal var localOrigin: URL?
     private var _connectionId: String?
-    private var _cookie: (value: HTTPCookie, store: WKHTTPCookieStore)?
+    private var _cookie: (value: HTTPCookie, store: any RemoteCookieStore)?
     internal let activateView: (URL?) throws -> Void
     /// Install once during native application launch. The callback recreates the Capacitor bridge with its new serverURL.
     public init(configuration: RemoteNativeConfiguration, activateView: @escaping (URL?) throws -> Void) throws { guard Self.installed == nil else { throw RemoteNativeError.invalidRequest }; runtime = try RemoteNativeRuntime(configuration: configuration); self.activateView = activateView; Self.installed = self }
     /// Explicitly cancel the application-owned remote channel and remove the active view capability when its native owner exits.
     public func dispose() async { await runtime.dispose(); localOrigin = nil; _connectionId = nil; await removeCookie(); if Self.installed === self { Self.installed = nil } }
     internal func close(connectionId: String) async throws { guard _connectionId == connectionId else { return }; localOrigin = nil; _connectionId = nil; await removeCookie(); try activateView(nil) }
-    internal func activate(_ activation: RemoteNativeRuntime.Activation, store: WKHTTPCookieStore) async throws {
+    internal func activate(_ activation: RemoteNativeRuntime.Activation, store: any RemoteCookieStore) async throws {
         guard let origin = activation.view["origin"] as? String, let url = URL(string: origin), url.host == "127.0.0.1" else { throw RemoteNativeError.invalidRequest }
         let cookie = try makeRemoteLocalCookie(origin: url, capability: activation.cookie)
         // Cookies are not port-scoped: the new capability replaces the closed gateway's cookie of the same name.
         await store.setCookie(cookie); _cookie = (cookie, store); localOrigin = url; _connectionId = activation.view["connectionId"] as? String; try activateView(url)
     }
-    /// Removes the closed view capability from its WebKit store and from HTTPCookieStorage.shared.
+    /// Removes the closed view capability from its cookie store and from HTTPCookieStorage.shared.
     private func removeCookie() async {
         guard let installed = _cookie else { return }
         _cookie = nil
