@@ -9,12 +9,12 @@
         "test": "tsc -p tsconfig.json && vitest run --config vitest.config.ts && node --test src/executors/dependabot-merge/*.spec.mjs"
     },
     "devDependencies": {
-        "@nx/devkit": "24.0.5",
+        "@nx/devkit": "24.0.6",
         "@pixel-brewery/mosaik-themes": "0.1.205",
         "@pixel-brewery/remote-core": "workspace:*",
         "@pixel-brewery/remote-protocol": "workspace:*",
         "@pixel-brewery/remote-testing": "workspace:*",
-        "nx": "24.0.5",
+        "nx": "24.0.6",
         "typedoc": "0.28.20",
         "typedoc-plugin-markdown": "4.14.1",
         "typescript": "6.0.3",
