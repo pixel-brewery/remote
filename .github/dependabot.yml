@@ -1,3 +1,4 @@
+# Green Dependabot pull requests merge automatically: .github/workflows/dependabot-merge.yml
 version: 2
 updates:
   - package-ecosystem: npm
@@ -8,6 +9,9 @@ updates:
     rebase-strategy: auto
     open-pull-requests-limit: 10
     versioning-strategy: increase-if-necessary
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
     groups:
       mosaik:
         patterns: ['@pixel-brewery/mosaik-*', '@pixel-brewery/markdowner-*']
@@ -26,6 +30,11 @@ updates:
       day: monday
     rebase-strategy: auto
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(ci)
+    groups:
+      github-actions-updates:
+        patterns: ['*']
   - package-ecosystem: gradle
     directory: /libs/remote-capacitor/android
     schedule:
@@ -33,6 +42,9 @@ updates:
       day: monday
     rebase-strategy: auto
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
     groups:
       ktor:
         patterns: ['io.ktor:*']
@@ -45,6 +57,9 @@ updates:
       day: monday
     rebase-strategy: auto
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
     groups:
       nio:
         patterns: ['swift-nio*', 'swift-atomics', 'swift-collections', 'swift-system']

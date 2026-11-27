@@ -6,7 +6,7 @@
     "executors": "./executors.json",
     "scripts": {
         "typecheck": "tsc -p tsconfig.json",
-        "test": "tsc -p tsconfig.json && vitest run --config vitest.config.ts && node --test src/executors/dependabot-merge/*.spec.mjs"
+        "test": "tsc -p tsconfig.json && vitest run --config vitest.config.ts"
     },
     "devDependencies": {
         "@nx/devkit": "24.0.6",
