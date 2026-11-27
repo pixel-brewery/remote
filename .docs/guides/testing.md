@@ -176,34 +176,10 @@ hide this application failure.
 
 ## Verified dependency delivery
 
-The default-branch Dependabot controller installs no pull-request dependencies
-and loads no pull-request implementation. Its branch/merge writer and its native
-CI authorizer are separate jobs. Authorization has only Actions write plus
-Contents and Pull Requests read permissions, and cannot update a branch or merge.
-
-Only the actual `pull_request` workflow is merge evidence. It must belong to the
-same immutable repository and current bot PR, match the current source and
-workflow attempt, and successfully complete exactly `verify`, `android` and
-`ios`. A human maintainer may have triggered a valid normal PR run. A diagnostic
-`workflow_dispatch` run never satisfies this proof. The authorizer only approves
-an `action_required` original run from the verified native bot identities after
-rechecking the current main/head/test-merge parents, source blobs and refs.
-
-`.github/dependabot-automation.json` contains the fixed `reviewedCiSha256`
-attestation for the complete deliberately reviewed CI source. The canonical
-`pinInvariant` normalization replaces only ordinary immutable action-pin/version
-comment values; all other source bytes remain significant. The controller hashes
-that normalized main source and requires equality with the fixed trusted-main
-value and the normalized PR source. It never learns an attestation from API data,
-PR configuration or workflow input. A CI logic, permission or toolchain change
-requires a deliberate review and corresponding literal policy update before it
-can authorize later native PR runs.
-
-Scheduled reconciliation revisits already-green native runs through the complete
-merger after a transient skip. Current attempts remain authoritative even when an
-unrelated diagnostic run has a larger ID. After merging, continuation requires a
-full confirmed merged-PR response and the exact current destination source.
-Existing same-source main push or dispatch runs are retained in any state,
-including failed, cancelled or queued runs, rather than duplicated. This
-automation does not publish the SDK family; package publication retains the
+When the required `verify`, `android` and `ios` checks of a Dependabot pull
+request are green, [`dependabot-merge.yml`](../../.github/workflows/dependabot-merge.yml)
+squash-merges it; GitHub still enforces the `main` ruleset. A merge made with the
+workflow token starts no push workflows, so the same job then dispatches the
+matching push workflows (`ci.yml` and, when its paths match, `publish-pages.yml`)
+with the merge commit as `expected_head_sha`. Package publication stays with the
 separate owner-controlled release workflow.

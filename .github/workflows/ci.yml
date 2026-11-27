@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       expected_head_sha:
-        description: Exact source requested by the trusted dependency controller
+        description: Exact source requested by the Dependabot auto-merge workflow
         required: false
         default: ''
         type: string
@@ -32,8 +32,6 @@ jobs:
         env:
           EXPECTED_HEAD_SHA: ${{ inputs.expected_head_sha }}
         run: test -z "$EXPECTED_HEAD_SHA" || test "$EXPECTED_HEAD_SHA" = "$GITHUB_SHA"
-      - name: Verify the dependency-free trusted controller
-        run: node --test infra/nx-tasks/src/executors/dependabot-merge/*.spec.mjs
       - run: corepack enable
       - run: yarn install --immutable
         env:

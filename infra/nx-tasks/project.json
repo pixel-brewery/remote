@@ -55,10 +55,6 @@
             "executor": "@pixel-brewery/nx-tasks:source-conventions",
             "cache": false
         },
-        "dependabot:reconcile": {
-            "executor": "@pixel-brewery/nx-tasks:dependabot-merge",
-            "cache": false
-        },
         "format": {
             "executor": "nx:run-commands",
             "cache": false,

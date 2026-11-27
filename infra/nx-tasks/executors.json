@@ -15,11 +15,6 @@
             "schema": "./src/executors/source-conventions/schema.json",
             "description": "Verify lowercase feature directories, declaration placement, TSDoc and Git index casing."
         },
-        "dependabot-merge": {
-            "implementation": "./src/executors/dependabot-merge/executor",
-            "schema": "./src/executors/dependabot-merge/schema.json",
-            "description": "Reconcile strictly verified dependency updates using trusted default-branch code."
-        },
         "packed-packages": {
             "implementation": "./src/executors/packed-packages/executor",
             "schema": "./src/executors/packed-packages/schema.json",

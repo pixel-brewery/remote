@@ -1,7 +1,0 @@
-{
-    "$schema": "https://json-schema.org/schema",
-    "title": "Reconcile verified Dependabot updates",
-    "type": "object",
-    "properties": {},
-    "additionalProperties": false
-}
